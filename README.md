@@ -10,6 +10,7 @@
 - [Пронин Константин](https://github.com/KonstantinPronin)
 
 Ментор по фронтенду - [Меркулова Надежда](https://github.com/crueltycute)
+
 Ментор по бэкенду - [Бакулев Артем](https://github.com/artbakulev)
 
 ## Описание
