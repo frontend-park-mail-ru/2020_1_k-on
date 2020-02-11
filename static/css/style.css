@@ -24,6 +24,11 @@ main {
 
 .login-form__input {
     margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgrey;
+    padding: 7px 5px;
+
 }
 
 .login-form__button {
