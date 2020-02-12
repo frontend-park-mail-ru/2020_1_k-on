@@ -28,11 +28,15 @@ main {
     border-radius: 5px;
     background-color: lightgrey;
     padding: 7px 5px;
-
+    font-size: 18px;
 }
 
 .login-form__input:focus {
     outline-style:none;
+}
+
+.login-form__label {
+    font-size: 18px;
 }
 
 .login-form__button {
