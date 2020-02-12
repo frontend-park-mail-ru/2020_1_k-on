@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login page</title>
     <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -11,12 +11,14 @@
             <h1>ВХОД</h1>
 
             <label for="login" class="login-form__label">Логин</label>
-            <input type="text" class="login-form__input" id="login">
+            <input class="login-form__input" type="text" id="login" minlength="4" maxlength="15" autocomplete="off" required>
+            <span class="border"></span>
 
             <label for="password" class="login-form__label">Пароль</label>
-            <input type="password" class="login-form__input" id="password">
+            <input class="login-form__input" type="password" id="password" minlength="4" maxlength="15" required>
+            <span class="border"></span>
 
-            <button class="login-form__button">Войти</button>
+            <button class="login-form__button" type="submit">Войти</button>
         </form>
     </main>
 </body>
