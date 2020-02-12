@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/login_page.html');
+    res.sendFile(__dirname + '/static/templates/login_page.html');
 });
 
 app.listen(process.env.PORT || PORT, () => {
