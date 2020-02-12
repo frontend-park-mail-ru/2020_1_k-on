@@ -12,7 +12,6 @@ app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/login_page.html');
 });
 
-
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Example app listening on port ${process.env.PORT }`);
+    console.log(`Example app listening on port ${process.env.PORT}`);
 });
