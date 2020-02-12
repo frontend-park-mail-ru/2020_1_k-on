@@ -1,17 +1,18 @@
-var express = require('express');
-var app = express();
+const PORT = 3000;
+let express = require('express');
+let app = express();
 
 app.use('/static', express.static('static'));
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/login', function (req, res) {
+app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/login_page.html');
 });
 
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Example app listening on port ${process.env.PORT }`);
 });
