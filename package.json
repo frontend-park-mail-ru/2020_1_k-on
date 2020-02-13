@@ -1,0 +1,24 @@
+{
+  "name": "2020_1_k-on",
+  "version": "1.0.0",
+  "description": "Kinopoisk web application",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontend-park-mail-ru/2020_1_k-on.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frontend-park-mail-ru/2020_1_k-on/issues"
+  },
+  "homepage": "https://github.com/frontend-park-mail-ru/2020_1_k-on#readme"
+}
