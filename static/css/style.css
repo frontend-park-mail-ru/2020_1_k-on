@@ -1,9 +1,9 @@
 :root {
-    --login-form-border: black;
-    --login-form-input-bbc: lightgrey;
-    --login-form-button-bc: limegreen;
-    --login-form-button-bc-hover: #28a128;
-    --login-form-input-focus: limegreen;
+    --auth-form-border: black;
+    --auth-form-input-bbc: lightgrey;
+    --auth-form-button-bc: limegreen;
+    --auth-form-button-bc-hover: #28a128;
+    --auth-form-input-focus: limegreen;
 }
 
 body {
@@ -20,64 +20,74 @@ main {
     align-items: center;
 }
 
-.login-form {
-    border: solid 1px var(--login-form-border);
+.auth-form {
+    border: solid 1px var(--auth-form-border);
     border-radius: 25px;
-    padding: 30px 15px;
+    padding: 30px 50px;
     margin: 0;
 }
 
-.login-form > * {
+.auth-form > * {
     display: block;
 }
 
-.login-form__input {
+.auth-form__input {
     border: 0;
-    border-bottom: 1px solid var(--login-form-input-bbc);
-    padding: 7px 5px;
+    border-bottom: 1px solid var(--auth-form-input-bbc);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 100%;
     font-size: 1.25em;
 }
 
-.login-form__input:focus {
+.auth-form__input:focus {
     outline-style: none;
     border-bottom: none;
 }
 
-.login-form__input + .border {
+.auth-form__input + .border {
     bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
     margin-bottom: 10%;
-    background-color: var(--login-form-input-focus);
+    background-color: var(--auth-form-input-focus);
 }
 
-.login-form__input:focus + .border {
+.auth-form__input:focus + .border {
     width: 100%;
     transition: 0.5s;
 }
 
-.login-form__label {
+.auth-form__label {
     font-size: 1.25em;
 }
 
-.login-form__button {
-    background-color: var(--login-form-button-bc);
+.auth-form__button {
+    background-color: var(--auth-form-button-bc);
     border: none;
     border-radius: 5px;
     font-size: 1.5em;
     color: white;
-    margin: 0 auto;
-    width: 65%;
     height: 2em;
 }
 
-.login-form__button:hover {
-    background-color: var(--login-form-button-bc-hover);
+.auth-form__button_login {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.auth-form__button_signup {
+    padding: 0 1.5em;
+    margin: 0 1em;
+}
+
+.auth-form__button:hover {
+    background-color: var(--auth-form-button-bc-hover);
     transition: 0.5s;
 }
 
-h1 {
+.auth-form__headline {
     text-align: center;
     margin: 0 0 10%;
 }
