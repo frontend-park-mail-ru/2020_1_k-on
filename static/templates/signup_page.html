@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Signup page</title>
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <form class="signup-form">
-            <h1 class="signup-form__headline">РЕГИСТРАЦИЯ</h1>
+<main>
+    <form class="auth-form">
+        <h1 class="auth-form__headline">РЕГИСТРАЦИЯ</h1>
 
-            <label class="signup-form__label" for="login">Логин</label>
-            <input class="signup-form__input" type="text" id="login">
+        <label class="auth-form__label" for="login">Логин</label>
+        <input class="auth-form__input auth-form__input_signup" type="text" id="login" minlength="4" maxlength="15"
+               autofocus required>
+        <span class="border"></span>
 
-            <label class="signup-form__label" for="email">Почта</label>
-            <input class="signup-form__input" type="email" id="email">
+        <label class="auth-form__label" for="email">Почта</label>
+        <input class="auth-form__input auth-form__input_signup" type="email" id="email" required>
+        <span class="border"></span>
 
-            <label class="signup-form__label" for="password">Пароль</label>
-            <input class="signup-form__input" type="password" id="password">
+        <label class="auth-form__label" for="password">Пароль</label>
+        <input class="auth-form__input auth-form__input_signup" type="password" id="password" minlength="4"
+               maxlength="15" required>
+        <span class="border"></span>
 
-            <button class="signup-form__button" type="submit">Зарегистрироваться</button>
-        </form>
-    </main>
+        <button class="auth-form__button auth-form__button_signup" type="submit">Зарегистрироваться</button>
+    </form>
+</main>
 </body>
 </html>

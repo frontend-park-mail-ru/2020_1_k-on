@@ -6,20 +6,22 @@
     <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <form class="login-form">
-            <h1>ВХОД</h1>
+<main>
+    <form class="auth-form">
+        <h1 class="auth-form__headline">ВХОД</h1>
 
-            <label class="login-form__label" for="login" >Логин</label>
-            <input class="login-form__input" type="text" id="login" minlength="4" maxlength="15" autofocus required>
-            <span class="border"></span>
+        <label class="auth-form__label" for="login">Логин</label>
+        <input class="auth-form__input auth-form__input_login" type="text" id="login" minlength="4" maxlength="15"
+               autofocus required>
+        <span class="border"></span>
 
-            <label class="login-form__label" for="password" >Пароль</label>
-            <input class="login-form__input" type="password" id="password" minlength="4" maxlength="15" required>
-            <span class="border"></span>
+        <label class="auth-form__label" for="password">Пароль</label>
+        <input class="auth-form__input auth-form__input_login" type="password" id="password" minlength="4"
+               maxlength="15" required>
+        <span class="border"></span>
 
-            <button class="login-form__button" type="submit">Войти</button>
-        </form>
-    </main>
+        <button class="auth-form__button auth-form__button_login" type="submit">Войти</button>
+    </form>
+</main>
 </body>
 </html>
