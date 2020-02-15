@@ -8,7 +8,7 @@
 
 body {
     margin: 0;
-    width: 100vw;
+    /*width: 100vw;*/
     height: 100vh;
 }
 
@@ -90,4 +90,156 @@ main {
 .auth-form__headline {
     text-align: center;
     margin: 0 0 10%;
+}
+
+.profile {
+    /*background-color: #4A235A;*/
+    /*background-color: #300066;*/
+    /*background-color: #380066;*/
+    /*color: white;*/
+}
+
+.profile-page {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    /*border: solid;*/
+    display: block;
+    /*background-color: blanchedalmond;*/
+    /*background-color: #5B2C6F;*/
+    /*background-color: #470099;*/
+}
+
+.profile-page__headline {
+    padding: 0.67em 1em 1em;
+    margin: 0;
+}
+
+.profile-block {
+    display: flex;
+    align-items: flex-start;
+    /*background-color: #3C0080;*/
+    /*background-color: #2A004D;*/
+    padding: 3em 2em 2em;
+}
+
+.profile-block__avatar {
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    padding-left: 2em;
+    width: 100%;
+}
+
+.profile-info__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.profile-info__login {
+    margin: 0 0.4em 0 0;
+    font-size: xx-large;
+}
+
+.profile-info__edit {
+    padding-top: 5px;
+}
+
+.profile-info__exit {
+    position: relative;
+    margin-left: auto;
+    text-decoration: none;
+    color: black;
+    font-size: x-large;
+}
+
+.profile-info__email {
+    font-size: x-large;
+    color: #525258;
+}
+
+.lists-nav {
+    display: flex;
+    align-content: space-around;
+    background-color: #db4a3f;
+    margin-bottom: 1em;
+    /*border-bottom: 2px solid #DA6058;*/
+}
+
+.lists-nav__list-link {
+    /*margin: auto;*/
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin: 0 0.5em;
+    padding: 1em 0;
+    /*background-color: antiquewhite;*/
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.lists-nav__list-link_active {
+    /*border-bottom: 4px solid #F77D74;*/
+    background-color: #BB3F35;
+}
+
+.lists-nav__list-link:hover {
+    background-color: #B23D33;
+}
+
+.list-block {
+    width: 90%;
+    margin-left: 2em;
+}
+
+.list-block__headline {
+    font-size: xx-large;
+}
+
+.series-list {
+    padding-bottom: 2em;
+    font-size: large;
+    text-align: center;
+    /*display: flex;*/
+}
+
+.series-list__header {
+    display: flex;
+    font-weight: bold;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #B23D33;
+}
+
+.series-list__row {
+    display: flex;
+    padding: 0.7em 0;
+}
+
+.series-list__row:hover {
+    background-color: #FCF1F0;
+}
+
+.series-list__col1 {
+    width: 5%;
+}
+
+.series-list__col2 {
+    text-align: left;
+    width: 65%;
+}
+
+.series-list__col3 {
+    width: 15%;
+}
+
+.series-list__col4 {
+    width: 15%;
+}
+
+.series-list__series-name {
+    color: black;
 }
