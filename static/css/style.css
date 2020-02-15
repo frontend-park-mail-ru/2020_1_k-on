@@ -93,8 +93,6 @@ main {
 }
 
 .profile {
-    /*background-color: #4A235A;*/
-    /*background-color: #300066;*/
     /*background-color: #380066;*/
     /*color: white;*/
 }
@@ -103,10 +101,7 @@ main {
     width: 60%;
     height: 100%;
     margin: auto;
-    /*border: solid;*/
     display: block;
-    /*background-color: blanchedalmond;*/
-    /*background-color: #5B2C6F;*/
     /*background-color: #470099;*/
 }
 
@@ -118,7 +113,6 @@ main {
 .profile-block {
     display: flex;
     align-items: flex-start;
-    /*background-color: #3C0080;*/
     /*background-color: #2A004D;*/
     padding: 3em 2em 2em;
 }
