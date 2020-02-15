@@ -4,11 +4,16 @@
     --auth-form-button-bc: limegreen;
     --auth-form-button-bc-hover: #28a128;
     --auth-form-input-focus: limegreen;
+    --profile-page-reference: black;
+    --series-list-navigation: #db4a3f;
+    --list-navigation-active-link: #BB3F35;
+    --list-navigation-link-hover: #B23D33;
+    --list-navigation-link-text: white;
+    --list-row-hover: #FCF1F0;
 }
 
 body {
     margin: 0;
-    /*width: 100vw;*/
     height: 100vh;
 }
 
@@ -92,17 +97,11 @@ main {
     margin: 0 0 10%;
 }
 
-.profile {
-    /*background-color: #380066;*/
-    /*color: white;*/
-}
-
 .profile-page {
     width: 60%;
     height: 100%;
     margin: auto;
     display: block;
-    /*background-color: #470099;*/
 }
 
 .profile-page__headline {
@@ -113,7 +112,6 @@ main {
 .profile-block {
     display: flex;
     align-items: flex-start;
-    /*background-color: #2A004D;*/
     padding: 3em 2em 2em;
 }
 
@@ -146,7 +144,7 @@ main {
     position: relative;
     margin-left: auto;
     text-decoration: none;
-    color: black;
+    color: var(--profile-page-reference);
     font-size: x-large;
 }
 
@@ -158,31 +156,27 @@ main {
 .lists-nav {
     display: flex;
     align-content: space-around;
-    background-color: #db4a3f;
+    background-color: var(--series-list-navigation);
     margin-bottom: 1em;
-    /*border-bottom: 2px solid #DA6058;*/
 }
 
 .lists-nav__list-link {
-    /*margin: auto;*/
     width: 100%;
     height: 100%;
     text-align: center;
     margin: 0 0.5em;
     padding: 1em 0;
-    /*background-color: antiquewhite;*/
-    color: white;
+    color: var(--list-navigation-link-text);
     text-decoration: none;
     text-transform: uppercase;
 }
 
 .lists-nav__list-link_active {
-    /*border-bottom: 4px solid #F77D74;*/
-    background-color: #BB3F35;
+    background-color: var(--list-navigation-active-link);
 }
 
 .lists-nav__list-link:hover {
-    background-color: #B23D33;
+    background-color: var(--list-navigation-link-hover);
 }
 
 .list-block {
@@ -198,14 +192,13 @@ main {
     padding-bottom: 2em;
     font-size: large;
     text-align: center;
-    /*display: flex;*/
 }
 
 .series-list__header {
     display: flex;
     font-weight: bold;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #B23D33;
+    border-bottom: 1px solid var(--list-navigation-link-hover);
 }
 
 .series-list__row {
@@ -214,7 +207,7 @@ main {
 }
 
 .series-list__row:hover {
-    background-color: #FCF1F0;
+    background-color: var(--list-row-hover);
 }
 
 .series-list__col1 {
@@ -235,5 +228,5 @@ main {
 }
 
 .series-list__series-name {
-    color: black;
+    color: var(--profile-page-reference);
 }
