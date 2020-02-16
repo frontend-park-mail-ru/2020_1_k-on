@@ -5,12 +5,12 @@ const express = require('express');
 
 const app = express();
 
-const root = path.resolve(__dirname, 'static')
+const root = path.resolve(__dirname, 'static');
 
 app.use('/static', express.static('static'));
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(root + '/templates/index.html');
 });
 
 app.get('/login', (req, res) => {
