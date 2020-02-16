@@ -1,0 +1,103 @@
+.index-page {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    display: block;
+    /*background-color: #28a128;*/
+}
+
+.index-page__headline {
+    font-size: xx-large;
+    padding-left: 15px;
+}
+
+.filters-block {
+    display: flex;
+    padding: 10px;
+}
+
+.filter-button {
+    border: 2px solid lightgrey;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    border-color: darkgrey;
+}
+
+.filter-button__filter-value {
+    padding-right: 30px;
+}
+
+.filter-button__arrow {
+    height: 10px;
+}
+
+.series-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    /*align-items: flex-start;*/
+    /*justify-content: center;*/
+    list-style: none;
+}
+
+.series-card {
+    margin: 10px auto 20px 10px;
+    display: block;
+    cursor: pointer;
+}
+
+.series-link {
+    text-decoration: none;
+    color: black;
+}
+
+.series-card__image {
+    width: 250px;
+    height: 375px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+    position: relative;
+    line-height: 20px;
+}
+
+.series-card__image_1 {
+    background-image: url("/static/images/series1.jpeg");
+}
+
+.series-card__image_2 {
+    background-image: url("/static/images/series2.jpg");
+}
+
+.series-card__image_3 {
+    background-image: url("/static/images/series3.jpg");
+}
+
+.series-card__image_4 {
+    background-image: url("/static/images/series4.jpg");
+}
+
+.series-card__name {
+    font-size: large;
+}
+
+.series-card__age-limit {
+    position: absolute;
+    display: inline-block;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 2px;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: baseline;
+    height: 20px;
+    width: 30px;
+}

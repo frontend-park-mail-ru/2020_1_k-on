@@ -238,8 +238,30 @@ main {
 .page-header {
     display: flex;
     align-items: center;
-    padding: 0 10%;
-    background-color: #4A0087;
+    padding: 0 15%;
+    background-color: #3D006F;
+}
+
+.page-header__left-side {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: flex-start;
+}
+
+.page-header__right-side {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.page-header__logo {
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+    padding: 0.7em 1em 0.7em 15px;
 }
 
 .page-header__link {
@@ -247,4 +269,47 @@ main {
     color: white;
     font-size: x-large;
     padding: 0.7em 1em;
+}
+
+.page-header__search-form {
+    display: flex;
+    position: relative;
+    box-sizing: content-box;
+    /*width: 300px;*/
+}
+
+.page-header__search-input {
+    height: 2.5em;
+    width: 300px;
+    padding: 0 0 0 1em;
+    border: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.page-header__search-input:focus {
+    outline: none;
+}
+
+.page-header__search-button {
+    height: 2.5em;
+    width: 2.5em;
+    /*position: absolute;*/
+    /*right: 0;*/
+    background-color: white;
+    border: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.page-header__search-icon {
+    height: 1.1em;
+    vertical-align: middle;
+}
+.page-header__search-button:hover {
+    cursor: pointer;
+}
+
+.page-header__search-button:focus {
+    outline: none;
 }
