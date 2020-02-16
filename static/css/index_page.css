@@ -66,19 +66,19 @@
 }
 
 .series-card__image_1 {
-    background-image: url("/static/images/series1.jpeg");
+    background-image: url("/static/img/series1.jpeg");
 }
 
 .series-card__image_2 {
-    background-image: url("/static/images/series2.jpg");
+    background-image: url("/static/img/series2.jpg");
 }
 
 .series-card__image_3 {
-    background-image: url("/static/images/series3.jpg");
+    background-image: url("/static/img/series3.jpg");
 }
 
 .series-card__image_4 {
-    background-image: url("/static/images/series4.jpg");
+    background-image: url("/static/img/series4.jpg");
 }
 
 .series-card__name {
