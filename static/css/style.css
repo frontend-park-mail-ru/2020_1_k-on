@@ -234,3 +234,17 @@ main {
 .series-list__series-name {
     color: var(--profile-page-reference);
 }
+
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    background-color: #4A0087;
+}
+
+.page-header__link {
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+    padding: 0.7em 1em;
+}
