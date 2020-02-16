@@ -17,6 +17,10 @@ app.get('/login', (req, res) => {
     res.sendFile(root + '/templates/login_page.html');
 });
 
+app.get('/movie', (req, res) => {
+    res.sendFile(root + '/templates/movie_page.html');
+});
+
 app.get('/signup', (req, res) => {
     res.sendFile(root + '/templates/signup_page.html');
 });
