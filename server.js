@@ -25,6 +25,10 @@ app.get('/signup', (req, res) => {
     res.sendFile(root + '/templates/signup_page.html');
 });
 
+app.get('/profile', (req, res) => {
+    res.sendFile(root + '/templates/profile_page.html');
+});
+
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server listening on port ${process.env.PORT || PORT}`);
 });
