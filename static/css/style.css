@@ -116,8 +116,12 @@ main {
 }
 
 .profile-block__avatar {
-    height: 150px;
+    min-height: 150px;
+    min-width: 150px;
     border-radius: 50%;
+    background-image: url("/static/images/avatar.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .profile-info {
