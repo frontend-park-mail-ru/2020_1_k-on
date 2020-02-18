@@ -5,6 +5,7 @@
     --auth-form-button-bc: limegreen;
     --auth-form-button-bc-hover: #28a128;
     --auth-form-input-focus: limegreen;
+    --error-color: red;
 }
 
 .auth-page {
@@ -41,7 +42,6 @@
     left: 0;
     width: 0;
     height: 2px;
-    margin-bottom: 10%;
     background-color: var(--auth-form-input-focus);
 }
 
@@ -82,4 +82,11 @@
     margin-bottom: 10%;
     font-size: xx-large;
     font-weight: bold;
+}
+
+.auth-form__error {
+    visibility: hidden;
+    margin-bottom: 10%;
+    color: var(--error-color);
+    font-size: 0.8em;
 }
