@@ -2,12 +2,14 @@ const PORT = 3000;
 
 const path = require('path');
 const express = require('express');
+const favicon = require('serve-favicon');
 
 const app = express();
 
 const root = path.resolve(__dirname, 'static');
 
 app.use('/static', express.static('static'));
+app.use(favicon(__dirname + '/static/img/favicon-play.ico'));
 
 app.get('/', (req, res) => {
     res.sendFile(root + '/templates/index.html');
