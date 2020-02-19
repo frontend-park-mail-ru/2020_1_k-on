@@ -10,11 +10,26 @@
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
     "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "lint-write": "./node_modules/.bin/eslint --fix ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "./node_modules/.bin/eslint --fix .",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
