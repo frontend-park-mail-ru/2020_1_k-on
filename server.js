@@ -8,6 +8,7 @@ const app = express();
 const root = path.resolve(__dirname, 'static');
 
 app.use('/static', express.static('static'));
+app.use('/dist', express.static('dist'));
 
 app.get('/favicon.ico', (req, res) => {
     res.sendFile(root + '/img/favicon-play.ico');
@@ -31,6 +32,10 @@ app.get('/signup', (req, res) => {
 
 app.get('/profile', (req, res) => {
     res.sendFile(root + '/templates/profile_page.html');
+});
+
+app.get('/spa', (req, res) => {
+    res.sendFile(root + '/templates/index_spa.html');
 });
 
 app.listen(process.env.PORT || PORT, () => {
