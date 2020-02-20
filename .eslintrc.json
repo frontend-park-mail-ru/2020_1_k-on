@@ -8,7 +8,7 @@
         "eslint:recommended",
         "google"
     ],
-    "parser": "babel-eslint",
+    "parser": "esprima",
 //    "parserOptions": {
 //        "ecmaVersion": 2018,
 //        "sourceType": "module"
