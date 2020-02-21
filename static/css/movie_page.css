@@ -10,9 +10,9 @@
     --gradient-height: 1000px;
 }
 
-body {
+.movie {
     background-color: var(--bg-color);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .movie-bg {
