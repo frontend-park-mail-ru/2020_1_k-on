@@ -6,12 +6,13 @@ const validation = () => {
     form.addEventListener('submit', (evt) => {
         let isValidationError = false;
 
-        const inputs = form.getElementsByTagName('input');
+        const inputs = form.getElementsByClassName('auth-form__input');
 
         for (let inputItem of inputs) {
-            const inputClassItem = new Input(inputItem.className);
+            const inputClassItem = new Input(inputItem.id);
 
-            const inputError = form.querySelector(`#${inputClassItem.errorID}`);
+
+            const inputError = form.getElementsByClassName(`auth-form__error_${inputClassItem.inputName}`)[0];
 
             if (!inputClassItem.regex.test(inputItem.value)) {
                 inputError.textContent = inputClassItem.errorMsg;
