@@ -8,13 +8,14 @@ const app = express();
 const root = path.resolve(__dirname, 'static');
 
 app.use('/static', express.static('static'));
+app.use('/dist', express.static('dist'));
 
 app.get('/favicon.ico', (req, res) => {
     res.sendFile(root + '/img/favicon-play.ico');
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(root + '/templates/index.html');
+    res.sendFile(root + '/index.html');
 });
 
 app.get('/login', (req, res) => {
