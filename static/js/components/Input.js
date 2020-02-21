@@ -3,7 +3,8 @@ const VALIDATION_ERR_MESSAGES = {
             и состоять из цифр и латинских символов`,
     PASSWORD: `Пароль должен содержать 1 заглавную букву,
                1 строчную букву и одну цифру,
-               а также содержать от 4 до 15 символов`
+               а также содержать от 4 до 15 символов`,
+    EMAIL: `Неправильный формат электронной почты`,
 };
 
 const INPUTS = {
@@ -18,6 +19,11 @@ const INPUTS = {
         inputName: 'password',
         errorMsg: VALIDATION_ERR_MESSAGES.PASSWORD
     },
+    email: {
+        regex: /^\S+@\S+\.\S+$/,
+        inputName: 'email',
+        errorMsg: VALIDATION_ERR_MESSAGES.EMAIL
+    }
 };
 
 export default class Input {
