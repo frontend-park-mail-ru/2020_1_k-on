@@ -1,24 +1,30 @@
-import createLogin from './controllers/loginController';
-import createIndex from './controllers/indexController';
-import createSignUp from './controllers/signupController';
-import createMovie from './controllers/movieController';
+import NavbarController from './controllers/navbarController';
+import LoginController from './controllers/loginController';
+import SignUpController from './controllers/signUpController';
+import MovieController from './controllers/movieController';
 
-const application = document.getElementById('application');
+document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('header');
 
-const routes = {
-    menu: createIndex,
-    login: createLogin,
-    signup: createSignUp,
-    movie: createMovie,
-};
+    const movieCtrl = new MovieController();
+    const signUpCtrl = new SignUpController();
+    const loginCtrl = new LoginController();
+    const navbarCtrl = new NavbarController();
 
-application.addEventListener('click', (evt) => {
-    const {target} = evt;
+    const routes = {
+        login: loginCtrl,
+        signup: signUpCtrl,
+        movie: movieCtrl,
+    };
 
-    if (target instanceof HTMLAnchorElement) {
-        evt.preventDefault();
-        routes[target.dataset.section]();
-    }
+    header.addEventListener('click', (evt) => {
+        const {target} = evt;
+
+        if (target instanceof HTMLAnchorElement) {
+            evt.preventDefault();
+            routes[target.dataset.section].render();
+        }
+    });
+
+    navbarCtrl.render();
 });
-
-createIndex();
