@@ -1,20 +1,7 @@
-import validation from '../components/validation';
-import signupView from '../views/signupView';
+import SignUpView from '../views/signUpView';
 
 export default class SignUpController {
-    view = signupView;
-    validation = validation;
-
-    render() {
-        const container = document.getElementById('container');
-        container.innerHTML = '';
-
-        const signupItem = document.createElement('div');
-        signupItem.className = 'auth-page';
-        signupItem.innerHTML = this.view;
-
-        container.appendChild(signupItem);
-
-        this.validation();
+    constructor() {
+        this.view = new SignUpView();
     }
 }
