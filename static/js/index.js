@@ -1,6 +1,8 @@
 import LoginController from './controllers/loginController';
 import SignUpController from './controllers/signUpController';
 import MovieController from './controllers/movieController';
+import ProfileController from './controllers/profileController';
+import IndexController from './controllers/indexController';
 import Navbar from './components/navbar/navbar';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         movie: new MovieController(),
         signup: new SignUpController(),
         login: new LoginController(),
+        profile: new ProfileController(),
+        index: new IndexController(),
     };
 
     const navbar = new Navbar();
