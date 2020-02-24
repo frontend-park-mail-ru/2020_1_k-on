@@ -89,4 +89,5 @@
     margin-bottom: 10%;
     color: var(--error-color);
     font-size: 0.8em;
+    max-width: fit-content;
 }
