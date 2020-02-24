@@ -29,4 +29,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     navbar.render(header);
+    controllers.index.view.render(container);
 });
