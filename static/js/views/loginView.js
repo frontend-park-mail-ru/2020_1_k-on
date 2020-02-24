@@ -1,4 +1,7 @@
-const loginView = `
+import View from './view';
+import validation from '../components/validation';
+
+const template = `
     <form class="auth-form" novalidate>
     <h1 class="auth-form__headline">ВХОД</h1>
 
@@ -23,4 +26,15 @@ const loginView = `
     </form>
 `;
 
-export default loginView;
+export default class LoginView extends View {
+    constructor() {
+        super(template);
+        this.validation = validation;
+    }
+
+    render(root) {
+        this.element.className = 'auth-page';
+        super.render(root);
+        this.validation();
+    }
+}

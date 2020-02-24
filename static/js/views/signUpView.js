@@ -1,4 +1,7 @@
-const signupView = `
+import View from './view';
+import validation from '../components/validation';
+
+const template = `
     <form class="auth-form" novalidate>
     <h1 class="auth-form__headline">РЕГИСТРАЦИЯ</h1>
 
@@ -30,4 +33,15 @@ const signupView = `
     </form>
 `;
 
-export default signupView;
+export default class SignUpView extends View {
+    constructor() {
+        super(template);
+        this.validation = validation;
+    }
+
+    render(root) {
+        this.element.className = 'auth-page';
+        super.render(root);
+        this.validation();
+    }
+}

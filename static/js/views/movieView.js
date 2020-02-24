@@ -1,4 +1,6 @@
-const movieView = `
+import View from './view';
+
+const template = `
     <div class="movie-bg">
             <img class="movie-bg__image" src="static/img/brigada.jpg">
             <div class="movie-bg__shade"></div>
@@ -62,4 +64,13 @@ const movieView = `
         </div>
 `;
 
-export default movieView;
+export default class MovieView extends View {
+    constructor() {
+        super(template);
+    }
+
+    render(root) {
+        this.element.className = 'movie';
+        super.render(root);
+    }
+}
