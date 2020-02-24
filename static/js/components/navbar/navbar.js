@@ -4,6 +4,8 @@ export default class Navbar {
             signup: 'Регистрация',
             login: 'Авторизация',
             movie: 'Фильм',
+            profile: 'Профиль',
+            index: 'Главная',
         };
     }
 
