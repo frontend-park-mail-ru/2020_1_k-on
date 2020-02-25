@@ -4,7 +4,8 @@
   "description": "Kinopoisk web application",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fest": "^0.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
