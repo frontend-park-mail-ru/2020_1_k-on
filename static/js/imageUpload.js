@@ -21,4 +21,4 @@ const addImageHandler = (elementId, url) => {
     });
 };
 
-addImageHandler('userpic', '/signup');
+addImageHandler('avatar', '/profile');

@@ -59,6 +59,16 @@
     color: var(--profile-info);
 }
 
+.settings-form {
+    margin-top: 1em;
+    color: var(--profile-info);
+    font-size: x-large;
+}
+
+.settings-form__avatar {
+    font-size: large;
+}
+
 .lists-nav {
     display: flex;
     align-content: space-around;
