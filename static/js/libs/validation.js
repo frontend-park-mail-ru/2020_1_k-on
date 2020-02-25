@@ -1,4 +1,4 @@
-import Input from './Input';
+import Input from './input';
 
 const validation = () => {
     const form = document.querySelector('.auth-form');
