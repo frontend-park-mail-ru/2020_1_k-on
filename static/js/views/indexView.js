@@ -1,5 +1,24 @@
 import View from './view';
 
+const series = [
+    {
+        "seriesName": "Лучшие в Лос-Анджелесе",
+        "ageLimit": 16
+    },
+    {
+        "seriesName": "Навстречу тьме",
+        "ageLimit": 18
+    },
+    {
+        "seriesName": "Столкновение",
+        "ageLimit": 16
+    },
+    {
+        "seriesName": "Триггер",
+        "ageLimit": 18
+    },
+];
+
 const template = `
     <p class="index-page__headline">Сериалы</p>
 
@@ -82,10 +101,12 @@ const template = `
 export default class IndexView extends View {
     constructor() {
         super(template);
+        this._data = series;
     }
 
     render(root) {
         this.element.className = 'index-page';
+        this.tmpl = window.fest['views/indexView.js'](this._data);
         super.render(root);
     }
 }
