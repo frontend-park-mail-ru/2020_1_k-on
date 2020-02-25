@@ -14,7 +14,7 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(root + '/img/favicon-play.ico');
 });
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(root + '/index.html');
 });
 
