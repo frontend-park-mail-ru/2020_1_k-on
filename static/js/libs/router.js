@@ -10,7 +10,7 @@ export default class Router {
         });
     }
 
-    add(path, root = this.root, view) {
+    add(path, view, root = this.root) {
         this.routes.set(path, {
             root: root,
             view: view,

@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
         index: new IndexController(),
     };
 
-    router.add('/login', container, controllers.login.view);
-    router.add('/movie', container, controllers.movie.view);
-    router.add('/signup', container, controllers.signup.view);
-    router.add('/profile', container, controllers.profile.view);
-    router.add('/index', container, controllers.index.view);
-    router.add('/', container, controllers.index.view);
+    router.add('/login', controllers.login.view);
+    router.add('/movie', controllers.movie.view);
+    router.add('/signup', controllers.signup.view);
+    router.add('/profile', controllers.profile.view);
+    router.add('/index', controllers.index.view);
+    router.add('/', controllers.index.view);
 
     navbar.render(header);
     router.start();
