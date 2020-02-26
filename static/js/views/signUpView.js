@@ -32,6 +32,14 @@ const template = `
     <span class="border"></span>
     <div class="auth-form__error auth-form__error_password"
         id="password_error">Error</div>
+        
+    <label class="auth-form__label" for="password">Повтор пароля</label>
+    <input class="auth-form__input auth-form__input_password_repeat"
+        type="password" id="password_repeat" minlength="4"
+        maxlength="15" required>
+    <span class="border"></span>
+    <div class="auth-form__error auth-form__error_password_repeat"
+        id="password_repeat_error">Error</div>
 
     <button class="auth-form__button auth-form__button_signup"
         type="submit">Зарегистрироваться</button>
@@ -58,8 +66,16 @@ export default class SignUpView extends View {
 
         if (validationResult) {
             const login = document.getElementById('login').value;
-            const password = document.getElementById('password').value;
             const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordRepeat = document.getElementById(
+                'password_repeat'
+            ).value;
+
+            if (password !== passwordRepeat) {
+                this.onInvalidSignUp('Пароли не совпадают');
+                return;
+            }
 
 
             fetch('http://localhost:3000/signup', {
