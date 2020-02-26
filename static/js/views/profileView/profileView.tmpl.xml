@@ -110,7 +110,7 @@
         <div class="auth-form__error auth-form__error_password_repeat"
              id="password_repeat_error">Error</div>
 
-        <input class="auth-form__input" type="file" id="avatar" accept="image/jpeg, image/png"></input>
+        <input class="auth-form__input auth-form__input_avatar" type="file" id="avatar" accept="image/jpeg, image/png"></input>
         <span class="border"></span>
         <div class="auth-form__error">Error</div>
 
