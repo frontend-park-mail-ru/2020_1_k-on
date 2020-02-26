@@ -70,6 +70,7 @@ export default class ProfileView extends View {
                 if (res.status === USER_AUTH) {
                     this.email = res.body.email;
                     this.login = res.body.login;
+                    this.avatarBase64 = res.body.avatar;
                     this.onSuccess();
                 } else {
                     location.pathname = '/login';
@@ -98,6 +99,9 @@ export default class ProfileView extends View {
 
     onSuccess() {
         this.element.className = 'auth-page';
+        this._data.profile.avatar = `
+            "data:image/jpeg;base64,${this.avatarBase64}"
+        `;
         this.tmpl = window.fest[
             'js/views/profileView/profileView.tmpl'
         ](this._data);
@@ -105,6 +109,10 @@ export default class ProfileView extends View {
 
         document.getElementById('login').value = this.login;
         document.getElementById('email').value = this.email;
+        this.avatar = document.getElementById('avatar');
+
+        this.onUploadImage = this.onUploadImage.bind(this);
+        this.avatar.addEventListener('change', this.onUploadImage);
 
         this.onSubmit = this.onSubmit.bind(this);
         this.root.addEventListener('submit', this.onSubmit);
@@ -172,7 +180,31 @@ export default class ProfileView extends View {
         }
     }
 
+    onUploadImage(event) {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        if (file.type === 'image/png' || file.type === 'image/jpeg') {
+            formData.append('file', file);
+        }
+
+        fetch('http://64.225.100.179:8080/user/image', {
+            method: 'POST',
+            body: formData,
+            credentials: 'include',
+        }).then((response) => response.json()).then((data) => {
+            console.log(data);
+        }).catch((error) => {
+            console.error(error);
+        });
+
+        const avatar = this.root.getElementsByClassName(
+            'profile-block__avatar'
+        )[0];
+        avatar.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    }
+
     close() {
+        this.avatar.removeEventListener('change', this.onUploadImage);
         this.root.removeEventListener('submit', this.onSubmit);
         super.close();
     }
