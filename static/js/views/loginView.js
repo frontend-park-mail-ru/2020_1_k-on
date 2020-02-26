@@ -32,8 +32,6 @@ const template = `
 `;
 
 export default class LoginView extends View {
-    FORM_ERROR_MSG = 'Неправильный логин или пароль!';
-
     constructor() {
         super(template);
         this.validation = validation;
@@ -66,14 +64,25 @@ export default class LoginView extends View {
                 },
                 ),
             })
+                .then((res) => res.json().then(
+                    (data) => (
+                        {
+                            status: res.status,
+                            body: data,
+                        }
+                    )
+                )
+                )
                 .then((res) => {
                     if (res.status === SUCCESS_LOGIN) {
                         this.onSuccessLogin();
                     } else if (res.status === INVALID_LOGIN) {
-                        this.onInvalidLogin(res);
+                        this.onInvalidLogin(res.body.error);
                     }
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     }
 
@@ -81,12 +90,12 @@ export default class LoginView extends View {
         location.pathname = '/';
     }
 
-    onInvalidLogin() {
+    onInvalidLogin(resErrMsg) {
         const formError = this.element.getElementsByClassName(
             'auth-form__error'
         )[0];
 
-        formError.textContent = this.FORM_ERROR_MSG;
+        formError.textContent = resErrMsg;
         formError.style.visibility = 'visible';
     }
 
