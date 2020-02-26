@@ -1,7 +1,7 @@
 export default class View {
-    constructor(tmpl) {
+    constructor() {
         this.element = document.createElement('div');
-        this.tmpl = tmpl;
+        this.tmpl = '';
     }
 
     render(root) {

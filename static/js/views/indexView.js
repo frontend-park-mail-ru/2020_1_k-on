@@ -1,112 +1,64 @@
 import View from './view';
 
-const series = [
-    {
-        "seriesName": "Лучшие в Лос-Анджелесе",
-        "ageLimit": 16
-    },
-    {
-        "seriesName": "Навстречу тьме",
-        "ageLimit": 18
-    },
-    {
-        "seriesName": "Столкновение",
-        "ageLimit": 16
-    },
-    {
-        "seriesName": "Триггер",
-        "ageLimit": 18
-    },
-];
-
-const template = `
-    <p class="index-page__headline">Сериалы</p>
-
-    <div class="filters-block">
-        <div class="filter-button">
-            <span class="filter-button__filter-value">Все жанры</span>
-            <img class="filter-button__arrow" src="static/img/down-arrow.svg">
-        </div>
-
-        <div class="filter-button">
-            <span class="filter-button__filter-value">Все страны</span>
-            <img class="filter-button__arrow" src="static/img/down-arrow.svg">
-        </div>
-
-        <div class="filter-button">
-            <span class="filter-button__filter-value">По популярности</span>
-            <img class="filter-button__arrow" src="static/img/down-arrow.svg">
-        </div>
-    </div>
-
-    <div class="series-block">
-        <a class="series-card">
-            <div class="series-card__image series-card__image_1">
-                <span class="series-card__age-limit">16+</span>
-            </div>
-            <span class="series-card__name">Лучшие в Лос-Анджелесе</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_2">
-                <span class="series-card__age-limit">18+</span>
-            </div>
-            <span class="series-card__name">Навстречу тьме</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_3">
-                <span class="series-card__age-limit">16+</span>
-            </div>
-            <span class="series-card__name">Столкновение</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_4">
-                <span class="series-card__age-limit">18+</span>
-            </div>
-            <span class="series-card__name">Триггер</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_1">
-                <span class="series-card__age-limit">16+</span>
-            </div>
-            <span class="series-card__name">Лучшие в Лос-Анджелесе</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_2">
-                <span class="series-card__age-limit">18+</span>
-            </div>
-            <span class="series-card__name">Навстречу тьме</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_3">
-                <span class="series-card__age-limit">16+</span>
-            </div>
-            <span class="series-card__name">Столкновение</span>
-        </a>
-
-        <a class="series-card">
-            <div class="series-card__image series-card__image_4">
-                <span class="series-card__age-limit">18+</span>
-            </div>
-            <span class="series-card__name">Триггер</span>
-        </a>
-    </div>
-`;
+const data = {
+    filters: [
+        'Все жанры',
+        'Все страны',
+        'По популярности'
+    ],
+    series: [
+        {
+            "name": "Лучшие в Лос-Анджелесе",
+            "ageLimit": 16,
+            "image": "/static/img/series1.jpeg"
+        },
+        {
+            "name": "Навстречу тьме",
+            "ageLimit": 18,
+            "image": "/static/img/series2.jpg"
+        },
+        {
+            "name": "Столкновение",
+            "ageLimit": 16,
+            "image": "/static/img/series3.jpg"
+        },
+        {
+            "name": "Триггер",
+            "ageLimit": 18,
+            "image": "/static/img/series4.jpg"
+        },
+        {
+            "name": "Лучшие в Лос-Анджелесе",
+            "ageLimit": 16,
+            "image": "/static/img/series1.jpeg"
+        },
+        {
+            "name": "Навстречу тьме",
+            "ageLimit": 18,
+            "image": "/static/img/series2.jpg"
+        },
+        {
+            "name": "Столкновение",
+            "ageLimit": 16,
+            "image": "/static/img/series3.jpg"
+        },
+        {
+            "name": "Триггер",
+            "ageLimit": 18,
+            "image": "/static/img/series4.jpg"
+        },
+    ]
+};
 
 export default class IndexView extends View {
     constructor() {
-        super(template);
-        this._data = series;
+        super();
+        this._data = data;
     }
 
     render(root) {
         this.element.className = 'index-page';
-        this.tmpl = window.fest['views/indexView.js'](this._data);
+        this.tmpl = window.fest['js/views/indexView.tmpl'](this._data);
         super.render(root);
     }
 }

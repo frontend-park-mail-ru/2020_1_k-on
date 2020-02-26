@@ -1,13 +1,28 @@
-<fest:template xmlns:fest="http://fest.mail.ru" content-name="data">
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <p class="index-page__headline">Сериалы</p>
 
+    <div class="filters-block">
+        <fest:for iterate="data.filters" index="i" value="name">
+            <div class="filter-button">
+                <span class="filter-button__filter-value">
+                    <fest:value>name</fest:value>
+                </span>
+                <img class="filter-button__arrow" src="static/img/down-arrow.svg"></img>
+            </div>
+        </fest:for>
+    </div>
+
     <div class="series-block">
-        <fest:for iterate="data" index="i" value="v">
+        <fest:for iterate="data.series" index="i" value="v">
             <a class="series-card">
-                <div class="series-card__image" style="background-image: v.image">
-                    <span class="series-card__age-limit">v.ageLimit+</span>
+                <div class="series-card__image" style="background-image: url({v.image})">
+                    <span class="series-card__age-limit">
+                        <fest:value>v.ageLimit</fest:value>+
+                    </span>
                 </div>
-                <span class="series-card__name">v.name</span>
+                <span class="series-card__name">
+                    <fest:value>v.name</fest:value>
+                </span>
             </a>
         </fest:for>
     </div>

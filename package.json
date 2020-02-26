@@ -33,7 +33,9 @@
     "start": "node server.js",
     "build": "webpack --mode development",
     "lint": "./node_modules/.bin/eslint ./static",
-    "lint-write": "./node_modules/.bin/eslint --fix ./static"
+    "lint-write": "./node_modules/.bin/eslint --fix ./static",
+    "tmpl": "./node_modules/.bin/fest-build --dir=static",
+    "prestart": "npm run tmpl"
   },
   "husky": {
     "hooks": {
