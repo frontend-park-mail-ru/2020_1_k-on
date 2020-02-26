@@ -13,6 +13,9 @@ const uploadImage = (event, url) => {
     }).catch((error) => {
         console.error(error);
     });
+
+    const avatar = document.getElementsByClassName('profile-block__avatar')[0];
+    avatar.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
 };
 
 const addImageHandler = (elementId, url) => {
@@ -21,4 +24,4 @@ const addImageHandler = (elementId, url) => {
     });
 };
 
-addImageHandler('userpic', '/signup');
+addImageHandler('avatar', '/profile');
