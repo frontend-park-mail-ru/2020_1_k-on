@@ -1,5 +1,5 @@
 import View from './view';
-import validation from '../components/validation';
+import validation from '../libs/validation';
 
 const template = `
     <form class="auth-form" novalidate>
