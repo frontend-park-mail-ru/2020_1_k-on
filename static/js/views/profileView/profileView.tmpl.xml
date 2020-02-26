@@ -1,0 +1,70 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="profile-block">
+        <div class="profile-block__avatar" style="background-image: url({data.profile.avatar})"/>
+
+        <div class="profile-info">
+            <div class="profile-info__header">
+                <span class="profile-info__login">
+                    <fest:value>data.profile.login</fest:value>
+                </span>
+                <a href="#">
+                    <img class="profile-info__edit" src="static/img/pencil.svg" height="20"/>
+                </a>
+                <a class="profile-info__exit" href="#">Выйти</a>
+            </div>
+
+            <div class="profile-info__email">
+                <span>Почта:</span>
+                <span class="profile-info__email-value">
+                    <fest:value>data.profile.email</fest:value>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="lists-nav">
+        <a class="lists-nav__list-link lists-nav__list-link_active" href="#">Все</a>
+        <a class="lists-nav__list-link" href="#">Смотрю</a>
+        <a class="lists-nav__list-link" href="#">Просмотрено</a>
+        <a class="lists-nav__list-link" href="#">Запланировано</a>
+        <a class="lists-nav__list-link" href="#">Брошено</a>
+    </div>
+
+    <fest:for iterate="data.lists" index="i" value="list">
+        <div class="list-block">
+            <p class="list-block__headline">
+                <fest:value>list.name</fest:value>
+            </p>
+
+            <div class="series-list">
+                <div class="series-list__header">
+                    <a class="series-list__col1">#</a>
+                    <a class="series-list__col2">Название</a>
+                    <a class="series-list__col3">Сезоны</a>
+                    <a class="series-list__col4">Оценка</a>
+                </div>
+
+                <fest:for iterate="list.series" index="j" value="series">
+                    <div class="series-list__row" href="#">
+                        <a class="series-list__col1">
+                            <fest:var name="row" select="j + 1"/>
+                            <fest:value>row</fest:value>
+                        </a>
+
+                        <a class="series-list__col2 series-list__series-name" href="#">
+                            <fest:value>series.name</fest:value>
+                        </a>
+
+                        <a class="series-list__col3">
+                            <fest:value>series.seasons</fest:value>
+                        </a>
+
+                        <a class="series-list__col4">
+                            <fest:value>series.rating</fest:value>
+                        </a>
+                    </div>
+                </fest:for>
+            </div>
+        </div>
+    </fest:for>
+</fest:template>

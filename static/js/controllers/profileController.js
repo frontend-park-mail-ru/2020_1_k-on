@@ -1,4 +1,4 @@
-import ProfileView from '../views/profileView';
+import ProfileView from '../views/profileView/profileView';
 
 export default class ProfileController {
     constructor() {
