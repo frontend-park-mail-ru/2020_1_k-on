@@ -28,7 +28,8 @@ const template = `
 
 export default class LoginView extends View {
     constructor() {
-        super(template);
+        super();
+        this.tmpl = template;
         this.validation = validation;
     }
 

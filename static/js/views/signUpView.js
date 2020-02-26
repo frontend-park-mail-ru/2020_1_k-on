@@ -35,7 +35,8 @@ const template = `
 
 export default class SignUpView extends View {
     constructor() {
-        super(template);
+        super();
+        this.tmpl = template;
         this.validation = validation;
     }
 

@@ -1,0 +1,35 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <p class="index-page__headline">Сериалы</p>
+
+    <div class="filters-block">
+        <div class="filter-button">
+            <span class="filter-button__filter-value">Все жанры</span>
+            <img class="filter-button__arrow" src="static/img/down-arrow.svg"/>
+        </div>
+
+        <div class="filter-button">
+            <span class="filter-button__filter-value">Все страны</span>
+            <img class="filter-button__arrow" src="static/img/down-arrow.svg"/>
+        </div>
+
+        <div class="filter-button">
+            <span class="filter-button__filter-value">По популярности</span>
+            <img class="filter-button__arrow" src="static/img/down-arrow.svg"/>
+        </div>
+    </div>
+
+    <div class="series-block">
+        <fest:for iterate="data" index="i" value="series">
+            <a class="series-card">
+                <div class="series-card__image" style="background-image: url({series.image})">
+                    <span class="series-card__age-limit">
+                        <fest:value>series.ageLimit</fest:value>+
+                    </span>
+                </div>
+                <span class="series-card__name">
+                    <fest:value>series.name</fest:value>
+                </span>
+            </a>
+        </fest:for>
+    </div>
+</fest:template>
