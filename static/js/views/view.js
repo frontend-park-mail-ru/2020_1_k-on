@@ -5,8 +5,13 @@ export default class View {
     }
 
     render(root) {
+        this.root = root;
         this.element.innerHTML = this.tmpl;
         root.innerHTML = '';
         root.appendChild(this.element);
+    }
+
+    close() {
+        this.element.innerHTML = '';
     }
 }
