@@ -1,32 +1,30 @@
 import Input from './Input';
 
 const validation = () => {
-    const form = document.querySelector('.auth-form');
+    const form = document.getElementsByClassName('auth-form')[0];
 
-    form.addEventListener('submit', (evt) => {
-        let isValidationError = false;
+    let isValidationError = false;
 
-        const inputs = form.getElementsByClassName('auth-form__input');
+    const inputs = form.getElementsByClassName('auth-form__input');
 
-        for (const inputItem of inputs) {
-            const inputClassItem = new Input(inputItem.id);
+    for (const inputItem of inputs) {
+        const inputClassItem = new Input(inputItem.id);
 
+        const inputError = form.getElementsByClassName(
+            `auth-form__error_${inputClassItem.inputName}`
+        )[0];
 
-            const inputError = form.getElementsByClassName(
-                `auth-form__error_${inputClassItem.inputName}`
-            )[0];
-
-            if (!inputClassItem.regex.test(inputItem.value)) {
-                inputError.textContent = inputClassItem.errorMsg;
-                inputError.style.visibility = 'visible';
-                isValidationError = true;
-            }
+        if (!inputClassItem.regex.test(inputItem.value)) {
+            inputError.textContent = inputClassItem.errorMsg;
+            inputError.style.visibility = 'visible';
+            isValidationError = true;
+        } else {
+            inputError.textContent = '';
+            inputError.style.visibility = 'hidden';
         }
+    }
 
-        if (isValidationError) {
-            evt.preventDefault();
-        }
-    });
+    return !isValidationError;
 };
 
 export default validation;
