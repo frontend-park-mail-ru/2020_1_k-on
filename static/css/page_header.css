@@ -36,6 +36,10 @@
     padding: 0.7em 1em;
 }
 
+.page-header__link:focus {
+    outline: none;
+}
+
 .page-header__search-form {
     display: flex;
     box-sizing: content-box;
