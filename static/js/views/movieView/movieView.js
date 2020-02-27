@@ -35,9 +35,9 @@ const data = {
         'Павел Майков',
         'Владимир Вдовиченков',
         'Екатерина Гусева',
-        'Андрей Панин'
+        'Андрей Панин',
     ],
-    country: 'Россия'
+    country: 'Россия',
 };
 
 export default class MovieView extends View {
@@ -48,7 +48,9 @@ export default class MovieView extends View {
 
     render(root) {
         this.element.className = 'movie';
-        this.tmpl = window.fest['js/views/movieView/movieView.tmpl'](this._data);
+        this.tmpl = window.fest[
+            'js/views/movieView/movieView.tmpl'
+        ](this._data);
         super.render(root);
     }
 }
