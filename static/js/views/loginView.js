@@ -2,7 +2,6 @@ import View from './view';
 import validation from '../libs/validation';
 
 const SUCCESS_LOGIN = 200;
-const INVALID_LOGIN = 401;
 
 const template = `
     <form class="auth-form" novalidate>
@@ -54,11 +53,12 @@ export default class LoginView extends View {
             const login = document.getElementById('login').value;
             const password = document.getElementById('password').value;
 
-            fetch('http://localhost:3000/login', {
+            fetch('http://64.225.100.179:8080/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     'username': login,
                     'password': password,
@@ -77,7 +77,7 @@ export default class LoginView extends View {
                 .then((res) => {
                     if (res.status === SUCCESS_LOGIN) {
                         this.onSuccessLogin();
-                    } else if (res.status === INVALID_LOGIN) {
+                    } else {
                         this.onInvalidLogin(res.body.error);
                     }
                 })
