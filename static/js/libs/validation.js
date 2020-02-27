@@ -8,6 +8,9 @@ const validation = () => {
     const inputs = form.getElementsByClassName('auth-form__input');
 
     for (const inputItem of inputs) {
+        if (inputItem.id === 'avatar') {
+            continue;
+        }
         const inputClassItem = new Input(inputItem.id);
 
         const inputError = form.getElementsByClassName(
