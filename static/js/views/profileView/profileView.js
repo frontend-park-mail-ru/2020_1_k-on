@@ -1,7 +1,8 @@
 import View from '../view';
 import validation from '../../libs/validation';
 
-const USER_AUTH = 200;
+const SUCCESS_USER_AUTH = 200;
+const FAIL_USER_AUTH = 401;
 const SUCCESS_CHANGE = 200;
 const FAIL_CHANGE = 403;
 
@@ -67,19 +68,23 @@ export default class ProfileView extends View {
 
         this.getUserData()
             .then((res) => {
-                if (res.status === USER_AUTH) {
+                if (res.status === SUCCESS_USER_AUTH) {
                     this.email = res.body.email;
-                    this.login = res.body.login;
+                    this.login = res.body.username;
                     this.avatarBase64 = res.body.avatar;
                     this.onSuccess();
-                } else {
+                } else if (res.status === FAIL_USER_AUTH) {
                     location.pathname = '/login';
                 }
+            })
+            .catch((error) => {
+                console.log(error);
+                location.pathname = '/';
             });
     }
 
     getUserData() {
-        return fetch('http://localhost:3000/user', {
+        return fetch('http://64.225.100.179:8080/user', {
             method: 'GET',
             credentials: 'include',
         })
@@ -143,15 +148,15 @@ export default class ProfileView extends View {
                 return;
             }
 
-            fetch('http://localhost:3000/user', {
+            fetch('http://64.225.100.179:8080/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    'login': login,
-                    'password': password,
-                    'email': email,
+                    'Username': login,
+                    'Password': password,
+                    'Email': email,
                 },
                 ),
             })
@@ -188,7 +193,7 @@ export default class ProfileView extends View {
         }
 
         fetch('http://64.225.100.179:8080/user/image', {
-            method: 'POST',
+            method: 'PUT',
             body: formData,
             credentials: 'include',
         }).then((response) => response.json()).then((data) => {
@@ -204,8 +209,12 @@ export default class ProfileView extends View {
     }
 
     close() {
-        this.avatar.removeEventListener('change', this.onUploadImage);
-        this.root.removeEventListener('submit', this.onSubmit);
+        if (this.avatar !== undefined) {
+            this.avatar.removeEventListener('change', this.onUploadImage);
+        }
+        if (this.avatar !== undefined) {
+            this.root.removeEventListener('submit', this.onSubmit);
+        }
         super.close();
     }
 }
