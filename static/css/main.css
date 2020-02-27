@@ -6,6 +6,10 @@ body {
     height: 100vh;
 }
 
+#container {
+    height: 100%;
+}
+
 a {
     text-decoration: none;
     color: var(--link-color);
