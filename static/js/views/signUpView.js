@@ -2,7 +2,6 @@ import View from './view';
 import validation from '../libs/validation';
 
 const SUCCESS_SIGN_UP = 200;
-const INVALID_SIGN_UP = 401;
 
 const template = `
     <form class="auth-form" novalidate>
@@ -79,15 +78,16 @@ export default class SignUpView extends View {
             }
 
 
-            fetch('http://localhost:3000/signup', {
+            fetch('http://64.225.100.179:8080/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify({
-                    'username': login,
-                    'password': password,
-                    'email': email,
+                    'Username': login,
+                    'Password': password,
+                    'Email': email,
                 },
                 ),
             })
@@ -103,7 +103,7 @@ export default class SignUpView extends View {
                 .then((res) => {
                     if (res.status === SUCCESS_SIGN_UP) {
                         this.onSuccessSignUp();
-                    } else if (res.status === INVALID_SIGN_UP) {
+                    } else {
                         this.onInvalidSignUp(res.body.error);
                     }
                 })
