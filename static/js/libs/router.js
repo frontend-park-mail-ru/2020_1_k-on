@@ -22,6 +22,10 @@ export default class Router {
             return;
         }
 
+        if (this.routes.has(this.currentRoute)) {
+            this.routes.get(this.currentRoute).view.close();
+        }
+
         if (this.routes.has(path)) {
             this.currentRoute = path;
             this.routes.get(path).view.render(this.root);

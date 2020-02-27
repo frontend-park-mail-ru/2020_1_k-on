@@ -1,70 +1,120 @@
+<!--<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">-->
+<!--    <div class="profile-block">-->
+<!--        <div class="profile-block__avatar" style="background-image: url({data.profile.avatar})"/>-->
+
+<!--        <div class="profile-info">-->
+<!--            <div class="profile-info__header">-->
+<!--                <span class="profile-info__login">-->
+<!--                    <fest:value>data.profile.login</fest:value>-->
+<!--                </span>-->
+<!--                <a href="#">-->
+<!--                    <img class="profile-info__edit" src="static/img/pencil.svg" height="20"/>-->
+<!--                </a>-->
+<!--                <a class="profile-info__exit" href="#">Выйти</a>-->
+<!--            </div>-->
+
+<!--            <div class="profile-info__email">-->
+<!--                <span>Почта:</span>-->
+<!--                <span class="profile-info__email-value">-->
+<!--                    <fest:value>data.profile.email</fest:value>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="lists-nav">-->
+<!--        <a class="lists-nav__list-link lists-nav__list-link_active" href="#">Все</a>-->
+<!--        <a class="lists-nav__list-link" href="#">Смотрю</a>-->
+<!--        <a class="lists-nav__list-link" href="#">Просмотрено</a>-->
+<!--        <a class="lists-nav__list-link" href="#">Запланировано</a>-->
+<!--        <a class="lists-nav__list-link" href="#">Брошено</a>-->
+<!--    </div>-->
+
+<!--    <fest:for iterate="data.lists" index="i" value="list">-->
+<!--        <div class="list-block">-->
+<!--            <p class="list-block__headline">-->
+<!--                <fest:value>list.name</fest:value>-->
+<!--            </p>-->
+
+<!--            <div class="series-list">-->
+<!--                <div class="series-list__header">-->
+<!--                    <a class="series-list__col1">#</a>-->
+<!--                    <a class="series-list__col2">Название</a>-->
+<!--                    <a class="series-list__col3">Сезоны</a>-->
+<!--                    <a class="series-list__col4">Оценка</a>-->
+<!--                </div>-->
+
+<!--                <fest:for iterate="list.series" index="j" value="series">-->
+<!--                    <div class="series-list__row" href="#">-->
+<!--                        <a class="series-list__col1">-->
+<!--                            <fest:var name="row" select="j + 1"/>-->
+<!--                            <fest:value>row</fest:value>-->
+<!--                        </a>-->
+
+<!--                        <a class="series-list__col2 series-list__series-name" href="#">-->
+<!--                            <fest:value>series.name</fest:value>-->
+<!--                        </a>-->
+
+<!--                        <a class="series-list__col3">-->
+<!--                            <fest:value>series.seasons</fest:value>-->
+<!--                        </a>-->
+
+<!--                        <a class="series-list__col4">-->
+<!--                            <fest:value>series.rating</fest:value>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </fest:for>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </fest:for>-->
+<!--</fest:template>-->
+
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="profile-block">
         <div class="profile-block__avatar" style="background-image: url({data.profile.avatar})"/>
-
-        <div class="profile-info">
-            <div class="profile-info__header">
-                <span class="profile-info__login">
-                    <fest:value>data.profile.login</fest:value>
-                </span>
-                <a href="#">
-                    <img class="profile-info__edit" src="static/img/pencil.svg" height="20"/>
-                </a>
-                <a class="profile-info__exit" href="#">Выйти</a>
-            </div>
-
-            <div class="profile-info__email">
-                <span>Почта:</span>
-                <span class="profile-info__email-value">
-                    <fest:value>data.profile.email</fest:value>
-                </span>
-            </div>
-        </div>
     </div>
 
-    <div class="lists-nav">
-        <a class="lists-nav__list-link lists-nav__list-link_active" href="#">Все</a>
-        <a class="lists-nav__list-link" href="#">Смотрю</a>
-        <a class="lists-nav__list-link" href="#">Просмотрено</a>
-        <a class="lists-nav__list-link" href="#">Запланировано</a>
-        <a class="lists-nav__list-link" href="#">Брошено</a>
-    </div>
+    <form class="auth-form" novalidate="true">
+        <h1 class="auth-form__headline">ПРОФИЛЬ</h1>
 
-    <fest:for iterate="data.lists" index="i" value="list">
-        <div class="list-block">
-            <p class="list-block__headline">
-                <fest:value>list.name</fest:value>
-            </p>
+        <div class="auth-form__error" id="form_error">Error</div>
 
-            <div class="series-list">
-                <div class="series-list__header">
-                    <a class="series-list__col1">#</a>
-                    <a class="series-list__col2">Название</a>
-                    <a class="series-list__col3">Сезоны</a>
-                    <a class="series-list__col4">Оценка</a>
-                </div>
+        <label class="auth-form__label" for="login">Логин</label>
+        <input class="auth-form__input auth-form__input_login"
+               type="text" id="login" minlength="4" maxlength="15"
+               autofocus="true" required="true"/>
+        <span class="border"></span>
+        <div class="auth-form__error auth-form__error_login"
+             id="login_error">Error</div>
 
-                <fest:for iterate="list.series" index="j" value="series">
-                    <div class="series-list__row" href="#">
-                        <a class="series-list__col1">
-                            <fest:var name="row" select="j + 1"/>
-                            <fest:value>row</fest:value>
-                        </a>
+        <label class="auth-form__label" for="email">Почта</label>
+        <input class="auth-form__input auth-form__input_email"
+               type="email" id="email" required="true"/>
+        <span class="border"></span>
+        <div class="auth-form__error auth-form__error_email"
+             id="email_error">Error</div>
 
-                        <a class="series-list__col2 series-list__series-name" href="#">
-                            <fest:value>series.name</fest:value>
-                        </a>
+        <label class="auth-form__label" for="password">Пароль</label>
+        <input class="auth-form__input auth-form__input_password"
+               type="password" id="password" minlength="4"
+               maxlength="15" required="true"/>
+        <span class="border"></span>
+        <div class="auth-form__error auth-form__error_password"
+             id="password_error">Error</div>
 
-                        <a class="series-list__col3">
-                            <fest:value>series.seasons</fest:value>
-                        </a>
+        <label class="auth-form__label" for="password">Повтор пароля</label>
+        <input class="auth-form__input auth-form__input_password_repeat"
+               type="password" id="password_repeat" minlength="4"
+               maxlength="15" required="true"/>
+        <span class="border"></span>
+        <div class="auth-form__error auth-form__error_password_repeat"
+             id="password_repeat_error">Error</div>
 
-                        <a class="series-list__col4">
-                            <fest:value>series.rating</fest:value>
-                        </a>
-                    </div>
-                </fest:for>
-            </div>
-        </div>
-    </fest:for>
+        <input class="auth-form__input auth-form__input_avatar" type="file" id="avatar" accept="image/jpeg, image/png"></input>
+        <span class="border"></span>
+        <div class="auth-form__error">Error</div>
+
+        <button class="auth-form__button auth-form__button_signup"
+                type="submit">СОХРАНИТЬ</button>
+    </form>
 </fest:template>
