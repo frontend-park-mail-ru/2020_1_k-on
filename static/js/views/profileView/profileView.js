@@ -150,6 +150,7 @@ export default class ProfileView extends View {
 
             fetch('http://64.225.100.179:8080/user', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },
