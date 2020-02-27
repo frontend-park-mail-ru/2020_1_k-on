@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
     <header class="page-header">
-        <a class="page-header__logo">Кинопоиск</a>
+        <a class="page-header__logo" href="/">Кинопоиск</a>
 
         <fest:each iterate="items" index="url" value="name">
             <a class="page-header__link" href="/{url}">
