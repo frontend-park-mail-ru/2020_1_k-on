@@ -6,6 +6,7 @@ export default class Navbar {
             signup: 'Регистрация',
             login: 'Авторизация',
             profile: 'Профиль',
+            logout: 'Выйти'
         };
         this.element = document.createElement('div');
     }
