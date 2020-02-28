@@ -1,5 +1,9 @@
 import Input from './Input';
 
+/**
+ * Функция для валидации форм
+ * @return {boolean}
+ */
 const validation = () => {
     const form = document.getElementsByClassName('auth-form')[0];
 

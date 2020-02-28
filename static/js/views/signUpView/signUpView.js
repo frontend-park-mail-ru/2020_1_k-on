@@ -17,6 +17,11 @@ export default class SignUpView extends View {
         this.root.addEventListener('submit', this.onSubmit);
     }
 
+    /**
+     * Обработчик на подтверждение отправки формы
+     * Выполняет валидацию и отправляет форму на сервер
+     * @param {object} event
+     */
     onSubmit(event) {
         event.preventDefault();
         const validationResult = this.validation();
@@ -48,10 +53,17 @@ export default class SignUpView extends View {
             });
     }
 
+    /**
+     * Выполняет редирект при успешной регистрации
+     */
     onSuccessSignUp() {
         this.router.change('/');
     }
 
+    /**
+     * Добавляет ошибку на форму в случае не успешной регистрации
+     * @param {string} resErrMsg
+     */
     onInvalidSignUp(resErrMsg) {
         const formError = this.element.getElementsByClassName(
             'auth-form__error'
@@ -61,6 +73,9 @@ export default class SignUpView extends View {
         formError.style.visibility = 'visible';
     }
 
+    /**
+     * Удаляет обработчики событий и очищает контент
+     */
     close() {
         this.root.removeEventListener('submit', this.onSubmit);
         super.close();

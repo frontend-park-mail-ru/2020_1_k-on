@@ -17,6 +17,10 @@ export default class LoginView extends View {
         this.root.addEventListener('submit', this.onSubmit);
     }
 
+    /**
+     * Валидирует и отправляет форму
+     * @param {object} event
+     */
     onSubmit(event) {
         event.preventDefault();
         const validationResult = this.validation();
@@ -42,6 +46,10 @@ export default class LoginView extends View {
         this.router.change('/');
     }
 
+    /**
+     * Выполняет рендер ошибки формы
+     * @param {string} resErrMsg
+     */
     onInvalidLogin(resErrMsg) {
         const formError = this.element.getElementsByClassName(
             'auth-form__error'
@@ -51,6 +59,10 @@ export default class LoginView extends View {
         formError.style.visibility = 'visible';
     }
 
+    /**
+     * Перед закрытием view удаляет обработчики событий
+     * и очищает контент
+     */
     close() {
         this.root.removeEventListener('submit', this.onSubmit);
         super.close();

@@ -61,6 +61,12 @@ export default class ProfileView extends View {
         this.validation = validation;
     }
 
+    /**
+     * При рендере отправляет запрос на получение данных пользователя
+     * в случае успеха - выполняет рендер,
+     * в случае ошибки - направляет на страницу логина
+     * @param {HTMLElement} root
+     */
     render(root) {
         this.root = root;
 
@@ -80,6 +86,9 @@ export default class ProfileView extends View {
             });
     }
 
+    /**
+     * Добавляет обработчики событий и выполняет рендер
+     */
     onSuccess() {
         if (this.avatarBase64 !== '') {
             this._data.profile.avatar = `
@@ -99,6 +108,11 @@ export default class ProfileView extends View {
         this.root.addEventListener('submit', this.onSubmit);
     }
 
+    /**
+     * Добавляет ошибку на форму с данными пользователя
+     * (в случае ошибки изменения данных
+     * @param {string} resErrMsg
+     */
     onInvalidForm(resErrMsg) {
         const formError = this.element.getElementsByClassName(
             'auth-form__error'
@@ -108,6 +122,10 @@ export default class ProfileView extends View {
         formError.style.visibility = 'visible';
     }
 
+    /**
+     * Вызывается при подтвреждении обновлении данных пользователя
+     * @param {object} event
+     */
     onSubmit(event) {
         event.preventDefault();
         const validationResult = this.validation();
@@ -145,6 +163,10 @@ export default class ProfileView extends View {
             });
     }
 
+    /**
+     * Обработчик на загрузку аватара пользователя
+     * @param {object} event
+     */
     onUploadImage(event) {
         const file = event.target.files[0];
         const formData = new FormData();
@@ -167,6 +189,9 @@ export default class ProfileView extends View {
         avatar.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
     }
 
+    /**
+     * Удаляет обработчики событий и очищает контент
+     */
     close() {
         if (this.avatar !== undefined) {
             this.avatar.removeEventListener('change', this.onUploadImage);

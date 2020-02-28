@@ -1,5 +1,8 @@
 import template from './navbar.tmpl.xml';
 
+/**
+ * Компонент navbar
+ */
 export default class Navbar {
     constructor() {
         this.navbarItems = {
@@ -23,6 +26,10 @@ export default class Navbar {
         logout.addEventListener('click', this.onLogout);
     }
 
+    /**
+     * Вызывается при клике на logout
+     * @param {object} event
+     */
     onLogout(event) {
         fetch('http://64.225.100.179:8080/logout', {
             method: 'DELETE',

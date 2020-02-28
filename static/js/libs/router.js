@@ -10,6 +10,12 @@ export default class Router {
         });
     }
 
+    /**
+     * Добавляет новый маршрут
+     * @param {string} path
+     * @param {View} view
+     * @param {HTMLElement} root
+     */
     add(path, view, root = this.root) {
         this.routes.set(path, {
             root: root,
@@ -17,6 +23,10 @@ export default class Router {
         });
     }
 
+    /**
+     * Делает смену view
+     * @param {string} path
+     */
     change(path) {
         if (this.currentRoute === path) {
             return;
@@ -37,6 +47,9 @@ export default class Router {
         }
     }
 
+    /**
+     * Запускает роутер
+     */
     start() {
         document.addEventListener('click', (evt) => {
             const {target} = evt;
