@@ -3,7 +3,7 @@
         <a class="page-header__logo" href="/">Кинопоиск</a>
 
         <fest:each iterate="items" index="url" value="name">
-            <a class="page-header__link" href="/{url}">
+            <a class="page-header__link" href="{url}">
                 <fest:value>name</fest:value>
             </a>
         </fest:each>

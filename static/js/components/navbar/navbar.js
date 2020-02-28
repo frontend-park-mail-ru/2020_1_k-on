@@ -3,12 +3,12 @@ import template from './navbar.tmpl.xml';
 export default class Navbar {
     constructor() {
         this.navbarItems = {
-            index: 'Главная',
-            movie: 'Фильм',
-            signup: 'Регистрация',
-            login: 'Авторизация',
-            profile: 'Профиль',
-            logout: 'Выйти',
+            '/': 'Главная',
+            'movie': 'Фильм',
+            'signup': 'Регистрация',
+            'login': 'Авторизация',
+            'profile': 'Профиль',
+            'logout': 'Выйти',
         };
         this.element = document.createElement('div');
         this.tmpl = template;
@@ -18,7 +18,7 @@ export default class Navbar {
         this.element.innerHTML = this.tmpl(this.navbarItems);
         root.appendChild(this.element);
 
-        const logout = root.querySelector('[href="/logout"]');
+        const logout = root.querySelector('[href="logout"]');
         this.onLogout = this.onLogout.bind(this);
         logout.addEventListener('click', this.onLogout);
     }
