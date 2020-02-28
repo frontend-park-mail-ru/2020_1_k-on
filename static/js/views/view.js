@@ -1,12 +1,12 @@
 export default class View {
-    constructor() {
+    constructor(tmpl) {
         this.element = document.createElement('div');
-        this.tmpl = '';
+        this.tmpl = tmpl;
     }
 
-    render(root) {
+    render(root, data) {
         this.root = root;
-        this.element.innerHTML = this.tmpl;
+        this.element.innerHTML = this.tmpl(data);
         root.innerHTML = '';
         root.appendChild(this.element);
     }
