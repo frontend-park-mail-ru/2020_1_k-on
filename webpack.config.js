@@ -24,6 +24,14 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader'
+            },
+            {
+                test: /\.xml$/,
+                use: [
+                    {
+                        loader: 'fest-webpack-loader'
+                    }
+                ]
             }
         ],
     },
