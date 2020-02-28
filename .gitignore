@@ -355,4 +355,7 @@ fabric.properties
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator/
 
+# Fest files
+*.tmpl.js
+
 # End of https://www.gitignore.io/api/git,node,linux,macos,webstorm,visualstudiocode
