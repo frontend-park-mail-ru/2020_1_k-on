@@ -45,8 +45,8 @@ const data = [
 ];
 
 export default class IndexView extends View {
-    constructor() {
-        super(template);
+    constructor(router) {
+        super(template, router);
         this._data = data;
     }
 

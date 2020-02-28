@@ -5,8 +5,8 @@ import validation from '../../libs/validation';
 const SUCCESS_SIGN_UP = 200;
 
 export default class SignUpView extends View {
-    constructor() {
-        super(template);
+    constructor(router) {
+        super(template, router);
         this.validation = validation;
     }
 
@@ -71,7 +71,7 @@ export default class SignUpView extends View {
     }
 
     onSuccessSignUp() {
-        location.pathname = '/';
+        this.router.change('/');
     }
 
     onInvalidSignUp(resErrMsg) {

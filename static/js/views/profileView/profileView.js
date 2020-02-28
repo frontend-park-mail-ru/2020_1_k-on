@@ -58,8 +58,8 @@ const data = {
 };
 
 export default class ProfileView extends View {
-    constructor() {
-        super(template);
+    constructor(router) {
+        super(template, router);
         this._data = data;
         this.validation = validation;
     }
@@ -75,12 +75,12 @@ export default class ProfileView extends View {
                     this.avatarBase64 = res.body.avatar;
                     this.onSuccess();
                 } else if (res.status === FAIL_USER_AUTH) {
-                    location.pathname = '/login';
+                    this.router.change('/login');
                 }
             })
             .catch((error) => {
                 console.log(error);
-                location.pathname = '/';
+                this.router.change('/');
             });
     }
 
