@@ -1,0 +1,21 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
+    <header class="page-header">
+        <a class="page-header__logo" href="/">Кинопоиск</a>
+
+        <fest:each iterate="items" index="url" value="name">
+            <a class="page-header__link" href="{url}">
+                <fest:value>name</fest:value>
+            </a>
+        </fest:each>
+
+        <div class="page-header__right-side">
+            <form class="page-header__search-form">
+                <input class="page-header__search-input" type="search" placeholder="Поиск"/>
+                <button class="page-header__search-button" type="submit">
+                    <img class="page-header__search-icon" src="static/img/search.svg"/>
+                </button>
+            </form>
+        </div>
+
+    </header>
+</fest:template>

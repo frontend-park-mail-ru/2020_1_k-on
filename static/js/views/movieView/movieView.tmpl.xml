@@ -1,0 +1,54 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+<div class="movie">
+    <div class="movie-bg">
+        <img class="movie-bg__image" src="{data.image}"/>
+        <div class="movie-bg__shade"/>
+        <div class="movie-header">
+            <div class="movie-header__rel">
+                <div class="movie-header__rel_item">
+                    <a class="movie-header__rel_href">
+                        <fest:value>data.category</fest:value>
+                    </a>
+                    /
+                </div>
+                <div class="movie-header__rel_item">
+                    <a class="movie-header__rel_href">
+                        <fest:value>data.genre</fest:value>
+                    </a>
+                    /
+                </div>
+                <div class="movie-header__rel_item">
+                    <fest:value>data.name</fest:value>
+                </div>
+            </div>
+            <div class="movie-header__name">
+                <fest:value>data.russian_name</fest:value>
+            </div>
+            <div class="movie-header__original_name">
+                <fest:value>data.english_name</fest:value>
+            </div>
+        </div>
+    </div>
+    <div class="movie-content">
+        <div class="movie-content__description">
+            <fest:value>data.description</fest:value>
+        </div>
+        <div class="movie-content__data">
+            <div class="movie-content__data_title">Режиссер:</div>
+            <div class="movie-content__data_content">
+                <fest:value>data.producer</fest:value>
+            </div>
+
+            <div class="movie-content__data_title">В ролях:</div>
+            <div class="movie-content__data_content">
+                <fest:value>data.actors</fest:value>
+            </div>
+
+            <div class="movie-content__data_title">Страна:</div>
+            <div class="movie-content__data_content">
+                <fest:value>data.country</fest:value>
+            </div>
+        </div>
+    </div>
+</div>
+</fest:template>

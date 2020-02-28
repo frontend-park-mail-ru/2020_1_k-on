@@ -1,0 +1,93 @@
+:root {
+    --auth-form-border: black;
+    --auth-form-input-bbc: lightgrey;
+    --auth-form-button-text: white;
+    --auth-form-button-bc: limegreen;
+    --auth-form-button-bc-hover: #28a128;
+    --auth-form-input-focus: limegreen;
+    --error-color: red;
+}
+
+.auth-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form {
+    border: solid 1px var(--auth-form-border);
+    border-radius: 25px;
+    padding: 30px 50px;
+}
+
+.auth-form > * {
+    display: block;
+}
+
+.auth-form__input {
+    border-bottom: 1px solid var(--auth-form-input-bbc);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 100%;
+    font-size: 1.25em;
+}
+
+.auth-form__input:focus {
+    border-bottom: none;
+}
+
+.auth-form__input + .border {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--auth-form-input-focus);
+}
+
+.auth-form__input:focus + .border {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.auth-form__label {
+    font-size: 1.25em;
+}
+
+.auth-form__button {
+    background-color: var(--auth-form-button-bc);
+    border-radius: 5px;
+    font-size: 1.5em;
+    color: var(--auth-form-button-text);
+    height: 2em;
+}
+
+.auth-form__button_login {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.auth-form__button_signup {
+    padding: 0 1.5em;
+    margin: 0 1em;
+}
+
+.auth-form__button:hover {
+    background-color: var(--auth-form-button-bc-hover);
+    transition: 0.5s;
+}
+
+.auth-form__headline {
+    text-align: center;
+    margin-bottom: 10%;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.auth-form__error {
+    visibility: hidden;
+    margin-bottom: 10%;
+    color: var(--error-color);
+    font-size: 0.8em;
+    max-width: fit-content;
+}

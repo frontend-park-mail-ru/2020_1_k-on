@@ -1,0 +1,24 @@
+:root {
+    --link-color: black;
+}
+
+body {
+    height: 100vh;
+}
+
+#container {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+input {
+    border: 0;
+}
+
+button {
+    border: 0;
+}
