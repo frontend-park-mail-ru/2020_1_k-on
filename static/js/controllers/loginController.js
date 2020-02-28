@@ -1,7 +1,7 @@
 import LoginView from '../views/loginView/loginView';
 
 export default class LoginController {
-    constructor() {
-        this.view = new LoginView();
+    constructor(router) {
+        this.view = new LoginView(router);
     }
 }
