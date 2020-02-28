@@ -13,19 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const router = new Router(container);
 
     const controllers = {
-        movie: new MovieController(),
-        signup: new SignUpController(),
-        login: new LoginController(),
-        profile: new ProfileController(),
-        index: new IndexController(),
+        movie: new MovieController(router),
+        signup: new SignUpController(router),
+        login: new LoginController(router),
+        profile: new ProfileController(router),
+        index: new IndexController(router),
     };
 
     router.add('/login', controllers.login.view);
     router.add('/movie', controllers.movie.view);
     router.add('/signup', controllers.signup.view);
     router.add('/profile', controllers.profile.view);
-    router.add('/index', controllers.index.view);
-    router.add('/logout', controllers.index.view);
     router.add('/', controllers.index.view);
 
     navbar.render(header);
