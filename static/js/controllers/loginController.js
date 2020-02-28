@@ -1,4 +1,4 @@
-import LoginView from '../views/loginView';
+import LoginView from '../views/loginView/loginView';
 
 export default class LoginController {
     constructor() {

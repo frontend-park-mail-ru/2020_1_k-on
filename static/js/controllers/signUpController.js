@@ -1,4 +1,4 @@
-import SignUpView from '../views/signUpView';
+import SignUpView from '../views/signUpView/signUpView';
 
 export default class SignUpController {
     constructor() {
