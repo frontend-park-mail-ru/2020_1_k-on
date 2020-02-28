@@ -1,7 +1,8 @@
 export default class View {
-    constructor(tmpl) {
+    constructor(tmpl, router) {
         this.element = document.createElement('div');
         this.tmpl = tmpl;
+        this.router = router;
     }
 
     render(root, data) {
