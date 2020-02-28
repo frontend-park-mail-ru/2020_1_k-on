@@ -1,4 +1,5 @@
 import View from '../view';
+import template from './indexView.tmpl.xml';
 
 const data = [
     {
@@ -45,15 +46,11 @@ const data = [
 
 export default class IndexView extends View {
     constructor() {
-        super();
+        super(template);
         this._data = data;
     }
 
     render(root) {
-        this.element.className = 'index-page';
-        this.tmpl = window.fest[
-            'js/views/indexView/indexView.tmpl'
-        ](this._data);
-        super.render(root);
+        super.render(root, this._data);
     }
 }

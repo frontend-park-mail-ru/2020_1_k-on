@@ -1,4 +1,5 @@
 import View from '../view';
+import template from './movieView.tmpl.xml';
 
 const data = {
     image: 'static/img/brigada.jpg',
@@ -42,15 +43,11 @@ const data = {
 
 export default class MovieView extends View {
     constructor() {
-        super();
+        super(template);
         this._data = data;
     }
 
     render(root) {
-        this.element.className = 'movie';
-        this.tmpl = window.fest[
-            'js/views/movieView/movieView.tmpl'
-        ](this._data);
-        super.render(root);
+        super.render(root, this._data);
     }
 }

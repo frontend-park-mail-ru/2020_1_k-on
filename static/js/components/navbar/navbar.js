@@ -1,3 +1,5 @@
+import template from './navbar.tmpl.xml';
+
 export default class Navbar {
     constructor() {
         this.navbarItems = {
@@ -9,15 +11,14 @@ export default class Navbar {
             logout: 'Выйти',
         };
         this.element = document.createElement('div');
+        this.tmpl = template;
     }
 
     render(root) {
-        this.element.innerHTML = window.fest[
-            'js/components/navbar/navbar.tmpl'
-        ](this.navbarItems);
+        this.element.innerHTML = this.tmpl(this.navbarItems);
         root.appendChild(this.element);
 
-        const logout = root.querySelector('[href="/logout"');
+        const logout = root.querySelector('[href="/logout"]');
         this.onLogout = this.onLogout.bind(this);
         logout.addEventListener('click', this.onLogout);
     }

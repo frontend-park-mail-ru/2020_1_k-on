@@ -1,4 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+<div class="index-page">
     <p class="index-page__headline">Сериалы</p>
 
     <div class="filters-block">
@@ -32,4 +33,5 @@
             </a>
         </fest:for>
     </div>
+</div>
 </fest:template>

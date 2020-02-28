@@ -70,6 +70,7 @@
 <!--</fest:template>-->
 
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+<div class="auth-page">
     <div class="profile-block">
         <div class="profile-block__avatar" style="background-image: url({data.profile.avatar})"/>
     </div>
@@ -117,4 +118,5 @@
         <button class="auth-form__button auth-form__button_signup"
                 type="submit">СОХРАНИТЬ</button>
     </form>
+</div>
 </fest:template>

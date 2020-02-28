@@ -1,5 +1,6 @@
 import View from '../view';
 import validation from '../../libs/validation';
+import template from './profileView.tmpl.xml';
 
 const SUCCESS_USER_AUTH = 200;
 const FAIL_USER_AUTH = 401;
@@ -58,7 +59,7 @@ const data = {
 
 export default class ProfileView extends View {
     constructor() {
-        super();
+        super(template);
         this._data = data;
         this.validation = validation;
     }
@@ -103,14 +104,10 @@ export default class ProfileView extends View {
     }
 
     onSuccess() {
-        this.element.className = 'auth-page';
         this._data.profile.avatar = `
             "data:image/jpeg;base64,${this.avatarBase64}"
         `;
-        this.tmpl = window.fest[
-            'js/views/profileView/profileView.tmpl'
-        ](this._data);
-        super.render(this.root);
+        super.render(this.root, this._data);
 
         document.getElementById('login').value = this.login;
         document.getElementById('email').value = this.email;
