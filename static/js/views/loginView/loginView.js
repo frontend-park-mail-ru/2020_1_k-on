@@ -1,8 +1,8 @@
 import View from '../view';
 import template from './loginView.tmpl.xml';
 import validation from '../../libs/validation';
-
-const SUCCESS_LOGIN = 200;
+import Api from '../../libs/api';
+import {SUCCESS_STATUS} from '../../libs/constants';
 
 export default class LoginView extends View {
     constructor(router) {
@@ -21,42 +21,21 @@ export default class LoginView extends View {
         event.preventDefault();
         const validationResult = this.validation();
 
-        if (validationResult) {
-            const login = document.getElementById('login').value;
-            const password = document.getElementById('password').value;
-
-            fetch('http://64.225.100.179:8080/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    'username': login,
-                    'password': password,
-                },
-                ),
-            })
-                .then((res) => res.json().then(
-                    (data) => (
-                        {
-                            status: res.status,
-                            body: data,
-                        }
-                    )
-                )
-                )
-                .then((res) => {
-                    if (res.status === SUCCESS_LOGIN) {
-                        this.onSuccessLogin();
-                    } else {
-                        this.onInvalidLogin(res.body.error);
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        if (!validationResult) {
+            return;
         }
+
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('password').value;
+
+        Api.doLogin(login, password)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    this.onSuccessLogin();
+                } else {
+                    res.json().then((res) => this.onInvalidLogin(res.error));
+                }
+            });
     }
 
     onSuccessLogin() {

@@ -1,11 +1,8 @@
 import View from '../view';
 import validation from '../../libs/validation';
 import template from './profileView.tmpl.xml';
-
-const SUCCESS_USER_AUTH = 200;
-const FAIL_USER_AUTH = 401;
-const SUCCESS_CHANGE = 200;
-const FAIL_CHANGE = 403;
+import Api from '../../libs/api';
+import {SUCCESS_STATUS} from '../../libs/constants';
 
 const data = {
     profile: {
@@ -67,46 +64,28 @@ export default class ProfileView extends View {
     render(root) {
         this.root = root;
 
-        this.getUserData()
+        Api.getUserData()
             .then((res) => {
-                if (res.status === SUCCESS_USER_AUTH) {
-                    this.email = res.body.email;
-                    this.login = res.body.username;
-                    this.avatarBase64 = res.body.avatar;
-                    this.onSuccess();
-                } else if (res.status === FAIL_USER_AUTH) {
+                if (res.status === SUCCESS_STATUS) {
+                    res.json()
+                        .then((res) => {
+                            this.email = res.email;
+                            this.login = res.username;
+                            this.avatarBase64 = res.avatar;
+                            this.onSuccess();
+                        });
+                } else {
                     this.router.change('/login');
                 }
-            })
-            .catch((error) => {
-                console.log(error);
-                this.router.change('/');
-            });
-    }
-
-    getUserData() {
-        return fetch('http://64.225.100.179:8080/user', {
-            method: 'GET',
-            credentials: 'include',
-        })
-            .then((res) => res.json().then(
-                (data) => (
-                    {
-                        status: res.status,
-                        body: data,
-                    }
-                )
-            )
-            )
-            .catch((error) => {
-                console.log(error);
             });
     }
 
     onSuccess() {
-        this._data.profile.avatar = `
-            "data:image/jpeg;base64,${this.avatarBase64}"
-        `;
+        if (this.avatarBase64 !== '') {
+            this._data.profile.avatar = `
+                "data:image/jpeg;base64,${this.avatarBase64}"
+            `;
+        }
         super.render(this.root, this._data);
 
         document.getElementById('login').value = this.login;
@@ -131,56 +110,39 @@ export default class ProfileView extends View {
 
     onSubmit(event) {
         event.preventDefault();
+        const validationResult = this.validation();
 
-        if (this.validation()) {
-            const login = document.getElementById('login').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const passwordRepeat = document.getElementById(
-                'password_repeat'
-            ).value;
-
-            if (password !== passwordRepeat) {
-                this.onInvalidForm('Пароли не совпадают');
-                return;
-            }
-
-            fetch('http://64.225.100.179:8080/user', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    'Username': login,
-                    'Password': password,
-                    'Email': email,
-                },
-                ),
-            })
-                .then((res) => res.json().then(
-                    (data) => (
-                        {
-                            status: res.status,
-                            body: data,
-                        }
-                    )
-                )
-                )
-                .then((res) => {
-                    if (res.status === SUCCESS_CHANGE) {
-                        this.email = res.body.email;
-                        this.login = res.body.login;
-                        this.close();
-                        this.onSuccess();
-                    } else if (res.status === FAIL_CHANGE) {
-                        this.onInvalidForm(res.body.error);
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        if (!validationResult) {
+            return;
         }
+
+        const password = document.getElementById('password').value;
+        const passwordRepeat = document.getElementById(
+            'password_repeat'
+        ).value;
+
+        if (password !== passwordRepeat) {
+            this.onInvalidForm('Пароли не совпадают');
+            return;
+        }
+
+        const login = document.getElementById('login').value;
+        const email = document.getElementById('email').value;
+
+        Api.updateUser(login, email, password)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    res.json()
+                        .then((res) => {
+                            this.close();
+                            this.render(this.root);
+                        });
+                } else {
+                    res.json().then((res) =>
+                        this.onInvalidForm(res.body.error)
+                    );
+                }
+            });
     }
 
     onUploadImage(event) {
@@ -190,15 +152,14 @@ export default class ProfileView extends View {
             formData.append('file', file);
         }
 
-        fetch('http://64.225.100.179:8080/user/image', {
-            method: 'PUT',
-            body: formData,
-            credentials: 'include',
-        }).then((response) => response.json()).then((data) => {
-            console.log(data);
-        }).catch((error) => {
-            console.error(error);
-        });
+        Api.uploadImage(formData)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
         const avatar = this.root.getElementsByClassName(
             'profile-block__avatar'
