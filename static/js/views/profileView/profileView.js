@@ -55,8 +55,8 @@ const data = {
 };
 
 export default class ProfileView extends View {
-    constructor(router) {
-        super(template, router);
+    constructor(eventBus) {
+        super(template, eventBus);
         this._data = data;
         this.validation = validation;
     }
@@ -81,7 +81,7 @@ export default class ProfileView extends View {
                             this.onSuccess();
                         });
                 } else {
-                    this.router.change('/login');
+                    this.eventBus.publish('unauthUser');
                 }
             });
     }
