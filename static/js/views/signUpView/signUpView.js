@@ -5,8 +5,8 @@ import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
 
 export default class SignUpView extends View {
-    constructor(router) {
-        super(template, router);
+    constructor(eventBus) {
+        super(template, eventBus);
         this.validation = validation;
     }
 
@@ -57,7 +57,7 @@ export default class SignUpView extends View {
      * Выполняет редирект при успешной регистрации
      */
     onSuccessSignUp() {
-        this.router.change('/');
+        this.eventBus.publish('signUpSuccess');
     }
 
     /**
