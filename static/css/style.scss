@@ -1,0 +1,28 @@
+@import "variables";
+@import "form";
+@import "reset";
+@import "../js/components/navbar/navbar";
+@import "../js/views/indexView/indexView";
+@import "../js/views/movieView/movieView";
+@import "../js/views/profileView/profileView";
+
+body {
+  height: 100vh;
+}
+
+#container {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+}
+
+input {
+  border: 0;
+}
+
+button {
+  border: 0;
+}
