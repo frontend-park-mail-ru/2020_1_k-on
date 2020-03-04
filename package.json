@@ -25,6 +25,7 @@
     "file-loader": "^5.0.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
+    "node-sass": "^4.13.1",
     "style-loader": "^1.1.3",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
@@ -33,11 +34,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "build": "webpack --mode development",
-    "prebuild": "npm run tmpl",
+    "prebuild": "npm run tmpl && npm run scss",
     "lint": "./node_modules/.bin/eslint ./static",
     "lint-write": "./node_modules/.bin/eslint --fix ./static",
     "tmpl": "./node_modules/.bin/fest-build --dir=static",
-    "prestart": "npm run tmpl"
+    "prestart": "npm run tmpl",
+    "scss": "node-sass static/css/style.scss -o dist/"
   },
   "husky": {
     "hooks": {
