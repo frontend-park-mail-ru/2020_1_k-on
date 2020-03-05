@@ -7,9 +7,7 @@ export default class View {
 
     render(root, data) {
         this.root = root;
-        this.element.innerHTML = this.tmpl(data);
-        root.innerHTML = '';
-        root.appendChild(this.element);
+        root.innerHTML = this.tmpl(data);
     }
 
     close() {
