@@ -13,13 +13,11 @@ export default class Navbar {
             'profile': 'Профиль',
             'logout': 'Выйти',
         };
-        this.element = document.createElement('div');
         this.tmpl = template;
     }
 
     render(root) {
-        this.element.innerHTML = this.tmpl(this.navbarItems);
-        root.appendChild(this.element);
+        root.innerHTML = this.tmpl(this.navbarItems);
 
         const logout = root.querySelector('[href="logout"]');
         this.onLogout = this.onLogout.bind(this);
