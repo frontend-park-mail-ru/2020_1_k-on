@@ -2,11 +2,11 @@
 $form-bg-color: rgba(30, 31, 35, 0.7);
 $form-border-color: rgb(86, 92, 103);
 $form-text-color: white;
-$form-input-bg-color: rgb(30, 31, 35);
+$form-input-bg-color: rgb(10, 10, 10);
+$form-input-focus-color: rgb(55, 85, 139);
 $form-button-bg-color: rgb(55, 85, 139);
 $form-button-bg-color-hover: rgb(25, 40, 64);
-$form-input-focus-color: rgb(55, 85, 139);
-$form-error-text-color: #c30000;
+$form-error-text-color: rgb(195, 0, 0);
 $form-error-margin: 24px;
 
 // Auth page
@@ -15,7 +15,7 @@ $no-account-href-color: rgb(55, 85, 139);
 $no-account-text-color: white;
 
 // Navbar
-$navbar-bg-color: rgba(30, 31, 35, 0.3);
+$navbar-bg-color: rgba(30, 31, 35, 0.5);
 $navbar-link-color: white;
 $search-form-color: white;
 
