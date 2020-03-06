@@ -5,8 +5,8 @@ import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
 
 export default class LoginView extends View {
-    constructor(router) {
-        super(template, router);
+    constructor(eventBus) {
+        super(template, eventBus);
         this.validation = validation;
     }
 
@@ -43,7 +43,7 @@ export default class LoginView extends View {
     }
 
     onSuccessLogin() {
-        this.router.change('/');
+        this.eventBus.publish('loginSuccess');
     }
 
     /**

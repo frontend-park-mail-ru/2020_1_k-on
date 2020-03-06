@@ -1,3 +1,5 @@
+import '../css/style.scss';
+
 import LoginController from './controllers/loginController';
 import SignUpController from './controllers/signUpController';
 import MovieController from './controllers/movieController';
