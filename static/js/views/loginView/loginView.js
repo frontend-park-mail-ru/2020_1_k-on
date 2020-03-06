@@ -18,9 +18,7 @@ export default class LoginView extends View {
         this.onSubmit = this.onSubmit.bind(this);
         this.root.addEventListener('submit', this.onSubmit);
 
-        this.toggle = this.root.getElementsByClassName(
-            'form__eye'
-        )[0];
+        this.toggle = this.root.getElementsByClassName('form__eye')[0];
         this.toggle.onclick = this.passwordToggler;
     }
 
