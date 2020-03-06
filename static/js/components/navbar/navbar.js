@@ -1,27 +1,76 @@
 import template from './navbar.tmpl.xml';
+import Api from '../../libs/api';
+import {SUCCESS_STATUS} from '../../libs/constants';
 
 /**
  * Компонент navbar
  */
 export default class Navbar {
-    constructor() {
-        this.navbarItems = {
-            '/': 'Главная',
-            'movie': 'Фильм',
-            'signup': 'Регистрация',
-            'login': 'Авторизация',
+    constructor(globalEventBus) {
+        this.globalEventBus = globalEventBus;
+        this.globalEventBus.subscribe(
+            'renderForAuth',
+            this.renderForAuth.bind(this)
+        );
+        this.globalEventBus.subscribe(
+            'renderForUnauth',
+            this.renderForUnauth.bind(this)
+        );
+
+        this.navbarAuthItems = {
             'profile': 'Профиль',
             'logout': 'Выйти',
         };
+
+        this.navbarUnauthItems = {
+            'login': 'Авторизация',
+            'signup': 'Регистрация',
+        };
+
         this.tmpl = template;
     }
 
     render(root) {
-        root.innerHTML = this.tmpl(this.navbarItems);
+        this.root = root;
+        this.root.innerHTML = this.tmpl();
 
-        const logout = root.querySelector('[href="logout"]');
+        Api.getUserData()
+            .then((res) => {
+                res.status === SUCCESS_STATUS ?
+                    this.renderForAuth() :
+                    this.renderForUnauth();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    renderForAuth() {
+        this.renderRightSide.bind(this);
+        this.renderRightSide(this.navbarAuthItems);
+
+        const logout = this.root.querySelector('[href="/logout"]');
         this.onLogout = this.onLogout.bind(this);
         logout.addEventListener('click', this.onLogout);
+    }
+
+    renderForUnauth() {
+        this.renderRightSide(this.navbarUnauthItems);
+    }
+
+    renderRightSide(items) {
+        const rightSide = this.root.getElementsByClassName(
+            'navbar__right-side'
+        )[0];
+        rightSide.innerHTML = '';
+
+        Object.keys(items).forEach((key) => {
+            const link = document.createElement('a');
+            link.href = `/${key}`;
+            link.textContent = items[key];
+            link.className = 'navbar__link';
+            rightSide.appendChild(link);
+        });
     }
 
     /**
@@ -29,12 +78,10 @@ export default class Navbar {
      * @param {object} event
      */
     onLogout(event) {
-        fetch('http://64.225.100.179:8080/logout', {
-            method: 'DELETE',
-            credentials: 'include',
-        })
+        this.renderForUnauth();
+        Api.doLogout()
             .catch((error) => {
-                console.log('error happened');
+                console.log(error);
             });
     }
 }
