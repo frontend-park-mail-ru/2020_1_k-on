@@ -1,18 +1,15 @@
 export default class View {
-    constructor(tmpl, router) {
-        this.element = document.createElement('div');
+    constructor(tmpl, eventBus) {
         this.tmpl = tmpl;
-        this.router = router;
+        this.eventBus = eventBus;
     }
 
     render(root, data) {
         this.root = root;
-        this.element.innerHTML = this.tmpl(data);
-        root.innerHTML = '';
-        root.appendChild(this.element);
+        this.root.innerHTML = this.tmpl(data);
     }
 
     close() {
-        this.element.innerHTML = '';
+        this.root.innerHTML = '';
     }
 }
