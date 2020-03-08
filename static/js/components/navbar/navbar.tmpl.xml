@@ -2,6 +2,7 @@
     <div class="navbar">
         <div class="navbar__left-side">
             <a class="navbar__logo" href="/">Кинопоиск</a>
+            <a class="navbar__link" href="/movie">Фильм</a>
 
             <form class="navbar__search-form">
                 <input class="navbar__search-input" type="search" placeholder="Поиск"/>
@@ -11,12 +12,6 @@
             </form>
         </div>
 
-        <div class="navbar__right-side">
-            <fest:each iterate="items" index="url" value="name">
-                <a class="navbar__link" href="{url}">
-                    <fest:value>name</fest:value>
-                </a>
-            </fest:each>
-        </div>
+        <div class="navbar__right-side"/>
     </div>
 </fest:template>

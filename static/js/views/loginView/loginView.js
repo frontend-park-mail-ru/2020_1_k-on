@@ -49,6 +49,7 @@ export default class LoginView extends View {
 
     onSuccessLogin() {
         this.eventBus.publish('loginSuccess');
+        this.eventBus.publish('renderForAuth');
     }
 
     /**

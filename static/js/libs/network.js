@@ -49,4 +49,11 @@ export default class Network {
             body: formData,
         });
     }
+
+    static doDelete({host = SERVER_ADDRESS, url = '/'} = {}) {
+        return fetch(host + url, {
+            method: 'DELETE',
+            credentials: 'include',
+        });
+    }
 }

@@ -56,6 +56,7 @@ export default class SignUpView extends View {
      */
     onSuccessSignUp() {
         this.eventBus.publish('signUpSuccess');
+        this.eventBus.publish('renderForAuth');
     }
 
     /**
