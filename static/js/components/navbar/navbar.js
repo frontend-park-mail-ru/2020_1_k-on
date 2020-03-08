@@ -1,6 +1,8 @@
 import template from './navbar.tmpl.xml';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import {NAVBAR_AUTH_ITEMS} from '../../libs/constants';
+import {NAVBAR_UNAUTH_ITEMS} from '../../libs/constants';
 
 /**
  * Компонент navbar
@@ -17,15 +19,8 @@ export default class Navbar {
             this.renderForUnauth.bind(this)
         );
 
-        this.navbarAuthItems = {
-            'profile': 'Профиль',
-            'logout': 'Выйти',
-        };
-
-        this.navbarUnauthItems = {
-            'login': 'Авторизация',
-            'signup': 'Регистрация',
-        };
+        this.navbarAuthItems = NAVBAR_AUTH_ITEMS;
+        this.navbarUnauthItems = NAVBAR_UNAUTH_ITEMS;
 
         this.tmpl = template;
     }
@@ -37,8 +32,8 @@ export default class Navbar {
         Api.getUserData()
             .then((res) => {
                 res.status === SUCCESS_STATUS ?
-                    this.renderForAuth() :
-                    this.renderForUnauth();
+                    this.globalEventBus.publish('renderForAuth') :
+                    this.globalEventBus.publish('renderForUnauth');
             })
             .catch((error) => {
                 console.log(error);
@@ -78,8 +73,10 @@ export default class Navbar {
      * @param {object} event
      */
     onLogout(event) {
-        this.renderForUnauth();
         Api.doLogout()
+            .then((res) => {
+                this.globalEventBus.publish('renderForUnauth');
+            })
             .catch((error) => {
                 console.log(error);
             });
