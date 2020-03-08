@@ -12,12 +12,6 @@
             </form>
         </div>
 
-        <div class="navbar__right-side">
-<!--            <fest:each iterate="items" index="url" value="name">-->
-<!--                <a class="navbar__link" href="{url}">-->
-<!--                    <fest:value>name</fest:value>-->
-<!--                </a>-->
-<!--            </fest:each>-->
-        </div>
+        <div class="navbar__right-side"/>
     </div>
 </fest:template>
