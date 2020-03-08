@@ -1,28 +1,41 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="page-bg">
+        <div class="page-bg__img"/>
+        <div class="page-bg__shade"/>
+    </div>
+
     <div class="auth-page">
-        <form class="auth-form" novalidate="true">
-            <h1 class="auth-form__headline">ВХОД</h1>
+        <h1 class="headline">Вход в аккаунт</h1>
+        <div class="content">
+            <form class="form" novalidate="true">
+                <div class="form__input-wrapper">
+                    <input class="form__input form__input_login"
+                           type="text" id="login" minlength="4" maxlength="15"
+                           autofocus="true" required="true" placeholder="Логин"/>
+                    <span class="border"/>
+                </div>
+                <div class="form__error-input form__error-input_login"
+                     id="login_error">Error</div>
 
-            <div class="auth-form__error" id="form_error">Error</div>
+                <div class="form__input-wrapper">
+                    <input class="form__input auth-form__input_password"
+                           type="password" id="password" minlength="4"
+                           maxlength="15" required="true" placeholder="Пароль"/>
+                    <span class="border"/>
+                    <img class="form__eye" src="/static/img/eye.svg"/>
+                </div>
+                <div class="form__error-input form__error-input_password"
+                     id="password_error">Error</div>
 
-            <label class="auth-form__label" for="login">Логин</label>
-            <input class="auth-form__input auth-form__input_login"
-                   type="text" id="login" minlength="4" maxlength="15"
-                   autofocus="true" required="true"/>
-            <span class="border"/>
-            <div class="auth-form__error auth-form__error_login"
-                 id="login_error">Error</div>
+                <button class="form__button"
+                        type="submit">Войти</button>
+            </form>
+            <div class="no-account">
+                Еще нет аккаунта?
+                <a class="no-account__href" href="/signup">Зарегистрируйтесь!</a>
+            </div>
 
-            <label class="auth-form__label" for="password">Пароль</label>
-            <input class="auth-form__input auth-form__input_password"
-                   type="password" id="password" minlength="4"
-                   maxlength="15" required="true"/>
-            <span class="border"/>
-            <div class="auth-form__error auth-form__error_password"
-                 id="password_error">Error</div>
-
-            <button class="auth-form__button auth-form__button_login"
-                    type="submit">Войти</button>
-        </form>
+        </div>
+        <div class="form-error" id="form_error">Error</div>
     </div>
 </fest:template>

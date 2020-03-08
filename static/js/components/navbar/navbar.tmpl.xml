@@ -1,21 +1,17 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
-    <header class="page-header">
-        <a class="page-header__logo" href="/">Кинопоиск</a>
+    <div class="navbar">
+        <div class="navbar__left-side">
+            <a class="navbar__logo" href="/">Кинопоиск</a>
+            <a class="navbar__link" href="/movie">Фильм</a>
 
-        <fest:each iterate="items" index="url" value="name">
-            <a class="page-header__link" href="{url}">
-                <fest:value>name</fest:value>
-            </a>
-        </fest:each>
-
-        <div class="page-header__right-side">
-            <form class="page-header__search-form">
-                <input class="page-header__search-input" type="search" placeholder="Поиск"/>
-                <button class="page-header__search-button" type="submit">
-                    <img class="page-header__search-icon" src="static/img/search.svg"/>
+            <form class="navbar__search-form">
+                <input class="navbar__search-input" type="search" placeholder="Поиск"/>
+                <button class="navbar__search-button" type="submit">
+                    <img class="navbar__search-icon" src="static/img/search.svg"/>
                 </button>
             </form>
         </div>
 
-    </header>
+        <div class="navbar__right-side"/>
+    </div>
 </fest:template>

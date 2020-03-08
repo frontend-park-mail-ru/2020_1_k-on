@@ -77,4 +77,10 @@ export default class Api {
             formData: formData,
         });
     }
+
+    static doLogout() {
+        return Network.doDelete({
+            url: '/logout',
+        });
+    }
 }

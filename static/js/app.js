@@ -7,17 +7,19 @@ import ProfileController from './controllers/profileController';
 import IndexController from './controllers/indexController';
 import Navbar from './components/navbar/navbar';
 import Router from './libs/router';
+import EventBus from './libs/eventBus';
 
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
     const container = document.getElementById('container');
-    const navbar = new Navbar();
+    const globalEventBus = new EventBus();
+    const navbar = new Navbar(globalEventBus);
     const router = new Router(container);
 
     const controllers = {
         movie: new MovieController(router),
-        signup: new SignUpController(router),
-        login: new LoginController(router),
+        signup: new SignUpController(router, globalEventBus),
+        login: new LoginController(router, globalEventBus),
         profile: new ProfileController(router),
         index: new IndexController(router),
     };
