@@ -3,6 +3,7 @@ import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
 import {NAVBAR_AUTH_ITEMS} from '../../libs/constants';
 import {NAVBAR_UNAUTH_ITEMS} from '../../libs/constants';
+import {GLOBAL_EVENTS} from '../../libs/constants';
 
 /**
  * Компонент navbar
@@ -11,11 +12,11 @@ export default class Navbar {
     constructor(globalEventBus) {
         this.globalEventBus = globalEventBus;
         this.globalEventBus.subscribe(
-            'renderForAuth',
+            GLOBAL_EVENTS.renderForAuth,
             this.renderForAuth.bind(this)
         );
         this.globalEventBus.subscribe(
-            'renderForUnauth',
+            GLOBAL_EVENTS.renderForUnauth,
             this.renderForUnauth.bind(this)
         );
 
@@ -32,8 +33,8 @@ export default class Navbar {
         Api.getUserData()
             .then((res) => {
                 res.status === SUCCESS_STATUS ?
-                    this.globalEventBus.publish('renderForAuth') :
-                    this.globalEventBus.publish('renderForUnauth');
+                    this.globalEventBus.publish(GLOBAL_EVENTS.renderForAuth) :
+                    this.globalEventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             })
             .catch((error) => {
                 console.log(error);
@@ -75,7 +76,7 @@ export default class Navbar {
     onLogout(event) {
         Api.doLogout()
             .then((res) => {
-                this.globalEventBus.publish('renderForUnauth');
+                this.globalEventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             })
             .catch((error) => {
                 console.log(error);

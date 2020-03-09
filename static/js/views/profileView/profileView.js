@@ -3,6 +3,7 @@ import validation from '../../libs/validation';
 import template from './profileView.tmpl.xml';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import {PROFILE_EVENTS} from '../../libs/constants';
 
 const data = {
     profile: {
@@ -81,7 +82,7 @@ export default class ProfileView extends View {
                             this.onSuccess();
                         });
                 } else {
-                    this.eventBus.publish('unauthUser');
+                    this.eventBus.publish(PROFILE_EVENTS.unauthUser);
                 }
             });
     }

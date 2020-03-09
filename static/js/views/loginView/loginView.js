@@ -3,6 +3,7 @@ import template from './loginView.tmpl.xml';
 import validation from '../../libs/validation';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import {LOGIN_EVENTS} from '../../libs/constants';
 import passwordToggler from '../../libs/passwordToggler';
 
 export default class LoginView extends View {
@@ -48,8 +49,8 @@ export default class LoginView extends View {
     }
 
     onSuccessLogin() {
-        this.eventBus.publish('loginSuccess');
-        this.eventBus.publish('renderForAuth');
+        this.eventBus.publish(LOGIN_EVENTS.loginSuccess);
+        this.eventBus.publish(LOGIN_EVENTS.renderForAuth);
     }
 
     /**

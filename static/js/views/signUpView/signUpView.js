@@ -3,6 +3,7 @@ import template from './signUpView.tmpl.xml';
 import validation from '../../libs/validation';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import {SIGN_UP_EVENTS} from '../../libs/constants';
 import passwordToggler from '../../libs/passwordToggler';
 
 export default class SignUpView extends View {
@@ -53,8 +54,8 @@ export default class SignUpView extends View {
      * Выполняет редирект при успешной регистрации
      */
     onSuccessSignUp() {
-        this.eventBus.publish('signUpSuccess');
-        this.eventBus.publish('renderForAuth');
+        this.eventBus.publish(SIGN_UP_EVENTS.signUpSuccess);
+        this.eventBus.publish(SIGN_UP_EVENTS.renderForAuth);
     }
 
     /**
