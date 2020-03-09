@@ -15,13 +15,11 @@ export default class SignUpView extends View {
     render(root) {
         super.render(root, null);
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.root.addEventListener('submit', this.onSubmit);
+        this.form = this.root.getElementsByClassName('form')[0];
+        this.form.addEventListener('submit', this.onSubmit.bind(this));
 
-        this.toggle = this.root.getElementsByClassName(
-            'form__eye'
-        )[0];
-        this.toggle.onclick = this.passwordToggler;
+        this.toggle = this.root.getElementsByClassName('form__eye')[0];
+        this.toggle.addEventListener('click', this.passwordToggler);
     }
 
     /**
@@ -64,9 +62,7 @@ export default class SignUpView extends View {
      * @param {string} resErrMsg
      */
     onInvalidSignUp(resErrMsg) {
-        const formError = this.root.getElementsByClassName(
-            'form-error'
-        )[0];
+        const formError = this.root.getElementsByClassName('form-error')[0];
 
         formError.textContent = resErrMsg;
         formError.style.visibility = 'visible';

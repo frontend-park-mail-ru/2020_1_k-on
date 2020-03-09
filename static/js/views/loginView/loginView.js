@@ -15,11 +15,11 @@ export default class LoginView extends View {
     render(root) {
         super.render(root, null);
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.root.addEventListener('submit', this.onSubmit);
+        this.form = this.root.getElementsByClassName('form')[0];
+        this.form.addEventListener('submit', this.onSubmit.bind(this));
 
         this.toggle = this.root.getElementsByClassName('form__eye')[0];
-        this.toggle.onclick = this.passwordToggler;
+        this.toggle.addEventListener('click', this.passwordToggler);
     }
 
     /**
@@ -66,11 +66,9 @@ export default class LoginView extends View {
     }
 
     /**
-     * Перед закрытием view удаляет обработчики событий
-     * и очищает контент
+     * Перед закрытием view очищает контент
      */
     close() {
-        this.root.removeEventListener('submit', this.onSubmit);
         super.close();
     }
 }
