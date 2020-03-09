@@ -12,14 +12,14 @@
   width: 50%;
   padding-right: 5%;
   box-sizing: border-box;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .navbar__right-side {
   display: flex;
   align-items: center;
   width: 50%;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 .navbar__logo {
@@ -32,6 +32,7 @@
 .navbar__link {
   color: $navbar-link-color;
   font-size: x-large;
+  margin-right: 16px;
 }
 
 .navbar__link:focus {
