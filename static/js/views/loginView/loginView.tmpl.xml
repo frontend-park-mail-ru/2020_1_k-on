@@ -10,7 +10,7 @@
             <form class="form" novalidate="true">
                 <div class="form__input-wrapper">
                     <input class="form__input form__input_login"
-                           type="text" id="login" minlength="4" maxlength="15"
+                           type="text" id="login" minlength="6"
                            autofocus="true" required="true" placeholder="Логин"/>
                     <span class="border"/>
                 </div>
@@ -19,8 +19,8 @@
 
                 <div class="form__input-wrapper">
                     <input class="form__input auth-form__input_password"
-                           type="password" id="password" minlength="4"
-                           maxlength="15" required="true" placeholder="Пароль"/>
+                           type="password" id="password" minlength="6"
+                           required="true" placeholder="Пароль"/>
                     <span class="border"/>
                     <img class="form__eye" src="/static/img/eye-show.svg"/>
                 </div>
