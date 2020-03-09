@@ -31,7 +31,7 @@
                            type="password" id="password" minlength="6"
                            required="true" placeholder="Пароль"/>
                     <span class="border"/>
-                    <img class="form__eye" src="/static/img/eye.svg"/>
+                    <img class="form__eye" src="/static/img/eye-show.svg"/>
                 </div>
                 <div class="form__error-input form__error-input_password"
                      id="password_error">Error</div>
