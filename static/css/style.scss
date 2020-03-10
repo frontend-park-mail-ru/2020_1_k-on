@@ -1,11 +1,11 @@
-@import "variables";
-@import "form";
-@import "reset";
-@import "../js/components/navbar/navbar";
-@import "../js/views/indexView/indexView";
-@import "../js/views/movieView/movieView";
-@import "../js/views/profileView/profileView";
-@import "../js/views/loginView/loginView";
+@import 'variables';
+@import 'form';
+@import 'reset';
+@import '../js/components/navbar/navbar';
+@import '../js/views/indexView/indexView';
+@import '../js/views/movieView/movieView';
+@import '../js/views/profileView/profileView';
+@import '../js/views/loginView/loginView';
 
 @font-face {
   font-family: 'Roboto';
@@ -13,14 +13,12 @@
   font-weight: 100;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'Roboto';
   src: local('Roboto Thin'), local('Roboto-Thin'), url('../fonts/Roboto.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'Roboto';
   src: local('Roboto Bold'), local('Roboto-Bold'), url('../fonts/Robotobold.ttf') format('truetype');
