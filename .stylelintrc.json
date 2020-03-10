@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-airbnb",
+  "ignoreFiles": [
+    "./static/css/reset.scss"
+  ],
+  "rules": {
+    "number-leading-zero": "always",
+    "string-quotes": "single",
+    "selector-max-id": 1,
+    "at-rule-empty-line-before": ["always", {
+      "except": ["after-same-name"]
+    }]
+  }
+}
