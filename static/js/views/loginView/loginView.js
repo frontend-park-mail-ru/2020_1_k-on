@@ -4,7 +4,6 @@ import validation from '../../libs/validation';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
 import {LOGIN_EVENTS} from '../../libs/constants';
-import {MAX_BG_IMGS} from '../../libs/constants';
 import passwordToggler from '../../libs/passwordToggler';
 
 export default class LoginView extends View {
@@ -15,11 +14,8 @@ export default class LoginView extends View {
     }
 
     render(root) {
-        const randomNumber = Math.floor(Math.random() * MAX_BG_IMGS) + 1;
-        const bgImgUrl = `/static/img/background_${randomNumber}.jpg`;
-        super.render(root, {
-            bg_img_url: bgImgUrl,
-        });
+        this.setRandomBackgroundImg();
+        super.render(root);
 
         this.form = this.root.getElementsByClassName('form')[0];
         this.form.addEventListener('submit', this.onSubmit.bind(this));

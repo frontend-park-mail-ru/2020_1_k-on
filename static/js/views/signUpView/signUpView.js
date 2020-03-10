@@ -2,7 +2,7 @@ import View from '../view';
 import template from './signUpView.tmpl.xml';
 import validation from '../../libs/validation';
 import Api from '../../libs/api';
-import {MAX_BG_IMGS, SUCCESS_STATUS} from '../../libs/constants';
+import {SUCCESS_STATUS} from '../../libs/constants';
 import {SIGN_UP_EVENTS} from '../../libs/constants';
 import passwordToggler from '../../libs/passwordToggler';
 
@@ -14,11 +14,8 @@ export default class SignUpView extends View {
     }
 
     render(root) {
-        const randomNumber = Math.floor(Math.random() * MAX_BG_IMGS) + 1;
-        const bgImgUrl = `/static/img/background_${randomNumber}.jpg`;
-        super.render(root, {
-            bg_img_url: bgImgUrl,
-        });
+        this.setRandomBackgroundImg();
+        super.render(root);
 
         this.form = this.root.getElementsByClassName('form')[0];
         this.form.addEventListener('submit', this.onSubmit.bind(this));
