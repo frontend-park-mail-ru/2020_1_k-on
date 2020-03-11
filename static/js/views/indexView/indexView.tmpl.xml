@@ -21,7 +21,7 @@
 
     <div class="series-block">
         <fest:for iterate="data" index="i" value="series">
-            <a class="series-card">
+            <a class="series-card" href="/movie">
                 <div class="series-card__image" style="background-image: url({series.image})">
                     <span class="series-card__age-limit">
                         <fest:value>series.ageLimit</fest:value>+

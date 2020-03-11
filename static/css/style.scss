@@ -14,6 +14,17 @@ body {
   height: 100%;
 }
 
+.page-layout {
+  padding-left: $paragraph;
+  padding-right: $paragraph;
+}
+
+.avatar {
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
 a {
   text-decoration: none;
   color: $link-color;
@@ -25,4 +36,8 @@ input {
 
 button {
   border: 0;
+}
+
+a:focus {
+  outline: none;
 }

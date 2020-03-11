@@ -1,3 +1,28 @@
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url('../fonts/Montserrat-Medium.ttf')
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url('../fonts/Montserrat-Regular.ttf')
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: url('../fonts/Montserrat-Light.ttf')
+}
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'OpenSans-SemiBold';
+  src: url('../fonts/OpenSans-SemiBold.ttf');
+}
+
 $filter-button-border: lightgrey;
 $filter-button-border-hover: darkgrey;
 $series-link: black;
@@ -14,15 +39,24 @@ $error-color: red;
 
 $link-color: black;
 
-$bg-color: #1e1f23;
-$gradient-from: rgba(30, 31, 35, 0);
+$bg-color: #070B25;
+$gradient-from: rgba(11, 24, 74, 0.2);
+$gradient-to: rgba(7, 16, 45, 0.85);
 $text-main-color: white;
-$text-rel-color: darkgrey;
+$text-rel-color: #C3C5EE;
+$text-dark-color: #8384A9;
+$button-color: white;
+$button-bg-color: #784162;
 $paragraph: 60px;
+$description-header-height: 60px;
 $padding-between-rows: 8px;
 $indent-between-description-data: 80px;
 $margin-between-bg-content: -100px;
-$gradient-height: 1000px;
+$gradient-height: 90vh;
+$padding-between-description-blocks: 30px;
+$headline-size: 28px;
+$comment-padding-y: 25px;
+$comment-padding-left: 10px;
 
 $page-header-bg-color: #3D006F;
 $page-header-link-color: white;
