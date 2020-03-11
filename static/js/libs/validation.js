@@ -5,11 +5,11 @@ import Input from './Input';
  * @return {boolean}
  */
 const validation = () => {
-    const form = document.getElementsByClassName('auth-form')[0];
+    const form = document.getElementsByClassName('form')[0];
 
     let isValidationError = false;
 
-    const inputs = form.getElementsByClassName('auth-form__input');
+    const inputs = form.getElementsByClassName('form__input');
 
     for (const inputItem of inputs) {
         if (inputItem.id === 'avatar') {
@@ -18,7 +18,7 @@ const validation = () => {
         const inputClassItem = new Input(inputItem.id);
 
         const inputError = form.getElementsByClassName(
-            `auth-form__error_${inputClassItem.inputName}`
+            `form__error-input_${inputClassItem.inputName}`
         )[0];
 
         if (!inputClassItem.regex.test(inputItem.value)) {

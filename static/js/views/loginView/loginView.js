@@ -3,11 +3,13 @@ import template from './loginView.tmpl.xml';
 import validation from '../../libs/validation';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import passwordToggler from '../../libs/passwordToggler';
 
 export default class LoginView extends View {
     constructor(eventBus) {
         super(template, eventBus);
         this.validation = validation;
+        this.passwordToggler = passwordToggler;
     }
 
     render(root) {
@@ -15,6 +17,9 @@ export default class LoginView extends View {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.root.addEventListener('submit', this.onSubmit);
+
+        this.toggle = this.root.getElementsByClassName('form__eye')[0];
+        this.toggle.onclick = this.passwordToggler;
     }
 
     /**
@@ -37,13 +42,14 @@ export default class LoginView extends View {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccessLogin();
                 } else {
-                    res.json().then((res) => this.onInvalidLogin(res.error));
+                    this.onInvalidLogin('Пользователь не найден!');
                 }
             });
     }
 
     onSuccessLogin() {
         this.eventBus.publish('loginSuccess');
+        this.eventBus.publish('renderForAuth');
     }
 
     /**
@@ -51,8 +57,8 @@ export default class LoginView extends View {
      * @param {string} resErrMsg
      */
     onInvalidLogin(resErrMsg) {
-        const formError = this.element.getElementsByClassName(
-            'auth-form__error'
+        const formError = this.root.getElementsByClassName(
+            'form-error'
         )[0];
 
         formError.textContent = resErrMsg;

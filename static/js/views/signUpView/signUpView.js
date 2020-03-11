@@ -3,11 +3,13 @@ import template from './signUpView.tmpl.xml';
 import validation from '../../libs/validation';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import passwordToggler from '../../libs/passwordToggler';
 
 export default class SignUpView extends View {
     constructor(eventBus) {
         super(template, eventBus);
         this.validation = validation;
+        this.passwordToggler = passwordToggler;
     }
 
     render(root) {
@@ -15,6 +17,11 @@ export default class SignUpView extends View {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.root.addEventListener('submit', this.onSubmit);
+
+        this.toggle = this.root.getElementsByClassName(
+            'form__eye'
+        )[0];
+        this.toggle.onclick = this.passwordToggler;
     }
 
     /**
@@ -31,15 +38,6 @@ export default class SignUpView extends View {
         }
 
         const password = document.getElementById('password').value;
-        const passwordRepeat = document.getElementById(
-            'password_repeat'
-        ).value;
-
-        if (password !== passwordRepeat) {
-            this.onInvalidSignUp('Пароли не совпадают');
-            return;
-        }
-
         const login = document.getElementById('login').value;
         const email = document.getElementById('email').value;
 
@@ -58,6 +56,7 @@ export default class SignUpView extends View {
      */
     onSuccessSignUp() {
         this.eventBus.publish('signUpSuccess');
+        this.eventBus.publish('renderForAuth');
     }
 
     /**
@@ -65,8 +64,8 @@ export default class SignUpView extends View {
      * @param {string} resErrMsg
      */
     onInvalidSignUp(resErrMsg) {
-        const formError = this.element.getElementsByClassName(
-            'auth-form__error'
+        const formError = this.root.getElementsByClassName(
+            'form-error'
         )[0];
 
         formError.textContent = resErrMsg;
