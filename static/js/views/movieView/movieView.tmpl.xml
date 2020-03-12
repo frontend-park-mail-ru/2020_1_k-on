@@ -4,20 +4,16 @@
             <div class="movie-bg__image" style="background-image: url({data.image})"/>
             <div class="movie-bg__shade"/>
             <div class="movie-header">
-                <div class="movie-header__rel">
+                <div class="movie-header__path user-path">
                     <fest:for iterate="data.path" index="i" value="v">
-                        <div class="movie-header__rel_item">
-                            <a class="movie-header__rel_href" href="{v.href}">
-                                <fest:value>v.name</fest:value>
-                            </a>
-                            <fest:space/>/
-                            <fest:space/>
-                        </div>
+                        <a class="movie-header__path-href user-path__href" href="{v.href}">
+                            <fest:value>v.name</fest:value>
+                        </a>
+                        <fest:space/>/
+                        <fest:space/>
                     </fest:for>
 
-                    <div class="movie-header__rel_item">
-                        <fest:value>data.russianname</fest:value>
-                    </div>
+                    <fest:value>data.russianname</fest:value>
                 </div>
 
                 <div class="movie-header__name">
@@ -56,9 +52,9 @@
                     <iframe src="{data.trailerlink}" width="100%" height="100%"/>
                 </div>
 
-                <div class="add-to-list-block">
-                    <button class="add-to-list-block__button button">Добавить в список</button>
-                </div>
+<!--                <div class="add-to-list-block">-->
+<!--                    <button class="add-to-list-block__button button">Добавить в список</button>-->
+<!--                </div>-->
             </div>
 
             <div class="movie-info">

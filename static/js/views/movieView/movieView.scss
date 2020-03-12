@@ -24,7 +24,6 @@
   left: 0;
   top: 0;
   width: 100%;
-  //height: $gradient-height;
   height: 100%;
   background: linear-gradient(to bottom, $gradient-from, $gradient-to);
 }
@@ -43,26 +42,15 @@
 
 .movie-header__original_name {
   font-family: 'Montserrat-Light', sans-serif;
-  color: $text-rel-color;
+  color: $path-color;
   text-transform: uppercase;
   margin-bottom: 4 * $padding-between-rows;
   font-size: 30px;
 }
 
-.movie-header__rel {
-  font-family: 'Montserrat-Regular', sans-serif;
+.movie-header__path {
   font-size: 22px;
-  color: $text-rel-color;
   margin-bottom: $padding-between-rows;
-}
-
-.movie-header__rel > * {
-  display: inline;
-}
-
-.movie-header__rel_href {
-  text-decoration: underline;
-  color: $text-rel-color;
 }
 
 .seasons-block {
@@ -85,12 +73,12 @@
   font-size: 20px;
   width: 35px;
   height: 35px;
-  border-radius: 6px;
+  border-radius: 10px;
   border: 1px solid $text-main-color;
 }
 
 .seasons-block__season-link_active {
-  color: black;
+  color: $bg-color;
   background-color: $active-season-link-bg-color;
   border: none;
 }
@@ -137,7 +125,7 @@
 }
 
 .movie-info__short-description {
-  color: $text-dark-color;
+  color: $text-bright-color;
   font-family: 'OpenSans-SemiBold', sans-serif;
   font-size: $headline-size;
   padding-bottom: $padding-between-description-blocks;
@@ -159,11 +147,11 @@
 }
 
 .movie-info__data_ref {
-  color: $text-rel-color;
+  color: $text-ref-color;
 }
 
 .movie-info__data_ref:hover {
-  color: $text-dark-color;
+  color: $text-bright-color;
 }
 
 .add-to-list-block {
@@ -171,9 +159,9 @@
 }
 
 .button {
-  color: $button-color;
-  background-color: $button-bg-color;
-  border-radius: 10px;
+  color: $bg-color;
+  background: linear-gradient(to right, $button-gradient-from, $button-gradient-to);
+  border-radius: 15px;
   font-family: inherit;
   font-size: 20px;
   padding: 0.5em 1.5em;
@@ -181,7 +169,7 @@
 
 .comments {
   padding-top: 60px;
-  width: 65%;
+  width: 55%;
   font-family: 'OpenSans-Regular', sans-serif;
   font-size: 16px;
   line-height: 28px;
@@ -204,7 +192,7 @@
 }
 
 .write-comment-block__avatar {
-  width: 90px;
+  min-width: 90px;
   height: 90px;
 }
 
@@ -221,12 +209,12 @@
   width: 100%;
   height: 40px;
   border: 0;
-  margin-top: 2 * $padding-between-rows;
+  margin-top: $padding-between-rows;
   margin-bottom: 3 * $padding-between-rows;
-  font-size: 20px;
-  color: $text-rel-color;
+  font-size: 18px;
+  color: $text-main-color;
   background: none;
-  border-bottom: 2px solid $text-rel-color;
+  border-bottom: 2px solid $text-bright-color;
 }
 
 .comment-form__input::placeholder {
@@ -249,12 +237,16 @@
 
 .comment-info__header {
   display: flex;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 .comment-info__username {
   font-size: 24px;
   margin-right: 40px;
+}
+
+.comment-form {
+  margin-bottom: 20px;
 }
 
 .comment-form__rate {
@@ -271,26 +263,26 @@
 }
 
 .comment-info__rate {
-  width: 96px;
-  height: 33px;
-  border-radius: 6px;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat-Regular', sans-serif;
-  font-size: 18px;
-  color: black;
-  background: #558198;
+  font-size: 16px;
+  color: $bg-color;
+  background: $rate-bg-color;
 }
 
 .comment-info__text {
-  font-size: 20px;
-  color: $text-rel-color;
+  font-size: 18px;
+  color: $text-main-color;
 }
 
 .no-comments-message {
-  border-top: 0.2px solid $text-rel-color;
-  padding: 3 * $padding-between-rows 0;
+  border-top: 0.2px solid $text-dark-color;
+  padding: 3 * $padding-between-rows 0 6 * $padding-between-rows;
   font-size: 28px;
-  color: $text-dark-color;
+  color: $path-color;
 }

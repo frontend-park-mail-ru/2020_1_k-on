@@ -10,7 +10,7 @@
 body {
   background-color: $bg-color;
   color: $text-main-color;
-  font-family: "CMU Sans Serif", sans-serif;
+  font-family: 'OpenSans-Regular', sans-serif;
 }
 
 #header {
@@ -53,9 +53,23 @@ body {
   background-position: center;
 }
 
+.user-path {
+  font-family: 'Montserrat-Regular', sans-serif;
+  color: $path-color;
+}
+
+.user-path > * {
+  display: inline;
+}
+
+.user-path__href {
+  text-decoration: underline;
+  color: $path-color;
+}
+
 a {
   text-decoration: none;
-  color: $text-rel-color;
+  color: $text-ref-color;
 }
 
 input {

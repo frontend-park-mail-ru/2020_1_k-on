@@ -1,25 +1,37 @@
 @import "../../../css/variables";
 
 .index-page {
-  width: 60%;
-  height: 100%;
-  margin: auto;
+  padding-top: $navbar-height;
 }
 
-.index-page__headline {
-  font-size: xx-large;
-  padding: 1em 15px;
+.index-header {
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+.index-header__path {
+  font-size: 16px;
+  margin-bottom: 2 * $padding-between-rows;
+}
+
+.index-header__headline {
+  font-size: 45px;
+  font-family: 'Montserrat-Regular', sans-serif;
 }
 
 .filters-block {
   display: flex;
-  padding: 10px;
+  margin-bottom: 40px;
 }
 
 .filter-button {
-  border: 2px solid $filter-button-border;
-  border-radius: 3px;
-  padding: 0.5em 1em;
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  font-size: 16px;
+  border: 2px solid $path-color;
+  border-radius: 15px;
+  padding: 0.6em 1em;
   margin-right: 30px;
   cursor: pointer;
 }
@@ -33,34 +45,37 @@
 }
 
 .filter-button__arrow {
-  height: 10px;
+  height: 20px;
 }
 
 .series-block {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  /*justify-content: center;*/
 }
 
 .series-card {
-  margin: 10px auto 20px 10px;
+  margin-right: auto;
+  margin-bottom: 60px;
+  padding-right: 20px;
   display: block;
   cursor: pointer;
 }
 
 .series-card__image {
-  width: 250px;
-  height: 375px;
+  width: 275px;
+  height: 412px;
   background-size: cover;
   background-position: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   position: relative;
-  line-height: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .series-card__name {
-  font-size: large;
+  font-size: 18px;
+  color: $text-main-color;
 }
 
 .series-card__age-limit {
@@ -72,6 +87,6 @@
   border-radius: 2px;
   font-size: 14px;
   text-align: center;
-  height: 20px;
-  width: 30px;
+  height: 25px;
+  width: 35px;
 }
