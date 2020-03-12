@@ -40,12 +40,25 @@
   border-color: $filter-button-border-hover;
 }
 
+.filter-button:hover .filter-button__filter-value {
+  color: $filter-button-border-hover;
+}
+
+.filter-button:hover .filter-button__arrow {
+  background-image: url(/static/img/down-arrow-active.svg);
+}
+
 .filter-button__filter-value {
   padding-right: 30px;
 }
 
 .filter-button__arrow {
   height: 20px;
+  width: 20px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(/static/img/down-arrow.svg);
+
 }
 
 .series-block {
