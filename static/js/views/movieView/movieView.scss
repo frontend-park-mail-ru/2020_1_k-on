@@ -8,7 +8,7 @@
 
 .movie-bg {
   position: relative;
-  height: 90vh;
+  height: 95vh;
 }
 
 .movie-bg__image {
@@ -31,7 +31,7 @@
 
 .movie-header {
   position: absolute;
-  bottom: 20%;
+  bottom: 15%;
   padding: 0 $paragraph;
 }
 
@@ -65,10 +65,34 @@
   color: $text-rel-color;
 }
 
-.movie-header__seasons {
+.seasons-block {
   display: flex;
+  align-items: center;
   font-family: 'Montserrat-Regular', sans-serif;
   font-size: 24px;
+}
+
+.season-block__name {
+  margin-right: 20px;
+}
+
+.seasons-block__season-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  color: $text-main-color;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
+  border: 1px solid $text-main-color;
+}
+
+.seasons-block__season-link_active {
+  color: black;
+  background-color: $active-season-link-bg-color;
+  border: none;
 }
 
 .movie-content {
@@ -199,7 +223,6 @@
   border: 0;
   margin-top: 2 * $padding-between-rows;
   margin-bottom: 3 * $padding-between-rows;
-  font-family: inherit;
   font-size: 20px;
   color: $text-rel-color;
   background: none;
@@ -225,20 +248,26 @@
 }
 
 .comment-info__header {
-  display: grid;
-  grid-gap: 50px;
-  grid-template-columns: 1fr 5fr;
+  display: flex;
   padding-bottom: 10px;
 }
 
 .comment-info__username {
   font-size: 24px;
+  margin-right: 40px;
 }
 
 .comment-form__rate {
-  display: grid;
-  grid-gap: 4px;
-  grid-template-columns: repeat(10, 1fr);
+  display: flex;
+}
+
+.comment-form__star {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 14px;
+  color: $text-dark-color;
 }
 
 .comment-info__rate {

@@ -28,11 +28,20 @@
                     <fest:value>data.englishname</fest:value>
                 </div>
 
-                <div class="movie-header__seasons">
-                    Сезоны:
+                <fest:if test="data.type == 'series'">
+                    <div class="seasons-block">
+                        <div class="season-block__name">
+                            Сезоны:
+                        </div>
 
-<!--                    <fest:for iterate=""-->
-                </div>
+                        <fest:var name="seasons" select="new Array(data.seasons)"/>
+                        <fest:for iterate="seasons" index="i" value="v">
+                            <a class="seasons-block__season-link" href="/">
+                                <fest:value>i + 1</fest:value>
+                            </a>
+                        </fest:for>
+                    </div>
+                </fest:if>
             </div>
         </div>
 
@@ -124,7 +133,13 @@
                             </div>
 
                             <div class="comment-form__rate">
-                                <!--                                <fest:for iterate=""-->
+                                <fest:var name="stars" select="new Array(10)"/>
+                                <fest:for iterate="stars" index="i" value="v">
+                                    <a class="comment-form__star">
+                                        <img src="static/img/star-icon.svg" height="25"/>
+                                        <fest:value>i + 1</fest:value>
+                                    </a>
+                                </fest:for>
                             </div>
                         </div>
 

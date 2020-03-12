@@ -2,19 +2,20 @@ import View from '../view';
 import template from './movieView.tmpl.xml';
 
 const data = {
+    type: 'series',
     image: 'static/img/sharp-objects.jpg',
     path: [
         {
             name: 'Главная',
-            href: '#'
+            href: '/'
         },
         {
             name: 'Сериалы',
-            href: '#'
+            href: 'series'
         },
         {
             name: 'Триллеры',
-            href: '#'
+            href: 'thriller'
         }
     ],
     russianname: 'Острые предметы',
@@ -35,19 +36,19 @@ const data = {
     actors: [
         {
             name: 'София Лиллис',
-            href: '#'
+            id: 1
         },
         {
             name: 'Дженнифер Аспен',
-            href: '#'
+            id: 2
         },
         {
             name: 'Джексон Хёрст',
-            href: '#'
+            id: 3
         },
         {
             name: 'Уилл Чейз',
-            href: '#'
+            id: 4
         }
     ],
     genres: [

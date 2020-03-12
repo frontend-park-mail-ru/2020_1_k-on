@@ -8,13 +8,13 @@
 @import "../js/views/loginView/loginView";
 
 body {
-  width: 100vw;
   background-color: $bg-color;
-  font-family: "CMU Sans Serif";
+  color: $text-main-color;
+  font-family: "CMU Sans Serif", sans-serif;
 }
 
 #header {
-  min-height: 50px;
+  min-height: 60px;
   width: 100%;
   position: absolute;
   top: 0;
@@ -55,11 +55,12 @@ body {
 
 a {
   text-decoration: none;
-  color: $link-color;
+  color: $text-rel-color;
 }
 
 input {
   border: 0;
+  font-family: inherit;
 }
 
 button {

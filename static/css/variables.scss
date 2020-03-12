@@ -23,6 +23,11 @@
   src: url('../fonts/OpenSans-SemiBold.ttf');
 }
 
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('../fonts/OpenSans-Bold.ttf');
+}
+
 // Form
 $form-bg-color: rgba(30, 31, 35, 0.7);
 $form-border-color: rgb(86, 92, 103);
@@ -40,10 +45,13 @@ $no-account-href-color: rgb(55, 85, 139);
 $no-account-text-color: white;
 
 // Navbar
-$navbar-bg-color: rgba(30, 31, 35, 0.5);
+$navbar-bg-color: rgba(0, 0, 0, 0.4);
 $navbar-link-color: white;
 $search-form-color: white;
+$margin-between-links: 25px;
+$search-form-border-radius: 40px;
 
+// Index page
 $filter-button-border: lightgrey;
 $filter-button-border-hover: darkgrey;
 $series-link: black;
@@ -55,12 +63,14 @@ $footer-bg-color: rgba(30, 31, 35, 0.3);
 
 $link-color: black;
 
+// Movie page
 $bg-color: #070B25;
 $gradient-from: rgba(11, 24, 74, 0.2);
 $gradient-to: rgba(7, 16, 45, 0.85);
 $text-main-color: white;
 $text-rel-color: #C3C5EE;
 $text-dark-color: #8384A9;
+$active-season-link-bg-color: #7375B1;
 $button-color: white;
 $button-bg-color: #784162;
 $paragraph: 60px;
@@ -74,6 +84,7 @@ $headline-size: 28px;
 $comment-padding-y: 25px;
 $comment-padding-left: 10px;
 
+// Profile page
 $profile-info: #525258;
 $series-list-navigation: #db4a3f;
 $list-navigation-active-link: #BB3F35;
