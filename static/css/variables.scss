@@ -1,32 +1,31 @@
 // Form
-$form-bg-color: rgba(30, 31, 35, 0.7);
-$form-border-color: rgb(86, 92, 103);
-$form-text-color: white;
-$form-input-bg-color: rgb(10, 10, 10);
-$form-input-focus-color: rgb(55, 85, 139);
-$form-button-bg-color: rgb(55, 85, 139);
-$form-button-bg-color-hover: rgb(25, 40, 64);
-$form-error-text-color: rgb(255, 0, 0);
-$form-error-margin: 24px;
+$auth-form-input-bg-color: rgb(10, 10, 10);
+$auth-form-input-focus-color: rgb(55, 85, 139);
+$auth-button-bg-color: rgb(55, 85, 139);
+$auth-button-bg-color-hover: rgb(25, 40, 64);
 
 // Auth page
-$headline-text-color: white;
 $no-account-href-color: rgb(55, 85, 139);
-$no-account-text-color: white;
+$auth-content-border-color: rgb(86, 92, 103);
+$auth-content-bg-color: rgba(30, 31, 35, 0.7);
+$auth-form-error-margin: 24px;
 
 // Navbar
 $navbar-bg-color: rgba(30, 31, 35, 0.5);
-$navbar-link-color: white;
 $search-form-color: white;
+
+// Colors
+$text-color: white;
+$error-color: rgb(255, 0, 0);
+$shade-color: rgba(0, 0, 0, 0.6);
+$bg-color: rgb(30, 31, 35);
+$footer-bg-color: rgba(30, 31, 35, 0.3);
 
 $filter-button-border: lightgrey;
 $filter-button-border-hover: darkgrey;
 $series-link: black;
 $age-limit-color: white;
 $age-limit-background: rgba(0, 0, 0, 0.3);
-
-$bg-color: rgb(30, 31, 35);
-$footer-bg-color: rgba(30, 31, 35, 0.3);
 
 $link-color: black;
 

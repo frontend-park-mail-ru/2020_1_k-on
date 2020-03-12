@@ -17,10 +17,10 @@ export default class LoginView extends View {
         this.setRandomBackgroundImg();
         super.render(root);
 
-        this.form = this.root.getElementsByClassName('form')[0];
+        this.form = this.root.getElementsByClassName('auth-form')[0];
         this.form.addEventListener('submit', this.onSubmit.bind(this));
 
-        this.toggle = this.root.getElementsByClassName('form__eye')[0];
+        this.toggle = this.root.getElementsByClassName('auth-form__eye')[0];
         this.toggle.addEventListener('click', this.passwordToggler);
     }
 
@@ -60,7 +60,7 @@ export default class LoginView extends View {
      */
     onInvalidLogin(resErrMsg) {
         const formError = this.root.getElementsByClassName(
-            'form-error'
+            'auth-page__form-error'
         )[0];
 
         formError.textContent = resErrMsg;
