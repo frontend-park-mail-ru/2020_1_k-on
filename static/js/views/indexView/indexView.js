@@ -47,10 +47,10 @@ const data = [
 export default class IndexView extends View {
     constructor(router) {
         super(template, router);
-        this._data = data;
+        this.data = data;
     }
 
     render(root) {
-        super.render(root, this._data);
+        super.render(root);
     }
 }

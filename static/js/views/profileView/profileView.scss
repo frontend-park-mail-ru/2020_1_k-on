@@ -1,4 +1,4 @@
-@import "../../../css/variables";
+@import '../../../css/variables';
 
 .profile-page {
   width: 60%;
@@ -16,7 +16,7 @@
   min-height: 150px;
   min-width: 150px;
   border-radius: 50%;
-  background-image: url("/static/img/avatar.jpg");
+  background-image: url('/static/img/avatar.jpg');
   background-size: cover;
   background-position: center;
 }

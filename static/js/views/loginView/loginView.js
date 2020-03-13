@@ -3,6 +3,7 @@ import template from './loginView.tmpl.xml';
 import validation from '../../libs/validation';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import {LOGIN_EVENTS} from '../../libs/constants';
 import passwordToggler from '../../libs/passwordToggler';
 
 export default class LoginView extends View {
@@ -13,13 +14,14 @@ export default class LoginView extends View {
     }
 
     render(root) {
-        super.render(root, null);
+        this.setRandomBackgroundImg();
+        super.render(root);
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.root.addEventListener('submit', this.onSubmit);
+        this.form = this.root.getElementsByClassName('auth-form')[0];
+        this.form.addEventListener('submit', this.onSubmit.bind(this));
 
-        this.toggle = this.root.getElementsByClassName('form__eye')[0];
-        this.toggle.onclick = this.passwordToggler;
+        this.toggle = this.root.getElementsByClassName('auth-form__eye')[0];
+        this.toggle.addEventListener('click', this.passwordToggler);
     }
 
     /**
@@ -48,8 +50,8 @@ export default class LoginView extends View {
     }
 
     onSuccessLogin() {
-        this.eventBus.publish('loginSuccess');
-        this.eventBus.publish('renderForAuth');
+        this.eventBus.publish(LOGIN_EVENTS.loginSuccess);
+        this.eventBus.publish(LOGIN_EVENTS.renderForAuth);
     }
 
     /**
@@ -58,7 +60,7 @@ export default class LoginView extends View {
      */
     onInvalidLogin(resErrMsg) {
         const formError = this.root.getElementsByClassName(
-            'form-error'
+            'auth-page__form-error'
         )[0];
 
         formError.textContent = resErrMsg;
@@ -66,11 +68,9 @@ export default class LoginView extends View {
     }
 
     /**
-     * Перед закрытием view удаляет обработчики событий
-     * и очищает контент
+     * Перед закрытием view очищает контент
      */
     close() {
-        this.root.removeEventListener('submit', this.onSubmit);
         super.close();
     }
 }

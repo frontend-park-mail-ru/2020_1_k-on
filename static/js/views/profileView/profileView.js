@@ -3,6 +3,7 @@ import validation from '../../libs/validation';
 import template from './profileView.tmpl.xml';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
+import {PROFILE_EVENTS} from '../../libs/constants';
 
 const data = {
     profile: {
@@ -57,7 +58,7 @@ const data = {
 export default class ProfileView extends View {
     constructor(eventBus) {
         super(template, eventBus);
-        this._data = data;
+        this.data = data;
         this.validation = validation;
     }
 
@@ -81,7 +82,7 @@ export default class ProfileView extends View {
                             this.onSuccess();
                         });
                 } else {
-                    this.eventBus.publish('unauthUser');
+                    this.eventBus.publish(PROFILE_EVENTS.unauthUser);
                 }
             });
     }
@@ -91,11 +92,11 @@ export default class ProfileView extends View {
      */
     onSuccess() {
         if (this.avatarBase64 !== '') {
-            this._data.profile.avatar = `
+            this.data.profile.avatar = `
                 "data:image/jpeg;base64,${this.avatarBase64}"
             `;
         }
-        super.render(this.root, this._data);
+        super.render(this.root);
 
         document.getElementById('login').value = this.login;
         document.getElementById('email').value = this.email;

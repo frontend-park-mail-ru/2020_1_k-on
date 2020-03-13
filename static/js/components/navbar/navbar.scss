@@ -1,4 +1,4 @@
-@import "../../../css/variables";
+@import '../../../css/variables';
 
 .navbar {
   display: flex;
@@ -12,26 +12,27 @@
   width: 50%;
   padding-right: 5%;
   box-sizing: border-box;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .navbar__right-side {
   display: flex;
   align-items: center;
   width: 50%;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 .navbar__logo {
-  color: $navbar-link-color;
+  color: $text-color;
   font-size: x-large;
   font-weight: bold;
   padding: 0.7em 1em 0.7em 15px;
 }
 
 .navbar__link {
-  color: $navbar-link-color;
+  color: $text-color;
   font-size: x-large;
+  margin-right: 16px;
 }
 
 .navbar__link:focus {
