@@ -13,8 +13,11 @@ body {
   min-height: 100vh;
   width: 100vw;
   background-color: $bg-color;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 100;
+  font: {
+    family: 'Roboto', sans-serif;
+    weight: 100;
+    style: normal;
+  }
 }
 
 #header {
