@@ -1,41 +1,44 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-    <div class="page-bg">
-        <div class="page-bg__img"/>
-        <div class="page-bg__shade"/>
-    </div>
-
     <div class="auth-page">
-        <h1 class="headline">Вход в аккаунт</h1>
-        <div class="content">
-            <form class="form" novalidate="true">
-                <div class="form__input-wrapper">
-                    <input class="form__input form__input_login"
-                           type="text" id="login" minlength="4" maxlength="15"
+        <div class="auth-page__bg-img" style="background-image: url({data.bg_img_url});"/>
+        <div class="auth-page__bg-shade"/>
+
+        <div class="auth-content">
+            <h1 class="auth-content__headline">Вход в аккаунт</h1>
+
+            <form class="auth-form" novalidate="true">
+                <div class="auth-form__input_wrapper">
+                    <input class="auth-form__input auth-form__input_login"
+                           type="text" id="login" minlength="6"
                            autofocus="true" required="true" placeholder="Логин"/>
-                    <span class="border"/>
+                    <span class="auth-form__input-border"/>
                 </div>
-                <div class="form__error-input form__error-input_login"
-                     id="login_error">Error</div>
-
-                <div class="form__input-wrapper">
-                    <input class="form__input auth-form__input_password"
-                           type="password" id="password" minlength="4"
-                           maxlength="15" required="true" placeholder="Пароль"/>
-                    <span class="border"/>
-                    <img class="form__eye" src="/static/img/eye.svg"/>
+                <div class="auth-form__input-error auth-form__input-error_login"
+                     id="login_error">
                 </div>
-                <div class="form__error-input form__error-input_password"
-                     id="password_error">Error</div>
 
-                <button class="form__button"
-                        type="submit">Войти</button>
+                <div class="auth-form__input_wrapper">
+                    <input class="auth-form__input auth-form__input_password"
+                           type="password" id="password" minlength="6"
+                           required="true" placeholder="Пароль"/>
+                    <span class="auth-form__input-border"/>
+                    <img class="auth-form__eye" src="/static/img/eye-show.svg"/>
+                </div>
+                <div class="auth-form__input-error auth-form__input-error_password"
+                     id="password_error">
+                </div>
+
+                <button class="auth-form__button" type="submit">
+                    Войти
+                </button>
             </form>
-            <div class="no-account">
+
+            <div class="auth-content__no-account">
                 Еще нет аккаунта?
-                <a class="no-account__href" href="/signup">Зарегистрируйтесь!</a>
+                <a class="auth-content__no-account_href" href="/signup">Зарегистрируйтесь!</a>
             </div>
 
         </div>
-        <div class="form-error" id="form_error">Error</div>
+        <div class="auth-page__form-error" id="form_error">Error</div>
     </div>
 </fest:template>

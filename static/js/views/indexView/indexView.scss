@@ -1,8 +1,9 @@
-@import "../../../css/variables";
-@import "../../../css/mixins";
+@import '../../../css/variables';
+@import '../../../css/mixins';
 
 .index-page {
   padding-top: $navbar-height;
+  font-family: 'OpenSans-Regular', sans-serif;
 }
 
 .index-header {

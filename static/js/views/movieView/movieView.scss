@@ -1,9 +1,10 @@
-@import "../../../css/variables";
-@import "../../../css/mixins";
+@import '../../../css/variables';
+@import '../../../css/mixins';
 
 .movie-page {
   overflow: hidden;
   background-color: $bg-color;
+  font-family: 'OpenSans-Regular', sans-serif;
   color: $text-main-color;
 }
 

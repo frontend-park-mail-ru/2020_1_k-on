@@ -1,70 +1,67 @@
-@import "variables";
+@import 'variables';
 
-.form > * {
+.auth-form {
   display: block;
-}
+  color: $text-color;
 
-.form__input {
-  background-color: $form-input-bg-color;
-  color: $form-text-color;
-  border-radius: 8px;
-  padding: 12px;
-  min-height: 48px;
-  width: 100%;
-  box-sizing: border-box;
-}
+  &__input_wrapper {
+    position: relative;
+  }
 
-.form__input + .border {
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  position: absolute;
-  background-color: $form-input-focus-color;
-}
+  &__input {
+    background-color: $auth-form-input-bg-color;
+    border-radius: 8px 8px 0 0;
+    padding: 12px;
+    min-height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    color: inherit;
+  }
 
-.form__input:focus + .border {
-  width: 100%;
-  transition: 0.5s;
-}
+  &__input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $auth-form-input-focus-color;
+  }
 
-.form__button {
-  background-color: $form-button-bg-color;
-  border-radius: 8px;
-  min-height: 44px;
-  color: $form-text-color;
-  width: 100%;
-  box-sizing: border-box;
-}
+  &__input:focus + &__input-border {
+    width: 100%;
+    transition: 0.5s;
+  }
 
-.form__input-wrapper {
-  width: 100%;
-  position: relative;
-}
+  &__button {
+    background-color: $auth-button-bg-color;
+    border-radius: 8px;
+    min-height: 44px;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: lighter;
+    color: inherit;
 
-.form__eye {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  margin-top: -7px;
-}
+    &:hover {
+      background-color: $auth-button-bg-color-hover;
+      transition: 0.5s;
+    }
+  }
 
-.form__button:hover {
-  background-color: $form-button-bg-color-hover;
-  transition: 0.5s;
-}
+  &__eye {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    margin-top: -11px;
+    cursor: pointer;
+  }
 
-.form__error-input {
-  visibility: hidden;
-  color: $form-error-text-color;
-  font-size: 0.8em;
-  max-width: fit-content;
-  min-height: 40px;
-}
-
-.form-error {
-  color: $form-error-text-color;
-  font-size: 1.5em;
-  margin-top: $form-error-margin;
-  visibility: hidden;
+  &__input-error {
+    visibility: hidden;
+    color: $error-color;
+    font-size: 0.8em;
+    max-width: fit-content;
+    min-height: 40px;
+    margin: 8px 0;
+    font-weight: bolder;
+  }
 }

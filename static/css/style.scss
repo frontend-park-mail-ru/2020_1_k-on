@@ -1,17 +1,24 @@
-@import "variables";
-@import "form";
-@import "reset";
-@import "mixins";
-@import "../js/components/navbar/navbar";
-@import "../js/views/indexView/indexView";
-@import "../js/views/movieView/movieView";
-@import "../js/views/profileView/profileView";
-@import "../js/views/loginView/loginView";
+@import 'variables';
+@import 'form';
+@import 'reset';
+@import 'mixins';
+@import '../js/components/navbar/navbar';
+@import '../js/views/indexView/indexView';
+@import '../js/views/movieView/movieView';
+@import '../js/views/profileView/profileView';
+@import '../js/views/loginView/loginView';
+@import '../fonts/fonts';
 
 body {
+  position: relative;
+  min-height: 100vh;
   background-color: $bg-color;
+  font: {
+    family: 'Roboto', sans-serif;
+    weight: 100;
+    style: normal;
+  }
   color: $text-main-color;
-  font-family: 'OpenSans-Regular', sans-serif;
 }
 
 #header {
@@ -26,6 +33,7 @@ body {
 #container {
   height: 100%;
   width: 100%;
+  padding-bottom: 50px;
 }
 
 #footer {
@@ -34,13 +42,12 @@ body {
   position: absolute;
   bottom: 0;
   z-index: 1000;
-  background-color: $footer-bg-color;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 14px;
   color: white;
-  box-shadow: 0 0 5px 10px $footer-bg-color;
+  opacity: 0.4;
 }
 
 .page-layout {
