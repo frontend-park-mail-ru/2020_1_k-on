@@ -1,6 +1,7 @@
 @import "variables";
 @import "form";
 @import "reset";
+@import "mixins";
 @import "../js/components/navbar/navbar";
 @import "../js/views/indexView/indexView";
 @import "../js/views/movieView/movieView";
@@ -49,8 +50,7 @@ body {
 
 .avatar {
   border-radius: 50%;
-  background-size: cover;
-  background-position: center;
+  background: no-repeat center / cover;
 }
 
 .user-path {

@@ -1,39 +1,40 @@
 @import "../../../css/variables";
+@import "../../../css/mixins";
 
 .index-page {
   padding-top: $navbar-height;
 }
 
 .index-header {
-  margin-top: 80px;
   margin-bottom: 60px;
+  margin-top: 80px;
 }
 
 .index-header__path {
-  font-size: 16px;
   margin-bottom: 2 * $padding-between-rows;
+  font-size: 16px;
 }
 
 .index-header__headline {
-  font-size: 45px;
   font-family: 'Montserrat-Regular', sans-serif;
+  font-size: 45px;
 }
 
 .filters-block {
-  display: flex;
   margin-bottom: 40px;
+  display: flex;
 }
 
 .filter-button {
+  cursor: pointer;
+  margin-right: 30px;
+  width: 250px;
+  padding: 0.6em 1em;
   display: flex;
   justify-content: space-between;
-  width: 250px;
-  font-size: 16px;
   border: 2px solid $path-color;
   border-radius: 15px;
-  padding: 0.6em 1em;
-  margin-right: 30px;
-  cursor: pointer;
+  font-size: 16px;
 }
 
 .filter-button:hover {
@@ -53,12 +54,8 @@
 }
 
 .filter-button__arrow {
-  height: 20px;
-  width: 20px;
-  background-size: cover;
-  background-position: center;
-  background-image: url(/static/img/down-arrow.svg);
-
+  @include square($size: 20px);
+  background: url(/static/img/down-arrow.svg) no-repeat center / cover;
 }
 
 .series-block {
@@ -68,22 +65,21 @@
 }
 
 .series-card {
+  cursor: pointer;
   margin-right: auto;
   margin-bottom: 60px;
   padding-right: 20px;
   display: block;
-  cursor: pointer;
 }
 
 .series-card__image {
+  position: relative;
+  margin-bottom: 20px;
   width: 275px;
   height: 412px;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 20px;
-  position: relative;
   border-radius: 15px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: $series-card-shadow;
+  background: center / cover;
 }
 
 .series-card__name {
@@ -95,11 +91,11 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  color: $age-limit-color;
-  background-color: $age-limit-background;
-  border-radius: 2px;
-  font-size: 14px;
-  text-align: center;
-  height: 25px;
   width: 35px;
+  height: 25px;
+  @include center-position;
+  border-radius: 5px;
+  background-color: $age-limit-background;
+  font-size: 14px;
+  color: $age-limit-color;
 }
