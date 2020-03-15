@@ -8,6 +8,7 @@ import IndexController from './controllers/indexController';
 import Navbar from './components/navbar/navbar';
 import Router from './libs/router';
 import EventBus from './libs/eventBus';
+import View from './views/view';
 
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
@@ -23,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         profile: new ProfileController(router),
         index: new IndexController(router),
     };
+
+    View.setBgImgInSessionStorage();
 
     router.add('/login', controllers.login.view);
     router.add('/movie', controllers.movie.view);

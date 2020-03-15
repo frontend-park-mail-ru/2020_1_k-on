@@ -1,4 +1,5 @@
 import {MAX_BG_IMGS} from '../libs/constants';
+import {BG_IMG_KEY} from '../libs/constants';
 
 export default class View {
     constructor(tmpl, eventBus) {
@@ -17,10 +18,25 @@ export default class View {
     }
 
     /**
+     * Устанавливает url к случайному заднему фону в sessionStorage
+     */
+    static setBgImgInSessionStorage() {
+        const randomNumber = Math.floor(Math.random() * MAX_BG_IMGS) + 1;
+        window.sessionStorage.setItem(
+            BG_IMG_KEY,
+            `/static/img/background_${randomNumber}.jpg`
+        );
+    }
+
+    /**
      * Устанавливает в this.data путь к случайному заднему фону
      */
     setRandomBackgroundImg() {
-        const randomNumber = Math.floor(Math.random() * MAX_BG_IMGS) + 1;
-        this.data.bg_img_url = `/static/img/background_${randomNumber}.jpg`;
+        const bgImagePath = window.sessionStorage.getItem(BG_IMG_KEY);
+        if (bgImagePath === null) {
+            console.log(`There is no key - ${BG_IMG_KEY} in sessionStorage`);
+        } else {
+            this.data.bg_img_url = bgImagePath;
+        }
     }
 }

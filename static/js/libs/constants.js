@@ -32,3 +32,5 @@ export const PROFILE_EVENTS = {
 };
 
 export const MAX_BG_IMGS = 5;
+
+export const BG_IMG_KEY = 'bg_img';
