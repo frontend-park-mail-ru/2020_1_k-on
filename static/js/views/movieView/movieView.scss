@@ -1,85 +1,284 @@
 @import '../../../css/variables';
+@import '../../../css/mixins';
 
-.movie {
-  background-color: $bg-color;
+.movie-page {
   overflow: hidden;
+  background-color: $bg-color;
+  font-family: 'OpenSans-Regular', sans-serif;
+  color: $text-main-color;
 }
 
 .movie-bg {
   position: relative;
+  height: 95vh;
 }
 
 .movie-bg__image {
   width: 100%;
+  height: 100%;
+  background: bottom / cover;
 }
 
 .movie-bg__shade {
   position: absolute;
   bottom: 0;
   left: 0;
+  top: 0;
   width: 100%;
-  height: $gradient-height;
-  background-image: linear-gradient(to bottom, $gradient-from, $bg-color);
+  height: 100%;
+  background: linear-gradient(to bottom, $gradient-from, $gradient-to);
 }
 
 .movie-header {
   position: absolute;
-  bottom: 30%;
+  bottom: 15%;
   padding: 0 $paragraph;
-  color: $text-main-color;
 }
 
 .movie-header__name {
   margin-bottom: 2 * $padding-between-rows;
-  font-size: 3em;
+  font-family: 'Montserrat-Medium', sans-serif;
+  font-size: 80px;
 }
 
 .movie-header__original_name {
-  margin-bottom: 2 * $padding-between-rows;
-  font-size: 1.2em;
+  margin-bottom: 4 * $padding-between-rows;
+  font-family: 'Montserrat-Light', sans-serif;
+  font-size: 30px;
+  color: $path-color;
+  text-transform: uppercase;
 }
 
-.movie-header__rel {
-  color: $text-rel-color;
+.movie-header__path {
   margin-bottom: $padding-between-rows;
+  font-size: 22px;
 }
 
-.movie-header__rel > * {
-  display: inline;
+.seasons-block {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat-Regular', sans-serif;
+  font-size: 24px;
 }
 
-.movie-header__rel_href {
-  text-decoration: underline;
-  color: $text-rel-color;
+.season-block__name {
+  margin-right: 20px;
+}
+
+.seasons-block__season-link {
+  margin-right: 15px;
+  @include square($size: 35px);
+  @include center-position;
+  border: 1px solid $text-main-color;
+  border-radius: 10px;
+  font-size: 20px;
+  color: $text-main-color;
+}
+
+.seasons-block__season-link_active {
+  border: none;
+  color: $bg-color;
+  background-color: $active-season-link-bg-color;
 }
 
 .movie-content {
-  margin-top: $margin-between-bg-content;
-  padding: 0 $paragraph;
   position: relative;
+  display: flex;
+  padding-top: 60px;
+  font-family: 'OpenSans-Regular', sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.movie-trailer {
+  width: 50%;
+  height: auto;
+}
+
+.movie-trailer__headline {
+  height: $description-header-height;
+  font-size: $headline-size;
+}
+
+.movie-trailer__video-frame {
+  position: relative;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+
+.movie-trailer__video-frame iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.movie-info {
+  display: block;
+  width: 50%;
+  padding-left: $indent-between-description-data;
+  padding-top: $description-header-height;
+}
+
+.movie-info__short-description {
+  padding-bottom: $padding-between-description-blocks;
+  font-family: 'OpenSans-SemiBold', sans-serif;
+  font-size: $headline-size;
+  color: $text-bright-color;
+}
+
+.movie-info__description {
+  padding-bottom: $padding-between-description-blocks;
+  color: $text-main-color;
+}
+
+.movie-info__data {
+  display: grid;
+  grid-gap: 14px;
+  grid-template-columns: 1fr 5fr;
+}
+
+.movie-info__data_title {
+  color: $text-dark-color;
+}
+
+.movie-info__data_ref {
+  color: $text-ref-color;
+}
+
+.movie-info__data_ref:hover {
+  color: $text-bright-color;
+}
+
+.add-to-list-block {
+  padding-top: 3 * $padding-between-rows;
+}
+
+.button {
+  border-radius: 15px;
+  padding: 0.5em 1.5em;
+  background: linear-gradient(to right, $button-gradient-from, $button-gradient-to);
+  font-family: inherit;
+  font-size: 20px;
+  color: $bg-color;
+}
+
+.comments {
+  width: 55%;
+  padding-top: 60px;
+  font-family: 'OpenSans-Regular', sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.comments__headline {
+  margin-bottom: 3 * $padding-between-rows;
+  font-size: $headline-size;
+}
+
+.comment-layout {
+  padding-left: $comment-padding-left;
+  padding-top: $comment-padding-y;
+  padding-bottom: $comment-padding-y;
   display: flex;
 }
 
-.movie-content__description {
-  width: 50%;
+.write-comment-block {
+  border-top: 0.2px solid $text-dark-color;
+}
+
+.write-comment-block__avatar {
+  flex-shrink: 0;
+  @include square($size: 90px);
+}
+
+.comment-info {
+  width: 100%;
+}
+
+.comment-form {
+  width: 100%;
+}
+
+.comment-form__input {
+  margin-top: $padding-between-rows;
+  margin-bottom: 3 * $padding-between-rows;
+  width: 100%;
+  height: 40px;
+  display: block;
+  border: 0;
+  border-bottom: 2px solid $text-bright-color;
+  background: none;
+  font-size: 18px;
   color: $text-main-color;
-  font-size: 1.1em;
 }
 
-.movie-content__data {
-  width: 50%;
-  height: 100%;
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: 0.5fr 2fr;
-  padding-left: $indent-between-description-data;
-  font-size: 1.1em;
+.comment-form__input::placeholder {
+  color: $text-dark-color;
 }
 
-.movie-content__data_title {
-  color: $text-rel-color;
+.comment-block {
+  border-top: 0.2px solid $text-dark-color;
 }
 
-.movie-content__data_content {
+.comment-block__avatar {
+  flex-shrink: 0;
+  @include square($size: 90px);
+}
+
+.comment-info {
+  padding-left: 30px;
+  display: block;
+}
+
+.comment-info__header {
+  padding-bottom: 15px;
+  display: flex;
+}
+
+.comment-info__username {
+  margin-right: 40px;
+  font-size: 24px;
+}
+
+.comment-form {
+  margin-bottom: 20px;
+}
+
+.comment-form__rate {
+  display: flex;
+}
+
+.comment-form__star {
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  color: $text-dark-color;
+}
+
+.comment-info__rate {
+  width: 80px;
+  height: 30px;
+  @include center-position;
+  border-radius: 10px;
+  background: $rate-bg-color;
+  font-family: 'Montserrat-Regular', sans-serif;
+  font-size: 16px;
+  color: $bg-color;
+}
+
+.comment-info__text {
+  font-size: 18px;
   color: $text-main-color;
+}
+
+.no-comments-message {
+  padding: 3 * $padding-between-rows 0 6 * $padding-between-rows;
+  border-top: 0.2px solid $text-dark-color;
+  font-size: 28px;
+  color: $path-color;
 }

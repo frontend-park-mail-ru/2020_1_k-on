@@ -1,54 +1,186 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-<div class="movie">
-    <div class="movie-bg">
-        <img class="movie-bg__image" src="{data.image}"/>
-        <div class="movie-bg__shade"/>
-        <div class="movie-header">
-            <div class="movie-header__rel">
-                <div class="movie-header__rel_item">
-                    <a class="movie-header__rel_href">
-                        <fest:value>data.category</fest:value>
-                    </a>
-                    /
+    <div class="movie-page">
+        <div class="movie-bg">
+            <div class="movie-bg__image" style="background-image: url({data.image})"/>
+            <div class="movie-bg__shade"/>
+            <div class="movie-header">
+                <div class="movie-header__path user-path">
+                    <fest:for iterate="data.path" index="i" value="v">
+                        <a class="movie-header__path-href user-path__href" href="{v.href}">
+                            <fest:value>v.name</fest:value>
+                        </a>
+                        <fest:space/>/
+                        <fest:space/>
+                    </fest:for>
+
+                    <fest:value>data.russianname</fest:value>
                 </div>
-                <div class="movie-header__rel_item">
-                    <a class="movie-header__rel_href">
-                        <fest:value>data.genre</fest:value>
-                    </a>
-                    /
+
+                <div class="movie-header__name">
+                    <fest:value>data.russianname</fest:value>
                 </div>
-                <div class="movie-header__rel_item">
-                    <fest:value>data.name</fest:value>
+
+                <div class="movie-header__original_name">
+                    <fest:value>data.englishname</fest:value>
                 </div>
-            </div>
-            <div class="movie-header__name">
-                <fest:value>data.russian_name</fest:value>
-            </div>
-            <div class="movie-header__original_name">
-                <fest:value>data.english_name</fest:value>
+
+                <fest:if test="data.type == 'series'">
+                    <div class="seasons-block">
+                        <div class="season-block__name">
+                            Сезоны:
+                        </div>
+
+                        <fest:var name="seasons" select="new Array(data.seasons)"/>
+                        <fest:for iterate="seasons" index="i" value="v">
+                            <a class="seasons-block__season-link" href="/">
+                                <fest:value>i + 1</fest:value>
+                            </a>
+                        </fest:for>
+                    </div>
+                </fest:if>
             </div>
         </div>
-    </div>
-    <div class="movie-content">
-        <div class="movie-content__description">
-            <fest:value>data.description</fest:value>
-        </div>
-        <div class="movie-content__data">
-            <div class="movie-content__data_title">Режиссер:</div>
-            <div class="movie-content__data_content">
-                <fest:value>data.producer</fest:value>
+
+        <div class="movie-content page-layout">
+
+            <div class="movie-trailer">
+                <div class="movie-trailer__headline">
+                    Трейлер
+                </div>
+
+                <div class="movie-trailer__video-frame">
+                    <iframe src="{data.trailerlink}" width="100%" height="100%"/>
+                </div>
+
+<!--                <div class="add-to-list-block">-->
+<!--                    <button class="add-to-list-block__button button">Добавить в список</button>-->
+<!--                </div>-->
             </div>
 
-            <div class="movie-content__data_title">В ролях:</div>
-            <div class="movie-content__data_content">
-                <fest:value>data.actors</fest:value>
-            </div>
+            <div class="movie-info">
+                <div class="movie-info__short-description">
+                    <fest:value>data.year</fest:value>
+                    ,
+                    <fest:space/>
+                    <fest:value>data.country</fest:value>
+                    ,
+                    <fest:space/>
+                    <fest:value>data.agelimit</fest:value>+
+                </div>
 
-            <div class="movie-content__data_title">Страна:</div>
-            <div class="movie-content__data_content">
-                <fest:value>data.country</fest:value>
+                <div class="movie-info__description">
+                    <fest:value>data.description</fest:value>
+                </div>
+                <div class="movie-info__data">
+                    <div class="movie-info__data_title">Рейтинг:</div>
+                    <div class="movie-info__data_content">
+                        <fest:value>data.rating</fest:value>
+                    </div>
+
+                    <div class="movie-info__data_title">Режиссеры:</div>
+                    <div class="movie-info__data_content">
+                        <fest:value>data.producer</fest:value>
+                    </div>
+
+                    <div class="movie-info__data_title">В ролях:</div>
+                    <div class="movie-info__data_content">
+                        <fest:for iterate="data.actors" index="i" value="actor">
+                            <a class="movie-info__data_ref" href="{actor.href}">
+                                <fest:value>actor.name</fest:value>
+                            </a>
+
+                            <fest:if test="i != data.actors.length - 1">
+                                ,
+                                <fest:space/>
+                            </fest:if>
+                        </fest:for>
+                    </div>
+
+                    <div class="movie-info__data_title">Жанры:</div>
+                    <div class="movie-info__data_content">
+                        <fest:for iterate="data.genres" index="j" value="genre">
+                            <a class="movie-info__data_ref" href="{genre.href}">
+                                <fest:value>genre.name</fest:value>
+                            </a>
+
+                            <fest:if test="j != data.genres.length - 1">
+                                ,
+                                <fest:space/>
+                            </fest:if>
+                        </fest:for>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="comments page-layout">
+            <div class="comments__headline">
+                Отзывы
+            </div>
+
+            <fest:if test="data.user">
+                <div class="write-comment-block comment-layout">
+                    <div class="write-comment-block__avatar avatar" style="background-image: url({data.user.avatar})"/>
+
+                    <div class="comment-info">
+                        <div class="comment-info__header">
+                            <div class="comment-info__username">
+                                <fest:value>data.user.username</fest:value>
+                            </div>
+
+                            <div class="comment-form__rate">
+                                <fest:var name="stars" select="new Array(10)"/>
+                                <fest:for iterate="stars" index="i" value="v">
+                                    <a class="comment-form__star">
+                                        <img src="static/img/star-icon.svg" height="25"/>
+                                        <fest:value>i + 1</fest:value>
+                                    </a>
+                                </fest:for>
+                            </div>
+                        </div>
+
+                        <form class="comment-form">
+                            <input class="comment-form__input" type="text" id="text" placeholder="Текст отзыва"
+                                   required="true"/>
+                            <button class="comment-form__button button" type="submit">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </fest:if>
+
+            <fest:if test="data.comments">
+                <div class="all-comments">
+                    <fest:for iterate="data.comments" index="i" value="comment">
+                        <div class="comment-block comment-layout">
+                            <div class="comment-block__avatar avatar"
+                                 style="background-image: url({comment.avatar})"/>
+
+                            <div class="comment-info">
+                                <div class="comment-info__header">
+                                    <div class="comment-info__username">
+                                        <fest:value>comment.username</fest:value>
+                                    </div>
+
+                                    <div class="comment-info__rate">
+                                        <fest:value>comment.rate</fest:value>
+                                        <fest:space/>из<fest:space/>10
+                                    </div>
+                                </div>
+
+                                <div class="comment-info__text">
+                                    <fest:value>comment.text</fest:value>
+                                </div>
+                            </div>
+                        </div>
+                    </fest:for>
+                </div>
+            </fest:if>
+
+            <fest:if test="!data.comments">
+                <div class="no-comments-message">
+                    Отзывов пока нет.
+                </div>
+            </fest:if>
+        </div>
     </div>
-</div>
 </fest:template>

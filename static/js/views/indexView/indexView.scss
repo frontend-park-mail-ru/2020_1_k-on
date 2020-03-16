@@ -1,31 +1,53 @@
 @import '../../../css/variables';
+@import '../../../css/mixins';
 
 .index-page {
-  width: 60%;
-  height: 100%;
-  margin: auto;
+  padding-top: $navbar-height;
+  font-family: 'OpenSans-Regular', sans-serif;
 }
 
-.index-page__headline {
-  font-size: xx-large;
-  padding: 1em 15px;
+.index-header {
+  margin-bottom: 60px;
+  margin-top: 80px;
+}
+
+.index-header__path {
+  margin-bottom: 2 * $padding-between-rows;
+  font-size: 16px;
+}
+
+.index-header__headline {
+  font-family: 'Montserrat-Regular', sans-serif;
+  font-size: 45px;
 }
 
 .filters-block {
+  margin-bottom: 40px;
   display: flex;
-  padding: 10px;
 }
 
 .filter-button {
-  border: 2px solid $filter-button-border;
-  border-radius: 3px;
-  padding: 0.5em 1em;
-  margin-right: 30px;
   cursor: pointer;
+  margin-right: 30px;
+  width: 250px;
+  padding: 0.6em 1em;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid $path-color;
+  border-radius: 15px;
+  font-size: 16px;
 }
 
 .filter-button:hover {
   border-color: $filter-button-border-hover;
+}
+
+.filter-button:hover .filter-button__filter-value {
+  color: $filter-button-border-hover;
+}
+
+.filter-button:hover .filter-button__arrow {
+  background-image: url(/static/img/down-arrow-active.svg);
 }
 
 .filter-button__filter-value {
@@ -33,7 +55,8 @@
 }
 
 .filter-button__arrow {
-  height: 10px;
+  @include square($size: 20px);
+  background: url(/static/img/down-arrow.svg) no-repeat center / cover;
 }
 
 .series-block {
@@ -43,34 +66,37 @@
 }
 
 .series-card {
-  margin: 10px auto 20px 10px;
-  display: block;
   cursor: pointer;
+  margin-right: auto;
+  margin-bottom: 60px;
+  padding-right: 20px;
+  display: block;
 }
 
 .series-card__image {
-  width: 250px;
-  height: 375px;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 10px;
   position: relative;
-  line-height: 20px;
+  margin-bottom: 20px;
+  width: 275px;
+  height: 412px;
+  border-radius: 15px;
+  box-shadow: $series-card-shadow;
+  background: center / cover;
 }
 
 .series-card__name {
-  font-size: large;
+  font-size: 18px;
+  color: $text-main-color;
 }
 
 .series-card__age-limit {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  color: $age-limit-color;
+  width: 35px;
+  height: 25px;
+  @include center-position;
+  border-radius: 5px;
   background-color: $age-limit-background;
-  border-radius: 2px;
   font-size: 14px;
-  text-align: center;
-  height: 20px;
-  width: 30px;
+  color: $age-limit-color;
 }

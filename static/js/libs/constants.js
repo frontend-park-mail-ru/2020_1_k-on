@@ -8,8 +8,8 @@ export const NAVBAR_AUTH_ITEMS = {
 };
 
 export const NAVBAR_UNAUTH_ITEMS = {
-    login: 'Авторизация',
-    signup: 'Регистрация',
+    login: 'Войти',
+    signup: 'Зарегистрироваться',
 };
 
 export const GLOBAL_EVENTS = {

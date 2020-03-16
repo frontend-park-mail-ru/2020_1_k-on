@@ -12,7 +12,11 @@ $auth-form-error-margin: 24px;
 
 // Navbar
 $navbar-bg-color: rgba(30, 31, 35, 0.5);
+$navbar-height: 60px;
+$navbar-bg-color: rgba(0, 0, 0, 0.4);
 $search-form-color: white;
+$margin-between-links: 25px;
+$search-form-border-radius: 40px;
 
 // Colors
 $text-color: white;
@@ -21,23 +25,40 @@ $shade-color: rgba(0, 0, 0, 0.6);
 $bg-color: rgb(30, 31, 35);
 $footer-bg-color: rgba(30, 31, 35, 0.3);
 
-$filter-button-border: lightgrey;
-$filter-button-border-hover: darkgrey;
+// Index page
+$path-color: #b5becb;
+$filter-button-border: white;
+$filter-button-border-hover: #ced756;
 $series-link: black;
 $age-limit-color: white;
+$series-card-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 $age-limit-background: rgba(0, 0, 0, 0.3);
-
 $link-color: black;
 
-$gradient-from: rgba(30, 31, 35, 0);
+// Movie page
+$bg-color: #1d2025;
+$gradient-from: rgba(29, 32, 37, 0.2);
+$gradient-to: rgba(29, 32, 37, 0.85);
 $text-main-color: white;
-$text-rel-color: darkgrey;
-$paragraph: 60px;
+$text-ref-color: #eaeea9;
+$text-dark-color: #646e80;
+$text-bright-color: #ced756;
+$active-season-link-bg-color: #ced756;
+$button-gradient-from: #abc959;
+$button-gradient-to: #76c959;
+$rate-bg-color: #8091bd;
+$paragraph: 80px;
+$description-header-height: 60px;
 $padding-between-rows: 8px;
 $indent-between-description-data: 80px;
 $margin-between-bg-content: -100px;
-$gradient-height: 1000px;
+$gradient-height: 90vh;
+$padding-between-description-blocks: 30px;
+$headline-size: 28px;
+$comment-padding-y: 25px;
+$comment-padding-left: 10px;
 
+// Profile page
 $profile-info: #525258;
 $series-list-navigation: #db4a3f;
 $list-navigation-active-link: #bb3f35;

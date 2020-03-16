@@ -1,62 +1,59 @@
 @import '../../../css/variables';
 
 .navbar {
+  min-height: $navbar-height;
   display: flex;
-  padding: 0 10px;
   background-color: $navbar-bg-color;
+  font-family: 'OpenSans-Regular', sans-serif;
 }
 
 .navbar__left-side {
+  width: 50%;
   display: flex;
   align-items: center;
-  width: 50%;
-  padding-right: 5%;
   box-sizing: border-box;
-  justify-content: flex-start;
+  padding-right: 5%;
 }
 
 .navbar__right-side {
+  width: 50%;
   display: flex;
   align-items: center;
-  width: 50%;
   justify-content: flex-end;
 }
 
 .navbar__logo {
+  margin-right: $margin-between-links;
+  font-family: 'OpenSans-Bold', sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
   color: $text-color;
-  font-size: x-large;
-  font-weight: bold;
-  padding: 0.7em 1em 0.7em 15px;
 }
 
 .navbar__link {
+  margin: 0 $margin-between-links;
+  font-size: 22px;
   color: $text-color;
-  font-size: x-large;
-  margin-right: 16px;
-}
-
-.navbar__link:focus {
-  outline: none;
 }
 
 .navbar__search-form {
+  height: 2.5em;
   display: flex;
   box-sizing: content-box;
-  height: 2.5em;
 }
 
 .navbar__search-input {
-  width: 200px;
+  width: 350px;
+  border-top-left-radius: $search-form-border-radius;
+  border-bottom-left-radius: $search-form-border-radius;
   padding-left: 1em;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
 }
 
 .navbar__search-button {
   width: 2.5em;
+  border-top-right-radius: $search-form-border-radius;
+  border-bottom-right-radius: $search-form-border-radius;
   background-color: $search-form-color;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
 }
 
 .navbar__search-icon {
