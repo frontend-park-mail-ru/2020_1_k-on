@@ -18,7 +18,7 @@ export default class View {
     }
 
     /**
-     * Устанавливает url к случайному заднему фону в sessionStorage
+     * Устанавливает номер случайного заднего фона в sessionStorage
      */
     static setBgImgInSessionStorage() {
         const randomNumber = Math.floor(Math.random() * MAX_BG_IMGS) + 1;
@@ -31,10 +31,9 @@ export default class View {
     setRandomBackgroundImg() {
         const bgImageNumber = window.sessionStorage.getItem(BG_IMG_KEY);
         if (bgImageNumber === null) {
-            console.log(`There is no key - ${BG_IMG_KEY} in sessionStorage`);
-        } else {
-            this.data.bg_img_url =
-                `/static/img/background_${bgImageNumber}.jpg`;
+            View.setBgImgInSessionStorage();
         }
+
+        this.data.bg_img_url = `/static/img/background_${bgImageNumber}.jpg`;
     }
 }
