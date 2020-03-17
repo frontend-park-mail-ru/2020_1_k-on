@@ -66,8 +66,9 @@
     font-weight: bolder;
 
     &_href {
-      color: $no-account-href-color;
+      color: $text-bright-color;
       margin-left: 4px;
+      cursor: pointer;
     }
   }
 }

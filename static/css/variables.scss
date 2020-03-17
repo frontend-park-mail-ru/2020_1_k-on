@@ -1,8 +1,20 @@
+// Colors
+$text-color: white;
+$error-color: rgb(255, 0, 0);
+$shade-color: rgba(0, 0, 0, 0.6);
+$bg-color: rgb(30, 31, 35);
+$footer-bg-color: rgba(30, 31, 35, 0.3);
+$button-gradient-from: #ced756;
+$button-gradient-to: #abc959;
+$text-bright-color: #ced756;
+
+// Button
+$button-bg-color: $button-gradient-from;
+$button-bg-color-hover: linear-gradient(to right, $button-gradient-from, $button-gradient-to);
+
 // Form
 $auth-form-input-bg-color: rgb(10, 10, 10);
-$auth-form-input-focus-color: rgb(55, 85, 139);
-$auth-button-bg-color: rgb(55, 85, 139);
-$auth-button-bg-color-hover: rgb(25, 40, 64);
+$auth-form-input-focus-color: #ced756;
 
 // Auth page
 $no-account-href-color: rgb(55, 85, 139);
@@ -17,13 +29,6 @@ $navbar-bg-color: rgba(0, 0, 0, 0.4);
 $search-form-color: white;
 $margin-between-links: 25px;
 $search-form-border-radius: 40px;
-
-// Colors
-$text-color: white;
-$error-color: rgb(255, 0, 0);
-$shade-color: rgba(0, 0, 0, 0.6);
-$bg-color: rgb(30, 31, 35);
-$footer-bg-color: rgba(30, 31, 35, 0.3);
 
 // Index page
 $path-color: #b5becb;
@@ -42,10 +47,7 @@ $gradient-to: rgba(29, 32, 37, 0.85);
 $text-main-color: white;
 $text-ref-color: #eaeea9;
 $text-dark-color: #646e80;
-$text-bright-color: #ced756;
 $active-season-link-bg-color: #ced756;
-$button-gradient-from: #abc959;
-$button-gradient-to: #76c959;
 $rate-bg-color: #8091bd;
 $paragraph: 80px;
 $description-header-height: 60px;

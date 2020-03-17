@@ -2,6 +2,7 @@
 @import 'form';
 @import 'reset';
 @import 'mixins';
+@import 'button';
 @import '../js/components/navbar/navbar';
 @import '../js/views/indexView/indexView';
 @import '../js/views/movieView/movieView';
@@ -13,12 +14,13 @@ body {
   position: relative;
   min-height: 100vh;
   background-color: $bg-color;
+  color: $text-main-color;
+
   font: {
     family: 'Roboto', sans-serif;
     weight: 100;
     style: normal;
   }
-  color: $text-main-color;
 }
 
 #header {

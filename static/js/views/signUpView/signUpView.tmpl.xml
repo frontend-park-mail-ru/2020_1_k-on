@@ -38,7 +38,7 @@
                      id="password_error">
                 </div>
 
-                <button class="auth-form__button" type="submit">
+                <button class="auth-form__button button" type="submit">
                     Зарегистрироваться
                 </button>
             </form>

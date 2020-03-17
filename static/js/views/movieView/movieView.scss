@@ -156,13 +156,8 @@
   padding-top: 3 * $padding-between-rows;
 }
 
-.button {
-  border-radius: 15px;
+.comment-form__button {
   padding: 0.5em 1.5em;
-  background: linear-gradient(to right, $button-gradient-from, $button-gradient-to);
-  font-family: inherit;
-  font-size: 20px;
-  color: $bg-color;
 }
 
 .comments {

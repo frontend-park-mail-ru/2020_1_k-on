@@ -1,0 +1,18 @@
+@import 'variables';
+
+.button {
+  background-color: $button-bg-color;
+  border-radius: 8px;
+  min-height: 44px;
+  color: inherit;
+
+  font: {
+    weight: lighter;
+    size: 1.25em;
+  }
+
+  &:hover {
+    background: $button-bg-color-hover;
+    transition: 0.5s;
+  }
+}
