@@ -22,21 +22,19 @@ export default class View {
      */
     static setBgImgInSessionStorage() {
         const randomNumber = Math.floor(Math.random() * MAX_BG_IMGS) + 1;
-        window.sessionStorage.setItem(
-            BG_IMG_KEY,
-            `/static/img/background_${randomNumber}.jpg`
-        );
+        window.sessionStorage.setItem(BG_IMG_KEY, randomNumber.toString());
     }
 
     /**
      * Устанавливает в this.data путь к случайному заднему фону
      */
     setRandomBackgroundImg() {
-        const bgImagePath = window.sessionStorage.getItem(BG_IMG_KEY);
-        if (bgImagePath === null) {
+        const bgImageNumber = window.sessionStorage.getItem(BG_IMG_KEY);
+        if (bgImageNumber === null) {
             console.log(`There is no key - ${BG_IMG_KEY} in sessionStorage`);
         } else {
-            this.data.bg_img_url = bgImagePath;
+            this.data.bg_img_url =
+                `/static/img/background_${bgImageNumber}.jpg`;
         }
     }
 }
