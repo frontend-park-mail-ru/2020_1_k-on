@@ -9,16 +9,16 @@
 .index-header {
   margin-bottom: 60px;
   margin-top: 80px;
-}
 
-.index-header__path {
-  margin-bottom: 2 * $padding-between-rows;
-  font-size: 16px;
-}
+  &__path {
+    margin-bottom: 2 * $padding-between-rows;
+    font-size: 16px;
+  }
 
-.index-header__headline {
-  font-family: 'Montserrat-Regular', sans-serif;
-  font-size: 45px;
+  &__headline {
+    font-family: 'Montserrat-Regular', sans-serif;
+    font-size: 45px;
+  }
 }
 
 .filters-block {
@@ -36,27 +36,30 @@
   border: 2px solid $path-color;
   border-radius: 15px;
   font-size: 16px;
-}
 
-.filter-button:hover {
-  border-color: $filter-button-border-hover;
-}
+  &:hover {
+    border-color: $filter-button-border-hover;
+  }
 
-.filter-button:hover .filter-button__filter-value {
-  color: $filter-button-border-hover;
-}
+  &:hover &__filter-value {
+    color: $filter-button-border-hover;
+  }
 
-.filter-button:hover .filter-button__arrow {
-  background-image: url(/static/img/down-arrow-active.svg);
-}
+  &:hover &__arrow {
+    background-image: url(/static/img/down-arrow-active.svg);
+  }
 
-.filter-button__filter-value {
-  padding-right: 30px;
-}
+  &__filter-value {
+    padding-right: 30px;
+  }
 
-.filter-button__arrow {
-  @include square($size: 20px);
-  background: url(/static/img/down-arrow.svg) no-repeat center / cover;
+  &__arrow {
+    @include square($size: 20px);
+
+    & {
+      background: url(/static/img/down-arrow.svg) no-repeat center / cover;
+    }
+  }
 }
 
 .series-block {
@@ -71,32 +74,35 @@
   margin-bottom: 60px;
   padding-right: 20px;
   display: block;
-}
 
-.series-card__image {
-  position: relative;
-  margin-bottom: 20px;
-  width: 275px;
-  height: 412px;
-  border-radius: 15px;
-  box-shadow: $series-card-shadow;
-  background: center / cover;
-}
+  &__image {
+    position: relative;
+    margin-bottom: 20px;
+    width: 275px;
+    height: 412px;
+    border-radius: 15px;
+    box-shadow: $series-card-shadow;
+    background: center / cover;
+  }
 
-.series-card__name {
-  font-size: 18px;
-  color: $text-main-color;
-}
+  &__name {
+    font-size: 18px;
+    color: $text-main-color;
+  }
 
-.series-card__age-limit {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 35px;
-  height: 25px;
-  @include center-position;
-  border-radius: 5px;
-  background-color: $age-limit-background;
-  font-size: 14px;
-  color: $age-limit-color;
+  &__age-limit {
+    @include center-position;
+
+    & {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 35px;
+      height: 25px;
+      border-radius: 5px;
+      background-color: $age-limit-background;
+      font-size: 14px;
+      color: $age-limit-color;
+    }
+  }
 }

@@ -20,13 +20,13 @@
                     <fest:value>data.russianname</fest:value>
                 </div>
 
-                <div class="movie-header__original_name">
+                <div class="movie-header__original-name">
                     <fest:value>data.englishname</fest:value>
                 </div>
 
                 <fest:if test="data.type == 'series'">
                     <div class="seasons-block">
-                        <div class="season-block__name">
+                        <div class="seasons-block__name">
                             Сезоны:
                         </div>
 
