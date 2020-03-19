@@ -147,10 +147,10 @@
 
     &_ref {
       color: $text-ref-color;
+    }
 
-      &:hover {
-        color: $text-bright-color;
-      }
+    &_ref:hover {
+      color: $text-bright-color;
     }
   }
 }
