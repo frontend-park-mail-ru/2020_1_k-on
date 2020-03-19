@@ -74,7 +74,8 @@ export default class AuthView extends View {
         )[0];
 
         formError.textContent = resErrMsg;
-        formError.style.visibility = 'visible';
+        formError.style.opacity = '1';
+        formError.style.transition = '0.5s';
     }
 
     /**
