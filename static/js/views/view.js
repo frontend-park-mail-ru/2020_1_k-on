@@ -2,7 +2,7 @@ import {MAX_BG_IMGS} from '../libs/constants';
 import {BG_IMG_KEY} from '../libs/constants';
 
 export default class View {
-    constructor(tmpl, eventBus) {
+    constructor(tmpl, eventBus = null) {
         this.tmpl = tmpl;
         this.eventBus = eventBus;
         this.data = {};
