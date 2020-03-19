@@ -79,8 +79,8 @@ const data = {
 };
 
 export default class MovieView extends View {
-    constructor(router) {
-        super(template, router);
+    constructor() {
+        super(template);
         this.data = data;
     }
 
