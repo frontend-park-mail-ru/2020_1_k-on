@@ -4,7 +4,7 @@ import LoginController from './controllers/loginController';
 import SignUpController from './controllers/signUpController';
 import MovieController from './controllers/movieController';
 import ProfileController from './controllers/profileController';
-import IndexController from './controllers/indexController';
+import ListController from './controllers/listController';
 import Navbar from './components/navbar/navbar';
 import Router from './libs/router';
 import EventBus from './libs/eventBus';
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         signup: new SignUpController(router, globalEventBus),
         login: new LoginController(router, globalEventBus),
         profile: new ProfileController(router),
-        index: new IndexController(router),
+        list: new ListController(router),
     };
 
     View.setBgImgInSessionStorage();
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/movie', controllers.movie.view);
     router.add('/signup', controllers.signup.view);
     router.add('/profile', controllers.profile.view);
-    router.add('/', controllers.index.view);
+    router.add('/', controllers.list.view);
 
     navbar.render(header);
     router.start();

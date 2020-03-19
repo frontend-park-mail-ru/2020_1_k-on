@@ -1,5 +1,5 @@
 import View from '../view';
-import template from './indexView.tmpl.xml';
+import template from './listView.xml';
 
 const data = {
     path: [
@@ -63,7 +63,7 @@ const data = {
     ],
 };
 
-export default class IndexView extends View {
+export default class ListView extends View {
     constructor(router) {
         super(template, router);
         this.data = data;
