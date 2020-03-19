@@ -1,5 +1,5 @@
 import View from '../view';
-import template from './indexView.tmpl.xml';
+import template from './listView.tmpl.xml';
 
 const data = {
     path: [
