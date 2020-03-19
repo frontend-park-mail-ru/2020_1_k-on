@@ -65,16 +65,13 @@
   }
 
   &__season-link {
+    margin-right: 15px;
+    border: 1px solid $text-main-color;
+    border-radius: 10px;
+    font-size: 20px;
+    color: $text-main-color;
     @include square($size: 35px);
     @include center-position;
-
-    & {
-      margin-right: 15px;
-      border: 1px solid $text-main-color;
-      border-radius: 10px;
-      font-size: 20px;
-      color: $text-main-color;
-    }
 
     &_active {
       border: 0;
@@ -187,11 +184,8 @@
   border-top: 0.2px solid $text-dark-color;
 
   &__avatar {
+    flex-shrink: 0;
     @include square($size: 90px);
-
-    & {
-      flex-shrink: 0;
-    }
   }
 }
 
@@ -224,11 +218,8 @@
   border-top: 0.2px solid $text-dark-color;
 
   &__avatar {
+    flex-shrink: 0;
     @include square($size: 90px);
-
-    & {
-      flex-shrink: 0;
-    }
   }
 }
 
@@ -247,17 +238,14 @@
   }
 
   &__rate {
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    background: $rate-bg-color;
+    font-family: 'Montserrat-Regular', sans-serif;
+    font-size: 16px;
+    color: $bg-color;
     @include center-position;
-
-    & {
-      width: 80px;
-      height: 30px;
-      border-radius: 10px;
-      background: $rate-bg-color;
-      font-family: 'Montserrat-Regular', sans-serif;
-      font-size: 16px;
-      color: $bg-color;
-    }
   }
 
   &__text {

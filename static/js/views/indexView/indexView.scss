@@ -54,11 +54,8 @@
   }
 
   &__arrow {
+    background: url(/static/img/down-arrow.svg) no-repeat center / cover;
     @include square($size: 20px);
-
-    & {
-      background: url(/static/img/down-arrow.svg) no-repeat center / cover;
-    }
   }
 }
 
@@ -91,18 +88,15 @@
   }
 
   &__age-limit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 35px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: $age-limit-background;
+    font-size: 14px;
+    color: $age-limit-color;
     @include center-position;
-
-    & {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 35px;
-      height: 25px;
-      border-radius: 5px;
-      background-color: $age-limit-background;
-      font-size: 14px;
-      color: $age-limit-color;
-    }
   }
 }
