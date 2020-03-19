@@ -1,7 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-    <div class="index-page page-layout">
-        <div class="index-header">
-            <div class="index-header__path user-path">
+    <div class="list-page page-layout">
+        <div class="list-header">
+            <div class="list-header__path user-path">
                 <fest:for iterate="data.path" index="i" value="v">
                     <a class="movie-header__path-href user-path__href" href="{v.href}">
                         <fest:value>v.name</fest:value>
@@ -13,7 +13,7 @@
                 <fest:value>data.category</fest:value>
             </div>
 
-            <div class="index-header__headline">
+            <div class="list-header__headline">
                 <fest:value>data.category</fest:value>
             </div>
         </div>
