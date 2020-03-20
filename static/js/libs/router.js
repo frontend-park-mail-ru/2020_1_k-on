@@ -41,6 +41,7 @@ export default class Router {
             this.routes.get(path).view.render(this.root);
             window.history.pushState(null, null, path);
         } else {
+            this.currentRoute = '/';
             this.routes.get('/').view.render(this.root);
             window.history.pushState(null, null, '/');
             console.log(`404: ${path} not found`);
@@ -52,11 +53,11 @@ export default class Router {
      */
     start() {
         document.addEventListener('click', (evt) => {
-            const {target} = evt;
+            const linkElement = evt.target.closest('a');
 
-            if (target instanceof HTMLAnchorElement) {
+            if (linkElement) {
                 evt.preventDefault();
-                this.change(target.pathname);
+                this.change(linkElement.pathname);
             }
         });
 

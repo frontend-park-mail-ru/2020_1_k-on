@@ -42,6 +42,18 @@
                         <span class="series-card__age-limit">
                             <fest:value>series.ageLimit</fest:value>+
                         </span>
+                        <div class="series-card__gradient"/>
+                        <div class="series-card__content">
+                            <div class="series-card__content-row">
+                                <fest:value>series.year</fest:value>
+                            </div>
+                            <div class="series-card__content-row">
+                                <fest:value>series.country</fest:value>
+                            </div>
+                            <div class="series-card__content-row">
+                                <fest:value>series.genre</fest:value>
+                            </div>
+                        </div>
                     </div>
                     <span class="series-card__name">
                         <fest:value>series.name</fest:value>

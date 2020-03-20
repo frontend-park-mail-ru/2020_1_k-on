@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/signup', controllers.signup.view);
     router.add('/profile', controllers.profile.view);
     router.add('/', controllers.list.view);
+    router.add('/series', controllers.list.view);
 
     navbar.render(header);
     router.start();

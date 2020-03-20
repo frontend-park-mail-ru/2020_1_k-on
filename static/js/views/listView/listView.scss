@@ -3,7 +3,7 @@
 
 .list-page {
   padding-top: $navbar-height;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: OpenSans-Regular, sans-serif;
 }
 
 .list-header {
@@ -16,7 +16,7 @@
   }
 
   &__headline {
-    font-family: 'Montserrat-Regular', sans-serif;
+    font-family: Montserrat-Regular, sans-serif;
     font-size: 45px;
   }
 }
@@ -80,6 +80,43 @@
     border-radius: 15px;
     box-shadow: $series-card-shadow;
     background: center / cover;
+
+    &:hover {
+      transform: scale(1.02);
+      transform-origin: 50% 100%;
+      transition: transform 0.2s;
+    }
+  }
+
+  &__image:hover &__age-limit {
+    visibility: hidden;
+  }
+
+  &__image:hover > &__gradient {
+    visibility: visible;
+  }
+
+  &__image:hover > &__content {
+    visibility: visible;
+  }
+
+  &__gradient {
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(to bottom, rgba(22, 25, 29, 0), #16191D);
+  }
+
+  &__content {
+    visibility: hidden;
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    font-family: OpenSans-Regular, sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    color: $card-content-color;
   }
 
   &__name {

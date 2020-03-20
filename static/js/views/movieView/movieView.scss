@@ -4,7 +4,7 @@
 .movie-page {
   overflow: hidden;
   background-color: $bg-color;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: OpenSans-Regular, sans-serif;
   color: $text-main-color;
 }
 
@@ -36,13 +36,13 @@
 
   &__name {
     margin-bottom: 2 * $padding-between-rows;
-    font-family: 'Montserrat-Medium', sans-serif;
+    font-family: Montserrat-Medium, sans-serif;
     font-size: 80px;
   }
 
   &__original-name {
     margin-bottom: 4 * $padding-between-rows;
-    font-family: 'Montserrat-Light', sans-serif;
+    font-family: Montserrat-Light, sans-serif;
     font-size: 30px;
     color: $path-color;
     text-transform: uppercase;
@@ -57,7 +57,7 @@
 .seasons-block {
   display: flex;
   align-items: center;
-  font-family: 'Montserrat-Regular', sans-serif;
+  font-family: Montserrat-Regular, sans-serif;
   font-size: 24px;
 
   &__name {
@@ -85,7 +85,7 @@
   position: relative;
   display: flex;
   padding-top: 60px;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: OpenSans-Regular, sans-serif;
   font-size: 16px;
   line-height: 28px;
 }
@@ -123,7 +123,7 @@
 
   &__short-description {
     padding-bottom: $padding-between-description-blocks;
-    font-family: 'OpenSans-SemiBold', sans-serif;
+    font-family: OpenSans-SemiBold, sans-serif;
     font-size: $headline-size;
     color: $text-bright-color;
   }
@@ -163,7 +163,7 @@
 .comments {
   width: 55%;
   padding-top: 60px;
-  font-family: 'OpenSans-Regular', sans-serif;
+  font-family: OpenSans-Regular, sans-serif;
   font-size: 16px;
   line-height: 28px;
 
@@ -242,7 +242,7 @@
     height: 30px;
     border-radius: 10px;
     background: $rate-bg-color;
-    font-family: 'Montserrat-Regular', sans-serif;
+    font-family: Montserrat-Regular, sans-serif;
     font-size: 16px;
     color: $bg-color;
     @include center-position;
