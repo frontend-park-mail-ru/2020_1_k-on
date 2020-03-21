@@ -63,7 +63,7 @@ const data = {
     ],
 };
 
-export default class IndexView extends View {
+export default class ListView extends View {
     constructor() {
         super(template);
         this.data = data;
