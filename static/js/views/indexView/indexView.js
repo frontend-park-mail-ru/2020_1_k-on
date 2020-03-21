@@ -1,6 +1,9 @@
 import View from '../view';
 import template from './indexView.tmpl.xml';
-import {SLIDER_INTERVAL} from '../../libs/constants';
+import {
+    SLIDER_INTERVAL,
+    SLIDER_STEP,
+} from '../../libs/constants';
 
 const data = {
     recommendations: [
@@ -402,14 +405,14 @@ export default class IndexView extends View {
             'swiper__arrows_right'
         )[0];
         rigthArrow.addEventListener('click', () => {
-            slider.scrollLeft += 200;
+            slider.scrollLeft += SLIDER_STEP;
             leftArrow.classList.remove('disabled');
             if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
                 rigthArrow.classList.add('disabled');
             }
         });
         leftArrow.addEventListener('click', () => {
-            slider.scrollLeft -= 200;
+            slider.scrollLeft -= SLIDER_STEP;
             rigthArrow.classList.remove('disabled');
             if (slider.scrollLeft <= 0) {
                 leftArrow.classList.add('disabled');
