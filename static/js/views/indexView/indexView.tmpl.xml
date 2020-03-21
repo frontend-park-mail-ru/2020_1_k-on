@@ -1,0 +1,58 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="index-page">
+        <div class="main-slider">
+            <div class="main-slider__arrows">
+                <img class="main-slider__arrows_left" src="/static/img/left-arrow.svg"/>
+                <img class="main-slider__arrows_rigth" src="/static/img/rigth-arrow.svg"/>
+            </div>
+
+            <fest:for iterate="data.recommendations" index="i" value="recommendation">
+                <div class="main-slider__wrapper invisible">
+                    <div class="main-slider__bg" style="background-image: url({recommendation.image});"/>
+                    <div class="main-slider__content">
+                        <div class="main-slider__content_title">
+                            <fest:value>recommendation.name</fest:value>
+                        </div>
+                        <div class="main-slider__content_description">
+                            «<fest:value>recommendation.description</fest:value>»
+                        </div>
+                        <a href="{recommendation.link}">
+                            <button class="main-slider__detail button">
+                                Узнать подробнее
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </fest:for>
+        </div>
+
+        <div class="collections">
+            <fest:for iterate="data.collections" index="i" value="collection">
+                <div class="collection">
+                    <div class="collection__header">
+                        <fest:value>collection.name</fest:value>
+                    </div>
+                    <div class="swiper">
+                        <div class="swiper__wrapper">
+                            <div class="swiper__arrows">
+                                <img class="swiper__arrows_left disabled" src="/static/img/left-arrow.svg"/>
+                                <img class="swiper__arrows_rigth" src="/static/img/rigth-arrow.svg"/>
+                            </div>
+                            <fest:for iterate="collection.list" index="j" value="card">
+                                <div class="slide">
+                                    <a class="card" href="{card.link}">
+                                        <div class="card__image" style="background-image: url({card.image});"/>
+                                        <div class="card__name">
+                                            <fest:value>card.name</fest:value>
+                                        </div>
+                                    </a>
+                                </div>
+                            </fest:for>
+                        </div>
+                    </div>
+                </div>
+            </fest:for>
+        </div>
+
+    </div>
+</fest:template>
