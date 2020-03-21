@@ -1,7 +1,8 @@
 import ListView from '../views/listView/listView';
 
 export default class ListController {
-    constructor(router) {
-        this.view = new ListView(router);
+    constructor(router, eventBus, type) {
+        this.type = type;
+        this.view = new ListView(eventBus, type);
     }
 }

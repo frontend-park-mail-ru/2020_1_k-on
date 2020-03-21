@@ -67,16 +67,30 @@
 
 .series-card {
   cursor: pointer;
-  margin-right: auto;
+  margin-right: $padding-between-cards;
   margin-bottom: 60px;
-  padding-right: 20px;
   display: block;
+  @media (min-width: $five-cards-max-width) {
+    width: calc(16.6% - #{$padding-between-cards});
+  }
+  @media (min-width: $four-cards-max-width) and (max-width: $five-cards-max-width) {
+    width: calc(20% - #{$padding-between-cards});
+  }
+  @media (min-width: $three-cards-max-width) and (max-width: $four-cards-max-width) {
+    width: calc(25% - #{$padding-between-cards});
+  }
+  @media (min-width: $two-cards-max-width) and (max-width: $three-cards-max-width) {
+    width: calc(33.3% - #{$padding-between-cards});
+  }
+  @media (max-width: $two-cards-max-width) {
+    width: calc(50% - #{$padding-between-cards});
+  }
 
   &__image {
     position: relative;
     margin-bottom: 20px;
-    width: 275px;
-    height: 412px;
+    width: 100%;
+    padding-bottom: 150%;
     border-radius: 15px;
     box-shadow: $series-card-shadow;
     background: center / cover;
@@ -102,6 +116,7 @@
 
   &__gradient {
     visibility: hidden;
+    position: absolute;
     width: 100%;
     height: 100%;
     border-radius: inherit;

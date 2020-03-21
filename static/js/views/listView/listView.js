@@ -1,14 +1,22 @@
 import View from '../view';
 import template from './listView.xml';
+import Api from '../../libs/api';
+import Network from '../../libs/network';
+import {SUCCESS_STATUS} from '../../libs/constants';
 
 const data = {
-    path: [
-        {
-            name: 'Главная',
-            href: '/',
-        },
-    ],
-    category: 'Сериалы',
+    filters: {
+        genres: [
+            {
+                name: 'Все жанры',
+                reference: 'all',
+            },
+        ],
+        years: [
+            'Все годы',
+            '2020',
+        ],
+    },
     list: [
         {
             'name': 'Лучшие в Лос-Анджелесе',
@@ -94,12 +102,35 @@ const data = {
 };
 
 export default class ListView extends View {
-    constructor(eventBus) {
+    constructor(eventBus, type) {
         super(template, eventBus);
-        this.data = data;
+        this.type = type;
+
+        this.data = {};
+        this.data.type = type;
+        this.data.category = type === 'series' ? 'Сериалы' : 'Фильмы';
     }
 
     render(root) {
-        super.render(root);
+        Network.doGet({
+            url: `/${this.type}`,
+        })
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    res.json().then((res) => {
+                        res = data;
+                        this.data.filters = res.filters;
+                        this.data.list = res.list;
+                        super.render(root);
+                    });
+                } else {
+                    console.log('something went wrong');
+                }
+            })
+            .catch((err) => {
+                this.data.filters = data.filters;
+                this.data.list = data.list;
+                super.render(root);
+            });
     }
 }
