@@ -9,6 +9,9 @@
             <fest:for iterate="data.recommendations" index="i" value="recommendation">
                 <div class="main-slider__wrapper invisible">
                     <div class="main-slider__bg" style="background-image: url({recommendation.image});"/>
+                    <div class="main-slider__left-shade"/>
+                    <div class="main-slider__bottom-shade"/>
+
                     <div class="main-slider__content">
                         <div class="main-slider__content_title">
                             <fest:value>recommendation.name</fest:value>
