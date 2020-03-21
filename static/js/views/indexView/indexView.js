@@ -1,5 +1,6 @@
 import View from '../view';
 import template from './indexView.tmpl.xml';
+import {SLIDER_INTERVAL} from '../../libs/constants';
 
 const data = {
     recommendations: [
@@ -437,7 +438,18 @@ export default class IndexView extends View {
             'click', this.mainSlider.bind(this, 'right')
         );
 
+        this.slideInterval = setInterval(
+            this.mainSlider.bind(this),
+            SLIDER_INTERVAL,
+            'right'
+        );
+
         this.sliders = this.root.getElementsByClassName('swiper__wrapper');
         Array.from(this.sliders).forEach(this.collectionSlider);
+    }
+
+    close() {
+        clearInterval(this.slideInterval);
+        super.close();
     }
 }
