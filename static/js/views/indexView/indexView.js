@@ -398,7 +398,7 @@ export default class IndexView extends View {
             'swiper__arrows_left'
         )[0];
         const rigthArrow = slider.getElementsByClassName(
-            'swiper__arrows_rigth'
+            'swiper__arrows_right'
         )[0];
         rigthArrow.addEventListener('click', () => {
             slider.scrollLeft += 200;
@@ -430,11 +430,11 @@ export default class IndexView extends View {
         this.leftArrow.addEventListener(
             'click', this.mainSlider.bind(this, 'left')
         );
-        this.rigthArrow = this.root.getElementsByClassName(
-            'main-slider__arrows_rigth'
+        this.rightArrow = this.root.getElementsByClassName(
+            'main-slider__arrows_right'
         )[0];
-        this.rigthArrow.addEventListener(
-            'click', this.mainSlider.bind(this, 'rigth')
+        this.rightArrow.addEventListener(
+            'click', this.mainSlider.bind(this, 'right')
         );
 
         this.sliders = this.root.getElementsByClassName('swiper__wrapper');

@@ -3,7 +3,7 @@
         <div class="main-slider">
             <div class="main-slider__arrows">
                 <img class="main-slider__arrows_left" src="/static/img/left-arrow.svg"/>
-                <img class="main-slider__arrows_rigth" src="/static/img/rigth-arrow.svg"/>
+                <img class="main-slider__arrows_right" src="/static/img/right-arrow.svg"/>
             </div>
 
             <fest:for iterate="data.recommendations" index="i" value="recommendation">
@@ -39,7 +39,7 @@
                         <div class="swiper__wrapper">
                             <div class="swiper__arrows">
                                 <img class="swiper__arrows_left disabled" src="/static/img/left-arrow.svg"/>
-                                <img class="swiper__arrows_rigth" src="/static/img/rigth-arrow.svg"/>
+                                <img class="swiper__arrows_right" src="/static/img/right-arrow.svg"/>
                             </div>
                             <fest:for iterate="collection.list" index="j" value="card">
                                 <div class="slide">
