@@ -142,7 +142,7 @@
                         <form class="comment-form">
                             <input class="comment-form__input" type="text" id="text" placeholder="Текст отзыва"
                                    required="true"/>
-                            <button class="comment-form__button button" type="submit">Отправить</button>
+                            <button class="comment-form__button" type="submit">Отправить</button>
                         </form>
                     </div>
                 </div>

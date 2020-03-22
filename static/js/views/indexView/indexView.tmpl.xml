@@ -20,7 +20,7 @@
                             «<fest:value>recommendation.description</fest:value>»
                         </div>
                         <a href="{recommendation.link}">
-                            <button class="main-slider__detail button">
+                            <button class="main-slider__content_button">
                                 Узнать подробнее
                             </button>
                         </a>

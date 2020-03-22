@@ -90,6 +90,10 @@
       text-align: justify;
       margin-bottom: 16px;
     }
+
+    &_button {
+      @include gradientButton;
+    }
   }
 
   &__detail {

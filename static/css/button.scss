@@ -1,6 +1,6 @@
 @import 'variables';
 
-.button {
+@mixin gradientButton {
   background-color: $button-bg-color;
   border-radius: 8px;
   min-height: 44px;
@@ -31,6 +31,7 @@
   }
 
   &:hover {
+
     &:before {
       opacity: 1;
     }
