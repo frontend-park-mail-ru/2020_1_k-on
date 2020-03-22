@@ -1,39 +1,24 @@
 @import 'variables';
 
 @mixin gradientButton {
-  background-color: $button-bg-color;
   border-radius: 8px;
   min-height: 44px;
   color: $bg-color;
   padding: 0 16px;
-  transition: background-color 1s;
-  position: relative;
-  z-index: 100;
+  transition: all 0.4s ease-in-out;
+
+  background: {
+    image: $button-bg-color-hover;
+    size: 300% 100%;
+  }
 
   font: {
     weight: lighter;
     size: 1.25em;
   }
 
-  &:before {
-    border-radius: inherit;
-    background: $button-bg-color-hover;
-    content: '';
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    z-index: -100;
-    transition: opacity 0.5s;
-  }
-
   &:hover {
-
-    &:before {
-      opacity: 1;
-    }
+    background-position: 100% 0;
+    transition: all 0.4s ease-in-out;
   }
 }
