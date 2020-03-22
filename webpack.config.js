@@ -10,6 +10,16 @@ module.exports = {
         filename: 'bundle.js',
     },
     watch: true,
+    resolve: {
+        alias: {
+            views: path.resolve(__dirname, 'static/js/views'),
+            components: path.resolve(__dirname, 'static/js/components'),
+            fonts: path.resolve(__dirname, 'static/fonts'),
+            css: path.resolve(__dirname, 'static/css'),
+            libs: path.resolve(__dirname, 'static/js/libs'),
+            controllers: path.resolve(__dirname, 'static/js/controllers'),
+        },
+    },
     module: {
         rules: [
             {

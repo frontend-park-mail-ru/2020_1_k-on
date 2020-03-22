@@ -1,9 +1,9 @@
-import AuthView from '../authView/authView';
-import Api from '../../libs/api';
+import AuthView from 'views/authView/authView';
+import Api from 'libs/api';
 import {
     SIGN_UP_EVENTS,
     SIGN_UP_PAGE_DATA,
-} from '../../libs/constants';
+} from 'libs/constants';
 
 export default class SignUpView extends AuthView {
     constructor(eventBus) {

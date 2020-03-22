@@ -1,9 +1,11 @@
-import View from '../view';
-import validation from '../../libs/validation';
+import View from 'views/view';
+import validation from 'libs/validation';
 import template from './profileView.tmpl.xml';
-import Api from '../../libs/api';
-import {SUCCESS_STATUS} from '../../libs/constants';
-import {PROFILE_EVENTS} from '../../libs/constants';
+import Api from 'libs/api';
+import {
+    SUCCESS_STATUS,
+    PROFILE_EVENTS,
+} from 'libs/constants';
 
 const data = {
     profile: {

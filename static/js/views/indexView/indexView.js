@@ -1,9 +1,9 @@
-import View from '../view';
+import View from 'views/view';
 import template from './indexView.tmpl.xml';
 import {
     SLIDER_INTERVAL,
     SLIDER_STEP,
-} from '../../libs/constants';
+} from 'libs/constants';
 
 const data = {
     recommendations: [

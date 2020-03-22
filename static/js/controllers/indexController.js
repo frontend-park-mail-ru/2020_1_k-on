@@ -1,4 +1,4 @@
-import IndexView from '../views/indexView/indexView';
+import IndexView from 'views/indexView/indexView';
 
 export default class IndexController {
     constructor(router) {

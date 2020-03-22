@@ -3,13 +3,13 @@
 @import 'reset';
 @import 'mixins';
 @import 'button';
-@import '../js/components/navbar/navbar';
-@import '../js/views/listView/listView';
-@import '../js/views/movieView/movieView';
-@import '../js/views/profileView/profileView';
-@import '../js/views/authView/authView';
-@import '../js/views/indexView/indexView';
-@import '../fonts/fonts';
+@import 'components/navbar/navbar';
+@import 'views/listView/listView';
+@import 'views/movieView/movieView';
+@import 'views/profileView/profileView';
+@import 'views/authView/authView';
+@import 'views/indexView/indexView';
+@import 'fonts/fonts';
 
 body {
   position: relative;

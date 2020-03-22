@@ -1,8 +1,8 @@
-import View from '../view';
+import View from 'views/view';
 import template from './authView.tmpl.xml';
-import validation from '../../libs/validation';
-import passwordToggler from '../../libs/passwordToggler';
-import {SUCCESS_STATUS} from '../../libs/constants';
+import validation from 'libs/validation';
+import passwordToggler from 'libs/passwordToggler';
+import {SUCCESS_STATUS} from 'libs/constants';
 
 export default class AuthView extends View {
     constructor({

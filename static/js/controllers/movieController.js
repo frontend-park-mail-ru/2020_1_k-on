@@ -1,4 +1,4 @@
-import MovieView from '../views/movieView/movieView';
+import MovieView from 'views/movieView/movieView';
 
 export default class MovieController {
     constructor(router) {

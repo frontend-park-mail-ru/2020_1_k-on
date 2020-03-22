@@ -1,6 +1,6 @@
-import ProfileView from '../views/profileView/profileView';
-import EventBus from '../libs/eventBus';
-import {PROFILE_EVENTS} from '../libs/constants';
+import ProfileView from 'views/profileView/profileView';
+import EventBus from 'libs/eventBus';
+import {PROFILE_EVENTS} from 'libs/constants';
 
 export default class ProfileController {
     constructor(router) {
