@@ -92,3 +92,18 @@ export const SIGN_UP_PAGE_DATA = {
     no_account_msg: 'Уже зарегистрированы?',
     no_account_href: 'Войдите в аккаунт!',
 };
+
+export const DEFAULT_FILTERS = {
+    genre: {
+        name: 'Все жанры',
+        reference: 'all',
+    },
+    year: {
+        name: 'Все годы',
+        reference: 'all',
+    },
+    ordering: {
+        name: 'По рейтингу',
+        reference: 'rating',
+    },
+};

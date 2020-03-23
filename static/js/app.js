@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         signup: new SignUpController(router, globalEventBus),
         login: new LoginController(router, globalEventBus),
         profile: new ProfileController(router),
-        list: new ListController(router),
+        seriesList: new ListController(router, globalEventBus, 'series'),
+        filmsList: new ListController(router, globalEventBus, 'films'),
     };
 
     View.setBgImgInSessionStorage();
@@ -31,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/movie', controllers.movie.view);
     router.add('/signup', controllers.signup.view);
     router.add('/profile', controllers.profile.view);
-    router.add('/', controllers.list.view);
+    router.add('/', controllers.seriesList.view);
+    router.add('/series', controllers.seriesList.view);
+    router.add('/films', controllers.filmsList.view);
 
     navbar.render(header);
     router.start();

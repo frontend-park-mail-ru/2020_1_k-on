@@ -1,0 +1,28 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+        <fest:for iterate="data" index="i" value="item">
+            <a class="series-card" href="/movie">
+                <div class="series-card__image" style="background-image: url({item.image})">
+                    <span class="series-card__age-limit">
+                        <fest:value>item.ageLimit</fest:value>+
+                    </span>
+                    <div class="series-card__gradient"/>
+
+                    <div class="series-card__content">
+                        <div class="series-card__content-row">
+                            <fest:value>item.year</fest:value>,
+                        </div>
+                        <div class="series-card__content-row">
+                            <fest:value>item.country</fest:value>,
+                        </div>
+                        <div class="series-card__content-row">
+                            <fest:value>item.genre</fest:value>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="series-card__name">
+                    <fest:value>item.name</fest:value>
+                </span>
+            </a>
+        </fest:for>
+</fest:template>

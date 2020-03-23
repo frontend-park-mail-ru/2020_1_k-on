@@ -1,14 +1,12 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-    <div class="list-page page-layout">
-        <div class="list-header">
+    <div class="list-page">
+        <div class="list-header page-layout">
             <div class="list-header__path user-path">
-                <fest:for iterate="data.path" index="i" value="v">
-                    <a class="movie-header__path-href user-path__href" href="{v.href}">
-                        <fest:value>v.name</fest:value>
-                    </a>
-                    <fest:space/>/
-                    <fest:space/>
-                </fest:for>
+                <a class="movie-header__path-href user-path__href" href="/">
+                    Главная
+                </a>
+                <fest:space/>/
+                <fest:space/>
 
                 <fest:value>data.category</fest:value>
             </div>
@@ -18,36 +16,39 @@
             </div>
         </div>
 
-        <div class="filters-block">
-            <div class="filter-button">
-                <span class="filter-button__filter-value">Все жанры</span>
-                <div class="filter-button__arrow"/>
-            </div>
-
-            <div class="filter-button">
-                <span class="filter-button__filter-value">Все страны</span>
-                <div class="filter-button__arrow" src="static/img/down-arrow.svg"/>
-            </div>
-
-            <div class="filter-button">
-                <span class="filter-button__filter-value">По популярности</span>
-                <div class="filter-button__arrow" src="static/img/down-arrow.svg"/>
-            </div>
-        </div>
-
-        <div class="series-block">
-            <fest:for iterate="data.list" index="i" value="series">
-                <a class="series-card" href="/movie">
-                    <div class="series-card__image" style="background-image: url({series.image})">
-                        <span class="series-card__age-limit">
-                            <fest:value>series.ageLimit</fest:value>+
-                        </span>
-                    </div>
-                    <span class="series-card__name">
-                        <fest:value>series.name</fest:value>
+        <div class="filters-block page-layout">
+            <fest:for iterate="data.filtersList" index="i" value="filterName">
+                <div class="filter-button" data-name="{filterName}">
+                    <span class="filter-button__filter-value">
+                        <fest:value>data.filters[filterName][0].name</fest:value>
                     </span>
-                </a>
+                    <div class="filter-button__arrow"/>
+                </div>
+
+                <div class="filter-submenu page-layout" data-name="{filterName}">
+                    <fest:for iterate="data.filters[filterName]" index="j" value="filterItem">
+                        <div>
+                            <fest:choose>
+                                <fest:when test="j === 0">
+                                    <span class="filter-submenu__item filter-submenu__item_active"
+                                          data-reference="{filterItem.reference}">
+                                        <fest:value>filterItem.name</fest:value>
+                                    </span>
+                                </fest:when>
+
+                                <fest:otherwise>
+                                    <span class="filter-submenu__item" data-reference="{filterItem.reference}">
+                                        <fest:value>filterItem.name</fest:value>
+                                    </span>
+                                </fest:otherwise>
+                            </fest:choose>
+                        </div>
+
+                    </fest:for>
+                </div>
             </fest:for>
         </div>
+
+        <div id="listContainer" class="series-block page-layout"/>
     </div>
 </fest:template>
