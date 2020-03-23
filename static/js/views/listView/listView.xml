@@ -20,7 +20,7 @@
             <fest:for iterate="data.filtersList" index="i" value="filterName">
                 <div class="filter-button" data-name="{filterName}">
                     <span class="filter-button__filter-value">
-                        <fest:value>data.chosenFilters[filterName].name</fest:value>
+                        <fest:value>data.filters[filterName][0].name</fest:value>
                     </span>
                     <div class="filter-button__arrow"/>
                 </div>
@@ -29,15 +29,15 @@
                     <fest:for iterate="data.filters[filterName]" index="j" value="filterItem">
                         <div>
                             <fest:choose>
-                                <fest:when test="filterItem.name === data.chosenFilters[filterName].name">
+                                <fest:when test="j === 0">
                                     <span class="filter-submenu__item filter-submenu__item_active"
-                                          data-value="{filterItem.value}">
+                                          data-reference="{filterItem.reference}">
                                         <fest:value>filterItem.name</fest:value>
                                     </span>
                                 </fest:when>
 
                                 <fest:otherwise>
-                                    <span class="filter-submenu__item" data-value="{filterItem.value}">
+                                    <span class="filter-submenu__item" data-reference="{filterItem.reference}">
                                         <fest:value>filterItem.name</fest:value>
                                     </span>
                                 </fest:otherwise>
@@ -49,31 +49,6 @@
             </fest:for>
         </div>
 
-        <div class="series-block page-layout">
-            <fest:for iterate="data.list" index="i" value="series">
-                <a class="series-card" href="/movie">
-                    <div class="series-card__image" style="background-image: url({series.image})">
-                        <span class="series-card__age-limit">
-                            <fest:value>series.ageLimit</fest:value>+
-                        </span>
-                        <div class="series-card__gradient"/>
-                        <div class="series-card__content">
-                            <div class="series-card__content-row">
-                                <fest:value>series.year</fest:value>
-                            </div>
-                            <div class="series-card__content-row">
-                                <fest:value>series.country</fest:value>
-                            </div>
-                            <div class="series-card__content-row">
-                                <fest:value>series.genre</fest:value>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="series-card__name">
-                        <fest:value>series.name</fest:value>
-                    </span>
-                </a>
-            </fest:for>
-        </div>
+        <div id="listContainer" class="series-block page-layout"/>
     </div>
 </fest:template>

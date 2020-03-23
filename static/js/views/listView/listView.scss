@@ -44,16 +44,13 @@
 
   &:hover {
     border-color: $filter-button-border-hover;
-    color: $filter-button-border-hover;
   }
 
   &:hover &__arrow {
-    background-image: url(/static/img/down-arrow-active.svg);
   }
 
   &_active {
     border-color: $filter-button-border-hover;
-    color: $filter-button-border-hover;
   }
 
   &__filter-value {
@@ -62,12 +59,12 @@
 
   &__arrow {
     background: url(/static/img/down-arrow.svg) no-repeat center / cover;
-    @include square($size: 20px);
     transition: transform $menu-transition-time;
+    @include square($size: 20px);
   }
 
   &__arrow_active {
-    background-image: url(/static/img/down-arrow-active.svg);
+    transform: rotateZ(180deg);
   }
 }
 
@@ -90,7 +87,13 @@
   grid-column-gap: 80px;
   grid-row-gap: 30px;
 
+  &_active {
+    visibility: visible;
+    opacity: 1;
+  }
+
   &__item {
+
     &:hover {
       cursor: pointer;
       text-decoration: underline;
@@ -99,99 +102,5 @@
     &_active {
       color: $text-bright-color;
     }
-  }
-}
-
-.series-block {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-}
-
-.series-card {
-  cursor: pointer;
-  margin-right: $padding-between-cards;
-  margin-bottom: 60px;
-  display: block;
-  @media (min-width: $five-cards-max-width) {
-    width: calc(16.6% - #{$padding-between-cards});
-  }
-  @media (min-width: $four-cards-max-width) and (max-width: $five-cards-max-width) {
-    width: calc(20% - #{$padding-between-cards});
-  }
-  @media (min-width: $three-cards-max-width) and (max-width: $four-cards-max-width) {
-    width: calc(25% - #{$padding-between-cards});
-  }
-  @media (min-width: $two-cards-max-width) and (max-width: $three-cards-max-width) {
-    width: calc(33.3% - #{$padding-between-cards});
-  }
-  @media (max-width: $two-cards-max-width) {
-    width: calc(50% - #{$padding-between-cards});
-  }
-
-  &__image {
-    position: relative;
-    margin-bottom: 20px;
-    width: 100%;
-    padding-bottom: 150%;
-    border-radius: 15px;
-    box-shadow: $series-card-shadow;
-    background: center / cover;
-
-    &:hover {
-      transform: scale(1.02);
-      transform-origin: 50% 100%;
-      transition: transform 0.2s;
-    }
-  }
-
-  &__image:hover &__age-limit {
-    visibility: hidden;
-  }
-
-  &__image:hover > &__gradient {
-    visibility: visible;
-  }
-
-  &__image:hover > &__content {
-    visibility: visible;
-  }
-
-  &__gradient {
-    visibility: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(to bottom, rgba(22, 25, 29, 0), #16191D);
-  }
-
-  &__content {
-    visibility: hidden;
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
-    font-family: OpenSans-Regular, sans-serif;
-    font-size: 16px;
-    line-height: 22px;
-    color: $card-content-color;
-  }
-
-  &__name {
-    font-size: 18px;
-    color: $text-main-color;
-  }
-
-  &__age-limit {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 35px;
-    height: 25px;
-    border-radius: 5px;
-    background-color: $age-limit-background;
-    font-size: 14px;
-    color: $age-limit-color;
-    @include center-position;
   }
 }

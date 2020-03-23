@@ -84,10 +84,15 @@ export default class Api {
         });
     }
 
+    static getFilters(type) {
+        return Network.doGet({
+            url: `/${type}/filters`,
+        });
+    }
+
     static getList(type, params) {
         const filtersString = Object.keys(params)
             .map((key) => (`${key}=${params[key]}`)).join('&');
-        console.log(filtersString);
         return Network.doGet({
             url: `/${type}?${filtersString}`,
         });
