@@ -405,26 +405,11 @@ export default class IndexView extends View {
             'swiper__arrows_right'
         )[0];
         leftArrow.addEventListener('click', () => {
-            this.scrollAnimation(slider, 'left');
+            slider.scrollLeft -= SLIDER.distance;
         });
         rigthArrow.addEventListener('click', () => {
-            this.scrollAnimation(slider, 'right');
+            slider.scrollLeft += SLIDER.distance;
         });
-    }
-
-    scrollAnimation(element, direction) {
-        let scrollAmount = 0;
-        const slideTimer = setInterval(() => {
-            if (direction === 'left') {
-                element.scrollLeft -= SLIDER.step;
-            } else {
-                element.scrollLeft += SLIDER.step;
-            }
-            scrollAmount += SLIDER.step;
-            if (scrollAmount >= SLIDER.distance) {
-                window.clearInterval(slideTimer);
-            }
-        }, SLIDER.speed);
     }
 
     afterRender() {
