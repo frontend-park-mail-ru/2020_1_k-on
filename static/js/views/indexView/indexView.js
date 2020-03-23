@@ -2,7 +2,7 @@ import View from 'views/view';
 import template from './indexView.tmpl.xml';
 import {
     SLIDER_INTERVAL,
-    SLIDER_STEP,
+    SLIDER,
 } from 'libs/constants';
 
 const data = {
@@ -385,7 +385,7 @@ export default class IndexView extends View {
     }
 
     mainSlider(direction) {
-        this.curMainSlide.classList.add('invisible');
+        this.curMainSlide.classList.add('hidden');
 
         const offset = direction === 'left' ? -1 : 1;
         this.curMainIndex =
@@ -394,7 +394,7 @@ export default class IndexView extends View {
             this.curMainIndex = this.mainSlides.length - 1;
         }
         this.curMainSlide = this.mainSlides[this.curMainIndex];
-        this.curMainSlide.classList.remove('invisible');
+        this.curMainSlide.classList.remove('hidden');
     }
 
     collectionSlider(slider) {
@@ -404,20 +404,27 @@ export default class IndexView extends View {
         const rigthArrow = slider.getElementsByClassName(
             'swiper__arrows_right'
         )[0];
-        rigthArrow.addEventListener('click', () => {
-            slider.scrollLeft += SLIDER_STEP;
-            leftArrow.classList.remove('disabled');
-            if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
-                rigthArrow.classList.add('disabled');
-            }
-        });
         leftArrow.addEventListener('click', () => {
-            slider.scrollLeft -= SLIDER_STEP;
-            rigthArrow.classList.remove('disabled');
-            if (slider.scrollLeft <= 0) {
-                leftArrow.classList.add('disabled');
-            }
+            this.scrollAnimation(slider, 'left');
         });
+        rigthArrow.addEventListener('click', () => {
+            this.scrollAnimation(slider, 'right');
+        });
+    }
+
+    scrollAnimation(element, direction) {
+        let scrollAmount = 0;
+        const slideTimer = setInterval(() => {
+            if (direction === 'left') {
+                element.scrollLeft -= SLIDER.step;
+            } else {
+                element.scrollLeft += SLIDER.step;
+            }
+            scrollAmount += SLIDER.step;
+            if (scrollAmount >= SLIDER.distance) {
+                window.clearInterval(slideTimer);
+            }
+        }, SLIDER.speed);
     }
 
     afterRender() {
@@ -426,7 +433,7 @@ export default class IndexView extends View {
         );
         this.curMainIndex = 0;
         this.curMainSlide = this.mainSlides[this.curMainIndex];
-        this.curMainSlide.classList.remove('invisible');
+        this.curMainSlide.classList.remove('hidden');
 
         this.leftArrow = this.root.getElementsByClassName(
             'main-slider__arrows_left'
@@ -448,7 +455,7 @@ export default class IndexView extends View {
         );
 
         this.sliders = this.root.getElementsByClassName('swiper__wrapper');
-        Array.from(this.sliders).forEach(this.collectionSlider);
+        Array.from(this.sliders).forEach(this.collectionSlider, this);
     }
 
     close() {
