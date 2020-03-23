@@ -11,7 +11,6 @@ export default class SignUpController {
         this.eventBus.subscribe(SIGN_UP_EVENTS.signUpSuccess, () => {
             this.router.change('/');
         });
-
         this.eventBus.subscribe(
             SIGN_UP_EVENTS.renderForAuth,
             () => {

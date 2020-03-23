@@ -1,6 +1,6 @@
 import {DEFAULT_FILTERS, SUCCESS_STATUS} from '../../libs/constants';
 import Api from '../../libs/api';
-import template from './listComponent.xml';
+import template from './listComponent.tmpl.xml';
 
 const data = [
     {

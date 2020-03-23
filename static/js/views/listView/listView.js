@@ -1,5 +1,5 @@
 import View from '../view';
-import template from './listView.xml';
+import template from './listView.tmpl.xml';
 import Api from '../../libs/api';
 import {SUCCESS_STATUS} from '../../libs/constants';
 import ListComponent from '../../components/listComponent/listComponent';

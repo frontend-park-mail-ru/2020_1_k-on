@@ -1,0 +1,43 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="auth-page">
+        <div class="auth-page__bg-img" style="background-image: url({data.bg_img_url});"/>
+        <div class="auth-page__bg-shade"/>
+
+        <div class="auth-content">
+            <h1 class="auth-content__headline">
+                <fest:value>data.headline</fest:value>
+            </h1>
+
+            <form class="auth-form" novalidate="true">
+                <fest:for iterate="data.inputs" index="i" value="input">
+                    <div class="auth-form__input_wrapper">
+                        <input class="auth-form__input auth-form__input_{input.name}"
+                               type="{input.type}" id="{input.id}"
+                               required="{input.required}" placeholder="{input.placeholder}"
+                               autofocus="{input.autofocus}"/>
+                        <span class="auth-form__input-border"/>
+                        <fest:if test="input.name == 'password'">
+                            <img class="auth-form__eye" src="/static/img/eye-show.svg"/>
+                        </fest:if>
+                    </div>
+                    <div class="auth-form__input-error auth-form__input-error_{input.name}"
+                         id="{input.name}_error">
+                    </div>
+                </fest:for>
+
+                <button class="auth-form__button button" type="submit">
+                    <fest:value>data.button_text</fest:value>
+                </button>
+            </form>
+
+            <div class="auth-content__no-account">
+                <fest:value>data.no_account_msg</fest:value>
+                <a class="auth-content__no-account_href" href="/signup">
+                    <fest:value>data.no_account_href</fest:value>
+                </a>
+            </div>
+
+        </div>
+        <div class="auth-page__form-error" id="form_error">Error</div>
+    </div>
+</fest:template>

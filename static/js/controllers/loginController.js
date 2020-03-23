@@ -7,11 +7,11 @@ export default class LoginController {
     constructor(router, globalEventBus) {
         this.router = router;
         this.globalEventBus = globalEventBus;
+
         this.eventBus = new EventBus();
         this.eventBus.subscribe(LOGIN_EVENTS.loginSuccess, () => {
             this.router.change('/');
         });
-
         this.eventBus.subscribe(
             LOGIN_EVENTS.renderForAuth,
             () => {
