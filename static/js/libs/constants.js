@@ -95,4 +95,8 @@ export const SIGN_UP_PAGE_DATA = {
 
 export const SLIDER_INTERVAL = 10000;
 
-export const SLIDER_STEP = 200;
+export const SLIDER = {
+    distance: 400,
+    step: 20,
+    speed: 20,
+};
