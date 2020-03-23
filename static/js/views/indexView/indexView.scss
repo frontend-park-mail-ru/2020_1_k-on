@@ -18,7 +18,7 @@
 }
 
 .main-slider {
-  height: 48vw;
+  height: 75vh;
   overflow: hidden;
   position: relative;
   margin-bottom: -8%;
@@ -74,10 +74,15 @@
 
 .main-slider-content {
   position: absolute;
-  width: 40%;
   bottom: 21%;
   left: 64px;
   font-family: Montserrat-Medium;
+  @media (min-width: 1000px) {
+    width: 40%;
+  }
+  @media (max-width: 1000px) {
+    width: 80%;
+  }
 
   &__title {
     font-size: 3em;
@@ -163,12 +168,7 @@
     height: 346px;
     border-radius: 15px;
     box-shadow: $series-card-shadow;
-
-    background: {
-      position: center;
-      size: cover;
-      repeat: no-repeat;
-    };
+    background: no-repeat center 0 / cover
   }
 
   &__name {
