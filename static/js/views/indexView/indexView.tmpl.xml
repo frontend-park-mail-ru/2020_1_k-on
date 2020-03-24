@@ -60,7 +60,7 @@
                             <img class="swiper__arrows_left" src="/static/img/left-arrow.svg"/>
                             <img class="swiper__arrows_right" src="/static/img/right-arrow.svg"/>
                             <fest:for iterate="collection.list" index="j" value="card">
-                                <a class="series-card" href="{card.link}">
+                                <a class="series-card" href="{card.link}" style="margin-bottom: 0;">
                                     <div class="series-card__image" style="background-image: url({card.image})">
                                         <span class="series-card__age-limit">
                                             <fest:value>card.ageLimit</fest:value>+
