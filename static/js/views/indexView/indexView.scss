@@ -21,7 +21,7 @@
   height: 75vh;
   overflow: hidden;
   position: relative;
-  margin-bottom: -8%;
+  margin-bottom: 24px;
 
   &__arrows {
 
@@ -74,7 +74,7 @@
 
 .main-slider-content {
   position: absolute;
-  bottom: 21%;
+  bottom: 64px;
   left: 64px;
   font-family: Montserrat-Medium;
   @media (min-width: 1000px) {
