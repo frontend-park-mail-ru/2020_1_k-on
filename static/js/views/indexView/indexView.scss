@@ -111,7 +111,6 @@
 .collection {
   position: relative;
   width: 100%;
-  margin-bottom: 44px;
 
   &__header {
     font-family: Montserrat-Medium;
@@ -133,6 +132,7 @@
     white-space: nowrap;
     width: 100%;
     height: 100%;
+    padding-top: 12px;
 
     &::-webkit-scrollbar {
       display: none;
@@ -150,31 +150,5 @@
       right: 16px;
       @include sliderArrow;
     }
-  }
-}
-
-.slide {
-  cursor: pointer;
-  margin-left: 16px;
-  display: inline-block;
-}
-
-.card {
-  display: block;
-
-  &__image {
-    display: inline-block;
-    width: 216px;
-    height: 346px;
-    border-radius: 15px;
-    box-shadow: $series-card-shadow;
-    background: no-repeat center 0 / cover
-  }
-
-  &__name {
-    font-family: Roboto;
-    font-weight: 300;
-    color: $text-color;
-    padding-top: 8px;
   }
 }
