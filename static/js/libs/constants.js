@@ -95,3 +95,18 @@ export const SIGN_UP_PAGE_DATA = {
 
 export const SLIDER_INTERVAL = 10000;
 export const SLIDER_DISTANCE = 400;
+
+export const DEFAULT_FILTERS = {
+    genre: {
+        name: 'Все жанры',
+        reference: 'all',
+    },
+    year: {
+        name: 'Все годы',
+        reference: 'all',
+    },
+    ordering: {
+        name: 'По рейтингу',
+        reference: 'rating',
+    },
+};
