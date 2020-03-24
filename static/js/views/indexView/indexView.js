@@ -2,7 +2,7 @@ import View from 'views/view';
 import template from './indexView.tmpl.xml';
 import {
     SLIDER_INTERVAL,
-    SLIDER,
+    SLIDER_DISTANCE,
 } from 'libs/constants';
 
 const data = {
@@ -405,10 +405,10 @@ export default class IndexView extends View {
             'swiper__arrows_right'
         )[0];
         leftArrow.addEventListener('click', () => {
-            slider.scrollLeft -= SLIDER.distance;
+            slider.scrollLeft -= SLIDER_DISTANCE;
         });
         rigthArrow.addEventListener('click', () => {
-            slider.scrollLeft += SLIDER.distance;
+            slider.scrollLeft += SLIDER_DISTANCE;
         });
     }
 
