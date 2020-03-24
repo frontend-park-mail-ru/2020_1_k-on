@@ -6,13 +6,10 @@ $bg-color: rgb(30, 31, 35);
 //$bg-dark-color: #16181c;
 $bg-dark-color: rgba(22, 24, 28, 0.95);
 $footer-bg-color: rgba(30, 31, 35, 0.3);
-$button-gradient-from: #ced756;
-$button-gradient-to: #abc959;
 $text-bright-color: #ced756;
 
 // Button
-$button-bg-color: $button-gradient-from;
-$button-bg-color-hover: linear-gradient(to right, $button-gradient-from, $button-gradient-to);
+$button-bg-color-hover: linear-gradient(to right, #ced756, #eaeea9, #abc959);
 
 // Form
 $auth-form-input-bg-color: rgb(10, 10, 10);

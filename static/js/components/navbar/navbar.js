@@ -1,9 +1,11 @@
 import template from './navbar.tmpl.xml';
-import Api from '../../libs/api';
-import {SUCCESS_STATUS} from '../../libs/constants';
-import {NAVBAR_AUTH_ITEMS} from '../../libs/constants';
-import {NAVBAR_UNAUTH_ITEMS} from '../../libs/constants';
-import {GLOBAL_EVENTS} from '../../libs/constants';
+import Api from 'libs/api';
+import {
+    SUCCESS_STATUS,
+    NAVBAR_AUTH_ITEMS,
+    NAVBAR_UNAUTH_ITEMS,
+    GLOBAL_EVENTS,
+} from 'libs/constants';
 
 /**
  * Компонент navbar

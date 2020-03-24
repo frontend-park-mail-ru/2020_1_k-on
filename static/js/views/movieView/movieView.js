@@ -1,4 +1,4 @@
-import View from '../view';
+import View from 'views/view';
 import template from './movieView.tmpl.xml';
 
 const data = {

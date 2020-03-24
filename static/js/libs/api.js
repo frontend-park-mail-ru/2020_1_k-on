@@ -1,4 +1,4 @@
-import Network from './network';
+import Network from 'libs/network';
 
 /**
  * Класс предоставляет возможность работы с API

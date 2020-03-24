@@ -1,4 +1,4 @@
-import ListView from '../views/listView/listView';
+import ListView from 'views/listView/listView';
 
 export default class ListController {
     constructor(router, eventBus, type) {

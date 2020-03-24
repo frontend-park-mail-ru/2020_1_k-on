@@ -1,4 +1,4 @@
-import Input from './Input';
+import Input from 'libs/Input';
 
 /**
  * Функция для валидации форм

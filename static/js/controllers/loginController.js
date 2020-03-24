@@ -1,7 +1,7 @@
-import LoginView from '../views/loginView/loginView';
-import EventBus from '../libs/eventBus';
-import {GLOBAL_EVENTS} from '../libs/constants';
-import {LOGIN_EVENTS} from '../libs/constants';
+import LoginView from 'views/loginView/loginView';
+import EventBus from 'libs/eventBus';
+import {GLOBAL_EVENTS} from 'libs/constants';
+import {LOGIN_EVENTS} from 'libs/constants';
 
 export default class LoginController {
     constructor(router, globalEventBus) {

@@ -93,6 +93,9 @@ export const SIGN_UP_PAGE_DATA = {
     no_account_href: 'Войдите в аккаунт!',
 };
 
+export const SLIDER_INTERVAL = 10000;
+export const SLIDER_DISTANCE = 400;
+
 export const DEFAULT_FILTERS = {
     genre: {
         name: 'Все жанры',

@@ -1,5 +1,5 @@
-import AuthView from '../authView/authView';
-import Api from '../../libs/api';
+import AuthView from 'views/authView/authView';
+import Api from 'libs/api';
 import {
     LOGIN_EVENTS,
     LOGIN_PAGE_DATA,

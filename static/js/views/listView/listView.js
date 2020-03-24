@@ -1,8 +1,8 @@
-import View from '../view';
+import View from 'views/view';
 import template from './listView.tmpl.xml';
-import Api from '../../libs/api';
-import {SUCCESS_STATUS} from '../../libs/constants';
-import ListComponent from '../../components/listComponent/listComponent';
+import Api from 'libs/api';
+import ListComponent from 'components/listComponent/listComponent';
+import {SUCCESS_STATUS} from 'libs/constants';
 
 const data = {
     filters: {
@@ -132,14 +132,18 @@ export default class ListView extends View {
         ];
         super.render(root);
 
-        for (const filterButton of document.getElementsByClassName('filter-button')) {
+        for (const filterButton of document.getElementsByClassName(
+            'filter-button'
+        )) {
             filterButton.addEventListener(
                 'click',
                 this.onFilterButtonClick.bind(this)
             );
         }
 
-        for (const filterSubmenu of document.getElementsByClassName('filter-submenu')) {
+        for (const filterSubmenu of document.getElementsByClassName(
+            'filter-submenu'
+        )) {
             filterSubmenu.addEventListener(
                 'click',
                 this.onFilterValueClick.bind(this)
@@ -155,7 +159,9 @@ export default class ListView extends View {
         const filterButton = evt.currentTarget;
         const submenu = filterButton.nextElementSibling;
         if (getComputedStyle(submenu).visibility === 'hidden') {
-            for (const filterButton of document.getElementsByClassName('filter-button')) {
+            for (const filterButton of document.getElementsByClassName(
+                'filter-button'
+            )) {
                 this.closeFilter(filterButton);
             }
             this.openFilter(filterButton);

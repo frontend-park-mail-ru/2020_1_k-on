@@ -1,7 +1,9 @@
-import SignUpView from '../views/signUpView/signUpView';
-import EventBus from '../libs/eventBus';
-import {GLOBAL_EVENTS} from '../libs/constants';
-import {SIGN_UP_EVENTS} from '../libs/constants';
+import SignUpView from 'views/signUpView/signUpView';
+import EventBus from 'libs/eventBus';
+import {
+    GLOBAL_EVENTS,
+    SIGN_UP_EVENTS,
+} from 'libs/constants';
 
 export default class SignUpController {
     constructor(router, globalEventBus) {

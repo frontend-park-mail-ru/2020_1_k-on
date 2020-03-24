@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 .auth-form {
   display: block;
@@ -35,6 +36,7 @@
   &__button {
     width: 100%;
     box-sizing: border-box;
+    @include gradientButton;
   }
 
   &__eye {

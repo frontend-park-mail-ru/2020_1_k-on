@@ -25,7 +25,7 @@
                     </div>
                 </fest:for>
 
-                <button class="auth-form__button button" type="submit">
+                <button class="auth-form__button" type="submit">
                     <fest:value>data.button_text</fest:value>
                 </button>
             </form>

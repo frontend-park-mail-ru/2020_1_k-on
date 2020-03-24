@@ -1,0 +1,95 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="index-page">
+        <div class="main-slider">
+            <div class="main-slider__arrows_left">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                     x="0px" y="0px" viewBox="0 0 443.52 443.52"
+                     style="enable-background:new 0 0 443.52 443.52;"
+                     xml:space="preserve" width="32px" height="32px">
+                    <g><path d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,
+                                    0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8c-6.662,
+                                    6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,
+                                    24.132-0.42c6.387-6.614,6.387-17.099,0-23.712
+                                    L143.492,221.863z"
+                             class="active-path" fill="#FFFFFF"/></g>
+                </svg>
+            </div>
+            <div class="main-slider__arrows_right">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512.005 512.005"
+                     style="enable-background:new 0 0 512.005 512.005;"
+                     xml:space="preserve" width="32px" height="32px">
+                    <g><path d="M388.418,240.923L153.751,6.256c-8.341-8.341-21.824-8.341-30.165,0s-8.341,
+                                    21.824,0,30.165L343.17,256.005L123.586,475.589c-8.341,8.341-8.341,21.824,
+                                    0,30.165c4.16,4.16,9.621,6.251,15.083,6.251c5.461,0,10.923-2.091,15.083-6.251
+                                    l234.667-234.667C396.759,262.747,396.759,249.264,388.418,240.923z"
+                             class="active-path" fill="#FFFFFF"/></g>
+                </svg>
+            </div>
+
+            <fest:for iterate="data.recommendations" index="i" value="recommendation">
+                <div class="main-slider__wrapper hidden">
+                    <div class="main-slider__bg" style="background-image: url({recommendation.image});"/>
+                    <div class="main-slider__left-shade"/>
+                    <div class="main-slider__bottom-shade"/>
+
+                    <div class="main-slider-content">
+                        <div class="main-slider-content__title">
+                            <fest:value>recommendation.name</fest:value>
+                        </div>
+                        <div class="main-slider-content__description">
+                            «<fest:value>recommendation.description</fest:value>»
+                        </div>
+                        <a href="{recommendation.link}">
+                            <button class="main-slider-content__button">
+                                Узнать подробнее
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </fest:for>
+        </div>
+
+        <div class="collections">
+            <fest:for iterate="data.collections" index="i" value="collection">
+                <div class="collection">
+                    <div class="collection__header">
+                        <fest:value>collection.name</fest:value>
+                    </div>
+                    <div class="swiper">
+                        <div class="swiper__wrapper">
+                            <img class="swiper__arrows_left" src="/static/img/left-arrow.svg"/>
+                            <img class="swiper__arrows_right" src="/static/img/right-arrow.svg"/>
+                            <fest:for iterate="collection.list" index="j" value="card">
+                                <a class="series-card" href="{card.link}">
+                                    <div class="series-card__image" style="background-image: url({card.image})">
+                                        <span class="series-card__age-limit">
+                                            <fest:value>card.ageLimit</fest:value>+
+                                        </span>
+                                        <div class="series-card__gradient"/>
+
+                                        <div class="series-card__content">
+                                            <div class="series-card__content-row">
+                                                <fest:value>card.year</fest:value>,
+                                            </div>
+                                            <div class="series-card__content-row">
+                                                <fest:value>card.country</fest:value>,
+                                            </div>
+                                            <div class="series-card__content-row">
+                                                <fest:value>card.genre</fest:value>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <span class="series-card__name">
+                                        <fest:value>card.name</fest:value>
+                                    </span>
+                                </a>
+                            </fest:for>
+                        </div>
+                    </div>
+                </div>
+            </fest:for>
+        </div>
+
+    </div>
+</fest:template>

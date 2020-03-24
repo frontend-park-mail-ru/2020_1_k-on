@@ -1,4 +1,4 @@
-import {SERVER_ADDRESS} from './constants';
+import {SERVER_ADDRESS} from 'libs/constants';
 
 /**
  * Класс для работы с сетевыми запросами

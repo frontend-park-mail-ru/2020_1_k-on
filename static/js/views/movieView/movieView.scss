@@ -1,5 +1,5 @@
-@import '../../../css/variables';
-@import '../../../css/mixins';
+@import 'css/variables';
+@import 'css/mixins';
 
 .movie-page {
   overflow: hidden;
@@ -158,6 +158,7 @@
 
 .comment-form__button {
   padding: 0.5em 1.5em;
+  @include gradientButton;
 }
 
 .comments {
