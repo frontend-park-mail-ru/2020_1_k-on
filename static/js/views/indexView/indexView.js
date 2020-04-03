@@ -1,7 +1,7 @@
 import View from 'views/view';
 import template from './indexView.tmpl.xml';
 import SwiperComponent from 'components/swiperComponent/swiperComponent';
-import {SLIDER_INTERVAL} from 'libs/constants';
+import SliderComponent from 'components/sliderComponent/sliderComponent';
 
 const cardList = [
     {
@@ -216,45 +216,10 @@ export default class IndexView extends View {
         this.afterRender();
     }
 
-    mainSlider(direction) {
-        this.curMainSlide.classList.add('hidden');
-
-        const offset = direction === 'left' ? -1 : 1;
-        this.curMainIndex =
-            (this.curMainIndex + offset) % this.mainSlides.length;
-        if (this.curMainIndex === -1) {
-            this.curMainIndex = this.mainSlides.length - 1;
-        }
-        this.curMainSlide = this.mainSlides[this.curMainIndex];
-        this.curMainSlide.classList.remove('hidden');
-    }
-
     afterRender() {
-        this.mainSlides = this.root.getElementsByClassName(
-            'main-slider__wrapper'
-        );
-        this.curMainIndex = 0;
-        this.curMainSlide = this.mainSlides[this.curMainIndex];
-        this.curMainSlide.classList.remove('hidden');
-
-        this.leftArrow = this.root.getElementsByClassName(
-            'main-slider__arrows_left'
-        )[0];
-        this.leftArrow.addEventListener(
-            'click', this.mainSlider.bind(this, 'left')
-        );
-        this.rightArrow = this.root.getElementsByClassName(
-            'main-slider__arrows_right'
-        )[0];
-        this.rightArrow.addEventListener(
-            'click', this.mainSlider.bind(this, 'right')
-        );
-
-        this.slideInterval = setInterval(
-            this.mainSlider.bind(this),
-            SLIDER_INTERVAL,
-            'right'
-        );
+        this.slider = new SliderComponent(data.recommendations);
+        this.mainSlider = this.root.getElementsByClassName('main-slider')[0];
+        this.slider.render(this.mainSlider);
 
         this.collections = this.root.getElementsByClassName('collections')[0];
 
@@ -265,7 +230,7 @@ export default class IndexView extends View {
     }
 
     close() {
-        clearInterval(this.slideInterval);
+        this.slider.close();
         super.close();
     }
 }
