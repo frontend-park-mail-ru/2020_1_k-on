@@ -4,6 +4,8 @@
 @import 'mixins';
 @import 'components/navbar/navbar';
 @import 'components/listComponent/listComponent';
+@import 'components/swiperComponent/swiperComponent';
+@import 'components/sliderComponent/sliderComponent';
 @import 'views/listView/listView';
 @import 'views/movieView/movieView';
 @import 'views/profileView/profileView';
@@ -75,6 +77,13 @@ body {
 .user-path__href {
   text-decoration: underline;
   color: $path-color;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  visibility: hidden;
 }
 
 a {

@@ -1,9 +1,145 @@
 import View from 'views/view';
 import template from './indexView.tmpl.xml';
-import {
-    SLIDER_INTERVAL,
-    SLIDER_DISTANCE,
-} from 'libs/constants';
+import SwiperComponent from 'components/swiperComponent/swiperComponent';
+import SliderComponent from 'components/sliderComponent/sliderComponent';
+
+const cardList = [
+    {
+        name: 'Навстречу Тьме',
+        link: '/movie',
+        image: '/static/img/series2.jpg',
+        ageLimit: '18',
+        year: '2018',
+        country: 'США',
+        genre: 'Боевики',
+    },
+    {
+        name: 'Столкновение',
+        link: '/movie',
+        image: '/static/img/series3.jpg',
+        ageLimit: '16',
+        year: '2018 - 2019',
+        country: 'Турция',
+        genre: 'Триллеры',
+    },
+    {
+        name: 'Триггер',
+        link: '/movie',
+        image: '/static/img/series4.jpg',
+        ageLimit: '18',
+        year: '2020',
+        country: 'Россия',
+        genre: 'Драмы',
+    },
+    {
+        name: 'Навстречу Тьме',
+        link: '/movie',
+        image: '/static/img/series2.jpg',
+        ageLimit: '18',
+        year: '2018',
+        country: 'США',
+        genre: 'Боевики',
+    },
+    {
+        name: 'Столкновение',
+        link: '/movie',
+        image: '/static/img/series3.jpg',
+        ageLimit: '16',
+        year: '2018 - 2019',
+        country: 'Турция',
+        genre: 'Триллеры',
+    },
+    {
+        name: 'Триггер',
+        link: '/movie',
+        image: '/static/img/series4.jpg',
+        ageLimit: '18',
+        year: '2020',
+        country: 'Россия',
+        genre: 'Драмы',
+    },
+    {
+        name: 'Навстречу Тьме',
+        link: '/movie',
+        image: '/static/img/series2.jpg',
+        ageLimit: '18',
+        year: '2018',
+        country: 'США',
+        genre: 'Боевики',
+    },
+    {
+        name: 'Столкновение',
+        link: '/movie',
+        image: '/static/img/series3.jpg',
+        ageLimit: '16',
+        year: '2018 - 2019',
+        country: 'Турция',
+        genre: 'Триллеры',
+    },
+    {
+        name: 'Триггер',
+        link: '/movie',
+        image: '/static/img/series4.jpg',
+        ageLimit: '18',
+        year: '2020',
+        country: 'Россия',
+        genre: 'Драмы',
+    },
+    {
+        name: 'Навстречу Тьме',
+        link: '/movie',
+        image: '/static/img/series2.jpg',
+        ageLimit: '18',
+        year: '2018',
+        country: 'США',
+        genre: 'Боевики',
+    },
+    {
+        name: 'Столкновение',
+        link: '/movie',
+        image: '/static/img/series3.jpg',
+        ageLimit: '16',
+        year: '2018 - 2019',
+        country: 'Турция',
+        genre: 'Триллеры',
+    },
+    {
+        name: 'Триггер',
+        link: '/movie',
+        image: '/static/img/series4.jpg',
+        ageLimit: '18',
+        year: '2020',
+        country: 'Россия',
+        genre: 'Драмы',
+    },
+    {
+        name: 'Навстречу Тьме',
+        link: '/movie',
+        image: '/static/img/series2.jpg',
+        ageLimit: '18',
+        year: '2018',
+        country: 'США',
+        genre: 'Боевики',
+    },
+    {
+        name: 'Столкновение',
+        link: '/movie',
+        image: '/static/img/series3.jpg',
+        ageLimit: '16',
+        year: '2018 - 2019',
+        country: 'Турция',
+        genre: 'Триллеры',
+    },
+    {
+        name: 'Триггер',
+        link: '/movie',
+        image: '/static/img/series4.jpg',
+        ageLimit: '18',
+        year: '2020',
+        country: 'Россия',
+        genre: 'Драмы',
+    },
+];
 
 const data = {
     recommendations: [
@@ -52,563 +188,19 @@ const data = {
     collections: [
         {
             name: 'Сейчас смотрят',
-            list: [
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-            ],
+            list: cardList,
         },
         {
             name: 'Новое',
-            list: [
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-            ],
+            list: cardList,
         },
         {
             name: 'Первая серия бесплатно',
-            list: [
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-            ],
+            list: cardList,
         },
         {
             name: 'Комедии',
-            list: [
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-                {
-                    name: 'Навстречу Тьме',
-                    link: '/movie',
-                    image: '/static/img/series2.jpg',
-                    ageLimit: '18',
-                    year: '2018',
-                    country: 'США',
-                    genre: 'Боевики',
-                },
-                {
-                    name: 'Столкновение',
-                    link: '/movie',
-                    image: '/static/img/series3.jpg',
-                    ageLimit: '16',
-                    year: '2018 - 2019',
-                    country: 'Турция',
-                    genre: 'Триллеры',
-                },
-                {
-                    name: 'Триггер',
-                    link: '/movie',
-                    image: '/static/img/series4.jpg',
-                    ageLimit: '18',
-                    year: '2020',
-                    country: 'Россия',
-                    genre: 'Драмы',
-                },
-            ],
+            list: cardList,
         },
     ],
 };
@@ -624,67 +216,21 @@ export default class IndexView extends View {
         this.afterRender();
     }
 
-    mainSlider(direction) {
-        this.curMainSlide.classList.add('hidden');
-
-        const offset = direction === 'left' ? -1 : 1;
-        this.curMainIndex =
-            (this.curMainIndex + offset) % this.mainSlides.length;
-        if (this.curMainIndex === -1) {
-            this.curMainIndex = this.mainSlides.length - 1;
-        }
-        this.curMainSlide = this.mainSlides[this.curMainIndex];
-        this.curMainSlide.classList.remove('hidden');
-    }
-
-    collectionSlider(slider) {
-        const leftArrow = slider.getElementsByClassName(
-            'swiper__arrows_left'
-        )[0];
-        const rigthArrow = slider.getElementsByClassName(
-            'swiper__arrows_right'
-        )[0];
-        leftArrow.addEventListener('click', () => {
-            slider.scrollLeft -= SLIDER_DISTANCE;
-        });
-        rigthArrow.addEventListener('click', () => {
-            slider.scrollLeft += SLIDER_DISTANCE;
-        });
-    }
-
     afterRender() {
-        this.mainSlides = this.root.getElementsByClassName(
-            'main-slider__wrapper'
-        );
-        this.curMainIndex = 0;
-        this.curMainSlide = this.mainSlides[this.curMainIndex];
-        this.curMainSlide.classList.remove('hidden');
+        this.slider = new SliderComponent(data.recommendations);
+        this.mainSlider = this.root.getElementsByClassName('main-slider')[0];
+        this.slider.render(this.mainSlider);
 
-        this.leftArrow = this.root.getElementsByClassName(
-            'main-slider__arrows_left'
-        )[0];
-        this.leftArrow.addEventListener(
-            'click', this.mainSlider.bind(this, 'left')
-        );
-        this.rightArrow = this.root.getElementsByClassName(
-            'main-slider__arrows_right'
-        )[0];
-        this.rightArrow.addEventListener(
-            'click', this.mainSlider.bind(this, 'right')
-        );
+        this.collections = this.root.getElementsByClassName('collections')[0];
 
-        this.slideInterval = setInterval(
-            this.mainSlider.bind(this),
-            SLIDER_INTERVAL,
-            'right'
-        );
-
-        this.sliders = this.root.getElementsByClassName('swiper__wrapper');
-        Array.from(this.sliders).forEach(this.collectionSlider, this);
+        this.data.collections.forEach((colletion) => {
+            const swiper = new SwiperComponent(colletion);
+            swiper.render(this.collections);
+        });
     }
 
     close() {
-        clearInterval(this.slideInterval);
+        this.slider.close();
         super.close();
     }
 }
