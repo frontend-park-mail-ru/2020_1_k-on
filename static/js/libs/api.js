@@ -14,8 +14,8 @@ export default class Api {
         return Network.doPost({
             url: '/login',
             body: {
-                'Username': login,
-                'Password': password,
+                'username': login,
+                'password': password,
             },
         });
     }
@@ -31,9 +31,9 @@ export default class Api {
         return Network.doPost({
             url: '/signup',
             body: {
-                'Username': login,
-                'Password': password,
-                'Email': email,
+                'username': login,
+                'password': password,
+                'email': email,
             },
         });
     }

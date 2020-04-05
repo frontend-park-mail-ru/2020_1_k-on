@@ -50,7 +50,7 @@ export default class AuthView extends View {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccess();
                 } else {
-                    res.json().then((res) => this.onInvalid(res.error));
+                    res.json().then((res) => this.onInvalid(res.body));
                 }
             });
     }
