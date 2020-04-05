@@ -29,6 +29,14 @@
     transition: all 0.4s ease-in-out;
   }
 }
+@mixin transformScale($scaleValue: 1.25, $transitionValue: 0.2s) {
+  transition: transform $transitionValue linear;
+
+  &:hover {
+    transform: scale($scaleValue);
+    transition: transform $transitionValue linear;
+  }
+}
 @mixin sliderArrow {
   position: absolute;
   top: 50%;
@@ -38,10 +46,5 @@
   cursor: pointer;
   z-index: 1;
   opacity: 0.4;
-  transition: transform 0.2s linear;
-
-  &:hover {
-    transform: scale(1.25);
-    transition: transform 0.2s linear;
-  }
+  @include transformScale;
 }
