@@ -1,6 +1,8 @@
 import View from 'views/view';
 import template from './personView.tmpl.xml';
-import SwiperComponent from "components/swiperComponent/swiperComponent";
+import SwiperComponent from 'components/swiperComponent/swiperComponent';
+import {SUCCESS_STATUS} from 'libs/constants';
+import Api from 'libs/api';
 
 const data = {
     'name': 'Максим Матвеев',
@@ -188,8 +190,17 @@ export default class PersonView extends View {
     }
 
     render(root) {
-        this.data = data;
+        const id = location.pathname.split('/').pop();
+        Api.getPerson(id).then((res) => {
+            if (res.status === SUCCESS_STATUS) {
+                res.json().then((res) => {
+                });
+            } else {
+                console.log('something went wrong');
+            }
+        });
 
+        this.data = data;
         super.render(root);
 
         const listsContainer = document.getElementById('person-lists-container');

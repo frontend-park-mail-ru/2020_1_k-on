@@ -125,4 +125,10 @@ export default class Api {
             },
         });
     }
+
+    static getPerson(id) {
+        return Network.doGet({
+            url: `/persons/${id}`,
+        });
+    }
 }
