@@ -19,24 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const router = new Router(container);
 
     const controllers = {
-        movie: new MovieController(router),
-        signup: new SignUpController(router, globalEventBus),
         login: new LoginController(router, globalEventBus),
+        signup: new SignUpController(router, globalEventBus),
         profile: new ProfileController(router),
         index: new IndexController(router),
         seriesList: new ListController(router, globalEventBus, 'series'),
         filmsList: new ListController(router, globalEventBus, 'films'),
+        series: new MovieController(router, globalEventBus, 'series'),
+        movie: new MovieController(router, globalEventBus, 'films'),
     };
 
     View.setBgImgInSessionStorage();
 
     router.add('/login', controllers.login.view);
-    router.add('/movie', controllers.movie.view);
     router.add('/signup', controllers.signup.view);
     router.add('/profile', controllers.profile.view);
     router.add('/', controllers.index.view);
     router.add('/series', controllers.seriesList.view);
     router.add('/films', controllers.filmsList.view);
+    router.add('/series/1', controllers.series.view);
+    router.add('/films/1', controllers.movie.view);
 
     navbar.render(header);
     router.start();

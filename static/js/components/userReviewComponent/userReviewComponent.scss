@@ -1,0 +1,56 @@
+@import 'css/variables';
+@import 'css/mixins';
+
+.write-review-block {
+  border-top: 0.2px solid $text-dark-color;
+
+  &__avatar {
+    flex-shrink: 0;
+    @include square($size: 90px);
+  }
+}
+
+.review-form {
+  width: 100%;
+
+  &__rate {
+    display: flex;
+  }
+
+  &__star {
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: $text-dark-color;
+  }
+
+  &__input {
+    position: relative;
+    margin-top: $padding-between-rows;
+    margin-bottom: 3 * $padding-between-rows;
+    width: 100%;
+    display: block;
+    border: 0;
+    border-bottom: 2px solid #eaeea9;
+    background: none;
+    font-family: inherit;
+    font-size: 18px;
+    color: $text-main-color;
+    transition: border-bottom 0.15s ease-in-out;
+
+    &::placeholder {
+      color: $text-dark-color;
+    }
+
+    &:focus {
+      border-bottom: 2px solid $text-bright-color;
+    }
+  }
+
+  &__button {
+    padding: 0.5em 1.5em;
+    @include gradientButton;
+  }
+}

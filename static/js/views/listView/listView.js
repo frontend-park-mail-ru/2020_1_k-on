@@ -94,7 +94,6 @@ export default class ListView extends View {
         super(template, eventBus);
         this.type = type;
 
-        this.data = {};
         this.data.type = type;
         this.data.category = type === 'series' ? 'Сериалы' : 'Фильмы';
         this.data.filtersList = [
@@ -151,7 +150,7 @@ export default class ListView extends View {
         }
 
         this.listComponent.setDefaultFilters();
-        const listContainer = document.getElementById('listContainer');
+        const listContainer = document.getElementById('list-container');
         this.listComponent.render(listContainer);
     }
 

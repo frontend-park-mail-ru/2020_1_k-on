@@ -1,0 +1,39 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="reviews__headline">
+        Отзывы
+    </div>
+
+    <fest:if test="data">
+        <div class="all-reviews">
+            <fest:for iterate="data" index="i" value="review">
+                <div class="review-block review-layout">
+                    <div class="review-block__avatar avatar"
+                         style="background-image: url({review.avatar})"/>
+
+                    <div class="review-info">
+                        <div class="review-info__header">
+                            <div class="review-info__username">
+                                <fest:value>review.username</fest:value>
+                            </div>
+
+                            <div class="review-info__rate">
+                                <fest:value>review.rate</fest:value>
+                                <fest:space/>из<fest:space/>10
+                            </div>
+                        </div>
+
+                        <div class="review-info__text">
+                            <fest:value>review.text</fest:value>
+                        </div>
+                    </div>
+                </div>
+            </fest:for>
+        </div>
+    </fest:if>
+
+    <fest:if test="!data">
+        <div class="no-reviews-message">
+            Отзывов пока нет.
+        </div>
+    </fest:if>
+</fest:template>

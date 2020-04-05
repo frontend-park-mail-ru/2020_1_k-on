@@ -5,8 +5,7 @@
                 <a class="movie-header__path-href user-path__href" href="/">
                     Главная
                 </a>
-                <fest:space/>/
-                <fest:space/>
+                <fest:space/>/<fest:space/>
 
                 <fest:value>data.category</fest:value>
             </div>
@@ -49,6 +48,6 @@
             </fest:for>
         </div>
 
-        <div id="listContainer" class="series-block page-layout"/>
+        <div id="list-container" class="series-block page-layout"/>
     </div>
 </fest:template>

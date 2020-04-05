@@ -97,4 +97,22 @@ export default class Api {
             url: `/${type}?${filtersString}`,
         });
     }
+
+    static getMovie(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}`,
+        });
+    }
+
+    static getReviews(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}/reviews`,
+        });
+    }
+
+    static getUserReview(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}/user/review`,
+        });
+    }
 }

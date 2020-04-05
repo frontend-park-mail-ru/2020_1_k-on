@@ -22,10 +22,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, $gradient-from, $gradient-to);
+    background: linear-gradient(to bottom, rgba($bg-color, 0), $bg-color);
   }
 }
 
@@ -149,6 +148,10 @@
     &_ref:hover {
       color: $text-bright-color;
     }
+
+    &_genre {
+      text-transform: lowercase;
+    }
   }
 }
 
@@ -156,12 +159,7 @@
   padding-top: 3 * $padding-between-rows;
 }
 
-.comment-form__button {
-  padding: 0.5em 1.5em;
-  @include gradientButton;
-}
-
-.comments {
+.reviews {
   width: 55%;
   padding-top: 60px;
   font-family: OpenSans-Regular, sans-serif;
@@ -174,14 +172,18 @@
   }
 }
 
-.comment-layout {
-  padding-left: $comment-padding-left;
-  padding-top: $comment-padding-y;
-  padding-bottom: $comment-padding-y;
+.review-layout {
+  padding-left: $review-padding-left;
+  padding-top: $review-padding-y;
+  padding-bottom: $review-padding-y;
   display: flex;
 }
 
-.write-comment-block {
+.review-info {
+  width: 100%;
+}
+
+.review-block {
   border-top: 0.2px solid $text-dark-color;
 
   &__avatar {
@@ -190,41 +192,7 @@
   }
 }
 
-.comment-info {
-  width: 100%;
-}
-
-.comment-form {
-  width: 100%;
-
-  &__input {
-    margin-top: $padding-between-rows;
-    margin-bottom: 3 * $padding-between-rows;
-    width: 100%;
-    height: 40px;
-    display: block;
-    border: 0;
-    border-bottom: 2px solid $text-bright-color;
-    background: none;
-    font-size: 18px;
-    color: $text-main-color;
-
-    &::placeholder {
-      color: $text-dark-color;
-    }
-  }
-}
-
-.comment-block {
-  border-top: 0.2px solid $text-dark-color;
-
-  &__avatar {
-    flex-shrink: 0;
-    @include square($size: 90px);
-  }
-}
-
-.comment-info {
+.review-info {
   padding-left: 30px;
   display: block;
 
@@ -253,28 +221,4 @@
     font-size: 18px;
     color: $text-main-color;
   }
-}
-
-.comment-form {
-  margin-bottom: 20px;
-
-  &__rate {
-    display: flex;
-  }
-
-  &__star {
-    margin-right: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-    color: $text-dark-color;
-  }
-}
-
-.no-comments-message {
-  padding: 3 * $padding-between-rows 0 6 * $padding-between-rows;
-  border-top: 0.2px solid $text-dark-color;
-  font-size: 28px;
-  color: $path-color;
 }
