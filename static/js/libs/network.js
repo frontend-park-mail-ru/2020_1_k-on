@@ -21,7 +21,7 @@ export default class Network {
      * Выполняет POST запрос
      * @param {string} host
      * @param {string} url
-     * @param {string} body
+     * @param {object} body
      * @return {Promise<Response>}
      */
     static doPost({host = SERVER_ADDRESS, url = '/', body = {}} = {}) {
@@ -39,14 +39,14 @@ export default class Network {
      * Выполняет PUT запрос
      * @param {string} host
      * @param {string} url
-     * @param {string} formData
+     * @param {object} body
      * @return {Promise<Response>}
      */
-    static doPut({host = SERVER_ADDRESS, url = '/', formData = null} = {}) {
+    static doPut({host = SERVER_ADDRESS, url = '/', body = {}} = {}) {
         return fetch(host + url, {
             method: 'PUT',
             credentials: 'include',
-            body: formData,
+            body: JSON.stringify(body),
         });
     }
 
