@@ -37,7 +37,7 @@
                 <div class="main-slider-content__description">
                     «<fest:value>recommendation.description</fest:value>»
                 </div>
-                <a href="{recommendation.link}">
+                <a href="/{recommendation.type}/{recommendation.id}">
                     <button class="main-slider-content__button">
                         Узнать подробнее
                     </button>

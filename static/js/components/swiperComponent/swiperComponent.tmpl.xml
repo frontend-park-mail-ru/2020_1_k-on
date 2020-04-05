@@ -7,7 +7,7 @@
             <img class="swiper__arrows_left" src="/static/img/left-arrow.svg"/>
             <img class="swiper__arrows_right" src="/static/img/right-arrow.svg"/>
             <fest:for iterate="collection.list" index="j" value="card">
-                <a class="series-card" href="{card.link}" style="margin-bottom: 0;">
+                <a class="series-card" href="/{card.type}/{card.id}" style="margin-bottom: 0;">
                     <div class="series-card__image" style="background-image: url({card.image})">
                         <span class="series-card__age-limit">
                             <fest:value>card.ageLimit</fest:value>+
@@ -15,9 +15,23 @@
                         <div class="series-card__gradient"/>
 
                         <div class="series-card__content">
-                            <div class="series-card__content-row">
-                                <fest:value>card.year</fest:value>,
-                            </div>
+                            <fest:if test="card.type === 'series'">
+                                <div class="series-card__content-row">
+                                    <fest:value>card.yearFirst</fest:value>
+                                    <fest:if test="card.yearFirst !== card.yearLast">
+                                        <fest:space/>-
+                                        <fest:space/>
+                                        <fest:value>card.yearLast</fest:value>
+                                    </fest:if>
+                                    ,
+                                </div>
+                            </fest:if>
+
+                            <fest:if test="card.type === 'films'">
+                                <div class="series-card__content-row">
+                                    <fest:value>card.year</fest:value>,
+                                </div>
+                            </fest:if>
                             <div class="series-card__content-row">
                                 <fest:value>card.country</fest:value>,
                             </div>

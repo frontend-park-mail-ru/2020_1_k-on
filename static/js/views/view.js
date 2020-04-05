@@ -13,6 +13,7 @@ export default class View {
     render(root) {
         this.root = root;
         this.root.innerHTML = this.tmpl(this.data);
+        window.scrollTo(0, 0);
     }
 
     close() {

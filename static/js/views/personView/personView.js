@@ -13,7 +13,7 @@ const data = {
     'films': [
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Лучшие в Лос-Анджелесе',
             'ageLimit': '16',
             'image': '/static/img/series1.jpeg',
@@ -23,7 +23,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Навстречу тьме',
             'ageLimit': '18',
             'image': '/static/img/series2.jpg',
@@ -33,7 +33,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Столкновение',
             'ageLimit': '16',
             'image': '/static/img/series3.jpg',
@@ -43,7 +43,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Триггер',
             'ageLimit': '18',
             'image': '/static/img/series4.jpg',
@@ -53,7 +53,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Лучшие в Лос-Анджелесе',
             'ageLimit': '16',
             'image': '/static/img/series1.jpeg',
@@ -63,7 +63,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Навстречу тьме',
             'ageLimit': '18',
             'image': '/static/img/series2.jpg',
@@ -73,7 +73,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Столкновение',
             'ageLimit': '16',
             'image': '/static/img/series3.jpg',
@@ -83,7 +83,7 @@ const data = {
         },
         {
             'id': '1',
-            'type': 'series',
+            'type': 'films',
             'name': 'Триггер',
             'ageLimit': '18',
             'image': '/static/img/series4.jpg',
@@ -190,6 +190,7 @@ export default class PersonView extends View {
     }
 
     render(root) {
+
         const id = location.pathname.split('/').pop();
         Api.getPerson(id).then((res) => {
             if (res.status === SUCCESS_STATUS) {

@@ -5,8 +5,9 @@ import SliderComponent from 'components/sliderComponent/sliderComponent';
 
 const cardList = [
     {
+        id: '1',
+        type: 'films',
         name: 'Навстречу Тьме',
-        link: '/movie',
         image: '/static/img/series2.jpg',
         ageLimit: '18',
         year: '2018',
@@ -14,8 +15,9 @@ const cardList = [
         genre: 'Боевики',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Столкновение',
-        link: '/movie',
         image: '/static/img/series3.jpg',
         ageLimit: '16',
         year: '2018 - 2019',
@@ -23,8 +25,9 @@ const cardList = [
         genre: 'Триллеры',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Триггер',
-        link: '/movie',
         image: '/static/img/series4.jpg',
         ageLimit: '18',
         year: '2020',
@@ -32,8 +35,9 @@ const cardList = [
         genre: 'Драмы',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Навстречу Тьме',
-        link: '/movie',
         image: '/static/img/series2.jpg',
         ageLimit: '18',
         year: '2018',
@@ -41,8 +45,9 @@ const cardList = [
         genre: 'Боевики',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Столкновение',
-        link: '/movie',
         image: '/static/img/series3.jpg',
         ageLimit: '16',
         year: '2018 - 2019',
@@ -50,8 +55,9 @@ const cardList = [
         genre: 'Триллеры',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Триггер',
-        link: '/movie',
         image: '/static/img/series4.jpg',
         ageLimit: '18',
         year: '2020',
@@ -59,8 +65,9 @@ const cardList = [
         genre: 'Драмы',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Навстречу Тьме',
-        link: '/movie',
         image: '/static/img/series2.jpg',
         ageLimit: '18',
         year: '2018',
@@ -68,8 +75,9 @@ const cardList = [
         genre: 'Боевики',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Столкновение',
-        link: '/movie',
         image: '/static/img/series3.jpg',
         ageLimit: '16',
         year: '2018 - 2019',
@@ -77,8 +85,9 @@ const cardList = [
         genre: 'Триллеры',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Триггер',
-        link: '/movie',
         image: '/static/img/series4.jpg',
         ageLimit: '18',
         year: '2020',
@@ -86,8 +95,9 @@ const cardList = [
         genre: 'Драмы',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Навстречу Тьме',
-        link: '/movie',
         image: '/static/img/series2.jpg',
         ageLimit: '18',
         year: '2018',
@@ -95,8 +105,9 @@ const cardList = [
         genre: 'Боевики',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Столкновение',
-        link: '/movie',
         image: '/static/img/series3.jpg',
         ageLimit: '16',
         year: '2018 - 2019',
@@ -104,8 +115,9 @@ const cardList = [
         genre: 'Триллеры',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Триггер',
-        link: '/movie',
         image: '/static/img/series4.jpg',
         ageLimit: '18',
         year: '2020',
@@ -113,8 +125,9 @@ const cardList = [
         genre: 'Драмы',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Навстречу Тьме',
-        link: '/movie',
         image: '/static/img/series2.jpg',
         ageLimit: '18',
         year: '2018',
@@ -122,8 +135,9 @@ const cardList = [
         genre: 'Боевики',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Столкновение',
-        link: '/movie',
         image: '/static/img/series3.jpg',
         ageLimit: '16',
         year: '2018 - 2019',
@@ -131,8 +145,9 @@ const cardList = [
         genre: 'Триллеры',
     },
     {
+        id: '1',
+        type: 'films',
         name: 'Триггер',
-        link: '/movie',
         image: '/static/img/series4.jpg',
         ageLimit: '18',
         year: '2020',
@@ -144,6 +159,8 @@ const cardList = [
 const data = {
     recommendations: [
         {
+            id: '1',
+            type: 'series',
             name: 'Мир дикого запада',
             image: '/static/img/background_4.jpg',
             description:
@@ -155,9 +172,10 @@ const data = {
                  что взбредет в голову, влюбляет в себя намертво:
                  напряженным сюжетом, потрясающим визуальным стилем 
                  и актерской игрой.`,
-            link: '/movie',
         },
         {
+            id: '1',
+            type: 'series',
             name: 'Черное зеркало',
             image: '/static/img/background_5.jpg',
             description:
@@ -168,9 +186,10 @@ const data = {
                  черное зеркало нашего существования в XXI веке.
                  Наша связь с реальностью меняется. В «Чёрном зеркале»
                  отображается всеобщее беспокойство за наш современный мир.`,
-            link: '/movie',
         },
         {
+            id: '1',
+            type: 'series',
             name: 'Острые предметы',
             image: '/static/img/sharp-objects.jpg',
             description:
@@ -182,7 +201,6 @@ const data = {
                  маленьких девочек. Пытаясь сложить психологический
                  пазл из своего прошлого, она обнаруживает,
                  что у нее с юными жертвами слишком много общего.`,
-            link: '/movie',
         },
     ],
     collections: [
