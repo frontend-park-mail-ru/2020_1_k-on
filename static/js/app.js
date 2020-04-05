@@ -10,6 +10,7 @@ import Navbar from 'components/navbar/navbar';
 import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
 import View from 'views/view';
+import PersonController from "controllers/personController";
 
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filmsList: new ListController(router, globalEventBus, 'films'),
         series: new MovieController(router, globalEventBus, 'series'),
         movie: new MovieController(router, globalEventBus, 'films'),
+        person: new PersonController(router, globalEventBus),
     };
 
     View.setBgImgInSessionStorage();
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/films', controllers.filmsList.view);
     router.add('/series/1', controllers.series.view);
     router.add('/films/1', controllers.movie.view);
+    router.add('/persons/1', controllers.person.view);
 
     navbar.render(header);
     router.start();

@@ -99,7 +99,7 @@
                     <div class="movie-info__data_title">В ролях:</div>
                     <div class="movie-info__data_content">
                         <fest:for iterate="data.actors" index="i" value="actor">
-                            <a class="movie-info__data_ref" href="{actor.reference}">
+                            <a class="movie-info__data_ref" href="/persons/{actor.id}">
                                 <fest:value>actor.name</fest:value>
                             </a>
 

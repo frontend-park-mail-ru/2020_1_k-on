@@ -45,11 +45,14 @@ export default class AuthView extends View {
             inputsValue.push(value);
         });
 
+        console.log(inputsValue);
+        console.log(this.apiMethod);
         this.apiMethod(...inputsValue)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccess();
                 } else {
+                    console.log(res.status);
                     res.json().then((res) => this.onInvalid(res.error));
                 }
             });

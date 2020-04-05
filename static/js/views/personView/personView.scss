@@ -1,0 +1,48 @@
+@import 'css/variables';
+@import 'css/mixins';
+
+.person-page {
+  padding-top: $navbar-height;
+  font-family: OpenSans-Regular, sans-serif;
+}
+
+.person-info {
+  display: flex;
+  padding-top: 50px;
+
+  &__image {
+    border-radius: 10px;
+    height: 266px;
+    width: 200px;
+    background: no-repeat center 0 / cover;
+  }
+}
+
+.person-description {
+  margin-left: 30px;
+
+  &__name {
+    font-size: 35px;
+    font-family: Montserrat-Medium, sans-serif;
+    margin-bottom: 30px;
+  }
+
+  &__data {
+    display: grid;
+    grid-gap: 14px;
+    grid-template-columns: 1fr 2fr;
+
+    &_title {
+      color: $text-dark-color;
+    }
+  }
+}
+
+.person-list {
+  margin-top: 40px;
+
+  &__headline {
+    font-family: OpenSans-Regular, sans-serif;
+    font-size: 24px;
+  }
+}
