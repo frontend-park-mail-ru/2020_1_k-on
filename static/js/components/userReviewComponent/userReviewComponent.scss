@@ -2,11 +2,12 @@
 @import 'css/mixins';
 
 .write-review-block {
+  margin-bottom: 20px;
   border-top: 0.2px solid $text-dark-color;
 
   &__avatar {
     flex-shrink: 0;
-    @include square($size: 90px);
+    @include square($size: 70px);
   }
 }
 
@@ -18,12 +19,28 @@
   }
 
   &__star {
-    margin-right: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 14px;
     color: $text-dark-color;
+  }
+
+  &__star-icon {
+    padding-right: 5px;
+    width: 27px;
+    height: 25px;
+    background: url(/static/img/star-icon.svg) no-repeat center;
+    transition: background-image 0.2s ease-in-out;
+
+    &_active {
+      background-image: url(/static/img/star-icon-active.svg);
+    }
+  }
+
+  &__star-value {
+    cursor: default;
+    display: none;
   }
 
   &__input {
@@ -52,5 +69,14 @@
   &__button {
     padding: 0.5em 1.5em;
     @include gradientButton;
+    font-size: 18px;
   }
+}
+
+.review-info__edit-button {
+  margin-top: 20px;
+  @include gradientButton;
+  min-height: 0;
+  padding: 0.5em 0.7em;
+  font-size: 16px;
 }

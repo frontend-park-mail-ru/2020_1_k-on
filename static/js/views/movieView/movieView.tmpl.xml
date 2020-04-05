@@ -24,20 +24,20 @@
                     <fest:value>data.englishName</fest:value>
                 </div>
 
-                <fest:if test="data.type == 'series'">
-                    <div class="seasons-block">
-                        <div class="seasons-block__name">
-                            Сезоны:
-                        </div>
+<!--                <fest:if test="data.type == 'series'">-->
+<!--                    <div class="seasons-block">-->
+<!--                        <div class="seasons-block__name">-->
+<!--                            Сезоны:-->
+<!--                        </div>-->
 
-                        <fest:var name="seasons" select="new Array(data.seasons)"/>
-                        <fest:for iterate="seasons" index="i" value="v">
-                            <a class="seasons-block__season-link" href="/">
-                                <fest:value>i + 1</fest:value>
-                            </a>
-                        </fest:for>
-                    </div>
-                </fest:if>
+<!--                        <fest:var name="seasons" select="new Array(data.seasons)"/>-->
+<!--                        <fest:for iterate="seasons" index="i" value="v">-->
+<!--                            <a class="seasons-block__season-link" href="/">-->
+<!--                                <fest:value>i + 1</fest:value>-->
+<!--                            </a>-->
+<!--                        </fest:for>-->
+<!--                    </div>-->
+<!--                </fest:if>-->
             </div>
         </div>
 
@@ -82,19 +82,19 @@
                         <fest:value>data.imdbRating</fest:value>
                     </div>
 
-                    <div class="movie-info__data_title">Режиссеры:</div>
-                    <div class="movie-info__data_content">
-                        <fest:for iterate="data.producers" index="i" value="producer">
-                            <a class="movie-info__data_ref" href="{producer.reference}">
-                                <fest:value>producer.name</fest:value>
-                            </a>
+<!--                    <div class="movie-info__data_title">Режиссеры:</div>-->
+<!--                    <div class="movie-info__data_content">-->
+<!--                        <fest:for iterate="data.producers" index="i" value="producer">-->
+<!--                            <a class="movie-info__data_ref" href="{producer.reference}">-->
+<!--                                <fest:value>producer.name</fest:value>-->
+<!--                            </a>-->
 
-                            <fest:if test="i != data.producers.length - 1">
-                                ,
-                                <fest:space/>
-                            </fest:if>
-                        </fest:for>
-                    </div>
+<!--                            <fest:if test="i != data.producers.length - 1">-->
+<!--                                ,-->
+<!--                                <fest:space/>-->
+<!--                            </fest:if>-->
+<!--                        </fest:for>-->
+<!--                    </div>-->
 
                     <div class="movie-info__data_title">В ролях:</div>
                     <div class="movie-info__data_content">

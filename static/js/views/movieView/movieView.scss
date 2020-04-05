@@ -36,20 +36,20 @@
   &__name {
     margin-bottom: 2 * $padding-between-rows;
     font-family: Montserrat-Medium, sans-serif;
-    font-size: 80px;
+    font-size: 70px;
   }
 
   &__original-name {
     margin-bottom: 4 * $padding-between-rows;
     font-family: Montserrat-Light, sans-serif;
-    font-size: 30px;
+    font-size: 24px;
     color: $path-color;
     text-transform: uppercase;
   }
 
   &__path {
     margin-bottom: $padding-between-rows;
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -57,7 +57,7 @@
   display: flex;
   align-items: center;
   font-family: Montserrat-Regular, sans-serif;
-  font-size: 24px;
+  font-size: 22px;
 
   &__name {
     margin-right: 20px;
@@ -82,6 +82,7 @@
 
 .movie-content {
   position: relative;
+  margin-bottom: 60px;
   display: flex;
   padding-top: 60px;
   font-family: OpenSans-Regular, sans-serif;
@@ -161,13 +162,13 @@
 
 .reviews {
   width: 55%;
-  padding-top: 60px;
+  //padding-top: 60px;
   font-family: OpenSans-Regular, sans-serif;
   font-size: 16px;
   line-height: 28px;
 
   &__headline {
-    margin-bottom: 3 * $padding-between-rows;
+    margin-bottom: $headline-margin;
     font-size: $headline-size;
   }
 }
@@ -188,7 +189,7 @@
 
   &__avatar {
     flex-shrink: 0;
-    @include square($size: 90px);
+    @include square($size: 70px);
   }
 }
 
@@ -197,13 +198,13 @@
   display: block;
 
   &__header {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     display: flex;
   }
 
   &__username {
     margin-right: 40px;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   &__rate {
@@ -212,7 +213,7 @@
     border-radius: 10px;
     background: $rate-bg-color;
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     color: $bg-color;
     @include center-position;
   }

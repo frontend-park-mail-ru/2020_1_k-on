@@ -115,4 +115,14 @@ export default class Api {
             url: `/${type}/${id}/user/review`,
         });
     }
+
+    static createReview(type, id, rate, text) {
+        return Network.doPost({
+            url: `/${type}/${id}/reviews`,
+            body: {
+                'rating': rate,
+                'body': text,
+            },
+        });
+    }
 }
