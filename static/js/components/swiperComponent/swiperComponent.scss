@@ -1,0 +1,47 @@
+@import 'css/mixins';
+
+.collection {
+  position: relative;
+  width: 100%;
+  margin-bottom: 64px;
+
+  &__header {
+    font-family: Montserrat-Medium;
+    font-size: 2em;
+    line-height: 43px;
+    padding-left: 64px;
+  }
+}
+
+.swiper {
+  position: relative;
+  overflow: hidden;
+
+  &__wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    padding: 12px 64px 0 64px;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__arrows {
+
+    &_left {
+      left: 16px;
+      @include sliderArrow;
+    }
+
+    &_right {
+      right: 16px;
+      @include sliderArrow;
+    }
+  }
+}
