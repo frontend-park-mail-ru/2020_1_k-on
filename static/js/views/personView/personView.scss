@@ -7,10 +7,9 @@
 }
 
 .person-info {
-  background-color: #292D34;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   display: flex;
-  padding-top: 50px;
+  padding-top: 70px;
 
   &__image {
     border-radius: 10px;
@@ -21,18 +20,19 @@
 }
 
 .person-description {
-  margin-left: 30px;
+  margin-left: 40px;
+  font-family: Montserrat-Regular, sans-serif;
 
   &__name {
-    font-size: 35px;
+    font-size: 36px;
     font-family: Montserrat-Medium, sans-serif;
     margin-bottom: 30px;
   }
 
   &__data {
     display: grid;
-    grid-gap: 14px;
-    grid-template-columns: 1fr 2fr;
+    grid-gap: 18px;
+    grid-template-columns: 1fr 3fr;
 
     &_title {
       color: $text-dark-color;

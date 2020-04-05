@@ -105,7 +105,7 @@ export default class ListView extends View {
     }
 
     render(root) {
-        Api.getFilters().then((res) => {
+        Api.getFilters(this.type).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
                 });

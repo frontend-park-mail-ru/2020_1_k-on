@@ -59,8 +59,8 @@
 .main-slider-content {
   position: absolute;
   bottom: 64px;
-  left: 64px;
-  font-family: Montserrat-Medium;
+  left: 0;
+  font-family: Montserrat-Medium, sans-serif;
   @media (min-width: 1000px) {
     width: 40%;
   }

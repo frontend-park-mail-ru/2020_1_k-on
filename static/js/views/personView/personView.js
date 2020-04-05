@@ -1,5 +1,6 @@
 import View from 'views/view';
 import template from './personView.tmpl.xml';
+import SwiperComponent from "components/swiperComponent/swiperComponent";
 
 const data = {
     'name': 'Максим Матвеев',
@@ -47,15 +48,6 @@ const data = {
             'year': '2020',
             'country': 'Россия',
             'genre': 'Драмы',
-        },
-        {
-            'id': 1,
-            'russianName': 'Бригада',
-            'rating': 10,
-            'image': '/static/1.jpg',
-            'country': 'Russia',
-            'year': 2020,
-            'ageLimit': 18
         },
         {
             'id': '1',
@@ -199,5 +191,19 @@ export default class PersonView extends View {
         this.data = data;
 
         super.render(root);
+
+        const listsContainer = document.getElementById('person-lists-container');
+
+        const filmsSwiper = new SwiperComponent({
+            name: 'Фильмы с участием актера',
+            list: this.data.films,
+        });
+        filmsSwiper.render(listsContainer);
+
+        const seriesSwiper = new SwiperComponent({
+            name: 'Сериалы с участием актера',
+            list: this.data.series,
+        });
+        seriesSwiper.render(listsContainer);
     }
 }

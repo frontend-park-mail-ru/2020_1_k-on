@@ -30,7 +30,7 @@
             <div class="main-slider__left-shade"/>
             <div class="main-slider__bottom-shade"/>
 
-            <div class="main-slider-content">
+            <div class="main-slider-content page-layout">
                 <div class="main-slider-content__title">
                     <fest:value>recommendation.name</fest:value>
                 </div>

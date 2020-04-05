@@ -21,10 +21,6 @@
             </div>
         </div>
 
-        <div class="person-list page-layout">
-            <div class="person-list__headline">
-                Фильмы с участием актера
-            </div>
-        </div>
+        <div id="person-lists-container"/>
     </div>
 </fest:template>

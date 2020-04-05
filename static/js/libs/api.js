@@ -28,7 +28,7 @@ export default class Api {
      * @return {Promise<Response>}
      */
     static doSignUp(login, email, password) {
-        return Network.doPut({
+        return Network.doPost({
             url: '/signup',
             body: {
                 'username': login,
@@ -59,9 +59,9 @@ export default class Api {
         return Network.doPost({
             url: '/user',
             body: {
-                'username': login,
-                'password': password,
-                'email': email,
+                'Username': login,
+                'Password': password,
+                'Email': email,
             },
         });
     }
@@ -86,7 +86,7 @@ export default class Api {
 
     static getFilters(type) {
         return Network.doGet({
-            url: `/${type}/filters`,
+            url: `/${type}/filter`,
         });
     }
 
