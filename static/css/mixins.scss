@@ -30,6 +30,14 @@
     transition: all 0.4s ease-in-out;
   }
 }
+@mixin transformScale($scaleValue: 1.25, $transitionValue: 0.2s) {
+  transition: transform $transitionValue linear;
+
+  &:hover {
+    transform: scale($scaleValue);
+    transition: transform $transitionValue linear;
+  }
+}
 @mixin sliderArrow {
   position: absolute;
   top: 50%;
@@ -39,10 +47,44 @@
   cursor: pointer;
   z-index: 1;
   opacity: 0.4;
-  transition: transform 0.2s linear;
+  @include transformScale;
+}
+@mixin input {
 
-  &:hover {
-    transform: scale(1.25);
-    transition: transform 0.2s linear;
+  &__input_wrapper {
+    position: relative;
   }
+
+  &__input {
+    background-color: $auth-form-input-bg-color;
+    border-radius: 8px 8px 0 0;
+    padding: 12px;
+    min-height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    color: inherit;
+  }
+
+  &__input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $auth-form-input-focus-color;
+  }
+
+  &__input:focus + &__input-border {
+    width: 100%;
+    transition: 0.5s;
+  }
+}
+@mixin inputError {
+  visibility: hidden;
+  color: $error-color;
+  font-size: 0.8em;
+  max-width: fit-content;
+  min-height: 40px;
+  margin: 8px 0;
+  font-weight: bolder;
 }

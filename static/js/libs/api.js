@@ -55,14 +55,14 @@ export default class Api {
      * @param {string} password
      * @return {Promise<Response>}
      */
-    static updateUser(login, email, password) {
-        return Network.doPost({
+    static updateUser(login = '', email= '', password = '') {
+        return Network.doPut({
             url: '/user',
-            body: {
-                'Username': login,
-                'Password': password,
-                'Email': email,
-            },
+            body: JSON.stringify({
+                'username': login,
+                'password': password,
+                'email': email,
+            }),
         });
     }
 
@@ -71,10 +71,10 @@ export default class Api {
      * @param {object} formData
      * @return {Promise<Response>}
      */
-    static uploadImage(formData) {
+    static uploadUserAvatar(formData) {
         return Network.doPut({
-            url: '/user/image',
-            formData: formData,
+            url: '/user',
+            body: formData,
         });
     }
 

@@ -29,6 +29,7 @@ export const SIGN_UP_EVENTS = {
 
 export const PROFILE_EVENTS = {
     unauthUser: 'unauthUser',
+    logout: 'logout',
 };
 
 export const MAX_BG_IMGS = 5;

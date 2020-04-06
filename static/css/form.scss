@@ -4,33 +4,13 @@
 .auth-form {
   display: block;
   color: $text-color;
+  @include input;
 
-  &__input_wrapper {
-    position: relative;
-  }
-
-  &__input {
-    background-color: $auth-form-input-bg-color;
-    border-radius: 8px 8px 0 0;
-    padding: 12px;
-    min-height: 48px;
-    width: 100%;
-    box-sizing: border-box;
-    color: inherit;
-  }
-
-  &__input-border {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: $auth-form-input-focus-color;
-  }
-
-  &__input:focus + &__input-border {
-    width: 100%;
-    transition: 0.5s;
+  &__label {
+    font-family: inherit;
+    font-weight: bolder;
+    display: inline-block;
+    margin-bottom: 4px;
   }
 
   &__button {
@@ -48,12 +28,6 @@
   }
 
   &__input-error {
-    visibility: hidden;
-    color: $error-color;
-    font-size: 0.8em;
-    max-width: fit-content;
-    min-height: 40px;
-    margin: 8px 0;
-    font-weight: bolder;
+    @include inputError;
   }
 }

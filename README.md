@@ -6,6 +6,10 @@
 
 http://64.225.100.179:3000/
 
+## Ссылка
+
+[swagger](https://app.swaggerhub.com/apis/OlegElizarov/k_on2.0/1.0.0)
+
 ## Состав
 
 - [Зубков Андрей](https://github.com/DronBrigadir)

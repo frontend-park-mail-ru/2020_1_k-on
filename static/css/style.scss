@@ -11,6 +11,7 @@
 @import 'views/listView/listView';
 @import 'views/movieView/movieView';
 @import 'views/profileView/profileView';
+@import 'views/profileSettingsView/profileSettingsView';
 @import 'views/authView/authView';
 @import 'views/indexView/indexView';
 @import 'views/personView/personView';
@@ -39,6 +40,7 @@ body {
 }
 
 #container {
+  display: inline-block;
   height: 100%;
   width: 100%;
   padding-bottom: 50px;
