@@ -64,14 +64,14 @@ export default class MovieView extends View {
     constructor(eventBus, type) {
         super(template, eventBus);
         this.type = type;
+        this.id = 0;
 
         this.userReviewComponent = new UserReviewComponent(type);
         this.reviewsComponent = new ReviewsComponent(type);
     }
 
     render(root) {
-        const id = location.pathname.split('/').pop();
-        Api.getMovie(this.type, id).then((res) => {
+        Api.getMovie(this.type, this.id).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
                 });
@@ -99,12 +99,16 @@ export default class MovieView extends View {
 
         super.render(root);
 
-        this.userReviewComponent.setId(id);
+        this.userReviewComponent.setId(this.id);
         const userReviewContainer = document.getElementById("user-review-container");
         this.userReviewComponent.render(userReviewContainer);
 
-        this.reviewsComponent.setId(id);
+        this.reviewsComponent.setId(this.id);
         const reviewsContainer = document.getElementById("reviews-container");
         this.reviewsComponent.render(reviewsContainer);
+    }
+
+    setId(id) {
+        this.id = id;
     }
 }

@@ -112,7 +112,7 @@ export default class Api {
 
     static getUserReview(type, id) {
         return Network.doGet({
-            url: `/${type}/${id}/user/review`,
+            url: `/${type}/${id}/reviews/user`,
         });
     }
 

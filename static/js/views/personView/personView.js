@@ -187,12 +187,11 @@ const data = {
 export default class PersonView extends View {
     constructor(eventBus) {
         super(template, eventBus);
+        this.id = 0;
     }
 
     render(root) {
-
-        const id = location.pathname.split('/').pop();
-        Api.getPerson(id).then((res) => {
+        Api.getPerson(this.id).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
                 });
@@ -217,5 +216,9 @@ export default class PersonView extends View {
             list: this.data.series,
         });
         seriesSwiper.render(listsContainer);
+    }
+
+    setId(id) {
+        this.id = id;
     }
 }

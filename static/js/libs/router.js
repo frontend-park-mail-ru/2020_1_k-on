@@ -1,3 +1,6 @@
+import MovieView from "views/movieView/movieView";
+import PersonView from 'views/personView/personView';
+
 export default class Router {
     constructor(root) {
         this.root = root;
@@ -57,7 +60,13 @@ export default class Router {
         for (let key of this.routes.keys()) {
             if (path.match(key)) {
                 this.currentRoute = path;
-                this.routes.get(key).view.render(this.root);
+
+                const view = this.routes.get(key).view;
+                if (view instanceof MovieView || view instanceof PersonView) {
+                    view.setId(this.currentRoute.split('/').pop());
+                }
+                view.render(this.root);
+
                 window.history.pushState(null, null, path);
                 return;
             }
