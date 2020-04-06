@@ -39,9 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/', controllers.index.view);
     router.add('/series', controllers.seriesList.view);
     router.add('/films', controllers.filmsList.view);
-    router.add('/series/1', controllers.series.view);
-    router.add('/films/1', controllers.movie.view);
-    router.add('/persons/1', controllers.person.view);
+    router.add('/series/<int>', controllers.series.view);
+    router.add('/films/<int>', controllers.movie.view);
+    router.add('/persons/<int>', controllers.person.view);
+    router.add('/series/<string>', controllers.seriesList.view);
+    router.add('/films/<string>', controllers.series.view);
 
     navbar.render(header);
     router.start();
