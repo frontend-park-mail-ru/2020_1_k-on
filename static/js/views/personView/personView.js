@@ -194,28 +194,31 @@ export default class PersonView extends View {
         Api.getPerson(this.id).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
+                    this.data = res.body;
+                    super.render(root);
+
+                    const listsContainer = document.getElementById('person-lists-container');
+
+                    if (this.data.films) {
+                        const filmsSwiper = new SwiperComponent({
+                            name: 'Фильмы с участием актера',
+                            list: this.data.films,
+                        });
+                        filmsSwiper.render(listsContainer);
+                    }
+
+                    if (this.data.series) {
+                        const seriesSwiper = new SwiperComponent({
+                            name: 'Сериалы с участием актера',
+                            list: this.data.series,
+                        });
+                        seriesSwiper.render(listsContainer);
+                    }
                 });
             } else {
                 console.log('something went wrong');
             }
         });
-
-        this.data = data;
-        super.render(root);
-
-        const listsContainer = document.getElementById('person-lists-container');
-
-        const filmsSwiper = new SwiperComponent({
-            name: 'Фильмы с участием актера',
-            list: this.data.films,
-        });
-        filmsSwiper.render(listsContainer);
-
-        const seriesSwiper = new SwiperComponent({
-            name: 'Сериалы с участием актера',
-            list: this.data.series,
-        });
-        seriesSwiper.render(listsContainer);
     }
 
     setId(id) {

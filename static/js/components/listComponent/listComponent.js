@@ -118,22 +118,22 @@ export default class ListComponent extends Component {
 
     render(root) {
         Api.getList(this.type, {
-            genre: this.chosenFilters.genre.reference,
+            maingenre: this.chosenFilters.genre.reference,
             year: this.chosenFilters.year.reference,
-            ordering: this.chosenFilters.ordering.reference,
+            order: this.chosenFilters.ordering.reference,
             page: '1',
         })
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     res.json().then((res) => {
+                        this.data.list = res.body;
+                        this.data.type = this.type;
+                        super.render(root);
                     });
                 } else {
                     console.log('something went wrong');
                 }
             });
-
-        this.data = data;
-        super.render(root);
     }
 
     changeFilter(filterName, name, reference) {
@@ -146,5 +146,12 @@ export default class ListComponent extends Component {
 
     setDefaultFilters() {
         this.chosenFilters = DEFAULT_FILTERS;
+    }
+
+    setFilter(filterName, name, reference) {
+        this.chosenFilters[filterName] = {
+            name: name,
+            reference: reference,
+        };
     }
 }

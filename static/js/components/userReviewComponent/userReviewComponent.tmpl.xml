@@ -25,7 +25,7 @@
                             <span class="review-form__star">
 
                                 <fest:choose>
-                                    <fest:when test="i <= data.review.rate">
+                                    <fest:when test="i <= data.review.rating">
                                         <div class="review-form__star-icon review-form__star-icon_active"
                                              data-value="{i}">
 
@@ -59,7 +59,7 @@
 
                 <fest:if test="data.review">
                     <div class="review-info__text">
-                        <fest:value>data.review.text</fest:value>
+                        <fest:value>data.review.body</fest:value>
                     </div>
 
                     <!--                    <button class="review-info__edit-button">Изменить отзыв</button>-->

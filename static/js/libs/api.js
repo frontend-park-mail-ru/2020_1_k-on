@@ -120,7 +120,7 @@ export default class Api {
         return Network.doPost({
             url: `/${type}/${id}/reviews`,
             body: {
-                'rating': rate,
+                'rating': parseFloat(rate),
                 'body': text,
             },
         });

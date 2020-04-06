@@ -10,14 +10,14 @@ const data = {
     russianName: 'Острые предметы',
     englishName: 'Sharp objects',
     seasons: '2',
-    trailerLink: 'https://www.youtube.com/embed/78oHFwuBtyU?fs=0',
+    trailerLink: '78oHFwuBtyU?fs=0',
     yearFirst: '2018',
     yearLast: '0',
     country: 'США',
     ageLimit: '18',
     mainGenre: {
-        name: 'Триллеры',
-        reference: 'thriller'
+        name: 'Документальные',
+        reference: 'documentary'
     },
     description: `Мини-сериал от режиссера «Большой маленькой лжи» Жан-Марка
         Валле, снятый по мотивам романа автора «Исчезнувшей» Гиллиан Флинн.
@@ -54,8 +54,8 @@ const data = {
     ],
     genres: [
         {
-            name: 'Триллеры',
-            reference: 'thriller',
+            name: 'Документальные',
+            reference: 'documentary',
         },
     ],
 };
@@ -74,38 +74,37 @@ export default class MovieView extends View {
         Api.getMovie(this.type, this.id).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
+                    this.data = res.body;
+                    this.data.type = this.type;
+                    this.data.path = [
+                        {
+                            name: 'Главная',
+                            reference: '/',
+                        },
+                        {
+                            name: this.type === 'series' ? 'Сериалы' : 'Фильмы',
+                            reference: `/${this.type}`,
+                        },
+                        {
+                            name: this.data.genres[0].name,
+                            reference: `/${this.data.type}/${this.data.genres[0].reference}`,
+                        },
+                    ];
+
+                    super.render(root);
+
+                    this.userReviewComponent.setId(this.id);
+                    const userReviewContainer = document.getElementById("user-review-container");
+                    this.userReviewComponent.render(userReviewContainer);
+
+                    this.reviewsComponent.setId(this.id);
+                    const reviewsContainer = document.getElementById("reviews-container");
+                    this.reviewsComponent.render(reviewsContainer);
                 });
             } else {
                 console.log('something went wrong');
             }
         });
-
-        this.data = data;
-        this.data.type = this.type;
-        this.data.path = [
-            {
-                name: 'Главная',
-                reference: '/',
-            },
-            {
-                name: this.type === 'series' ? 'Сериалы' : 'Фильмы',
-                reference: `/${this.type}`,
-            },
-            {
-                name: this.data.mainGenre.name,
-                reference: this.data.mainGenre.reference,
-            },
-        ];
-
-        super.render(root);
-
-        this.userReviewComponent.setId(this.id);
-        const userReviewContainer = document.getElementById("user-review-container");
-        this.userReviewComponent.render(userReviewContainer);
-
-        this.reviewsComponent.setId(this.id);
-        const reviewsContainer = document.getElementById("reviews-container");
-        this.reviewsComponent.render(reviewsContainer);
     }
 
     setId(id) {

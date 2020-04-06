@@ -2,92 +2,7 @@ import View from 'views/view';
 import template from './listView.tmpl.xml';
 import Api from 'libs/api';
 import ListComponent from 'components/listComponent/listComponent';
-import {SUCCESS_STATUS} from 'libs/constants';
-
-const data = {
-    filters: {
-        genre: [
-            {
-                name: 'Все жанры',
-                reference: 'all',
-            },
-            {
-                name: 'Анимация',
-                reference: 'all',
-            },
-            {
-                name: 'Биографические',
-                reference: 'all',
-            },
-            {
-                name: 'Боевики',
-                reference: 'all',
-            },
-            {
-                name: 'Военные',
-                reference: 'all',
-            },
-            {
-                name: 'Детективы',
-                reference: 'all',
-            },
-            {
-                name: 'Документальные',
-                reference: 'all',
-            },
-            {
-                name: 'Драмы',
-                reference: 'all',
-            },
-            {
-                name: 'Исторические',
-                reference: 'all',
-            },
-            {
-                name: 'Комедии',
-                reference: 'all',
-            },
-            {
-                name: 'Криминал',
-                reference: 'all',
-            },
-            {
-                name: 'Мелодрамы',
-                reference: 'all',
-            },
-        ],
-        year: [
-            {
-                name: 'Все годы',
-                reference: 'all',
-            },
-            {
-                name: '2020',
-                reference: '2020',
-            },
-            {
-                name: '2019',
-                reference: '2019',
-            },
-            {
-                name: '2018',
-                reference: '2018',
-            },
-            {
-                name: '2017',
-                reference: '2017',
-            },
-            {
-                name: '2016',
-                reference: '2016',
-            },
-            {
-                name: '2015',
-                reference: '2015',
-            },
-        ],
-    },
-};
+import {DEFAULT_FILTERS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class ListView extends View {
     constructor(eventBus, type) {
@@ -101,6 +16,7 @@ export default class ListView extends View {
             'year',
             'ordering',
         ];
+        this.data.chosenFilters = DEFAULT_FILTERS;
         this.listComponent = new ListComponent(this.type);
     }
 
@@ -108,50 +24,70 @@ export default class ListView extends View {
         Api.getFilters(this.type).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
+                    this.data.filters = {};
+                    this.data.filters.genre = res.body.genres;
+                    this.data.filters.genre.unshift({
+                        name: 'Все жанры',
+                        reference: '%',
+                    });
+                    this.data.filters.year = [
+                        {
+                            name: 'Все годы',
+                            reference: '%',
+                        },
+                    ];
+                    for (let year = parseInt(res.body.filters.maxyear); year >= parseInt(res.body.filters.minyear); year--) {
+                        this.data.filters.year.push({
+                            name: year,
+                            reference: year,
+                        });
+                    }
+                    this.data.filters.ordering = [
+                        {
+                            name: 'По рейтингу',
+                            reference: 'rating',
+                        },
+                        // {
+                        //     name: 'По новизне',
+                        //     reference: 'novelty',
+                        // },
+                        {
+                            name: 'По рейтингу IMDb',
+                            reference: 'imdbrating',
+                        },
+                    ];
+
+                    this.listComponent.setDefaultFilters();
+                    this.setDefaultFilters();
+                    this.checkGenre();
+
+                    super.render(root);
+
+                    for (const filterButton of document.getElementsByClassName(
+                        'filter-button'
+                    )) {
+                        filterButton.addEventListener(
+                            'click',
+                            this.onFilterButtonClick.bind(this)
+                        );
+                    }
+
+                    for (const filterSubmenu of document.getElementsByClassName(
+                        'filter-submenu'
+                    )) {
+                        filterSubmenu.addEventListener(
+                            'click',
+                            this.onFilterValueClick.bind(this)
+                        );
+                    }
+
+                    const listContainer = document.getElementById('list-container');
+                    this.listComponent.render(listContainer);
                 });
             } else {
                 console.log('something went wrong');
             }
         });
-
-        this.data.filters = data.filters;
-        this.data.filters.ordering = [
-            {
-                name: 'По рейтингу',
-                reference: 'rating',
-            },
-            {
-                name: 'По новизне',
-                reference: 'novelty',
-            },
-            {
-                name: 'По рейтингу IMDb',
-                reference: 'imdbRating',
-            },
-        ];
-        super.render(root);
-
-        for (const filterButton of document.getElementsByClassName(
-            'filter-button'
-        )) {
-            filterButton.addEventListener(
-                'click',
-                this.onFilterButtonClick.bind(this)
-            );
-        }
-
-        for (const filterSubmenu of document.getElementsByClassName(
-            'filter-submenu'
-        )) {
-            filterSubmenu.addEventListener(
-                'click',
-                this.onFilterValueClick.bind(this)
-            );
-        }
-
-        this.listComponent.setDefaultFilters();
-        const listContainer = document.getElementById('list-container');
-        this.listComponent.render(listContainer);
     }
 
     onFilterButtonClick(evt) {
@@ -192,6 +128,9 @@ export default class ListView extends View {
         filterLink.classList.add('filter-submenu__item_active');
 
         const filterName = submenu.dataset.name;
+        if (filterName === 'genre') {
+            this.eventBus.publish('changeGenre', filterLink.dataset.reference);
+        }
         this.listComponent.changeFilter(
             filterName,
             filterLink.innerText,
@@ -215,5 +154,28 @@ export default class ListView extends View {
         filterButton.classList.remove('filter-button_active');
         arrow.classList.remove('filter-button__arrow_active');
         submenu.classList.remove('filter-submenu_active');
+    }
+
+    setDefaultFilters() {
+        this.data.chosenFilters = DEFAULT_FILTERS;
+    }
+
+    checkGenre() {
+        const genre = location.pathname.split('/').pop();
+
+        if (genre !== this.type) {
+            for (let genreFilter of this.data.filters.genre) {
+                if (genreFilter.reference === genre) {
+                    this.data.chosenFilters['genre'] = {
+                        name: genreFilter.name,
+                        reference: genre,
+                    };
+
+                    this.listComponent.setFilter('genre', genreFilter.name, genre);
+
+                    break;
+                }
+            }
+        }
     }
 }

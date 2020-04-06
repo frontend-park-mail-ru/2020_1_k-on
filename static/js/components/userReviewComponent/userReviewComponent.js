@@ -4,10 +4,10 @@ import Api from 'libs/api';
 import {SUCCESS_STATUS} from 'libs/constants';
 
 const data = {
-    // user: {
-    //     username: 'AliceSitedge',
-    //     avatar: '/static/img/avatar.jpg',
-    // },
+    user: {
+        username: 'AliceSitedge',
+        avatar: '/static/img/avatar.jpg',
+    },
     // review: {
     //     rate: 5,
     //     text: `Странный сериал`,
@@ -23,32 +23,38 @@ export default class UserReviewComponent extends Component {
     }
 
     render(root) {
-        Api.getUserReview(this.type, this.id).then((res) => {
+        this.data = {};
+
+        Api.getUserData().then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
-                });
-            } else {
-                console.log('something went wrong');
+                    this.data.user = res.body;
+
+                    Api.getUserReview(this.type, this.id).then((res) => {
+                        if (res.status === SUCCESS_STATUS) {
+                            res.json().then((res) => {
+                                this.data.review = res.body;
+
+                                super.render(root);
+                            });
+                        } else {
+                            super.render(root);
+
+                            for (let starIcon of document.getElementsByClassName('review-form__star-icon')) {
+                                starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
+                                starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
+                                starIcon.addEventListener('click', this.onStarClick.bind(this));
+                            }
+
+                            const submitButton = document.getElementsByClassName('review-form__button')[0];
+                            submitButton.addEventListener('click', this.onSubmit.bind(this));
+
+                            console.log('something went wrong');
+                        }
+                    });
+                })
             }
         });
-
-        this.data = data;
-        super.render(root);
-
-        if (!this.data.user) {
-            return;
-        }
-
-        if (!this.data.review) {
-            for (let starIcon of document.getElementsByClassName('review-form__star-icon')) {
-                starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
-                starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
-                starIcon.addEventListener('click', this.onStarClick.bind(this));
-            }
-
-            const submitButton = document.getElementsByClassName('review-form__button')[0];
-            submitButton.addEventListener('click', this.onSubmit.bind(this));
-        }
     }
 
     setId(id) {
@@ -105,7 +111,6 @@ export default class UserReviewComponent extends Component {
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     res.json().then((res) => {
-                        console.log(res);
                     });
                 } else {
                     console.log('something went wrong');
@@ -113,8 +118,8 @@ export default class UserReviewComponent extends Component {
             });
 
         this.data.review = {
-            rate: this.rate,
-            text: reviewText,
+            rating: this.rate,
+            body: reviewText,
         };
         this.render(this.root);
     }

@@ -19,7 +19,7 @@
             <fest:for iterate="data.filtersList" index="i" value="filterName">
                 <div class="filter-button" data-name="{filterName}">
                     <span class="filter-button__filter-value">
-                        <fest:value>data.filters[filterName][0].name</fest:value>
+                        <fest:value>data.chosenFilters[filterName].name</fest:value>
                     </span>
                     <div class="filter-button__arrow"/>
                 </div>
@@ -28,7 +28,7 @@
                     <fest:for iterate="data.filters[filterName]" index="j" value="filterItem">
                         <div>
                             <fest:choose>
-                                <fest:when test="j === 0">
+                                <fest:when test="filterItem.name === data.chosenFilters[filterName].name">
                                     <span class="filter-submenu__item filter-submenu__item_active"
                                           data-reference="{filterItem.reference}">
                                         <fest:value>filterItem.name</fest:value>

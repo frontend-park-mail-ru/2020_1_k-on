@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/films/<int>', controllers.movie.view);
     router.add('/persons/<int>', controllers.person.view);
     router.add('/series/<string>', controllers.seriesList.view);
-    router.add('/films/<string>', controllers.series.view);
+    router.add('/films/<string>', controllers.filmsList.view);
 
     navbar.render(header);
     router.start();
