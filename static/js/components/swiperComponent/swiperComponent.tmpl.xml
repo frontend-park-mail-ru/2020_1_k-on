@@ -36,13 +36,13 @@
                                 <fest:value>card.country</fest:value>,
                             </div>
                             <div class="series-card__content-row">
-                                <fest:value>card.genre</fest:value>
+                                <fest:value>card.mainGenre</fest:value>
                             </div>
                         </div>
                     </div>
 
                     <span class="series-card__name">
-                        <fest:value>card.name</fest:value>
+                        <fest:value>card.russianName</fest:value>
                     </span>
                 </a>
             </fest:for>

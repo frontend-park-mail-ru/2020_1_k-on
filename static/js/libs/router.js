@@ -73,7 +73,7 @@ export default class Router {
         }
 
         this.currentRoute = '/';
-        this.routes.get(/\//).view.render(this.root);
+        this.routes.get(/^\/$/).view.render(this.root);
         window.history.pushState(null, null, '/');
         console.log(`404: ${path} not found`);
     }
