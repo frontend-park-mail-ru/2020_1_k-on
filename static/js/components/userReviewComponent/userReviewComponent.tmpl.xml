@@ -1,0 +1,78 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <fest:if test="data.user">
+
+        <div class="reviews__headline">
+            <fest:if test="data.review">
+                Ваш отзыв
+            </fest:if>
+
+            <fest:if test="!data.review">
+                Оставьте свой отзыв
+            </fest:if>
+        </div>
+
+        <div class="write-review-block review-layout">
+            <div class="write-review-block__avatar avatar" style="background-image: url({data.user.avatar})"/>
+
+            <div class="review-info">
+                <div class="review-info__header">
+                    <div class="review-info__username">
+                        <fest:value>data.user.username</fest:value>
+                    </div>
+
+                    <div class="review-form__rate">
+                        <fest:for from="1" to="10" index="i">
+                            <span class="review-form__star">
+
+                                <fest:choose>
+                                    <fest:when test="i <= data.review.rating">
+                                        <div class="review-form__star-icon review-form__star-icon_active"
+                                             data-value="{i}">
+
+                                            <fest:attributes>
+                                                <fest:if test="!data.review">
+                                                    <fest:attribute name="style" value="cursor: pointer"/>
+                                                </fest:if>
+                                            </fest:attributes>
+                                        </div>
+                                    </fest:when>
+
+                                    <fest:otherwise>
+                                        <div class="review-form__star-icon" data-value="{i}">
+
+                                            <fest:attributes>
+                                                <fest:if test="!data.review">
+                                                    <fest:attribute name="style" value="cursor: pointer"/>
+                                                </fest:if>
+                                            </fest:attributes>
+                                        </div>
+                                    </fest:otherwise>
+                                </fest:choose>
+
+                                <span class="review-form__star-value">
+                                    <fest:value>i</fest:value>
+                                </span>
+                            </span>
+                        </fest:for>
+                    </div>
+                </div>
+
+                <fest:if test="data.review">
+                    <div class="review-info__text">
+                        <fest:value>data.review.body</fest:value>
+                    </div>
+
+                    <!--                    <button class="review-info__edit-button">Изменить отзыв</button>-->
+                </fest:if>
+
+                <fest:if test="!data.review">
+                    <form class="review-form">
+                        <textarea class="review-form__input" type="text" id="text" placeholder="Текст отзыва"
+                                  required="true" rows="4"/>
+                        <button class="review-form__button" type="submit">Отправить</button>
+                    </form>
+                </fest:if>
+            </div>
+        </div>
+    </fest:if>
+</fest:template>

@@ -1,0 +1,82 @@
+@import 'css/variables';
+@import 'css/mixins';
+
+.write-review-block {
+  margin-bottom: 20px;
+  border-top: 0.2px solid $text-dark-color;
+
+  &__avatar {
+    flex-shrink: 0;
+    @include square($size: 70px);
+  }
+}
+
+.review-form {
+  width: 100%;
+
+  &__rate {
+    display: flex;
+  }
+
+  &__star {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: $text-dark-color;
+  }
+
+  &__star-icon {
+    padding-right: 5px;
+    width: 27px;
+    height: 25px;
+    background: url(/static/img/star-icon.svg) no-repeat center;
+    transition: background-image 0.2s ease-in-out;
+
+    &_active {
+      background-image: url(/static/img/star-icon-active.svg);
+    }
+  }
+
+  &__star-value {
+    cursor: default;
+    display: none;
+  }
+
+  &__input {
+    position: relative;
+    margin-top: $padding-between-rows;
+    margin-bottom: 3 * $padding-between-rows;
+    width: 100%;
+    display: block;
+    border: 0;
+    border-bottom: 2px solid #eaeea9;
+    background: none;
+    font-family: inherit;
+    font-size: 18px;
+    color: $text-main-color;
+    transition: border-bottom 0.15s ease-in-out;
+
+    &::placeholder {
+      color: $text-dark-color;
+    }
+
+    &:focus {
+      border-bottom: 2px solid $text-bright-color;
+    }
+  }
+
+  &__button {
+    padding: 0.5em 1.5em;
+    @include gradientButton;
+    font-size: 18px;
+  }
+}
+
+.review-info__edit-button {
+  margin-top: 20px;
+  @include gradientButton;
+  min-height: 0;
+  padding: 0.5em 0.7em;
+  font-size: 16px;
+}

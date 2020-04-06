@@ -100,11 +100,11 @@ export const SLIDER_DISTANCE = 400;
 export const DEFAULT_FILTERS = {
     genre: {
         name: 'Все жанры',
-        reference: 'all',
+        reference: '%',
     },
     year: {
         name: 'Все годы',
-        reference: 'all',
+        reference: '%',
     },
     ordering: {
         name: 'По рейтингу',

@@ -4,6 +4,8 @@
 @import 'mixins';
 @import 'components/navbar/navbar';
 @import 'components/listComponent/listComponent';
+@import 'components/reviewsComponent/reviewsComponent';
+@import 'components/userReviewComponent/userReviewComponent';
 @import 'components/swiperComponent/swiperComponent';
 @import 'components/sliderComponent/sliderComponent';
 @import 'views/listView/listView';
@@ -12,6 +14,7 @@
 @import 'views/profileSettingsView/profileSettingsView';
 @import 'views/authView/authView';
 @import 'views/indexView/indexView';
+@import 'views/personView/personView';
 @import 'fonts/fonts';
 
 body {

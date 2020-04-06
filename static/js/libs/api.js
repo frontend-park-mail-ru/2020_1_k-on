@@ -86,7 +86,7 @@ export default class Api {
 
     static getFilters(type) {
         return Network.doGet({
-            url: `/${type}/filters`,
+            url: `/${type}/filter`,
         });
     }
 
@@ -95,6 +95,40 @@ export default class Api {
             .map((key) => (`${key}=${params[key]}`)).join('&');
         return Network.doGet({
             url: `/${type}?${filtersString}`,
+        });
+    }
+
+    static getMovie(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}`,
+        });
+    }
+
+    static getReviews(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}/reviews`,
+        });
+    }
+
+    static getUserReview(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}/reviews/user`,
+        });
+    }
+
+    static createReview(type, id, rate, text) {
+        return Network.doPost({
+            url: `/${type}/${id}/reviews`,
+            body: {
+                'rating': parseFloat(rate),
+                'body': text,
+            },
+        });
+    }
+
+    static getPerson(id) {
+        return Network.doGet({
+            url: `/persons/${id}`,
         });
     }
 }

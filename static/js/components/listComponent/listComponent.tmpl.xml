@@ -1,28 +1,40 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-        <fest:for iterate="data" index="i" value="item">
-            <a class="series-card" href="/movie">
-                <div class="series-card__image" style="background-image: url({item.image})">
-                    <span class="series-card__age-limit">
-                        <fest:value>item.ageLimit</fest:value>+
-                    </span>
-                    <div class="series-card__gradient"/>
+    <fest:for iterate="data.list" index="i" value="item">
+        <a class="series-card" href="/{data.type}/{item.id}">
+            <div class="series-card__image" style="background-image: url({item.image})">
+                <span class="series-card__age-limit">
+                    <fest:value>item.ageLimit</fest:value>+
+                </span>
+                <div class="series-card__gradient"/>
 
-                    <div class="series-card__content">
-                        <div class="series-card__content-row">
-                            <fest:value>item.year</fest:value>,
-                        </div>
-                        <div class="series-card__content-row">
-                            <fest:value>item.country</fest:value>,
-                        </div>
-                        <div class="series-card__content-row">
-                            <fest:value>item.genre</fest:value>
-                        </div>
+                <div class="series-card__content">
+                    <div class="series-card__content-row">
+                        <fest:if test="data.type === 'series'">
+                            <fest:value>item.yearFirst</fest:value>
+                            <fest:if test="item.yearFirst !== item.yearLast">
+                                <fest:space/>-
+                                <fest:space/>
+                                <fest:value>item.yearLast</fest:value>
+                            </fest:if>
+                        </fest:if>
+
+                        <fest:if test="data.type === 'films'">
+                            <fest:value>item.year</fest:value>
+                        </fest:if>
+                        ,
+                    </div>
+                    <div class="series-card__content-row">
+                        <fest:value>item.country</fest:value>,
+                    </div>
+                    <div class="series-card__content-row">
+                        <fest:value>item.mainGenre</fest:value>
                     </div>
                 </div>
+            </div>
 
-                <span class="series-card__name">
-                    <fest:value>item.name</fest:value>
-                </span>
-            </a>
-        </fest:for>
+            <span class="series-card__name">
+                <fest:value>item.russianName</fest:value>
+            </span>
+        </a>
+    </fest:for>
 </fest:template>

@@ -4,9 +4,12 @@ import {
     DEFAULT_FILTERS,
     SUCCESS_STATUS,
 } from 'libs/constants';
+import Component from 'components/component';
 
 const data = [
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Лучшие в Лос-Анджелесе',
         'ageLimit': '16',
         'image': '/static/img/series1.jpeg',
@@ -15,6 +18,8 @@ const data = [
         'genre': 'Боевики',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Навстречу тьме',
         'ageLimit': '18',
         'image': '/static/img/series2.jpg',
@@ -23,6 +28,8 @@ const data = [
         'genre': 'Ужасы',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Столкновение',
         'ageLimit': '16',
         'image': '/static/img/series3.jpg',
@@ -31,6 +38,8 @@ const data = [
         'genre': 'Триллеры',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Триггер',
         'ageLimit': '18',
         'image': '/static/img/series4.jpg',
@@ -39,6 +48,8 @@ const data = [
         'genre': 'Драмы',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Лучшие в Лос-Анджелесе',
         'ageLimit': '16',
         'image': '/static/img/series1.jpeg',
@@ -47,6 +58,8 @@ const data = [
         'genre': 'Боевики',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Навстречу тьме',
         'ageLimit': '18',
         'image': '/static/img/series2.jpg',
@@ -55,6 +68,8 @@ const data = [
         'genre': 'Ужасы',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Столкновение',
         'ageLimit': '16',
         'image': '/static/img/series3.jpg',
@@ -63,6 +78,8 @@ const data = [
         'genre': 'Триллеры',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Триггер',
         'ageLimit': '18',
         'image': '/static/img/series4.jpg',
@@ -71,6 +88,8 @@ const data = [
         'genre': 'Драмы',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Лучшие в Лос-Анджелесе',
         'ageLimit': '16',
         'image': '/static/img/series1.jpeg',
@@ -79,6 +98,8 @@ const data = [
         'genre': 'Боевики',
     },
     {
+        'id': '1',
+        'type': 'series',
         'name': 'Навстречу тьме',
         'ageLimit': '18',
         'image': '/static/img/series2.jpg',
@@ -88,32 +109,31 @@ const data = [
     },
 ];
 
-export default class ListComponent {
+export default class ListComponent extends Component {
     constructor(type) {
-        this.tmpl = template;
+        super(template);
         this.type = type;
         this.chosenFilters = DEFAULT_FILTERS;
     }
 
     render(root) {
         Api.getList(this.type, {
-            genre: this.chosenFilters.genre.reference,
+            maingenre: this.chosenFilters.genre.reference,
             year: this.chosenFilters.year.reference,
-            ordering: this.chosenFilters.ordering.reference,
+            order: this.chosenFilters.ordering.reference,
             page: '1',
         })
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     res.json().then((res) => {
+                        this.data.list = res.body;
+                        this.data.type = this.type;
+                        super.render(root);
                     });
                 } else {
                     console.log('something went wrong');
                 }
             });
-
-        this.data = data;
-        this.root = root;
-        this.root.innerHTML = this.tmpl(this.data);
     }
 
     changeFilter(filterName, name, reference) {
@@ -126,5 +146,12 @@ export default class ListComponent {
 
     setDefaultFilters() {
         this.chosenFilters = DEFAULT_FILTERS;
+    }
+
+    setFilter(filterName, name, reference) {
+        this.chosenFilters[filterName] = {
+            name: name,
+            reference: reference,
+        };
     }
 }
