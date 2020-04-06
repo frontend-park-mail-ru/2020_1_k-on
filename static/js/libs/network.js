@@ -46,7 +46,7 @@ export default class Network {
         return fetch(host + url, {
             method: 'PUT',
             credentials: 'include',
-            body: JSON.stringify(body),
+            body: body,
         });
     }
 

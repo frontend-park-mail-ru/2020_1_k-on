@@ -195,10 +195,6 @@ const data = {
             list: cardList,
         },
         {
-            name: 'Первая серия бесплатно',
-            list: cardList,
-        },
-        {
             name: 'Комедии',
             list: cardList,
         },

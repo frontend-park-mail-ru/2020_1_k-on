@@ -1,0 +1,49 @@
+@import 'css/variables';
+
+.user-settings {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 32px 64px;
+  box-sizing: border-box;
+  width: 75%;
+  background-color: rgba(black, 0.2);
+  border-radius: 0 0 24px 24px;
+
+  &__msg {
+    position: absolute;
+    top: 16px;
+    min-height: 36px;
+    width: 100%;
+    padding: 0 48px;
+    box-sizing: border-box;
+    font-family: Montserrat-Medium;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+
+    &_error {
+      color: $error-color;
+    }
+
+    &_success {
+      color: $success-color;
+    }
+  }
+}
+
+.avatar-input {
+  display: none;
+}
+
+.user-avatar {
+
+  &__upload {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+    @include transformScale;
+  }
+}
