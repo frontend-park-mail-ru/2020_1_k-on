@@ -8,22 +8,22 @@
             <fest:for iterate="data" index="i" value="review">
                 <div class="review-block review-layout">
                     <div class="review-block__avatar avatar"
-                         style="background-image: url({review.avatar})"/>
+                         style="background-image: url({review.user.image})"/>
 
                     <div class="review-info">
                         <div class="review-info__header">
                             <div class="review-info__username">
-                                <fest:value>review.username</fest:value>
+                                <fest:value>review.user.username</fest:value>
                             </div>
 
                             <div class="review-info__rate">
-                                <fest:value>review.rate</fest:value>
+                                <fest:value>review.rating</fest:value>
                                 <fest:space/>из<fest:space/>10
                             </div>
                         </div>
 
                         <div class="review-info__text">
-                            <fest:value>review.text</fest:value>
+                            <fest:value>review.body</fest:value>
                         </div>
                     </div>
                 </div>
