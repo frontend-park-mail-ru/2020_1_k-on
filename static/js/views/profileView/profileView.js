@@ -182,7 +182,7 @@ export default class ProfileView extends View {
 
     successRender() {
         if (this.data.avatar !== undefined) {
-            this.data.avatar = 'http://64.225.100.179:3000/static/img/avatar.jpg';
+            this.data.avatar = '/static/img/avatar.jpg';
         }
 
         super.render(this.root);
