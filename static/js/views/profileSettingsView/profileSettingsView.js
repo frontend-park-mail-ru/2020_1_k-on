@@ -2,6 +2,7 @@ import View from 'views/view';
 import validation from 'libs/validation';
 import template from './profileSettingsView.tmpl.xml';
 import Api from 'libs/api';
+import passwordToggler from 'libs/passwordToggler';
 import {
     SUCCESS_STATUS,
     PROFILE_EVENTS,
@@ -12,13 +13,13 @@ import {
 export default class ProfileSettingsView extends View {
     constructor(eventBus) {
         super(template, eventBus);
-        this.validation = validation;
     }
 
     /**
-     * При рендере отправляет запрос на получение данных пользователя
+     * Отправляет запрос на получение данных пользователя
      * в случае успеха - выполняет рендер,
-     * в случае ошибки - направляет на страницу логина
+     * в случае ошибки - направляет на страницу логина,
+     * либо вызывается событие внутренней ошибки сервера
      * @param {HTMLElement} root
      */
     render(root) {
@@ -66,14 +67,42 @@ export default class ProfileSettingsView extends View {
             'user-avatar__msg'
         )[0];
 
-        this.avatarInput = document.getElementById('avatar-input');
-        this.avatarInput.addEventListener(
+        document.getElementById('avatar-input').addEventListener(
             'change',
             this.onUploadAvatar.bind(this)
         );
 
-        this.form = this.root.getElementsByClassName('auth-form')[0];
-        this.form.addEventListener('submit', this.onSubmit.bind(this));
+        this.root.getElementsByClassName('auth-form')[0].addEventListener(
+            'submit',
+            this.onSubmit.bind(this)
+        );
+        this.root.getElementsByClassName('auth-form')[1].addEventListener(
+            'submit',
+            this.onModalSubmit.bind(this)
+        );
+
+        this.modalWrapper = this.root.getElementsByClassName(
+            'modal-password-wrapper'
+        )[0];
+
+        this.root.getElementsByClassName(
+            'user-settings__change-password'
+        )[0].addEventListener(
+            'click',
+            this.openChangePasswordModal.bind(this)
+        );
+
+        Array.from(this.root.getElementsByClassName('auth-form__eye'))
+            .forEach((elem) => {
+                elem.addEventListener('click', passwordToggler);
+            });
+
+        this.root.getElementsByClassName(
+            'modal-password__close'
+        )[0].addEventListener(
+            'click',
+            this.closeChangePasswordModal.bind(this),
+        );
     }
 
     /**
@@ -82,8 +111,9 @@ export default class ProfileSettingsView extends View {
      * @param {boolean} isError
      */
     showMessage(msg, isError = false) {
-        this.msgElement.classList.add(
-            `user-avatar__msg_${isError ? 'error' : 'success'}`
+        this.msgElement.classList.replace(
+            `user-avatar__msg_${isError ? 'success' : 'error'}`,
+            `user-avatar__msg_${isError ? 'error' : 'success'}`,
         );
         this.msgElement.textContent = msg;
         this.msgElement.style.opacity = '1';
@@ -102,14 +132,19 @@ export default class ProfileSettingsView extends View {
      */
     onSubmit(event) {
         event.preventDefault();
-        const validationResult = this.validation();
+        const form = event.target;
+        const validationResult = validation(form);
 
         if (!validationResult) {
             return;
         }
 
-        const login = document.getElementById('login');
-        const email = document.getElementById('email');
+        const login = form.getElementsByClassName(
+            'auth-form__input_username'
+        )[0];
+        const email = form.getElementsByClassName(
+            'auth-form__input_email'
+        )[0];
 
         Api.updateUser({
             login: login.value,
@@ -126,6 +161,51 @@ export default class ProfileSettingsView extends View {
                     login.value = this.username;
                     email.value = this.email;
                     this.showMessage('Такой пользователь уже существует', true);
+                }
+            })
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+            });
+    }
+
+    /**
+     * Вызывается при подтвреждении изменения пароля
+     * @param {object} event
+     */
+    onModalSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const validationResult = validation(form);
+
+        if (!validationResult) {
+            return;
+        }
+
+        const password = form.getElementsByClassName(
+            'auth-form__input_password'
+        )[0];
+        const repeatPassword = form.getElementsByClassName(
+            'auth-form__input_repeat-password'
+        )[0];
+
+        if (password.value !== repeatPassword.value) {
+            const formError = this.root.getElementsByClassName(
+                'modal-password__error'
+            )[0];
+            formError.style.opacity = '1';
+            formError.innerHTML = 'Пароли не совпадают';
+            return;
+        }
+
+        Api.updateUser({
+            password: password.value,
+        })
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    this.closeChangePasswordModal();
+                    this.showMessage('Пароль успешно изменен');
+                } else {
+                    return Promise.reject(res);
                 }
             })
             .catch((err) => {
@@ -159,5 +239,27 @@ export default class ProfileSettingsView extends View {
             .catch((err) => {
                 this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
+    }
+
+    /**
+     * Открытие модального окна для изменения пароля
+     */
+    openChangePasswordModal() {
+        this.modalWrapper.style.visibility = 'visible';
+        document.body.style.overflow = 'hidden';
+    }
+
+    /**
+     * Закрытие модального окна для изменения пароля
+     */
+    closeChangePasswordModal() {
+        this.root.getElementsByClassName(
+            'auth-form__input_password'
+        )[0].value = '';
+        this.root.getElementsByClassName(
+            'auth-form__input_repeat-password'
+        )[0].value = '';
+        this.modalWrapper.style.visibility = 'hidden';
+        document.body.style.overflow = 'auto';
     }
 }
