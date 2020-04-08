@@ -14,7 +14,6 @@ export default class AuthView extends View {
     } = {}) {
         super(template, eventBus);
         this.validation = validation;
-        this.passwordToggler = passwordToggler;
         this.data = data;
         this.onSuccesEvents = onSuccessEvents;
         this.apiMethod = apiMethod;
@@ -94,7 +93,9 @@ export default class AuthView extends View {
         this.form = this.root.getElementsByClassName('auth-form')[0];
         this.form.addEventListener('submit', this.onSubmit.bind(this));
 
-        this.toggle = this.root.getElementsByClassName('auth-form__eye')[0];
-        this.toggle.addEventListener('click', this.passwordToggler);
+        Array.from(this.root.getElementsByClassName('auth-form__eye'))
+            .forEach((elem) => {
+                elem.addEventListener('click', passwordToggler);
+            });
     }
 }
