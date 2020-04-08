@@ -32,7 +32,7 @@
 
             <div class="main-slider-content page-layout">
                 <div class="main-slider-content__title">
-                    <fest:value>recommendation.name</fest:value>
+                    <fest:value>recommendation.russianName</fest:value>
                 </div>
                 <div class="main-slider-content__description">
                     «<fest:value>recommendation.description</fest:value>»

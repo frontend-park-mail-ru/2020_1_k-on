@@ -10,32 +10,26 @@ export default class SliderComponent {
     render(root) {
         this.root = root;
 
-        this.slider = document.createElement('div');
-        this.slider.classList.add('main-slider');
-        this.slider.innerHTML += this.tmpl(this.data);
+        const slider = document.createElement('div');
+        slider.classList.add('main-slider');
+        slider.innerHTML += this.tmpl(this.data);
 
-        this.slides = this.slider.getElementsByClassName(
-            'main-slider__wrapper'
-        );
+        this.slides = slider.getElementsByClassName('main-slider__wrapper');
 
         this.curIndex = 0;
 
         this.curSlide = this.slides[this.curIndex];
         this.curSlide.classList.remove('hidden');
 
-        this.leftArrow = this.slider.getElementsByClassName(
-            'main-slider__arrows_left'
-        )[0];
-        this.leftArrow.addEventListener(
-            'click', this.doSlide.bind(this, 'left')
-        );
+        slider.getElementsByClassName('main-slider__arrows_left')[0]
+            .addEventListener(
+                'click', this.doSlide.bind(this, 'left')
+            );
 
-        this.rightArrow = this.slider.getElementsByClassName(
-            'main-slider__arrows_right'
-        )[0];
-        this.rightArrow.addEventListener(
-            'click', this.doSlide.bind(this, 'right')
-        );
+        slider.getElementsByClassName('main-slider__arrows_right')[0]
+            .addEventListener(
+                'click', this.doSlide.bind(this, 'right')
+            );
 
         this.slideInterval = setInterval(
             this.doSlide.bind(this),
@@ -43,7 +37,7 @@ export default class SliderComponent {
             'right'
         );
 
-        this.root.appendChild(this.slider);
+        this.root.appendChild(slider);
     }
 
     doSlide(direction) {

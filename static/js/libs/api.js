@@ -49,6 +49,14 @@ export default class Api {
     }
 
     /**
+     * Выполняет запрос на получения данных страницы index
+     * @return {Promise<Response>}
+     */
+    static getIndex() {
+        return Network.doGet();
+    }
+
+    /**
      * Выполняет запрос на обновление данных пользователя
      * @param {string} login
      * @param {string} email

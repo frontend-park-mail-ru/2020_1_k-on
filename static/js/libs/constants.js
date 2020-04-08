@@ -36,6 +36,10 @@ export const PROFILE_EVENTS = {
     internalError: 'internalError',
 };
 
+export const INDEX_EVENTS = {
+    internalError: 'internalError',
+};
+
 export const MAX_BG_IMGS = 5;
 
 export const BG_IMG_KEY = 'bg_img';
