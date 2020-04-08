@@ -9,6 +9,21 @@
   width: 75%;
   background-color: rgba(black, 0.2);
   border-radius: 0 0 24px 24px;
+}
+
+.user-avatar {
+
+  &__upload {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+    @include transformScale;
+  }
+
+  &__input {
+    display: none;
+  }
 
   &__msg {
     position: absolute;
@@ -30,20 +45,5 @@
     &_success {
       color: $success-color;
     }
-  }
-}
-
-.avatar-input {
-  display: none;
-}
-
-.user-avatar {
-
-  &__upload {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 1;
-    @include transformScale;
   }
 }

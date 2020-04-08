@@ -4,19 +4,6 @@
   display: flex;
   margin-top: 128px;
   justify-content: center;
-
-  &__avatar {
-    display: inline-block;
-    @media (max-width: 700px) {
-      width: 90%;
-    }
-    @media (min-width: 700px) and (max-width: 1200px) {
-      width: 50%;
-    }
-    @media (min-width: 1200px) {
-      width: 36%;
-    }
-  }
 }
 
 .user-info {
@@ -32,15 +19,6 @@
   }
   @media (min-width: 1200px) {
     width: 36%;
-  }
-
-  &__name {
-    font-family: Montserrat-Medium;
-    font-weight: bold;
-    font-size: 1.7em;
-    position: absolute;
-    bottom: 36px;
-    text-transform: uppercase;
   }
 }
 
@@ -60,6 +38,15 @@
     height: 100%;
     background-image: linear-gradient(to top, $bg-color, rgba($bg-color, 0));
   }
+
+  &__name {
+    font-family: Montserrat-Medium;
+    font-weight: bold;
+    font-size: 1.7em;
+    position: absolute;
+    bottom: 36px;
+    text-transform: uppercase;
+  }
 }
 
 .user-actions {
@@ -69,25 +56,25 @@
   background-color: rgba(black, 0.2);
   border-radius: 0 0 24px 24px;
 
-  &__gear {
+  &-gear {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
 
-    &-svg {
+    &__svg {
       fill: $text-bright-color;
       @include transformScale;
     }
   }
 
-  &__logout {
+  &-logout {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
 
-    &-svg {
+    &__svg {
       fill: $text-bright-color;
       @include transformScale;
     }

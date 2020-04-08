@@ -56,7 +56,7 @@ export default class ProfileSettingsView extends View {
         this.avatar = this.root.getElementsByClassName('user-avatar')[0];
 
         this.msgElement = this.root.getElementsByClassName(
-            'user-settings__msg'
+            'user-avatar__msg'
         )[0];
 
         this.avatarInput = document.getElementById('avatar-input');
@@ -74,7 +74,7 @@ export default class ProfileSettingsView extends View {
      */
     showMessage(msg, isError = false) {
         this.msgElement.classList.add(
-            `user-settings__msg_${isError ? 'error' : 'success'}`
+            `user-avatar__msg_${isError ? 'error' : 'success'}`
         );
         this.msgElement.textContent = msg;
         this.msgElement.style.opacity = '1';
