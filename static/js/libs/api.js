@@ -55,7 +55,7 @@ export default class Api {
      * @param {string} password
      * @return {Promise<Response>}
      */
-    static updateUser(login = '', email= '', password = '') {
+    static updateUser({login = '', email = '', password = ''} = {}) {
         return Network.doPut({
             url: '/user',
             body: JSON.stringify({
