@@ -10,7 +10,8 @@ import Navbar from 'components/navbar/navbar';
 import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
 import View from 'views/view';
-import PersonController from "controllers/personController";
+import PersonController from 'controllers/personController';
+import {GLOBAL_EVENTS} from 'libs/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
@@ -18,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const globalEventBus = new EventBus();
     const navbar = new Navbar(globalEventBus);
     const router = new Router(container);
+
+    globalEventBus.subscribe(
+        GLOBAL_EVENTS.internalError,
+        (code) => router.internalError(code),
+    );
 
     const controllers = {
         login: new LoginController(router, globalEventBus),

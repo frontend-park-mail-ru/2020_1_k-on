@@ -1,10 +1,13 @@
-import MovieView from "views/movieView/movieView";
+import MovieView from 'views/movieView/movieView';
 import PersonView from 'views/personView/personView';
+import InternalErrorView from 'views/internalErrorView/internalErrorView';
 
 export default class Router {
     constructor(root) {
         this.root = root;
         this.routes = new Map();
+
+        this.errorView = new InternalErrorView();
 
         this.currentRoute = null;
 
@@ -23,12 +26,12 @@ export default class Router {
         const expr = path.split('/').map((elem) => {
             if (elem.match(/^<.+>$/)) {
                 switch (elem.replace(/[<>]/g, '')) {
-                    case 'int':
-                        return '\\d+';
-                    case 'string':
-                        return '\\w+';
-                    default:
-                        return elem;
+                case 'int':
+                    return '\\d+';
+                case 'string':
+                    return '\\w+';
+                default:
+                    return elem;
                 }
             } else {
                 return elem;
@@ -50,14 +53,14 @@ export default class Router {
             return;
         }
 
-        for (let key of this.routes.keys()) {
+        for (const key of this.routes.keys()) {
             if (this.currentRoute && this.currentRoute.match(key)) {
                 this.routes.get(key).view.close();
                 break;
             }
         }
 
-        for (let key of this.routes.keys()) {
+        for (const key of this.routes.keys()) {
             if (path.match(key)) {
                 this.currentRoute = path;
 
@@ -91,5 +94,20 @@ export default class Router {
 
         // начальный рендер
         this.change(location.pathname);
+    }
+
+    /**
+     * Выполняет смену на errorView
+     * @param {int} code - код ошибки
+     */
+    internalError(code) {
+        for (const key of this.routes.keys()) {
+            if (this.currentRoute && this.currentRoute.match(key)) {
+                this.routes.get(key).view.close();
+                break;
+            }
+        }
+
+        this.errorView.render(this.root, code);
     }
 }
