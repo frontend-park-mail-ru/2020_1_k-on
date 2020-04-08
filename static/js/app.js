@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         login: new LoginController(router, globalEventBus),
         profile: new ProfileController(router, globalEventBus),
         signup: new SignUpController(router, globalEventBus),
-        index: new IndexController(router),
+        index: new IndexController(globalEventBus),
         seriesList: new ListController(router, globalEventBus, 'series'),
         filmsList: new ListController(router, globalEventBus, 'films'),
         series: new MovieController(router, globalEventBus, 'series'),
