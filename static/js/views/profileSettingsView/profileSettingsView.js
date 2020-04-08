@@ -5,6 +5,8 @@ import Api from 'libs/api';
 import {
     SUCCESS_STATUS,
     PROFILE_EVENTS,
+    UNAUTHORIZED_STATUS,
+    INTERNAL_ERROR_STATUS,
 } from 'libs/constants';
 
 export default class ProfileSettingsView extends View {
@@ -25,15 +27,20 @@ export default class ProfileSettingsView extends View {
         Api.getUserData()
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    res.json()
-                        .then((res) => {
-                            this.data = res.body;
-                            this.data.avatar = this.data.image;
-                            this.successRender();
-                        });
-                } else {
+                    return res.json();
+                } else if (res.status === UNAUTHORIZED_STATUS) {
                     this.eventBus.publish(PROFILE_EVENTS.unauthUser);
+                } else {
+                    return Promise.reject(res);
                 }
+            })
+            .then((res) => {
+                this.data = res.body;
+                this.data.avatar = this.data.image;
+                this.successRender();
+            })
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
 
@@ -60,11 +67,13 @@ export default class ProfileSettingsView extends View {
         )[0];
 
         this.avatarInput = document.getElementById('avatar-input');
-        this.onUploadAvatar = this.onUploadAvatar.bind(this);
-        this.avatarInput.addEventListener('change', this.onUploadAvatar);
+        this.avatarInput.addEventListener(
+            'change',
+            this.onUploadAvatar.bind(this)
+        );
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.root.addEventListener('submit', this.onSubmit);
+        this.form = this.root.getElementsByClassName('auth-form')[0];
+        this.form.addEventListener('submit', this.onSubmit.bind(this));
     }
 
     /**
@@ -84,7 +93,7 @@ export default class ProfileSettingsView extends View {
      * Скрывает сообщение об изменении данных
      */
     hideMessage() {
-        this.msgElement.style.visibility = 'hidden';
+        this.msgElement.style.opacity = '0';
     }
 
     /**
@@ -102,23 +111,25 @@ export default class ProfileSettingsView extends View {
         const login = document.getElementById('login');
         const email = document.getElementById('email');
 
-        Api.updateUser(login.value, email.value)
+        Api.updateUser({
+            login: login.value,
+            email: email.value,
+        })
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     this.username = login.value;
                     this.email = email.value;
                     this.showMessage('Данные успешно изменены');
+                } else if (res.status === INTERNAL_ERROR_STATUS) {
+                    return Promise.reject(res);
                 } else {
                     login.value = this.username;
                     email.value = this.email;
-                    res.json()
-                        .then((res) => {
-                            this.showMessage(res.body, true);
-                        });
+                    this.showMessage('Такой пользователь уже существует', true);
                 }
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
 
@@ -139,18 +150,14 @@ export default class ProfileSettingsView extends View {
                     this.avatar.style.backgroundImage =
                         `url(${URL.createObjectURL(file)})`;
                     this.showMessage('Аватар загружен');
+                } else if (res.status === INTERNAL_ERROR_STATUS) {
+                    return Promise.reject(res);
                 } else {
-                    res.json()
-                        .then((res) => {
-                            this.showMessage(
-                                'Ошибка при загрузке аватара',
-                                true
-                            );
-                        });
+                    this.showMessage('Ошибка при загрузке аватара', true);
                 }
             })
-            .catch((error) => {
-                console.error(error);
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
 }
