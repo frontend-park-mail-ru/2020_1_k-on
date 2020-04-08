@@ -19,11 +19,6 @@ const INPUTS = {
         inputName: 'password',
         errorMsg: VALIDATION_ERR_MESSAGES.PASSWORD,
     },
-    password_repeat: {
-        regex: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,}$/,
-        inputName: 'password_repeat',
-        errorMsg: VALIDATION_ERR_MESSAGES.PASSWORD,
-    },
     email: {
         regex: /^\S+@\S+\.\S+$/,
         inputName: 'email',
