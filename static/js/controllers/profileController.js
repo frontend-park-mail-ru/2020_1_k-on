@@ -21,6 +21,12 @@ export default class ProfileController {
                 this.globalEventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             },
         );
+        this.eventBus.subscribe(
+            PROFILE_EVENTS.internalError,
+            (code) => {
+                this.globalEventBus.publish(GLOBAL_EVENTS.internalError, code);
+            }
+        );
 
         this.settingsView = new ProfileSettingsView(this.eventBus);
         this.view = new ProfileView(this.eventBus);
