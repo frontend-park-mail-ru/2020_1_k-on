@@ -4,12 +4,16 @@
  */
 const passwordToggler = (event) => {
     const password = document.getElementById('password');
+    const eyeHide = document.getElementById('eye-hide');
+    const eyeShow = document.getElementById('eye-show');
     if (password.type === 'password') {
         password.type = 'text';
-        event.target.src = '/static/img/eye-hide.svg';
+        eyeShow.classList.add('auth-form__eye_hide');
+        eyeHide.classList.remove('auth-form__eye_hide');
     } else {
         password.type = 'password';
-        event.target.src = '/static/img/eye-show.svg';
+        eyeHide.classList.add('auth-form__eye_hide');
+        eyeShow.classList.remove('auth-form__eye_hide');
     }
 };
 
