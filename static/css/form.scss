@@ -25,6 +25,10 @@
     top: 50%;
     margin-top: -11px;
     cursor: pointer;
+
+    &_hide {
+      display: none;
+    }
   }
 
   &__input-error {
