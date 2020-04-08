@@ -1,4 +1,4 @@
-import PersonView from "views/personView/personView";
+import PersonView from 'views/personView/personView';
 
 export default class PersonController {
     constructor(router, eventBus,) {

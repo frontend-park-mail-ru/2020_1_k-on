@@ -1,5 +1,5 @@
 import ListView from 'views/listView/listView';
-import EventBus from "libs/eventBus";
+import EventBus from 'libs/eventBus';
 
 export default class ListController {
     constructor(router, eventBus, type) {

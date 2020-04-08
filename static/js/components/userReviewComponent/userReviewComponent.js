@@ -1,18 +1,7 @@
-import template from './userReviewComponent.tmpl.xml';
 import Component from 'components/component';
+import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
-import {SUCCESS_STATUS} from 'libs/constants';
-
-const data = {
-    user: {
-        username: 'AliceSitedge',
-        avatar: '/static/img/avatar.jpg',
-    },
-    // review: {
-    //     rate: 5,
-    //     text: `Странный сериал`,
-    // },
-};
+import {MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
 
 export default class UserReviewComponent extends Component {
     constructor(type) {
@@ -38,21 +27,10 @@ export default class UserReviewComponent extends Component {
                                 super.render(root);
                             });
                         } else {
-                            super.render(root);
-
-                            for (let starIcon of document.getElementsByClassName('review-form__star-icon')) {
-                                starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
-                                starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
-                                starIcon.addEventListener('click', this.onStarClick.bind(this));
-                            }
-
-                            const submitButton = document.getElementsByClassName('review-form__button')[0];
-                            submitButton.addEventListener('click', this.onSubmit.bind(this));
-
-                            console.log('something went wrong');
+                            this.renderOnNoReview(root);
                         }
                     });
-                })
+                });
             }
         });
     }
@@ -79,7 +57,7 @@ export default class UserReviewComponent extends Component {
         const starIcon = evt.target;
         this.rate = starIcon.dataset['value'];
 
-        this.toPreviousStars(10, (starIcon) => {
+        this.toPreviousStars(MAX_RATING, (starIcon) => {
             if (parseInt(starIcon.dataset['value']) > this.rate) {
                 starIcon.classList.remove('review-form__star-icon_active');
             }
@@ -88,7 +66,7 @@ export default class UserReviewComponent extends Component {
 
     toPreviousStars(starValue, func) {
         const rateBlock = document.getElementsByClassName('review-form__rate')[0];
-        for (let star of rateBlock.children) {
+        for (const star of rateBlock.children) {
             const starIcon = star.firstElementChild;
             func(starIcon);
 
@@ -122,5 +100,18 @@ export default class UserReviewComponent extends Component {
             body: reviewText,
         };
         this.render(this.root);
+    }
+
+    renderOnNoReview(root) {
+        super.render(root);
+
+        for (const starIcon of document.getElementsByClassName('review-form__star-icon')) {
+            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
+            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
+            starIcon.addEventListener('click', this.onStarClick.bind(this));
+        }
+
+        const submitButton = document.getElementsByClassName('review-form__button')[0];
+        submitButton.addEventListener('click', this.onSubmit.bind(this));
     }
 }

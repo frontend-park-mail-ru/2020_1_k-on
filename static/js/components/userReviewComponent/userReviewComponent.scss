@@ -68,15 +68,15 @@
 
   &__button {
     padding: 0.5em 1.5em;
-    @include gradientButton;
     font-size: 18px;
+    @include gradientButton;
   }
 }
 
 .review-info__edit-button {
   margin-top: 20px;
-  @include gradientButton;
   min-height: 0;
   padding: 0.5em 0.7em;
   font-size: 16px;
+  @include gradientButton;
 }

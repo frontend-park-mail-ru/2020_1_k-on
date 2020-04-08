@@ -1,7 +1,7 @@
 import View from 'views/view';
 import template from './listView.tmpl.xml';
-import Api from 'libs/api';
 import ListComponent from 'components/listComponent/listComponent';
+import Api from 'libs/api';
 import {DEFAULT_FILTERS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class ListView extends View {
@@ -36,7 +36,8 @@ export default class ListView extends View {
                             reference: '%',
                         },
                     ];
-                    for (let year = parseInt(res.body.filters.maxyear); year >= parseInt(res.body.filters.minyear); year--) {
+                    for (let year = parseInt(res.body.filters.maxyear);
+                        year >= parseInt(res.body.filters.minyear); year--) {
                         this.data.filters.year.push({
                             name: year,
                             reference: year,
@@ -157,14 +158,14 @@ export default class ListView extends View {
     }
 
     setDefaultFilters() {
-        this.data.chosenFilters = DEFAULT_FILTERS;
+        this.data.chosenFilters = Object.assign({}, DEFAULT_FILTERS);
     }
 
     checkGenre() {
         const genre = location.pathname.split('/').pop();
 
         if (genre !== this.type) {
-            for (let genreFilter of this.data.filters.genre) {
+            for (const genreFilter of this.data.filters.genre) {
                 if (genreFilter.reference === genre) {
                     this.data.chosenFilters['genre'] = {
                         name: genreFilter.name,
@@ -172,7 +173,6 @@ export default class ListView extends View {
                     };
 
                     this.listComponent.setFilter('genre', genreFilter.name, genre);
-
                     break;
                 }
             }

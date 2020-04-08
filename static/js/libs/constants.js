@@ -115,3 +115,5 @@ export const DEFAULT_FILTERS = {
         reference: 'rating',
     },
 };
+
+export const MAX_RATING = 10;

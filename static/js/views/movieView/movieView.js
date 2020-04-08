@@ -1,64 +1,9 @@
 import View from 'views/view';
 import template from './movieView.tmpl.xml';
+import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
+import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
 import Api from 'libs/api';
 import {SUCCESS_STATUS} from 'libs/constants';
-import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
-import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
-
-const data = {
-    image: '/static/img/sharp-objects.jpg',
-    russianName: 'Острые предметы',
-    englishName: 'Sharp objects',
-    seasons: '2',
-    trailerLink: '78oHFwuBtyU?fs=0',
-    yearFirst: '2018',
-    yearLast: '0',
-    country: 'США',
-    ageLimit: '18',
-    mainGenre: {
-        name: 'Документальные',
-        reference: 'documentary'
-    },
-    description: `Мини-сериал от режиссера «Большой маленькой лжи» Жан-Марка
-        Валле, снятый по мотивам романа автора «Исчезнувшей» Гиллиан Флинн.
-        Криминальный репортер Камилла Прикер (номинант на «Оскар» Эми Адамс)
-        возвращается в родной провинциальный город, чтобы расследовать убийства
-        двух маленьких девочек. Пытаясь сложить психологический пазл из своего
-        прошлого, она обнаруживает, что у нее с юными жертвами слишком много
-        общего.`,
-    rating: '0',
-    imdbRating: '0',
-    producers: [
-        {
-            name: 'Жан-Марк Валле',
-            id: '1',
-        },
-    ],
-    actors: [
-        {
-            name: 'София Лиллис',
-            id: '1',
-        },
-        {
-            name: 'Дженнифер Аспен',
-            id: '1',
-        },
-        {
-            name: 'Джексон Хёрст',
-            id: '1',
-        },
-        {
-            name: 'Уилл Чейз',
-            id: '1',
-        },
-    ],
-    genres: [
-        {
-            name: 'Документальные',
-            reference: 'documentary',
-        },
-    ],
-};
 
 export default class MovieView extends View {
     constructor(eventBus, type) {
@@ -94,11 +39,11 @@ export default class MovieView extends View {
                     super.render(root);
 
                     this.userReviewComponent.setId(this.id);
-                    const userReviewContainer = document.getElementById("user-review-container");
+                    const userReviewContainer = document.getElementById('user-review-container');
                     this.userReviewComponent.render(userReviewContainer);
 
                     this.reviewsComponent.setId(this.id);
-                    const reviewsContainer = document.getElementById("reviews-container");
+                    const reviewsContainer = document.getElementById('reviews-container');
                     this.reviewsComponent.render(reviewsContainer);
                 });
             } else {
