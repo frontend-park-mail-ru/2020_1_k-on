@@ -187,17 +187,17 @@ export default class ProfileView extends View {
         Api.getUserData()
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    res.json()
-                        .then((res) => {
-                            this.data = res.body;
-                            this.data.avatar = this.data.image;
-                            this.successRender();
-                        });
+                    return res.json();
                 } else if (res.status === UNAUTHORIZED_STATUS) {
                     this.eventBus.publish(PROFILE_EVENTS.unauthUser);
                 } else {
                     return Promise.reject(res);
                 }
+            })
+            .then((res) => {
+                this.data = res.body;
+                this.data.avatar = this.data.image;
+                this.successRender();
             })
             .catch((err) => {
                 this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
