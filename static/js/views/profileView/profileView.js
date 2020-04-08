@@ -2,7 +2,11 @@ import View from 'views/view';
 import template from './profileView.tmpl.xml';
 import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Api from 'libs/api';
-import {PROFILE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import {
+    PROFILE_EVENTS,
+    SUCCESS_STATUS,
+    UNAUTHORIZED_STATUS,
+} from 'libs/constants';
 
 const cardList = [
     {
@@ -189,9 +193,14 @@ export default class ProfileView extends View {
                             this.data.avatar = this.data.image;
                             this.successRender();
                         });
-                } else {
+                } else if (res.status === UNAUTHORIZED_STATUS) {
                     this.eventBus.publish(PROFILE_EVENTS.unauthUser);
+                } else {
+                    return Promise.reject(res);
                 }
+            })
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
 
@@ -207,19 +216,20 @@ export default class ProfileView extends View {
             const swiper = new SwiperComponent(colletion);
             swiper.render(this.collections);
         });
+
         const logout = this.root.querySelector('[href="/logout"]');
         this.onLogout = this.onLogout.bind(this);
 
         logout.addEventListener('click', this.onLogout);
     }
 
-    onLogout(event) {
+    onLogout() {
         Api.doLogout()
             .then((res) => {
                 this.eventBus.publish(PROFILE_EVENTS.logout);
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
 }
