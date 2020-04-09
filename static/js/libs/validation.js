@@ -28,11 +28,11 @@ const validation = (form = null) => {
 
         if (!inputClassItem.regex.test(inputItem.value)) {
             inputError.textContent = inputClassItem.errorMsg;
-            inputError.style.visibility = 'visible';
+            inputError.style.opacity = '1';
             isValidationError = true;
         } else {
             inputError.textContent = '';
-            inputError.style.visibility = 'hidden';
+            inputError.style.opacity = '0';
         }
     }
 
