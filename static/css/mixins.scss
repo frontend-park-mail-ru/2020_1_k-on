@@ -80,7 +80,8 @@
   }
 }
 @mixin inputError {
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s linear;
   color: $error-color;
   font-size: 0.8em;
   max-width: fit-content;
