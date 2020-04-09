@@ -17,6 +17,10 @@ export default class Api {
                 'username': login,
                 'password': password,
             },
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
+            },
         });
     }
 
@@ -91,6 +95,9 @@ export default class Api {
         return Network.doPut({
             url: '/user',
             body: formData,
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+            },
         });
     }
 
