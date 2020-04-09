@@ -75,6 +75,7 @@ export default class Network {
         return fetch(host + url, {
             method: 'DELETE',
             credentials: 'include',
+            headers: headers,
         });
     }
 
