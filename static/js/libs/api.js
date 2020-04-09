@@ -35,6 +35,10 @@ export default class Api {
                 'password': password,
                 'email': email,
             },
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
+            },
         });
     }
 
@@ -71,6 +75,10 @@ export default class Api {
                 'password': password,
                 'email': email,
             }),
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
+            },
         });
     }
 
@@ -89,6 +97,9 @@ export default class Api {
     static doLogout() {
         return Network.doDelete({
             url: '/logout',
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+            },
         });
     }
 
@@ -130,6 +141,10 @@ export default class Api {
             body: {
                 'rating': parseFloat(rate),
                 'body': text,
+            },
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
             },
         });
     }
