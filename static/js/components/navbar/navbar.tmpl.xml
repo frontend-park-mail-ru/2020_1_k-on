@@ -1,7 +1,10 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
     <div class="navbar page-layout">
         <div class="navbar__left-side">
-            <a class="navbar__logo" href="/">Кинопоиск</a>
+            <a class="navbar__logo" href="/">
+                <span>kino</span>
+                <span class="navbar__logo_color">|on</span>
+            </a>
             <a class="navbar__link" href="/series">Сериалы</a>
             <a class="navbar__link" href="/films">Фильмы</a>
 
