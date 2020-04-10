@@ -22,15 +22,18 @@ export default class Network {
      * @param {string} host
      * @param {string} url
      * @param {object} body
+     * @param {object} headers
      * @return {Promise<Response>}
      */
-    static doPost({host = SERVER_ADDRESS, url = '/', body = {}} = {}) {
+    static doPost({host = SERVER_ADDRESS,
+        url = '/',
+        body = {},
+        headers = {},
+    } = {}) {
         return fetch(host + url, {
             method: 'POST',
             credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
             body: JSON.stringify(body),
         });
     }
@@ -40,20 +43,49 @@ export default class Network {
      * @param {string} host
      * @param {string} url
      * @param {object} body
+     * @param {object} headers
      * @return {Promise<Response>}
      */
-    static doPut({host = SERVER_ADDRESS, url = '/', body = {}} = {}) {
+    static doPut({
+        host = SERVER_ADDRESS,
+        url = '/',
+        body = {},
+        headers = {},
+    } = {}) {
         return fetch(host + url, {
             method: 'PUT',
             credentials: 'include',
+            headers: headers,
             body: body,
         });
     }
 
-    static doDelete({host = SERVER_ADDRESS, url = '/'} = {}) {
+    /**
+     * Выполняет DELETE запрос
+     * @param {string} host
+     * @param {string} url
+     * @param {object} headers
+     * @return {Promise<Response>}
+     */
+    static doDelete({
+        host = SERVER_ADDRESS,
+        url = '/',
+        headers = {},
+    } = {}) {
         return fetch(host + url, {
             method: 'DELETE',
             credentials: 'include',
+            headers: headers,
         });
+    }
+
+    /**
+     * Получает cookie по наименованию
+     * @param {string} name
+     * @return {string}
+     */
+    static getCookie(name) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : '';
     }
 }
