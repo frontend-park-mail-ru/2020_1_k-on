@@ -3,6 +3,7 @@ import template from './profileView.tmpl.xml';
 import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Api from 'libs/api';
 import {
+    DEFAULT_AVATAR,
     PROFILE_EVENTS,
     SUCCESS_STATUS,
     UNAUTHORIZED_STATUS,
@@ -205,7 +206,7 @@ export default class ProfileView extends View {
 
     successRender() {
         this.data.avatar = this.data.image === '' ?
-            '/static/img/avatar.jpg' :
+            DEFAULT_AVATAR :
             `http://64.225.100.179:8080/image/${this.data.image}`;
 
         super.render(this.root);

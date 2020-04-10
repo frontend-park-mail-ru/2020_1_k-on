@@ -7,7 +7,7 @@ import {
     SUCCESS_STATUS,
     PROFILE_EVENTS,
     UNAUTHORIZED_STATUS,
-    INTERNAL_ERROR_STATUS,
+    INTERNAL_ERROR_STATUS, DEFAULT_AVATAR,
 } from 'libs/constants';
 
 export default class ProfileSettingsView extends View {
@@ -49,7 +49,7 @@ export default class ProfileSettingsView extends View {
      */
     successRender() {
         this.data.avatar = this.data.image === '' ?
-            '/static/img/avatar.jpg' :
+            DEFAULT_AVATAR :
             `http://64.225.100.179:8080/image/${this.data.image}`;
 
         super.render(this.root);

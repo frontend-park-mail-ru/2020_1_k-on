@@ -123,3 +123,5 @@ export const DEFAULT_FILTERS = {
 };
 
 export const MAX_RATING = 10;
+
+export const DEFAULT_AVATAR = '/static/img/avatar.svg';
