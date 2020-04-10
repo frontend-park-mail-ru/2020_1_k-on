@@ -91,7 +91,6 @@ export default class AuthView extends View {
 
         formError.textContent = resErrMsg;
         formError.style.opacity = '1';
-        formError.style.transition = '0.5s';
     }
 
     /**
