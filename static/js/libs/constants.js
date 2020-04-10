@@ -66,7 +66,8 @@ export const LOGIN_PAGE_DATA = {
     ],
     button_text: 'Войти',
     no_account_msg: 'Еще нет аккаунта?',
-    no_account_href: 'Зарегистрируйтесь!',
+    no_account_href_txt: 'Зарегистрируйтесь!',
+    no_account_href: '/signup',
 };
 
 export const SIGN_UP_PAGE_DATA = {
@@ -99,7 +100,8 @@ export const SIGN_UP_PAGE_DATA = {
     ],
     button_text: 'Зарегистрироваться',
     no_account_msg: 'Уже зарегистрированы?',
-    no_account_href: 'Войдите в аккаунт!',
+    no_account_href_txt: 'Войдите в аккаунт!',
+    no_account_href: '/login',
 };
 
 export const SLIDER_INTERVAL = 10000;

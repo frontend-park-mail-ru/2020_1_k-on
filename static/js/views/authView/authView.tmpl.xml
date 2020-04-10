@@ -33,8 +33,8 @@
 
             <div class="auth-content__no-account">
                 <fest:value>data.no_account_msg</fest:value>
-                <a class="auth-content__no-account_href" href="/signup">
-                    <fest:value>data.no_account_href</fest:value>
+                <a class="auth-content__no-account_href" href="{data.no_account_href}">
+                    <fest:value>data.no_account_href_txt</fest:value>
                 </a>
             </div>
 
