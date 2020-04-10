@@ -1,7 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="user-info-wrapper">
         <div class="user-info">
-            <div class="user-avatar" style="background-image: url('http://64.225.100.179:8080/image/{data.avatar}')">
+            <div class="user-avatar" style="background-image: url('{data.avatar}')">
                 <div class="user-avatar__shade" />
                 <div class="user-avatar__name">
                     <fest:value>data.username</fest:value>
@@ -16,7 +16,7 @@
             <div class="user-settings">
                 <form class="auth-form" novalidate="true">
                     <div class="auth-form__input_wrapper">
-                        <label class="auth-form__label" for="username">Username</label>
+                        <label class="auth-form__label" for="username">Логин</label>
                         <input class="auth-form__input auth-form__input_username"
                                type="text" id="login" />
                         <span class="auth-form__input-border"/>

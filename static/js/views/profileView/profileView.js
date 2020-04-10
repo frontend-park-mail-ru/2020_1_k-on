@@ -196,7 +196,6 @@ export default class ProfileView extends View {
             })
             .then((res) => {
                 this.data = res.body;
-                this.data.avatar = this.data.image;
                 this.successRender();
             })
             .catch((err) => {
@@ -205,9 +204,9 @@ export default class ProfileView extends View {
     }
 
     successRender() {
-        if (this.data.avatar === '') {
-            this.data.avatar = '/static/img/avatar.jpg';
-        }
+        this.data.avatar = this.data.image === '' ?
+            '/static/img/avatar.jpg' :
+            `http://64.225.100.179:8080/image/${this.data.image}`;
 
         super.render(this.root);
 
