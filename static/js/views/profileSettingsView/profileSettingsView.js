@@ -188,9 +188,9 @@ export default class ProfileSettingsView extends View {
         )[0];
 
         if (password.value !== repeatPassword.value) {
-            const formError = this.root.getElementsByClassName(
-                'modal-password__error'
-            )[0];
+            this.root.getElementsByClassName('modal-password')[0]
+                .classList.add('modal-password_error');
+            const formError = this.root.getElementsByClassName('modal-error')[0];
             formError.style.opacity = '1';
             formError.innerHTML = 'Пароли не совпадают';
             return;
@@ -261,6 +261,12 @@ export default class ProfileSettingsView extends View {
         this.root.getElementsByClassName(
             'auth-form__input_repeat-password'
         )[0].value = '';
+        this.root.getElementsByClassName('modal-password')[0]
+            .classList.remove('modal-password_error');
+        this.root.getElementsByClassName('modal-error')[0]
+            .style.opacity = '0';
+        this.root.getElementsByClassName('auth-form__input-error_password')[0]
+            .style.opacity = '0';
         this.modalWrapper.style.visibility = 'hidden';
         document.body.style.overflow = 'auto';
     }
