@@ -40,6 +40,7 @@
     margin-top: $auth-form-error-margin;
     opacity: 0;
     z-index: 1000;
+    transition: opacity 0.5s linear;
   }
 }
 
@@ -53,6 +54,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  transition: border-color 0.5s linear;
 
   &__headline {
     text-align: center;
@@ -70,5 +72,9 @@
       margin-left: 4px;
       cursor: pointer;
     }
+  }
+
+  &_error {
+    border-color: $error-color;
   }
 }

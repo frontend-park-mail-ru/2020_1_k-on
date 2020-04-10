@@ -1,7 +1,9 @@
 import LoginView from 'views/loginView/loginView';
 import EventBus from 'libs/eventBus';
-import {GLOBAL_EVENTS} from 'libs/constants';
-import {LOGIN_EVENTS} from 'libs/constants';
+import {
+    LOGIN_EVENTS,
+    GLOBAL_EVENTS,
+} from 'libs/constants';
 
 export default class LoginController {
     constructor(router, globalEventBus) {
@@ -17,6 +19,12 @@ export default class LoginController {
             () => {
                 this.globalEventBus.publish(GLOBAL_EVENTS.renderForAuth);
             },
+        );
+        this.eventBus.subscribe(
+            LOGIN_EVENTS.internalError,
+            (code) => {
+                this.globalEventBus.publish(GLOBAL_EVENTS.internalError, code);
+            }
         );
 
         this.view = new LoginView(this.eventBus);

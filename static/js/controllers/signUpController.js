@@ -19,6 +19,12 @@ export default class SignUpController {
                 this.globalEventBus.publish(GLOBAL_EVENTS.renderForAuth);
             },
         );
+        this.eventBus.subscribe(
+            SIGN_UP_EVENTS.internalError,
+            (code) => {
+                this.globalEventBus.publish(GLOBAL_EVENTS.internalError, code);
+            }
+        );
 
         this.view = new SignUpView(this.eventBus);
     }

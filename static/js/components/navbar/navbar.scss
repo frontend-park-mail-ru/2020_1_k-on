@@ -28,6 +28,10 @@
   font-size: 26px;
   text-transform: uppercase;
   color: $text-color;
+
+  &_color {
+    color: $text-bright-color;
+  }
 }
 
 .navbar__link {

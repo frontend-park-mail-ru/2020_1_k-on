@@ -13,9 +13,13 @@ export default class Api {
     static doLogin(login, password) {
         return Network.doPost({
             url: '/login',
-            body: {
+            body: JSON.stringify({
                 'username': login,
                 'password': password,
+            }),
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
             },
         });
     }
@@ -30,10 +34,14 @@ export default class Api {
     static doSignUp(login, email, password) {
         return Network.doPost({
             url: '/signup',
-            body: {
+            body: JSON.stringify({
                 'username': login,
                 'password': password,
                 'email': email,
+            }),
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
             },
         });
     }
@@ -71,24 +79,34 @@ export default class Api {
                 'password': password,
                 'email': email,
             }),
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
+            },
         });
     }
 
     /**
      * Выполняет запрос на загрузку картинки на сервер
-     * @param {object} formData
+     * @param {FormData} formData
      * @return {Promise<Response>}
      */
     static uploadUserAvatar(formData) {
-        return Network.doPut({
-            url: '/user',
+        return Network.doPost({
+            url: '/user/image',
             body: formData,
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+            },
         });
     }
 
     static doLogout() {
         return Network.doDelete({
             url: '/logout',
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+            },
         });
     }
 
@@ -127,9 +145,13 @@ export default class Api {
     static createReview(type, id, rate, text) {
         return Network.doPost({
             url: `/${type}/${id}/reviews`,
-            body: {
+            body: JSON.stringify({
                 'rating': parseFloat(rate),
                 'body': text,
+            }),
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
             },
         });
     }

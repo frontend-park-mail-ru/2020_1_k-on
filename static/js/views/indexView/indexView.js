@@ -5,6 +5,7 @@ import SliderComponent from 'components/sliderComponent/sliderComponent';
 import Api from 'libs/api';
 import {
     INDEX_EVENTS,
+    RANDOM_SHUFFLE_VALUE,
     SUCCESS_STATUS,
 } from 'libs/constants';
 
@@ -35,6 +36,10 @@ export default class IndexView extends View {
     }
 
     afterFetch() {
+        this.data.collections.map((collection) => {
+            collection.list.sort(() => Math.random() - RANDOM_SHUFFLE_VALUE);
+        });
+
         super.render(this.root);
         this.afterRender();
     }

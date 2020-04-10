@@ -1,6 +1,8 @@
 export const SERVER_ADDRESS = 'http://64.225.100.179:8080';
 
 export const SUCCESS_STATUS = 200;
+export const BAD_REQUEST_STATUS = 400;
+export const FORBIDDEN_STATUS = 403;
 export const UNAUTHORIZED_STATUS = 401;
 export const INTERNAL_ERROR_STATUS = 500;
 
@@ -23,11 +25,13 @@ export const GLOBAL_EVENTS = {
 export const LOGIN_EVENTS = {
     renderForAuth: 'renderFotAuth',
     loginSuccess: 'loginSuccess',
+    internalError: 'internalError',
 };
 
 export const SIGN_UP_EVENTS = {
     signUpSuccess: 'signUpSuccess',
     renderForAuth: 'renderForAuth',
+    internalError: 'internalError',
 };
 
 export const PROFILE_EVENTS = {
@@ -66,7 +70,12 @@ export const LOGIN_PAGE_DATA = {
     ],
     button_text: 'Войти',
     no_account_msg: 'Еще нет аккаунта?',
-    no_account_href: 'Зарегистрируйтесь!',
+    no_account_href_txt: 'Зарегистрируйтесь!',
+    no_account_href: '/signup',
+    messages: {
+        bad_request: 'Пользователь не найден',
+        forbidden: 'Вы уже авторизованы',
+    },
 };
 
 export const SIGN_UP_PAGE_DATA = {
@@ -99,7 +108,12 @@ export const SIGN_UP_PAGE_DATA = {
     ],
     button_text: 'Зарегистрироваться',
     no_account_msg: 'Уже зарегистрированы?',
-    no_account_href: 'Войдите в аккаунт!',
+    no_account_href_txt: 'Войдите в аккаунт!',
+    no_account_href: '/login',
+    messages: {
+        bad_request: 'Пользователь уже существует',
+        forbidden: 'Вы уже авторизованы',
+    },
 };
 
 export const SLIDER_INTERVAL = 10000;
@@ -121,3 +135,7 @@ export const DEFAULT_FILTERS = {
 };
 
 export const MAX_RATING = 10;
+
+export const DEFAULT_AVATAR = '/static/img/avatar.svg';
+
+export const RANDOM_SHUFFLE_VALUE = 0.5;

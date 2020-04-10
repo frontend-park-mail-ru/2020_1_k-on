@@ -7,7 +7,7 @@ import {
     SUCCESS_STATUS,
     PROFILE_EVENTS,
     UNAUTHORIZED_STATUS,
-    INTERNAL_ERROR_STATUS,
+    INTERNAL_ERROR_STATUS, DEFAULT_AVATAR,
 } from 'libs/constants';
 
 export default class ProfileSettingsView extends View {
@@ -37,7 +37,6 @@ export default class ProfileSettingsView extends View {
             })
             .then((res) => {
                 this.data = res.body;
-                this.data.avatar = this.data.image;
                 this.successRender();
             })
             .catch((err) => {
@@ -49,9 +48,9 @@ export default class ProfileSettingsView extends View {
      * Добавляет обработчики событий и выполняет рендер
      */
     successRender() {
-        if (this.data.avatar !== undefined) {
-            this.data.avatar = '/static/img/avatar.jpg';
-        }
+        this.data.avatar = this.data.image === '' ?
+            DEFAULT_AVATAR :
+            `http://64.225.100.179:8080/image/${this.data.image}`;
 
         super.render(this.root);
 
@@ -189,9 +188,9 @@ export default class ProfileSettingsView extends View {
         )[0];
 
         if (password.value !== repeatPassword.value) {
-            const formError = this.root.getElementsByClassName(
-                'modal-password__error'
-            )[0];
+            this.root.getElementsByClassName('modal-password')[0]
+                .classList.add('modal-password_error');
+            const formError = this.root.getElementsByClassName('modal-error')[0];
             formError.style.opacity = '1';
             formError.innerHTML = 'Пароли не совпадают';
             return;
@@ -221,15 +220,18 @@ export default class ProfileSettingsView extends View {
         const file = event.target.files[0];
         const formData = new FormData();
         if (file.type === 'image/png' || file.type === 'image/jpeg') {
-            formData.append('image', file);
+            formData.append('file', file);
         }
 
         Api.uploadUserAvatar(formData)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    this.avatar.style.backgroundImage =
-                        `url(${URL.createObjectURL(file)})`;
-                    this.showMessage('Аватар загружен');
+                    return res.json()
+                        .then((res) => {
+                            this.avatar.style.backgroundImage =
+                                `url(http://64.225.100.179:8080/image/${res.body})`;
+                            this.showMessage('Аватар загружен');
+                        });
                 } else if (res.status === INTERNAL_ERROR_STATUS) {
                     return Promise.reject(res);
                 } else {
@@ -259,6 +261,12 @@ export default class ProfileSettingsView extends View {
         this.root.getElementsByClassName(
             'auth-form__input_repeat-password'
         )[0].value = '';
+        this.root.getElementsByClassName('modal-password')[0]
+            .classList.remove('modal-password_error');
+        this.root.getElementsByClassName('modal-error')[0]
+            .style.opacity = '0';
+        this.root.getElementsByClassName('auth-form__input-error_password')[0]
+            .style.opacity = '0';
         this.modalWrapper.style.visibility = 'hidden';
         document.body.style.overflow = 'auto';
     }
