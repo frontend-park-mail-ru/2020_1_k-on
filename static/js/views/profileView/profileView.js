@@ -205,7 +205,7 @@ export default class ProfileView extends View {
     }
 
     successRender() {
-        if (this.data.avatar !== undefined) {
+        if (this.data.avatar === '') {
             this.data.avatar = '/static/img/avatar.jpg';
         }
 

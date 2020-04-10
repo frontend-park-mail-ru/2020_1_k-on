@@ -49,7 +49,7 @@ export default class ProfileSettingsView extends View {
      * Добавляет обработчики событий и выполняет рендер
      */
     successRender() {
-        if (this.data.avatar !== undefined) {
+        if (this.data.avatar === '') {
             this.data.avatar = '/static/img/avatar.jpg';
         }
 
@@ -221,15 +221,18 @@ export default class ProfileSettingsView extends View {
         const file = event.target.files[0];
         const formData = new FormData();
         if (file.type === 'image/png' || file.type === 'image/jpeg') {
-            formData.append('image', file);
+            formData.append('file', file);
         }
 
         Api.uploadUserAvatar(formData)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    this.avatar.style.backgroundImage =
-                        `url(${URL.createObjectURL(file)})`;
-                    this.showMessage('Аватар загружен');
+                    return res.json()
+                        .then((res) => {
+                            this.avatar.style.backgroundImage =
+                                `url(http://64.225.100.179:8080/image/${res.body})`;
+                            this.showMessage('Аватар загружен');
+                        });
                 } else if (res.status === INTERNAL_ERROR_STATUS) {
                     return Promise.reject(res);
                 } else {
