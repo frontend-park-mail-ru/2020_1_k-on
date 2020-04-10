@@ -21,20 +21,20 @@ export default class Network {
      * Выполняет POST запрос
      * @param {string} host
      * @param {string} url
-     * @param {object} body
+     * @param {FormData | string} body
      * @param {object} headers
      * @return {Promise<Response>}
      */
     static doPost({host = SERVER_ADDRESS,
         url = '/',
-        body = {},
+        body = '',
         headers = {},
     } = {}) {
         return fetch(host + url, {
             method: 'POST',
             credentials: 'include',
             headers: headers,
-            body: JSON.stringify(body),
+            body: body,
         });
     }
 
