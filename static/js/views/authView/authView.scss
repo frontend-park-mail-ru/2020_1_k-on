@@ -53,6 +53,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  transition: border-color 1s linear;
 
   &__headline {
     text-align: center;
@@ -70,5 +71,9 @@
       margin-left: 4px;
       cursor: pointer;
     }
+  }
+
+  &_error {
+    border-color: $error-color;
   }
 }

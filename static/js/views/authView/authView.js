@@ -2,7 +2,12 @@ import View from 'views/view';
 import template from './authView.tmpl.xml';
 import validation from 'libs/validation';
 import passwordToggler from 'libs/passwordToggler';
-import {SUCCESS_STATUS} from 'libs/constants';
+import {
+    BAD_REQUEST_STATUS,
+    FORBIDDEN_STATUS,
+    PROFILE_EVENTS,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 
 export default class AuthView extends View {
     constructor({
@@ -49,8 +54,20 @@ export default class AuthView extends View {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccess();
                 } else {
-                    res.json().then((res) => this.onInvalid(res.body));
+                    this.root.getElementsByClassName('auth-content')[0]
+                        .classList.add('auth-content_error');
+
+                    if (res.status === BAD_REQUEST_STATUS) {
+                        this.onInvalid(this.data.messages.bad_request);
+                    } else if (res.status === FORBIDDEN_STATUS) {
+                        this.onInvalid(this.data.messages.forbidden);
+                    } else {
+                        return Promise.reject(res);
+                    }
                 }
+            })
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
 
