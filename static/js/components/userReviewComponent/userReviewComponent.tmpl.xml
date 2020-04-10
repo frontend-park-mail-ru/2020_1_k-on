@@ -25,26 +25,21 @@
                             <span class="review-form__star">
 
                                 <fest:choose>
-                                    <fest:when test="i <= data.review.rating">
-                                        <div class="review-form__star-icon review-form__star-icon_active"
-                                             data-value="{i}">
+                                    <fest:when test="data.review">
+                                        <fest:choose>
+                                            <fest:when test="i <= data.review.rating">
+                                                <div class="review-form__star-icon review-form__star-icon_active"
+                                                     data-value="{i}"/>
+                                            </fest:when>
 
-                                            <fest:attributes>
-                                                <fest:if test="!data.review">
-                                                    <fest:attribute name="style" value="cursor: pointer"/>
-                                                </fest:if>
-                                            </fest:attributes>
-                                        </div>
+                                            <fest:otherwise>
+                                                <div class="review-form__star-icon" data-value="{i}"/>
+                                            </fest:otherwise>
+                                        </fest:choose>
                                     </fest:when>
 
                                     <fest:otherwise>
-                                        <div class="review-form__star-icon" data-value="{i}">
-
-                                            <fest:attributes>
-                                                <fest:if test="!data.review">
-                                                    <fest:attribute name="style" value="cursor: pointer"/>
-                                                </fest:if>
-                                            </fest:attributes>
+                                        <div class="review-form__star-icon" data-value="{i}" style="cursor: pointer">
                                         </div>
                                     </fest:otherwise>
                                 </fest:choose>

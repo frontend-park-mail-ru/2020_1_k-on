@@ -8,7 +8,7 @@ export default class UserReviewComponent extends Component {
         super(template);
         this.type = type;
         this.id = 0;
-        this.rate = 0;
+        this.rating = 0;
     }
 
     render(root) {
@@ -47,7 +47,7 @@ export default class UserReviewComponent extends Component {
 
     onStarMouseOut(evt) {
         this.toPreviousStars(evt.target.dataset['value'], (starIcon) => {
-            if (parseInt(starIcon.dataset['value']) > this.rate) {
+            if (parseInt(starIcon.dataset['value']) > this.rating) {
                 starIcon.classList.remove('review-form__star-icon_active');
             }
         });
@@ -55,10 +55,10 @@ export default class UserReviewComponent extends Component {
 
     onStarClick(evt) {
         const starIcon = evt.target;
-        this.rate = starIcon.dataset['value'];
+        this.rating = starIcon.dataset['value'];
 
         this.toPreviousStars(MAX_RATING, (starIcon) => {
-            if (parseInt(starIcon.dataset['value']) > this.rate) {
+            if (parseInt(starIcon.dataset['value']) > this.rating) {
                 starIcon.classList.remove('review-form__star-icon_active');
             }
         });
@@ -85,7 +85,7 @@ export default class UserReviewComponent extends Component {
             return;
         }
 
-        Api.createReview(this.type, this.id, this.rate, reviewText)
+        Api.createReview(this.type, this.id, this.rating, reviewText)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     res.json().then((res) => {
@@ -96,10 +96,10 @@ export default class UserReviewComponent extends Component {
             });
 
         this.data.review = {
-            rating: this.rate,
+            rating: this.rating,
             body: reviewText,
         };
-        this.render(this.root);
+        super.render(this.root);
     }
 
     renderOnNoReview(root) {
