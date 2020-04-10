@@ -3,35 +3,37 @@
         Отзывы
     </div>
 
-    <fest:if test="data">
+    <fest:if test="data.reviews">
         <div class="all-reviews">
-            <fest:for iterate="data" index="i" value="review">
-                <div class="review-block review-layout">
-                    <div class="review-block__avatar avatar"
-                         style="background-image: url({review.user.image})"/>
+            <fest:for iterate="data.reviews" index="i" value="review">
+                <fest:if test="data.userReviewId !== review.id">
+                    <div class="review-block review-layout">
+                        <div class="review-block__avatar avatar"
+                             style="background-image: url({review.user.image})"/>
 
-                    <div class="review-info">
-                        <div class="review-info__header">
-                            <div class="review-info__username">
-                                <fest:value>review.user.username</fest:value>
+                        <div class="review-info">
+                            <div class="review-info__header">
+                                <div class="review-info__username">
+                                    <fest:value>review.user.username</fest:value>
+                                </div>
+
+                                <div class="review-info__rate">
+                                    <fest:value>review.rating</fest:value>
+                                    <fest:space/>из<fest:space/>10
+                                </div>
                             </div>
 
-                            <div class="review-info__rate">
-                                <fest:value>review.rating</fest:value>
-                                <fest:space/>из<fest:space/>10
+                            <div class="review-info__text">
+                                <fest:value>review.body</fest:value>
                             </div>
-                        </div>
-
-                        <div class="review-info__text">
-                            <fest:value>review.body</fest:value>
                         </div>
                     </div>
-                </div>
+                </fest:if>
             </fest:for>
         </div>
     </fest:if>
 
-    <fest:if test="!data">
+    <fest:if test="!data.reviews">
         <div class="no-reviews-message">
             Отзывов пока нет.
         </div>

@@ -4,10 +4,10 @@ import Api from 'libs/api';
 import {MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
 
 export default class UserReviewComponent extends Component {
-    constructor(type) {
+    constructor(type, id, review) {
         super(template);
         this.type = type;
-        this.id = 0;
+        this.id = id;
         this.rating = 0;
     }
 
@@ -18,6 +18,8 @@ export default class UserReviewComponent extends Component {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
                     this.data.user = res.body;
+                    this.data.user.avatar = res.body.avatar === '' ?
+                        '' : ` http://64.225.100.179:8080/image/${res.body.avatar}`;
 
                     Api.getUserReview(this.type, this.id).then((res) => {
                         if (res.status === SUCCESS_STATUS) {

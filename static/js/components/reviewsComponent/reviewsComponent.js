@@ -12,16 +12,28 @@ export default class ReviewsComponent extends Component {
     render(root) {
         this.data = {};
 
-        Api.getReviews(this.type, this.id).then((res) => {
+        Api.getUserReview(this.type, this.id).then((res) => {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
-                    this.data = res.body;
-                    super.render(root);
+                    this.data.userReviewId = res.body.id;
                 });
             } else {
-                super.render(root);
-                console.log('something went wrong');
+                this.data.userReviewId = 0;
             }
+
+            Api.getReviews(this.type, this.id).then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    res.json().then((res) => {
+                        if (this.data.userReviewId === 0 || res.body.length !== 1) {
+                            this.data.reviews = res.body;
+                        }
+                        super.render(root);
+                    });
+                } else {
+                    super.render(root);
+                    console.log('something went wrong');
+                }
+            });
         });
     }
 

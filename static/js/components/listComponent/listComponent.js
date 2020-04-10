@@ -12,7 +12,7 @@ export default class ListComponent extends Component {
 
     render(root) {
         Api.getList(this.type, {
-            maingenre: this.chosenFilters.genre.reference,
+            maingenre: this.chosenFilters.genre.reference === '%' ? this.chosenFilters.genre.reference : this.chosenFilters.genre.name,
             year: this.chosenFilters.year.reference,
             order: this.chosenFilters.ordering.reference,
             page: '1',

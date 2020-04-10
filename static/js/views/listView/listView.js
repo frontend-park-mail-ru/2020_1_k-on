@@ -37,7 +37,7 @@ export default class ListView extends View {
                         },
                     ];
                     for (let year = parseInt(res.body.filters.maxyear);
-                        year >= parseInt(res.body.filters.minyear); year--) {
+                         year >= parseInt(res.body.filters.minyear); year--) {
                         this.data.filters.year.push({
                             name: year,
                             reference: year,
@@ -130,7 +130,11 @@ export default class ListView extends View {
 
         const filterName = submenu.dataset.name;
         if (filterName === 'genre') {
-            this.eventBus.publish('changeGenre', filterLink.dataset.reference);
+            if (filterLink.dataset.reference === '%') {
+                window.history.pushState(null, null, `/${this.type}`);
+            } else {
+                window.history.pushState(null, null, `/${this.type}/${filterLink.dataset.reference}`);
+            }
         }
         this.listComponent.changeFilter(
             filterName,

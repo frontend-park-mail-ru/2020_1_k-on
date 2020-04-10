@@ -79,6 +79,8 @@ export default class Router {
         console.log(`404: ${path} not found`);
     }
 
+
+
     /**
      * Запускает роутер
      */
