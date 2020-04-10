@@ -4,7 +4,7 @@ import validation from 'libs/validation';
 import passwordToggler from 'libs/passwordToggler';
 import {
     BAD_REQUEST_STATUS,
-    FORBIDDEN_STATUS,
+    FORBIDDEN_STATUS, INTERNAL_ERROR_STATUS,
     PROFILE_EVENTS,
     SUCCESS_STATUS,
 } from 'libs/constants';
@@ -53,6 +53,8 @@ export default class AuthView extends View {
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccess();
+                } else if (res.status === INTERNAL_ERROR_STATUS) {
+                    return Promise.reject(res);
                 } else {
                     this.root.getElementsByClassName('auth-content')[0]
                         .classList.add('auth-content_error');
@@ -61,8 +63,6 @@ export default class AuthView extends View {
                         this.onInvalid(this.data.messages.bad_request);
                     } else if (res.status === FORBIDDEN_STATUS) {
                         this.onInvalid(this.data.messages.forbidden);
-                    } else {
-                        return Promise.reject(res);
                     }
                 }
             })
