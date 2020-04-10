@@ -15,6 +15,20 @@ export default class PersonView extends View {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
                     this.data = res.body;
+
+                    const dtf = new Intl.DateTimeFormat(
+                        'ru',
+                        {year: 'numeric', month: 'long', day: 'numeric'}
+                    );
+                    const [
+                        {value: day},
+                        ,
+                        {value: month},
+                        ,
+                        {value: year},
+                    ] = dtf.formatToParts(new Date(this.data.birthDate));
+                    this.data.birthDate = `${day} ${month} ${year}`;
+
                     super.render(root);
 
                     const listsContainer = document.getElementById('person-lists-container');
