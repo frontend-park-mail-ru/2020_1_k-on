@@ -12,6 +12,8 @@
   margin-right: $padding-between-cards;
   margin-bottom: 60px;
   display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (min-width: $five-cards-max-width) {
     width: calc(16.6% - #{$padding-between-cards});
   }
