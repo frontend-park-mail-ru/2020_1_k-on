@@ -64,6 +64,11 @@
                     <form class="review-form">
                         <textarea class="review-form__input" type="text" id="text" placeholder="Текст отзыва"
                                   required="true" rows="4"/>
+
+                        <div class="review-form__error">
+                            Пожалуйста, напишите отзыв и оставьте оценку
+                        </div>
+
                         <button class="review-form__button" type="submit">Отправить</button>
                     </form>
                 </fest:if>

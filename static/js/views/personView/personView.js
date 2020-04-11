@@ -2,7 +2,7 @@ import View from 'views/view';
 import template from './personView.tmpl.xml';
 import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Api from 'libs/api';
-import {SUCCESS_STATUS} from 'libs/constants';
+import {PERSON_EVENTS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class PersonView extends View {
     constructor(eventBus) {
@@ -49,9 +49,9 @@ export default class PersonView extends View {
                         seriesSwiper.render(listsContainer);
                     }
                 });
-            } else {
-                console.log('something went wrong');
             }
+        }).catch((err) => {
+            this.eventBus.publish(PERSON_EVENTS.internalError, err.status);
         });
     }
 

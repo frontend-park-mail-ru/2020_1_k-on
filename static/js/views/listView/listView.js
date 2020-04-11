@@ -2,7 +2,7 @@ import View from 'views/view';
 import template from './listView.tmpl.xml';
 import ListComponent from 'components/listComponent/listComponent';
 import Api from 'libs/api';
-import {DEFAULT_FILTERS, SUCCESS_STATUS} from 'libs/constants';
+import {DEFAULT_FILTERS, LIST_EVENTS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class ListView extends View {
     constructor(eventBus, type) {
@@ -85,9 +85,9 @@ export default class ListView extends View {
                     const listContainer = document.getElementById('list-container');
                     this.listComponent.render(listContainer);
                 });
-            } else {
-                console.log('something went wrong');
             }
+        }).catch((err) => {
+            this.eventBus.publish(LIST_EVENTS.internalError, err.status);
         });
     }
 

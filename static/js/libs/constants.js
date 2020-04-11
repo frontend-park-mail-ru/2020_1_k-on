@@ -44,6 +44,18 @@ export const INDEX_EVENTS = {
     internalError: 'internalError',
 };
 
+export const LIST_EVENTS = {
+    internalError: 'internalError',
+};
+
+export const MOVIE_EVENTS = {
+    internalError: 'internalError',
+};
+
+export const PERSON_EVENTS = {
+    internalError: 'internalError',
+};
+
 export const MAX_BG_IMGS = 5;
 
 export const BG_IMG_KEY = 'bg_img';

@@ -37,4 +37,10 @@
             </span>
         </a>
     </fest:for>
+
+    <fest:if test="!data.list">
+        <div class="no-results-message">
+            По данному запросу ничего не найдено.
+        </div>
+    </fest:if>
 </fest:template>

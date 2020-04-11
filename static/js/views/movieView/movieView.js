@@ -3,7 +3,7 @@ import template from './movieView.tmpl.xml';
 import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
 import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
 import Api from 'libs/api';
-import {SUCCESS_STATUS} from 'libs/constants';
+import {MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class MovieView extends View {
     constructor(eventBus, type) {
@@ -46,9 +46,9 @@ export default class MovieView extends View {
                     const reviewsContainer = document.getElementById('reviews-container');
                     this.reviewsComponent.render(reviewsContainer);
                 });
-            } else {
-                console.log('something went wrong');
             }
+        }).catch((err) => {
+            this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
         });
     }
 

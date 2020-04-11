@@ -82,10 +82,12 @@ export default class UserReviewComponent extends Component {
         evt.preventDefault();
 
         const reviewText = document.getElementsByClassName('review-form__input')[0].value;
-        if (!reviewText) {
-            // TODO: empty text
+        if (!reviewText || this.rating === 0) {
+            this.showError();
             return;
         }
+
+        this.hideError();
 
         Api.createReview(this.type, this.id, this.rating, reviewText)
             .then((res) => {
@@ -115,5 +117,15 @@ export default class UserReviewComponent extends Component {
 
         const submitButton = document.getElementsByClassName('review-form__button')[0];
         submitButton.addEventListener('click', this.onSubmit.bind(this));
+    }
+
+    showError() {
+        const error = document.getElementsByClassName('review-form__error')[0];
+        error.classList.add('review-form__error_shown');
+    }
+
+    hideError() {
+        const error = document.getElementsByClassName('review-form__error')[0];
+        error.classList.remove('review-form__error_shown');
     }
 }
