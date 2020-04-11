@@ -80,7 +80,6 @@ export default class Router {
     }
 
 
-
     /**
      * Запускает роутер
      */

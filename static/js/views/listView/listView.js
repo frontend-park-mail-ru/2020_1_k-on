@@ -37,7 +37,7 @@ export default class ListView extends View {
                         },
                     ];
                     for (let year = parseInt(res.body.filters.maxyear);
-                         year >= parseInt(res.body.filters.minyear); year--) {
+                        year >= parseInt(res.body.filters.minyear); year--) {
                         this.data.filters.year.push({
                             name: year,
                             reference: year,
@@ -133,7 +133,8 @@ export default class ListView extends View {
             if (filterLink.dataset.reference === '%') {
                 window.history.pushState(null, null, `/${this.type}`);
             } else {
-                window.history.pushState(null, null, `/${this.type}/${filterLink.dataset.reference}`);
+                window.history.pushState(null, null,
+                    `/${this.type}/${filterLink.dataset.reference}`);
             }
         }
         this.listComponent.changeFilter(

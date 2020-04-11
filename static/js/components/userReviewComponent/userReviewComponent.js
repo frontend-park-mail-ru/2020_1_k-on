@@ -1,7 +1,7 @@
 import Component from 'components/component';
 import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
-import {MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
+import {DEFAULT_AVATAR, MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
 
 export default class UserReviewComponent extends Component {
     constructor(type, id, review) {
@@ -18,8 +18,8 @@ export default class UserReviewComponent extends Component {
             if (res.status === SUCCESS_STATUS) {
                 res.json().then((res) => {
                     this.data.user = res.body;
-                    this.data.user.avatar = res.body.avatar === '' ?
-                        '' : ` http://64.225.100.179:8080/image/${res.body.avatar}`;
+                    this.data.user.image = res.body.image === '' ?
+                        DEFAULT_AVATAR : ` http://64.225.100.179:8080/image/${res.body.image}`;
 
                     Api.getUserReview(this.type, this.id).then((res) => {
                         if (res.status === SUCCESS_STATUS) {

@@ -1,7 +1,7 @@
 import Component from 'components/component';
 import template from './reviewsComponent.tmpl.xml';
 import Api from 'libs/api';
-import {SUCCESS_STATUS} from 'libs/constants';
+import {DEFAULT_AVATAR, SUCCESS_STATUS} from 'libs/constants';
 
 export default class ReviewsComponent extends Component {
     constructor(type) {
@@ -26,6 +26,7 @@ export default class ReviewsComponent extends Component {
                     res.json().then((res) => {
                         if (this.data.userReviewId === 0 || res.body.length !== 1) {
                             this.data.reviews = res.body;
+                            this.data.defaultAvatar = DEFAULT_AVATAR;
                         }
                         super.render(root);
                     });
