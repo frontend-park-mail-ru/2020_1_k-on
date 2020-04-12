@@ -1,6 +1,9 @@
 import ListView from 'views/listView/listView';
 import EventBus from 'libs/eventBus';
-import {GLOBAL_EVENTS, LIST_EVENTS} from "libs/constants";
+import {
+    GLOBAL_EVENTS,
+    LIST_EVENTS,
+} from 'libs/constants';
 
 export default class ListController {
     constructor(router, eventBus, type) {
