@@ -4,14 +4,6 @@
 .auth-form {
   display: block;
   color: $text-color;
-  @include input;
-
-  &__label {
-    font-family: inherit;
-    font-weight: bolder;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
 
   &__button {
     width: 100%;
@@ -29,9 +21,5 @@
     &_hide {
       display: none;
     }
-  }
-
-  &__input-error {
-    @include inputError;
   }
 }
