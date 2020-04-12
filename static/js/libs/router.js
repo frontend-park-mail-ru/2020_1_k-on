@@ -1,13 +1,17 @@
 import MovieView from 'views/movieView/movieView';
 import PersonView from 'views/personView/personView';
-import InternalErrorView from 'views/internalErrorView/internalErrorView';
+import ErrorView from 'views/errorView/errorView';
+import {
+    NOT_FOUND_ERROR_MSG,
+    NOT_FOUND_STATUS,
+} from 'libs/constants';
 
 export default class Router {
     constructor(root) {
         this.root = root;
         this.routes = new Map();
 
-        this.errorView = new InternalErrorView();
+        this.errorView = new ErrorView();
 
         this.currentRoute = null;
 
@@ -75,8 +79,7 @@ export default class Router {
             }
         }
 
-        this.change('/');
-        console.log(`404: ${path} not found`);
+        this.renderError(NOT_FOUND_STATUS, NOT_FOUND_ERROR_MSG);
     }
 
 
@@ -100,8 +103,9 @@ export default class Router {
     /**
      * Выполняет смену на errorView
      * @param {int} code - код ошибки
+     * @param {string} msg - сообщение
      */
-    internalError(code) {
+    renderError(code, msg) {
         for (const key of this.routes.keys()) {
             if (this.currentRoute && this.currentRoute.match(key)) {
                 this.routes.get(key).view.close();
@@ -109,6 +113,6 @@ export default class Router {
             }
         }
 
-        this.errorView.render(this.root, code);
+        this.errorView.render(this.root, code, msg);
     }
 }
