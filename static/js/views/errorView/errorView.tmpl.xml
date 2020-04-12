@@ -5,7 +5,7 @@
             <fest:value>data.code</fest:value>
         </div>
         <div class="internal-error__msg">
-            Произошла внутренняя ошибка сервера
+            <fest:value>data.msg</fest:value>
         </div>
         <button class="internal-error__btn">
             Перезагрузить
