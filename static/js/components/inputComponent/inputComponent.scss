@@ -1,0 +1,87 @@
+@import 'css/variables';
+
+.auth-form {
+
+  &__input_wrapper {
+    position: relative;
+  }
+
+  &__input {
+    background-color: $auth-form-input-bg-color;
+    border-radius: $input-border $input-border 0 0;
+    padding: $input-top-padding $input-left-padding 0;
+    min-height: $input-min-height;
+    width: 100%;
+    box-sizing: border-box;
+    color: inherit;
+  }
+
+  &__input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $main-color;
+    transition: {
+      property: background-color, width;
+      duration: 0.2s;
+      timing-function: linear;
+    }
+
+    &_error {
+      width: 100%;
+      background-color: $error-color;
+    }
+  }
+
+  &__input:focus ~ &__input-border {
+    width: 100%;
+  }
+
+  &__input:not(:placeholder-shown) ~ &__input-border {
+    width: 100%;
+  }
+
+  &__input-error {
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    color: $error-color;
+    font-size: 0.8em;
+    max-width: fit-content;
+    min-height: 40px;
+    margin: 8px 0;
+    font-weight: bolder;
+
+    &_active {
+      transition: opacity 0.2s linear;
+      opacity: 1;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: $input-left-padding;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: inherit;
+    font-weight: bolder;
+    color: $label-color;
+    cursor: text;
+    transition: {
+      property: font-size, top;
+      duration: 0.1s;
+      timing-function: linear;
+    }
+  }
+
+  &__input:focus ~ &__label {
+    top: 1.4em;
+    font-size: 0.7em;
+  }
+
+  &__input:not(:placeholder-shown) ~ &__label {
+    top: 1.4em;
+    font-size: 0.7em;
+  }
+}
