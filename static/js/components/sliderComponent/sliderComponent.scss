@@ -10,13 +10,11 @@
   &__arrows {
 
     &_left {
-      left: 16px;
-      @include sliderArrow;
+      @include sliderArrow(left);
     }
 
     &_right {
-      right: 16px;
-      @include sliderArrow;
+      @include sliderArrow(right);
     }
   }
 

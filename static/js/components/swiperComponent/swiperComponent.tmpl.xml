@@ -4,8 +4,8 @@
     </div>
     <div class="swiper">
         <div class="swiper__wrapper page-layout">
-            <img class="swiper__arrows_left" src="/static/img/left-arrow.svg"/>
-            <img class="swiper__arrows_right" src="/static/img/right-arrow.svg"/>
+            <div class="swiper__arrows_left" />
+            <div class="swiper__arrows_right" />
             <fest:for iterate="collection.list" index="i" value="card">
                 <a class="series-card" href="/{card.type}/{card.id}" style="margin-bottom: 0;">
                     <div class="series-card__image" style="background-image: url({card.image})">
