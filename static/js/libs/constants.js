@@ -69,7 +69,7 @@ export const LOGIN_PAGE_DATA = {
     inputs: [
         {
             name: 'login',
-            placeholder: 'Логин',
+            label: 'Логин',
             type: 'text',
             id: 'login',
             required: 'true',
@@ -77,7 +77,7 @@ export const LOGIN_PAGE_DATA = {
         },
         {
             name: 'password',
-            placeholder: 'Пароль',
+            label: 'Пароль',
             type: 'password',
             id: 'password',
             required: 'true',
@@ -99,7 +99,7 @@ export const SIGN_UP_PAGE_DATA = {
     inputs: [
         {
             name: 'login',
-            placeholder: 'Логин',
+            label: 'Логин',
             type: 'text',
             id: 'login',
             required: 'true',
@@ -107,7 +107,7 @@ export const SIGN_UP_PAGE_DATA = {
         },
         {
             name: 'email',
-            placeholder: 'E-mail',
+            label: 'E-mail',
             type: 'email',
             id: 'email',
             required: 'true',
@@ -115,7 +115,7 @@ export const SIGN_UP_PAGE_DATA = {
         },
         {
             name: 'password',
-            placeholder: 'Пароль',
+            label: 'Пароль',
             type: 'password',
             id: 'password',
             required: 'true',
@@ -155,3 +155,42 @@ export const MAX_RATING = 10;
 export const DEFAULT_AVATAR = '/static/img/avatar.svg';
 
 export const RANDOM_SHUFFLE_VALUE = 0.5;
+
+export const PROFILE_INPUTS = {
+    profile: [
+        {
+            name: 'login',
+            label: 'Логин',
+            type: 'text',
+            id: 'login',
+            required: 'true',
+            autofocus: 'true',
+        },
+        {
+            name: 'email',
+            label: 'E-mail',
+            type: 'email',
+            id: 'email',
+            required: 'true',
+            autofocus: 'false',
+        },
+    ],
+    modal: [
+        {
+            name: 'password',
+            label: 'Новый пароль',
+            type: 'password',
+            id: 'password',
+            required: 'true',
+            autofocus: 'false',
+        },
+        {
+            name: 'repeat-password',
+            label: 'Повтор пароля',
+            type: 'password',
+            id: 'repeat-password',
+            required: 'true',
+            autofocus: 'false',
+        },
+    ],
+};
