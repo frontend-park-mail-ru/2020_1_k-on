@@ -2,6 +2,7 @@ import View from 'views/view';
 import template from './authView.tmpl.xml';
 import validation from 'libs/validation';
 import passwordToggler from 'libs/passwordToggler';
+import InputComponent from 'components/inputComponent/inputComponent';
 import {
     BAD_REQUEST_STATUS,
     FORBIDDEN_STATUS, INTERNAL_ERROR_STATUS,
@@ -18,7 +19,6 @@ export default class AuthView extends View {
         inputsID = [],
     } = {}) {
         super(template, eventBus);
-        this.validation = validation;
         this.data = data;
         this.onSuccesEvents = onSuccessEvents;
         this.apiMethod = apiMethod;
@@ -37,7 +37,7 @@ export default class AuthView extends View {
      */
     onSubmit(event) {
         event.preventDefault();
-        const validationResult = this.validation();
+        const validationResult = validation();
 
         if (!validationResult) {
             return;
@@ -108,6 +108,13 @@ export default class AuthView extends View {
     afterRender() {
         this.form = this.root.getElementsByClassName('auth-form')[0];
         this.form.addEventListener('submit', this.onSubmit.bind(this));
+
+        const inputs = this.form.getElementsByClassName('inputs')[0];
+
+        this.data.inputs.forEach((input) => {
+            const inputComponent = new InputComponent(input);
+            inputComponent.render(inputs);
+        });
 
         Array.from(this.root.getElementsByClassName('auth-form__eye'))
             .forEach((elem) => {
