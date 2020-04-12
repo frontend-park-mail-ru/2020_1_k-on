@@ -49,3 +49,7 @@
   opacity: 0.4;
   @include transformScale;
 }
+@mixin labelActive {
+  top: 1.4em;
+  font-size: 0.7em;
+}

@@ -1,4 +1,5 @@
 @import 'css/variables';
+@import 'css/mixins';
 
 .auth-form {
 
@@ -76,12 +77,10 @@
   }
 
   &__input:focus ~ &__label {
-    top: 1.4em;
-    font-size: 0.7em;
+    @include labelActive;
   }
 
   &__input:not(:placeholder-shown) ~ &__label {
-    top: 1.4em;
-    font-size: 0.7em;
+    @include labelActive;
   }
 }
