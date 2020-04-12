@@ -3,11 +3,14 @@ import validation from 'libs/validation';
 import template from './profileSettingsView.tmpl.xml';
 import Api from 'libs/api';
 import passwordToggler from 'libs/passwordToggler';
+import InputComponent from 'components/inputComponent/inputComponent';
 import {
     SUCCESS_STATUS,
     PROFILE_EVENTS,
     UNAUTHORIZED_STATUS,
-    INTERNAL_ERROR_STATUS, DEFAULT_AVATAR,
+    INTERNAL_ERROR_STATUS,
+    DEFAULT_AVATAR,
+    PROFILE_INPUTS,
 } from 'libs/constants';
 
 export default class ProfileSettingsView extends View {
@@ -40,6 +43,7 @@ export default class ProfileSettingsView extends View {
                 this.successRender();
             })
             .catch((err) => {
+                console.log(err);
                 this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
@@ -53,6 +57,22 @@ export default class ProfileSettingsView extends View {
             `http://64.225.100.179:8080/image/${this.data.image}`;
 
         super.render(this.root);
+
+        const dataForm = this.root.getElementsByClassName('auth-form')[0];
+        dataForm.addEventListener('submit', this.onSubmit.bind(this));
+        const dataInputs = dataForm.getElementsByClassName('inputs')[0];
+        PROFILE_INPUTS.profile.forEach((input) => {
+            const inputComponent = new InputComponent(input);
+            inputComponent.render(dataInputs);
+        });
+
+        const modalForm = this.root.getElementsByClassName('auth-form')[1];
+        modalForm.addEventListener('submit', this.onModalSubmit.bind(this));
+        const modalInputs = modalForm.getElementsByClassName('inputs')[0];
+        PROFILE_INPUTS.modal.forEach((input) => {
+            const inputComponent = new InputComponent(input);
+            inputComponent.render(modalInputs);
+        });
 
         this.email = this.data.email;
         document.getElementById('email').value = this.email;
@@ -69,15 +89,6 @@ export default class ProfileSettingsView extends View {
         document.getElementById('avatar-input').addEventListener(
             'change',
             this.onUploadAvatar.bind(this)
-        );
-
-        this.root.getElementsByClassName('auth-form')[0].addEventListener(
-            'submit',
-            this.onSubmit.bind(this)
-        );
-        this.root.getElementsByClassName('auth-form')[1].addEventListener(
-            'submit',
-            this.onModalSubmit.bind(this)
         );
 
         this.modalWrapper = this.root.getElementsByClassName(
@@ -255,18 +266,16 @@ export default class ProfileSettingsView extends View {
      * Закрытие модального окна для изменения пароля
      */
     closeChangePasswordModal() {
-        this.root.getElementsByClassName(
-            'auth-form__input_password'
-        )[0].value = '';
-        this.root.getElementsByClassName(
-            'auth-form__input_repeat-password'
-        )[0].value = '';
+        this.root.getElementsByClassName('auth-form__input_password')[0].value = '';
+        this.root.getElementsByClassName('auth-form__input_repeat-password')[0].value = '';
         this.root.getElementsByClassName('modal-password')[0]
             .classList.remove('modal-password_error');
         this.root.getElementsByClassName('modal-error')[0]
             .style.opacity = '0';
         this.root.getElementsByClassName('auth-form__input-error_password')[0]
-            .style.opacity = '0';
+            .classList.remove('auth-form__input-error_active');
+        this.root.getElementsByClassName('auth-form__input-border_password')[0]
+            .classList.remove('auth-form__input-border_error');
         this.modalWrapper.style.visibility = 'hidden';
         document.body.style.overflow = 'auto';
     }
