@@ -11,7 +11,10 @@ import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
 import View from 'views/view';
 import PersonController from 'controllers/personController';
-import {GLOBAL_EVENTS} from 'libs/constants';
+import {
+    GLOBAL_EVENTS,
+    INTERNAL_ERROR_MSG,
+} from 'libs/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
@@ -22,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     globalEventBus.subscribe(
         GLOBAL_EVENTS.internalError,
-        (code) => router.internalError(code),
+        (code) => router.renderError(code, INTERNAL_ERROR_MSG),
     );
 
     const controllers = {
