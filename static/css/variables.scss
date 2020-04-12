@@ -1,29 +1,25 @@
 // Colors
+$main-color: #ced756;
 $text-color: white;
+$text-bright-color: $main-color;
 $error-color: rgb(255, 0, 0);
 $success-color: rgb(0, 208, 0);
 $shade-color: rgba(0, 0, 0, 0.6);
 $bg-color: rgb(30, 31, 35);
-//$bg-dark-color: #16181c;
 $bg-dark-color: rgba(22, 24, 28, 0.95);
-$footer-bg-color: rgba(30, 31, 35, 0.3);
-$text-bright-color: #ced756;
 
 // Button
 $button-bg-color-hover: linear-gradient(to right, #ced756, #eaeea9, #abc959);
 
 // Form
 $auth-form-input-bg-color: rgb(10, 10, 10);
-$auth-form-input-focus-color: #ced756;
 
 // Auth page
-$no-account-href-color: rgb(55, 85, 139);
 $auth-content-border-color: rgb(86, 92, 103);
 $auth-content-bg-color: rgba(30, 31, 35, 0.7);
 $auth-form-error-margin: 24px;
 
 // Navbar
-$navbar-bg-color: rgba(30, 31, 35, 0.5);
 $navbar-height: 60px;
 $navbar-bg-color: rgba(0, 0, 0, 0.4);
 $search-form-color: white;
@@ -33,7 +29,7 @@ $search-form-border-radius: 40px;
 // List page
 $path-color: #b5becb;
 $filter-button-border: white;
-$filter-button-border-hover: #ced756;
+$filter-button-border-hover: $main-color;
 $filter-button-height: 40px;
 $menu-transition-time: 0.15s;
 $series-link: black;
@@ -53,7 +49,7 @@ $bg-color: #1d2025;
 $text-main-color: white;
 $text-ref-color: #eaeea9;
 $text-dark-color: #646e80;
-$active-season-link-bg-color: #ced756;
+$active-season-link-bg-color: $main-color;
 $rate-bg-color: #8091bd;
 $paragraph: 80px;
 $description-header-height: 50px;
@@ -67,10 +63,9 @@ $headline-margin: 20px;
 $review-padding-y: 25px;
 $review-padding-left: 10px;
 
-// Profile page
-$profile-info: #525258;
-$series-list-navigation: #db4a3f;
-$list-navigation-active-link: #bb3f35;
-$list-navigation-link-hover: #b23d33;
-$list-navigation-link-text: white;
-$list-row-hover: #fcf1f0;
+// Input
+$input-left-padding: 21px;
+$input-top-padding: 16px;
+$input-min-height: 52px;
+$input-border: 8px;
+$label-color: darkgrey;
