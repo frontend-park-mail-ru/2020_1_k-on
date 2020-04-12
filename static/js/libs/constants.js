@@ -2,9 +2,13 @@ export const SERVER_ADDRESS = 'http://64.225.100.179:8080';
 
 export const SUCCESS_STATUS = 200;
 export const BAD_REQUEST_STATUS = 400;
-export const FORBIDDEN_STATUS = 403;
 export const UNAUTHORIZED_STATUS = 401;
+export const FORBIDDEN_STATUS = 403;
+export const NOT_FOUND_STATUS = 404;
 export const INTERNAL_ERROR_STATUS = 500;
+
+export const INTERNAL_ERROR_MSG = 'Произошла внутренняя ошибка сервера';
+export const NOT_FOUND_ERROR_MSG = 'Сраница не найдена';
 
 export const NAVBAR_AUTH_ITEMS = {
     profile: 'Профиль',
