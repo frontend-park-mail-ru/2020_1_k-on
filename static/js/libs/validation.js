@@ -26,13 +26,18 @@ const validation = (form = null) => {
             `auth-form__input-error_${inputClassItem.inputName}`
         )[0];
 
+        const inputBorder = form.getElementsByClassName(
+            `auth-form__input-border_${inputClassItem.inputName}`
+        )[0];
+
         if (!inputClassItem.regex.test(inputItem.value)) {
             inputError.textContent = inputClassItem.errorMsg;
-            inputError.style.opacity = '1';
+            inputError.classList.add('auth-form__input-error_active');
+            inputBorder.classList.add('auth-form__input-border_error');
             isValidationError = true;
         } else {
-            inputError.textContent = '';
-            inputError.style.opacity = '0';
+            inputError.classList.remove('auth-form__input-error_active');
+            inputBorder.classList.remove('auth-form__input-border_error');
         }
     }
 
