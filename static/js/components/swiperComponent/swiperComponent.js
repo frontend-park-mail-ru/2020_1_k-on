@@ -1,36 +1,38 @@
-import template from './swiperComponent.tmpl.xml';
 import {SLIDER_DISTANCE} from 'libs/constants';
 
 export default class SwiperComponent {
     constructor(elements = []) {
-        this.tmpl = template;
         this.elements = elements;
     }
 
     render() {
-        this.swiper = document.createElement('div');
-        this.swiper.classList.add('swiper');
-        this.swiper.innerHTML += this.tmpl();
+        const swiper = document.createElement('div');
+        swiper.classList.add('swiper');
 
-        this.swiperWrapper = this.swiper.getElementsByClassName('swiper__wrapper')[0];
+        this.leftArrow = document.createElement('div');
+        this.leftArrow.classList.add('swiper__arrows_left');
+        this.rightArrow = document.createElement('div');
+        this.rightArrow.classList.add('swiper__arrows_right');
+
+        swiper.appendChild(this.leftArrow);
+        swiper.appendChild(this.rightArrow);
+
+        this.swiperWrapper = document.createElement('div');
+        this.swiperWrapper.classList.add('swiper__wrapper', 'page-layout');
         this.elements.forEach((elem) => (this.swiperWrapper.appendChild(elem)));
 
         this.addListeners();
 
-        return this.swiper;
+        swiper.appendChild(this.swiperWrapper);
+
+        return swiper;
     }
 
     addListeners() {
-        const leftArrow = this.swiper.getElementsByClassName(
-            'swiper__arrows_left'
-        )[0];
-        const rigthArrow = this.swiper.getElementsByClassName(
-            'swiper__arrows_right'
-        )[0];
-        leftArrow.addEventListener('click', () => {
+        this.leftArrow.addEventListener('click', () => {
             this.swiperWrapper.scrollLeft -= SLIDER_DISTANCE;
         });
-        rigthArrow.addEventListener('click', () => {
+        this.rightArrow.addEventListener('click', () => {
             this.swiperWrapper.scrollLeft += SLIDER_DISTANCE;
         });
     }
