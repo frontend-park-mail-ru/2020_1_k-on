@@ -106,7 +106,7 @@ export default class ListView extends View {
         const genre = location.pathname.split('/').pop();
 
         if (genre !== this.type) {
-            this.filterComponent.setFilterIfExists('genres', genre);
+            this.filterComponent.setFilterIfExists('genre', genre);
         }
     }
 }
