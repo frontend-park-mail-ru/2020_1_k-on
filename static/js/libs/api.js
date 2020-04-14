@@ -116,11 +116,13 @@ export default class Api {
         });
     }
 
-    static getList(type, params) {
-        const filtersString = Object.keys(params)
-            .map((key) => (`${key}=${params[key]}`)).join('&');
+    static getList(type, filters, page) {
+        const filtersArray = Object.keys(filters).map((key) => {
+            return `${key}=${filters[key].reference}`;
+        });
+        filtersArray.push(`page=${page}`);
         return Network.doGet({
-            url: `/${type}?${filtersString}`,
+            url: `/${type}?${filtersArray.join('&')}`,
         });
     }
 
