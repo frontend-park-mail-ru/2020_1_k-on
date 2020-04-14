@@ -16,40 +16,49 @@ export default class MovieView extends View {
     }
 
     render(root) {
-        Api.getMovie(this.type, this.id).then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                res.json().then((res) => {
-                    this.data = res.body;
-                    this.data.type = this.type;
-                    this.data.path = [
-                        {
-                            name: 'Главная',
-                            reference: '/',
-                        },
-                        {
-                            name: this.type === 'series' ? 'Сериалы' : 'Фильмы',
-                            reference: `/${this.type}`,
-                        },
-                        {
-                            name: this.data.genres[0].name,
-                            reference: `/${this.data.type}/${this.data.genres[0].reference}`,
-                        },
-                    ];
+        Api.getMovie(this.type, this.id)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                this.data = res.body;
+                this.data.type = this.type;
+                this.data.path = [
+                    {
+                        name: 'Главная',
+                        reference: '/',
+                    },
+                    {
+                        name: this.type === 'series' ? 'Сериалы' : 'Фильмы',
+                        reference: `/${this.type}`,
+                    },
+                    {
+                        name: this.data.genres[0].name,
+                        reference: `/${this.data.type}/${this.data.genres[0].reference}`,
+                    },
+                ];
 
-                    super.render(root);
+                super.render(root);
 
-                    this.userReviewComponent.setId(this.id);
-                    const userReviewContainer = document.getElementById('user-review-container');
-                    this.userReviewComponent.render(userReviewContainer);
+                this.afterRender();
+            })
+            .catch((err) => {
+                this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
+            });
+    }
 
-                    this.reviewsComponent.setId(this.id);
-                    const reviewsContainer = document.getElementById('reviews-container');
-                    this.reviewsComponent.render(reviewsContainer);
-                });
-            }
-        }).catch((err) => {
-            this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
-        });
+    afterRender() {
+        this.userReviewComponent.setId(this.id);
+        const userReviewContainer = document.getElementById('user-review-container');
+        this.userReviewComponent.render(userReviewContainer);
+
+        this.reviewsComponent.setId(this.id);
+        const reviewsContainer = document.getElementById('reviews-container');
+        this.reviewsComponent.render(reviewsContainer);
     }
 
     setId(id) {
