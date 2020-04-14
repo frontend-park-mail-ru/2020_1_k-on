@@ -1,7 +1,8 @@
 import View from 'views/view';
 import template from './profileView.tmpl.xml';
-import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Api from 'libs/api';
+import CardComponent from 'components/cardComponent/cardComponent';
+import CollectionComponent from 'components/collectionComponent/collectionComponent';
 import {
     DEFAULT_AVATAR,
     PROFILE_EVENTS,
@@ -211,10 +212,23 @@ export default class ProfileView extends View {
 
         super.render(this.root);
 
-        this.collections = this.root.getElementsByClassName('collections')[0];
-        collections.forEach((colletion) => {
-            const swiper = new SwiperComponent(colletion);
-            swiper.render(this.collections);
+
+        const collectionsElem = this.root.getElementsByClassName('collections')[0];
+
+        collections.forEach((collection) => {
+            const cards = collection.list.map((item) => {
+                const cardComponent = new CardComponent(item);
+                const card = cardComponent.render();
+                card.style.marginBottom = 0;
+                return card;
+            });
+
+            const collectionComponent = new CollectionComponent({
+                name: collection.name,
+                elements: cards,
+            });
+
+            collectionsElem.appendChild(collectionComponent.render());
         });
 
         const logout = this.root.querySelector('[href="/logout"]');
