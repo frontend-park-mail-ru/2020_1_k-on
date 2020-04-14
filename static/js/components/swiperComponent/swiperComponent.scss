@@ -17,6 +17,10 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    & > * {
+      margin-right: $swiper-gap-between-elements;
+    }
   }
 
   &__arrows {

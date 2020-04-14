@@ -50,9 +50,7 @@ export default class IndexView extends View {
         this.collections.forEach((collection) => {
             const cards = collection.list.map((item) => {
                 const cardComponent = new CardComponent(item);
-                const card = cardComponent.render();
-                card.style.marginBottom = 0;
-                return card;
+                return cardComponent.render();
             });
 
             const collectionComponent = new CollectionComponent({

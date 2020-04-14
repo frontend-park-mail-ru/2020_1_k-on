@@ -2,8 +2,6 @@
 
 .series-card {
   cursor: pointer;
-  margin-right: $padding-between-cards;
-  margin-bottom: 60px;
   display: inline-block;
   @media (min-width: $five-cards-max-width) {
     width: calc(16.6% - #{$padding-between-cards});
