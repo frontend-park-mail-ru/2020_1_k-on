@@ -19,6 +19,14 @@ export default class ListView extends View {
         this.eventBus.subscribe(LIST_EVENTS.updateList, () => {
             this.getList();
         });
+        this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, (genreReference) => {
+            if (genreReference === '%') {
+                window.history.pushState(null, null, `/${this.type}`);
+            } else {
+                window.history.pushState(null, null,
+                    `/${this.type}/${genreReference}`);
+            }
+        });
     }
 
     render(root) {

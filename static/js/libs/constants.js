@@ -51,6 +51,7 @@ export const INDEX_EVENTS = {
 export const LIST_EVENTS = {
     internalError: 'internalError',
     updateList: 'updateList',
+    genrePushHistory: 'genrePushHistory',
 };
 
 export const MOVIE_EVENTS = {

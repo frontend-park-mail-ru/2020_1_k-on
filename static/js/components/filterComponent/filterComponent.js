@@ -77,6 +77,10 @@ export default class FilterComponent {
         const name = filterLink.innerText;
         const reference = filterLink.dataset.reference;
 
+        if (filterName === 'genre') {
+            this.eventBus.publish(LIST_EVENTS.genrePushHistory, filterLink.dataset.reference);
+        }
+
         this.setFilter(filterName, name, reference);
 
         this.eventBus.publish(LIST_EVENTS.updateList);
