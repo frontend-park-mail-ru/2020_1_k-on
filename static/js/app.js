@@ -13,7 +13,7 @@ import View from 'views/view';
 import PersonController from 'controllers/personController';
 import {
     GLOBAL_EVENTS,
-    INTERNAL_ERROR_MSG,
+    INTERNAL_ERROR_MSG, INTERNAL_ERROR_STATUS, NOT_FOUND_ERROR_MSG,
 } from 'libs/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,10 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = new Navbar(globalEventBus);
     const router = new Router(container);
 
-    globalEventBus.subscribe(
-        GLOBAL_EVENTS.internalError,
-        (code) => router.renderError(code, INTERNAL_ERROR_MSG),
-    );
+    globalEventBus.subscribe(GLOBAL_EVENTS.internalError, (code) => {
+        router.renderError(code, code === INTERNAL_ERROR_STATUS ?
+            INTERNAL_ERROR_MSG :
+            NOT_FOUND_ERROR_MSG
+        );
+    });
 
     const controllers = {
         login: new LoginController(router, globalEventBus),
