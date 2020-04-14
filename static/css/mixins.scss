@@ -67,7 +67,6 @@
   background-position-y: center;
   background-position-x: 16px;
   @include transformScale;
-
   @if $side == left {
     background-image: url('/static/img/left-arrow.svg');
     background-position-x: 16px;
