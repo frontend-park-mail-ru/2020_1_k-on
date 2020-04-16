@@ -1,20 +1,25 @@
-export default class ListComponent {
-    constructor(root) {
-        this.root = root;
+import Component from 'components/component';
+
+export default class ListComponent extends Component {
+    constructor(elements = []) {
+        super();
+
+        this.elements = elements;
+
+        this.element = document.createElement('div');
     }
 
-    render(elements) {
-        const elem = document.createElement('div');
+    setElements(elements) {
+        this.elements = elements;
+    }
 
-        if (elements) {
-            elem.classList.add('list-component');
-            elements.forEach((item) => (elem.appendChild(item)));
+    afterRender() {
+        if (this.elements) {
+            this.element.classList.add('list-component');
+            this.elements.forEach((item) => (this.element.appendChild(item)));
         } else {
-            elem.classList.add('list-component__no-results');
-            elem.innerText = 'По данному запросу ничего не найдено.';
+            this.element.classList.add('list-component__no-results');
+            this.element.innerText = 'По данному запросу ничего не найдено.';
         }
-
-        this.root.innerHTML = '';
-        this.root.appendChild(elem);
     }
 }

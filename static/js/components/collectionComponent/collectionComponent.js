@@ -1,27 +1,26 @@
 import SwiperComponent from 'components/swiperComponent/swiperComponent';
+import Component from 'components/component';
+import template from './collectionComponent.tmpl.xml';
 
-export default class CollectionComponent {
+export default class CollectionComponent extends Component {
     constructor({
         name = 'collection',
         elements = [],
     } = {}) {
-        this.name = name;
+        super(template);
+
+        this.data = {
+            name: name,
+        };
+
         this.elements = elements;
+
+        this.element = document.createElement('div');
+        this.element.classList.add('collection');
     }
 
-    render() {
-        const collection = document.createElement('div');
-        collection.classList.add('collection');
-
-        const collectionName = document.createElement('div');
-        collectionName.classList.add('collection__header', 'page-layout');
-        collectionName.innerText = this.name;
-
-        collection.appendChild(collectionName);
-
+    afterRender() {
         const swiperComponent = new SwiperComponent(this.elements);
-        collection.appendChild(swiperComponent.render());
-
-        return collection;
+        this.element.appendChild(swiperComponent.render());
     }
 }

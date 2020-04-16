@@ -1,6 +1,7 @@
+import Component from 'components/component';
 import template from './cardComponent.tmpl.xml';
 
-export default class CardComponent {
+export default class CardComponent extends Component {
     constructor({
         type = 'films',
         id = '1',
@@ -13,10 +14,12 @@ export default class CardComponent {
         yearFirst = null,
         yearLast = null,
     } = {}) {
-        this.tmpl = template;
+        super(template);
+
+        this.id = id;
+
         this.data = {
             type: type,
-            id: id,
             image: image,
             russianName: russianName,
             ageLimit: ageLimit,
@@ -26,14 +29,9 @@ export default class CardComponent {
             yearFirst: yearFirst,
             yearLast: yearLast,
         };
-    }
 
-    render() {
-        const anchor = document.createElement('a');
-        anchor.classList.add('series-card');
-        anchor.href = `/${this.data.type}/${this.data.id}`;
-        anchor.innerHTML += this.tmpl(this.data);
-
-        return anchor;
+        this.element = document.createElement('a');
+        this.element.classList.add('series-card');
+        this.element.href = `/${this.data.type}/${this.id}`;
     }
 }

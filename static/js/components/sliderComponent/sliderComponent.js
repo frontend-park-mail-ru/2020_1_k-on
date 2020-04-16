@@ -1,32 +1,31 @@
+import Component from 'components/component';
 import template from './sliderComponent.tmpl.xml';
 import {SLIDER_INTERVAL} from 'libs/constants';
 
-export default class SliderComponent {
-    constructor(data) {
-        this.tmpl = template;
+export default class SliderComponent extends Component {
+    constructor(data = {}) {
+        super(template);
+
         this.data = data;
+
+        this.element = document.createElement('div');
+        this.element.classList.add('main-slider');
     }
 
-    render(root) {
-        this.root = root;
-
-        const slider = document.createElement('div');
-        slider.classList.add('main-slider');
-        slider.innerHTML += this.tmpl(this.data);
-
-        this.slides = slider.getElementsByClassName('main-slider__wrapper');
+    afterRender() {
+        this.slides = this.element.getElementsByClassName('main-slider__wrapper');
 
         this.curIndex = 0;
 
         this.curSlide = this.slides[this.curIndex];
         this.curSlide.classList.remove('hidden');
 
-        slider.getElementsByClassName('main-slider__arrows_left')[0]
+        this.element.getElementsByClassName('main-slider__arrows_left')[0]
             .addEventListener(
                 'click', this.doSlide.bind(this, 'left')
             );
 
-        slider.getElementsByClassName('main-slider__arrows_right')[0]
+        this.element.getElementsByClassName('main-slider__arrows_right')[0]
             .addEventListener(
                 'click', this.doSlide.bind(this, 'right')
             );
@@ -36,8 +35,6 @@ export default class SliderComponent {
             SLIDER_INTERVAL,
             'right'
         );
-
-        this.root.appendChild(slider);
     }
 
     doSlide(direction) {

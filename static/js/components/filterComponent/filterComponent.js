@@ -1,22 +1,18 @@
+import Component from 'components/component';
 import template from './filterComponent.tmpl.xml';
 import {LIST_EVENTS} from 'libs/constants';
 
-export default class FilterComponent {
-    constructor(filters = {}, eventBus) {
-        this.tmpl = template;
-        this.eventBus = eventBus;
-        this.filters = filters;
+export default class FilterComponent extends Component {
+    constructor(filters = {}, eventBus = null) {
+        super(template, eventBus);
 
+        this.filters = filters;
         this.filterList = [];
         this.chosenFilters = {};
         Object.keys(filters).forEach((filterName) => {
             this.filterList.push(filterName);
             this.chosenFilters[filterName] = filters[filterName][0];
         });
-    }
-
-    render(root) {
-        this.root = root;
 
         this.data = {
             filterList: this.filterList,
@@ -24,17 +20,12 @@ export default class FilterComponent {
             filters: this.filters,
         };
 
-        const elem = document.createElement('div');
-        elem.classList.add('filters-block', 'page-layout');
-        elem.innerHTML += this.tmpl(this.data);
-
-        this.root.appendChild(elem);
-
-        this.afterRender();
+        this.element = document.createElement('div');
+        this.element.classList.add('filters-block', 'page-layout');
     }
 
     afterRender() {
-        Array.from(document.getElementsByClassName('filter-button'))
+        Array.from(this.element.getElementsByClassName('filter-button'))
             .forEach((elem) => {
                 elem.addEventListener(
                     'click',
@@ -42,7 +33,7 @@ export default class FilterComponent {
                 );
             });
 
-        Array.from(document.getElementsByClassName('filter-submenu'))
+        Array.from(this.element.getElementsByClassName('filter-submenu'))
             .forEach((elem) => {
                 elem.addEventListener(
                     'click',
