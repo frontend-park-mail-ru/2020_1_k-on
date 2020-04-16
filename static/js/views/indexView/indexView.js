@@ -39,7 +39,7 @@ export default class IndexView extends View {
 
     afterRender() {
         this.slider = new SliderComponent(this.recommendations);
-        this.slider.render(this.root.getElementsByClassName('main-slider')[0]);
+        this.root.prepend(this.slider.render());
 
         this.collections.map((collection) => {
             collection.list.sort(() => Math.random() - RANDOM_SHUFFLE_VALUE);
