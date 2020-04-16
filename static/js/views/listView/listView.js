@@ -32,7 +32,8 @@ export default class ListView extends View {
     render(root) {
         super.render(root);
 
-        this.listComponent = new ListComponent(document.getElementById('list-container'));
+        this.listContainer = document.getElementById('list-container');
+        this.listComponent = new ListComponent();
 
         Api.getFilters(this.type)
             .then((res) => {
@@ -48,7 +49,8 @@ export default class ListView extends View {
                     this.eventBus,
                 );
                 this.parseQuery();
-                this.filterComponent.render(document.getElementById('filter-container'));
+                document.getElementById('filter-container')
+                    .appendChild(this.filterComponent.render());
 
                 this.getList();
             })
@@ -77,15 +79,18 @@ export default class ListView extends View {
 
     updateList(body) {
         if (body === null) {
-            this.listComponent.render(null);
+            this.listComponent.setElements(null);
         } else {
             const cards = body.map((item) => {
                 const card = new CardComponent(item);
                 return card.render();
             });
 
-            this.listComponent.render(cards);
+            this.listComponent.setElements(cards);
         }
+
+        this.listContainer.innerHTML = '';
+        this.listContainer.appendChild(this.listComponent.render());
     }
 
     parseFiltersFromBody(body) {

@@ -57,6 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/series/<string>', controllers.seriesList.view);
     router.add('/films/<string>', controllers.filmsList.view);
 
-    navbar.render(header);
+    header.appendChild(navbar.render());
     router.start();
 });
