@@ -1,11 +1,20 @@
+const doNothing = () => ('');
+
 export default class Component {
-    constructor(template) {
+    constructor(template = doNothing, eventBus = null) {
         this.tmpl = template;
-        this. data = {};
+        this.eventBus = eventBus;
+        this.data = {};
     }
 
-    render(root) {
-        this.root = root;
-        this.root.innerHTML = this.tmpl(this.data);
+    render() {
+        this.element.innerHTML = this.tmpl(this.data);
+
+        this.afterRender();
+
+        return this.element;
+    }
+
+    afterRender() {
     }
 }
