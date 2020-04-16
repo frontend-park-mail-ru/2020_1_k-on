@@ -1,17 +1,17 @@
-import Component from 'components/component';
 import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
 import {DEFAULT_AVATAR, MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
 
-export default class UserReviewComponent extends Component {
+export default class UserReviewComponent {
     constructor(type, id, review) {
-        super(template);
+        this.tmpl = template;
         this.type = type;
         this.id = id;
         this.rating = 0;
     }
 
     render(root) {
+        this.root = root;
         this.data = {};
 
         Api.getUserData().then((res) => {
@@ -26,7 +26,7 @@ export default class UserReviewComponent extends Component {
                             res.json().then((res) => {
                                 this.data.review = res.body;
 
-                                super.render(root);
+                                this.root.innerHTML += this.tmpl(this.data);
                             });
                         } else {
                             this.renderOnNoReview(root);
@@ -103,11 +103,11 @@ export default class UserReviewComponent extends Component {
             rating: this.rating,
             body: reviewText,
         };
-        super.render(this.root);
+        this.root.innerHTML += this.tmpl(this.data);
     }
 
     renderOnNoReview(root) {
-        super.render(root);
+        this.root.innerHTML += this.tmpl(this.data);
 
         for (const starIcon of document.getElementsByClassName('review-form__star-icon')) {
             starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
