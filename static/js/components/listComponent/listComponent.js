@@ -4,14 +4,12 @@ export default class ListComponent {
     }
 
     render(elements) {
-        let elem;
+        const elem = document.createElement('div');
 
         if (elements) {
-            elem = document.createElement('div');
             elem.classList.add('list-component');
             elements.forEach((item) => (elem.appendChild(item)));
         } else {
-            elem = document.createElement('div');
             elem.classList.add('list-component__no-results');
             elem.innerText = 'По данному запросу ничего не найдено.';
         }
