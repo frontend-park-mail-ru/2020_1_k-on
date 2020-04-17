@@ -16,6 +16,8 @@ export default class PersonView extends View {
     }
 
     render(root) {
+        this.root = root;
+
         Api.getPerson(this.id)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {

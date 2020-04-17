@@ -16,6 +16,8 @@ export default class MovieView extends View {
     }
 
     render(root) {
+        this.root = root;
+
         Api.getMovie(this.type, this.id)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
