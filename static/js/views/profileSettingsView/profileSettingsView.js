@@ -156,12 +156,8 @@ export default class ProfileSettingsView extends View {
             return;
         }
 
-        const login = form.getElementsByClassName(
-            'auth-form__input_username'
-        )[0];
-        const email = form.getElementsByClassName(
-            'auth-form__input_email'
-        )[0];
+        const login = form.getElementsByClassName('auth-form__input_login')[0];
+        const email = form.getElementsByClassName('auth-form__input_email')[0];
 
         Api.updateUser({
             login: login.value,
