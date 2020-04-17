@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -57,6 +58,9 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'style.css',
+        }),
+        new ServiceWorkerWebpackPlugin({
+            entry: path.resolve(__dirname, 'static/js/sw.js'),
         }),
     ],
 };
