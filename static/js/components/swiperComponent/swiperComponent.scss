@@ -1,17 +1,5 @@
 @import 'css/mixins';
 
-.collection {
-  position: relative;
-  width: 100%;
-  margin-bottom: 64px;
-
-  &__header {
-    font-family: Montserrat-Regular, sans-serif;
-    font-size: 28px;
-    margin-bottom: 14px;
-  }
-}
-
 .swiper {
   position: relative;
   overflow: hidden;
@@ -28,6 +16,10 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    & > * {
+      margin-right: $swiper-gap-between-elements;
     }
   }
 

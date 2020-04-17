@@ -9,12 +9,15 @@
 @import 'components/swiperComponent/swiperComponent';
 @import 'components/sliderComponent/sliderComponent';
 @import 'components/inputComponent/inputComponent';
+@import 'components/inputErrorComponent/inputErrorComponent';
+@import 'components/cardComponent/cardComponent';
+@import 'components/filterComponent/filterComponent';
+@import 'components/collectionComponent/collectionComponent';
 @import 'views/listView/listView';
 @import 'views/movieView/movieView';
 @import 'views/profileView/profileView';
 @import 'views/profileSettingsView/profileSettingsView';
 @import 'views/authView/authView';
-@import 'views/indexView/indexView';
 @import 'views/personView/personView';
 @import 'views/errorView/errorView';
 @import 'fonts/fonts';
@@ -23,7 +26,7 @@ body {
   position: relative;
   min-height: 100vh;
   background-color: $bg-color;
-  color: $text-main-color;
+  color: $text-color;
 
   font: {
     family: 'Roboto', sans-serif;

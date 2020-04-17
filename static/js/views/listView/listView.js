@@ -1,186 +1,125 @@
 import View from 'views/view';
 import template from './listView.tmpl.xml';
 import ListComponent from 'components/listComponent/listComponent';
+import FilterComponent from 'components/filterComponent/filterComponent';
+import CardComponent from 'components/cardComponent/cardComponent';
 import Api from 'libs/api';
-import {DEFAULT_FILTERS, LIST_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import {
+    LIST_EVENTS,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 
 export default class ListView extends View {
     constructor(eventBus, type) {
         super(template, eventBus);
         this.type = type;
 
-        this.data.type = type;
         this.data.category = type === 'series' ? 'Сериалы' : 'Фильмы';
-        this.data.filtersList = [
-            'genre',
-            'year',
-            'ordering',
-        ];
-        this.data.chosenFilters = DEFAULT_FILTERS;
-        this.listComponent = new ListComponent(this.type);
-    }
 
-    render(root) {
-        Api.getFilters(this.type).then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                res.json().then((res) => {
-                    this.data.filters = {};
-                    this.data.filters.genre = res.body.genres;
-                    this.data.filters.genre.unshift({
-                        name: 'Все жанры',
-                        reference: '%',
-                    });
-                    this.data.filters.year = [
-                        {
-                            name: 'Все годы',
-                            reference: '%',
-                        },
-                    ];
-                    for (let year = parseInt(res.body.filters.maxyear);
-                        year >= parseInt(res.body.filters.minyear); year--) {
-                        this.data.filters.year.push({
-                            name: year,
-                            reference: year,
-                        });
-                    }
-                    this.data.filters.ordering = [
-                        {
-                            name: 'По рейтингу',
-                            reference: 'rating',
-                        },
-                        // {
-                        //     name: 'По новизне',
-                        //     reference: 'novelty',
-                        // },
-                        {
-                            name: 'По рейтингу IMDb',
-                            reference: 'imdbrating',
-                        },
-                    ];
-
-                    this.listComponent.setDefaultFilters();
-                    this.setDefaultFilters();
-                    this.checkGenre();
-
-                    super.render(root);
-
-                    for (const filterButton of document.getElementsByClassName(
-                        'filter-button'
-                    )) {
-                        filterButton.addEventListener(
-                            'click',
-                            this.onFilterButtonClick.bind(this)
-                        );
-                    }
-
-                    for (const filterSubmenu of document.getElementsByClassName(
-                        'filter-submenu'
-                    )) {
-                        filterSubmenu.addEventListener(
-                            'click',
-                            this.onFilterValueClick.bind(this)
-                        );
-                    }
-
-                    const listContainer = document.getElementById('list-container');
-                    this.listComponent.render(listContainer);
-                });
-            }
-        }).catch((err) => {
-            this.eventBus.publish(LIST_EVENTS.internalError, err.status);
+        this.eventBus.subscribe(LIST_EVENTS.updateList, () => {
+            this.getList();
         });
-    }
-
-    onFilterButtonClick(evt) {
-        const filterButton = evt.currentTarget;
-        const submenu = filterButton.nextElementSibling;
-        if (getComputedStyle(submenu).visibility === 'hidden') {
-            for (const filterButton of document.getElementsByClassName(
-                'filter-button'
-            )) {
-                this.closeFilter(filterButton);
-            }
-            this.openFilter(filterButton);
-        } else {
-            this.closeFilter(filterButton);
-        }
-    }
-
-    onFilterValueClick(evt) {
-        if (!(evt.target instanceof HTMLSpanElement)) {
-            return;
-        }
-
-        const filterLink = evt.target;
-        const submenu = evt.currentTarget;
-        const filterButton = submenu.previousElementSibling;
-        this.closeFilter(filterButton);
-
-        if (filterLink.classList.contains('filter-submenu__item_active')) {
-            return;
-        }
-
-        submenu.childNodes.forEach((submenuItem) => {
-            submenuItem.firstElementChild.classList.remove(
-                'filter-submenu__item_active'
-            );
-        });
-        filterButton.firstElementChild.innerText = filterLink.innerText;
-        filterLink.classList.add('filter-submenu__item_active');
-
-        const filterName = submenu.dataset.name;
-        if (filterName === 'genre') {
-            if (filterLink.dataset.reference === '%') {
+        this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, (genreReference) => {
+            if (genreReference === '%') {
                 window.history.pushState(null, null, `/${this.type}`);
             } else {
                 window.history.pushState(null, null,
-                    `/${this.type}/${filterLink.dataset.reference}`);
+                    `/${this.type}/${genreReference}`);
             }
+        });
+    }
+
+    render(root) {
+        super.render(root);
+
+        this.listContainer = document.getElementById('list-container');
+        this.listComponent = new ListComponent();
+
+        Api.getFilters(this.type)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                this.filterComponent = new FilterComponent(
+                    this.parseFiltersFromBody(res.body),
+                    this.eventBus,
+                );
+                this.parseQuery();
+                document.getElementById('filter-container')
+                    .appendChild(this.filterComponent.render());
+
+                this.getList();
+            })
+            .catch((err) => {
+                this.eventBus.publish(LIST_EVENTS.internalError, err.status);
+            });
+    }
+
+    getList() {
+        Api.getList(this.type, this.filterComponent.getChosenFilters(), 1)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                res.status === SUCCESS_STATUS ? this.updateList(res.body): this.updateList(null);
+            })
+            .catch((err) => {
+                console.log(err);
+                this.eventBus.publish(LIST_EVENTS.internalError, err.status);
+            });
+    }
+
+    updateList(body) {
+        if (body === null) {
+            this.listComponent.setElements(null);
+        } else {
+            const cards = body.map((item) => {
+                const card = new CardComponent(item);
+                return card.render();
+            });
+
+            this.listComponent.setElements(cards);
         }
-        this.listComponent.changeFilter(
-            filterName,
-            filterLink.innerText,
-            filterLink.dataset.reference
-        );
+
+        this.listContainer.innerHTML = '';
+        this.listContainer.appendChild(this.listComponent.render());
     }
 
-    openFilter(filterButton) {
-        const arrow = filterButton.lastElementChild;
-        const submenu = filterButton.nextElementSibling;
+    parseFiltersFromBody(body) {
+        const filters = {};
 
-        filterButton.classList.add('filter-button_active');
-        arrow.classList.add('filter-button__arrow_active');
-        submenu.classList.add('filter-submenu_active');
+        Object.keys(body).forEach((filterName) => {
+            if (filterName === 'year') {
+                filters[filterName] = [];
+                filters[filterName].push(body[filterName][0]);
+
+                const maxyear = parseInt(body[filterName][1].reference);
+                const minyear = parseInt(body[filterName][2].reference);
+
+                for (let year = maxyear; year >= minyear; year--) {
+                    filters[filterName].push({name: year, reference: year});
+                }
+            } else {
+                filters[filterName] = body[filterName];
+            }
+        });
+
+        return filters;
     }
 
-    closeFilter(filterButton) {
-        const arrow = filterButton.lastElementChild;
-        const submenu = filterButton.nextElementSibling;
-
-        filterButton.classList.remove('filter-button_active');
-        arrow.classList.remove('filter-button__arrow_active');
-        submenu.classList.remove('filter-submenu_active');
-    }
-
-    setDefaultFilters() {
-        this.data.chosenFilters = Object.assign({}, DEFAULT_FILTERS);
-    }
-
-    checkGenre() {
+    parseQuery() {
         const genre = location.pathname.split('/').pop();
 
         if (genre !== this.type) {
-            for (const genreFilter of this.data.filters.genre) {
-                if (genreFilter.reference === genre) {
-                    this.data.chosenFilters['genre'] = {
-                        name: genreFilter.name,
-                        reference: genre,
-                    };
-
-                    this.listComponent.setFilter('genre', genreFilter.name, genre);
-                    break;
-                }
-            }
+            this.filterComponent.setFilterIfExists('genre', genre);
         }
     }
 }

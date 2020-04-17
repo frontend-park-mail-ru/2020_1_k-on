@@ -50,6 +50,8 @@ export const INDEX_EVENTS = {
 
 export const LIST_EVENTS = {
     internalError: 'internalError',
+    updateList: 'updateList',
+    genrePushHistory: 'genrePushHistory',
 };
 
 export const MOVIE_EVENTS = {
@@ -134,21 +136,6 @@ export const SIGN_UP_PAGE_DATA = {
 
 export const SLIDER_INTERVAL = 10000;
 export const SLIDER_DISTANCE = 400;
-
-export const DEFAULT_FILTERS = {
-    genre: {
-        name: 'Все жанры',
-        reference: '%',
-    },
-    year: {
-        name: 'Все годы',
-        reference: '%',
-    },
-    ordering: {
-        name: 'По рейтингу',
-        reference: 'rating',
-    },
-};
 
 export const MAX_RATING = 10;
 

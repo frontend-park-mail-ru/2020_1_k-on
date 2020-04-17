@@ -14,7 +14,11 @@ export default class Network {
         return fetch(host + url, {
             method: 'GET',
             credentials: 'include',
-        });
+        })
+            .catch((err) => {
+                console.log(err);
+                location.reload();
+            });
     }
 
     /**

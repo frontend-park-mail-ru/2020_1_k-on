@@ -1,106 +1,18 @@
 @import 'css/variables';
 @import 'css/mixins';
 
-.series-block {
+.list-component {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-}
 
-.series-card {
-  cursor: pointer;
-  margin-right: $padding-between-cards;
-  margin-bottom: 60px;
-  display: inline-block;
-  @media (min-width: $five-cards-max-width) {
-    width: calc(16.6% - #{$padding-between-cards});
-  }
-  @media (min-width: $four-cards-max-width) and (max-width: $five-cards-max-width) {
-    width: calc(20% - #{$padding-between-cards});
-  }
-  @media (min-width: $three-cards-max-width) and (max-width: $four-cards-max-width) {
-    width: calc(25% - #{$padding-between-cards});
-  }
-  @media (min-width: $two-cards-max-width) and (max-width: $three-cards-max-width) {
-    width: calc(33.3% - #{$padding-between-cards});
-  }
-  @media (max-width: $two-cards-max-width) {
-    width: calc(50% - #{$padding-between-cards});
+  & > * {
+    margin-right: $list-right-gap;
+    margin-bottom: $list-bottom-gap;
   }
 
-  &__image {
-    position: relative;
-    margin-bottom: 20px;
-    width: 100%;
-    padding-bottom: 150%;
-    border-radius: 15px;
-    box-shadow: $series-card-shadow;
-    background: no-repeat center 0 / cover;
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.02);
-      transform-origin: 50% 100%;
-    }
-  }
-
-  &__image:hover &__age-limit {
-    visibility: hidden;
-  }
-
-  &__image:hover > &__gradient {
-    visibility: visible;
-  }
-
-  &__image:hover > &__content {
-    visibility: visible;
-  }
-
-  &__gradient {
-    visibility: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(to bottom, rgba(22, 25, 29, 0), #16191D);
-  }
-
-  &__content {
-    visibility: hidden;
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
+  &__no-results {
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    color: $card-content-color;
+    font-size: 20px;
   }
-
-  &__name {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: Roboto, sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-    color: $text-main-color;
-  }
-
-  &__age-limit {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 35px;
-    height: 25px;
-    border-radius: 5px;
-    background-color: $age-limit-background;
-    font-size: 14px;
-    color: $age-limit-color;
-    @include center-position;
-  }
-}
-
-.no-results-message {
-  font-family: OpenSans-Regular, sans-serif;
-  font-size: 20px;
 }

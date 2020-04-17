@@ -3,9 +3,10 @@ import template from './authView.tmpl.xml';
 import validation from 'libs/validation';
 import passwordToggler from 'libs/passwordToggler';
 import InputComponent from 'components/inputComponent/inputComponent';
+import InputErrorComponent from 'components/inputErrorComponent/inputErrorComponent';
 import {
     BAD_REQUEST_STATUS,
-    FORBIDDEN_STATUS, INTERNAL_ERROR_STATUS,
+    FORBIDDEN_STATUS, INTERNAL_ERROR_STATUS, NOT_FOUND_STATUS,
     PROFILE_EVENTS,
     SUCCESS_STATUS,
 } from 'libs/constants';
@@ -59,7 +60,7 @@ export default class AuthView extends View {
                     this.root.getElementsByClassName('auth-content')[0]
                         .classList.add('auth-content_error');
 
-                    if (res.status === BAD_REQUEST_STATUS) {
+                    if (res.status === BAD_REQUEST_STATUS || res.status === NOT_FOUND_STATUS) {
                         this.onInvalid(this.data.messages.bad_request);
                     } else if (res.status === FORBIDDEN_STATUS) {
                         this.onInvalid(this.data.messages.forbidden);
@@ -113,7 +114,10 @@ export default class AuthView extends View {
 
         this.data.inputs.forEach((input) => {
             const inputComponent = new InputComponent(input);
-            inputComponent.render(inputs);
+            inputs.appendChild(inputComponent.render());
+
+            const inputErrorComponent = new InputErrorComponent(inputComponent.getName());
+            inputs.appendChild(inputErrorComponent.render());
         });
 
         Array.from(this.root.getElementsByClassName('auth-form__eye'))

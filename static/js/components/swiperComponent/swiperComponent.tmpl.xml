@@ -1,51 +1,5 @@
-<fest:template xmlns:fest="http://fest.mail.ru" context_name="collection">
-    <div class="collection__header page-layout">
-        <fest:value>collection.name</fest:value>
-    </div>
-    <div class="swiper">
-        <div class="swiper__wrapper page-layout">
-            <div class="swiper__arrows_left" />
-            <div class="swiper__arrows_right" />
-            <fest:for iterate="collection.list" index="i" value="card">
-                <a class="series-card" href="/{card.type}/{card.id}" style="margin-bottom: 0;">
-                    <div class="series-card__image" style="background-image: url({card.image})">
-                        <span class="series-card__age-limit">
-                            <fest:value>card.ageLimit</fest:value>+
-                        </span>
-                        <div class="series-card__gradient"/>
-
-                        <div class="series-card__content">
-                            <fest:if test="card.type === 'series'">
-                                <div class="series-card__content-row">
-                                    <fest:value>card.yearFirst</fest:value>
-                                    <fest:if test="card.yearFirst !== card.yearLast">
-                                        <fest:space/>-
-                                        <fest:space/>
-                                        <fest:value>card.yearLast</fest:value>
-                                    </fest:if>
-                                    ,
-                                </div>
-                            </fest:if>
-
-                            <fest:if test="card.type === 'films'">
-                                <div class="series-card__content-row">
-                                    <fest:value>card.year</fest:value>,
-                                </div>
-                            </fest:if>
-                            <div class="series-card__content-row">
-                                <fest:value>card.country</fest:value>,
-                            </div>
-                            <div class="series-card__content-row">
-                                <fest:value>card.mainGenre</fest:value>
-                            </div>
-                        </div>
-                    </div>
-
-                    <span class="series-card__name">
-                        <fest:value>card.russianName</fest:value>
-                    </span>
-                </a>
-            </fest:for>
-        </div>
-    </div>
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="swiper__arrows_left" />
+    <div class="swiper__arrows_right" />
+    <div class="swiper__wrapper page-layout" />
 </fest:template>

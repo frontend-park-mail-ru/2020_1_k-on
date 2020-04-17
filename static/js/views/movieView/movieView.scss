@@ -5,7 +5,7 @@
   overflow: hidden;
   background-color: $bg-color;
   font-family: OpenSans-Regular, sans-serif;
-  color: $text-main-color;
+  color: $text-color;
 }
 
 .movie-bg {
@@ -65,10 +65,10 @@
 
   &__season-link {
     margin-right: 15px;
-    border: 1px solid $text-main-color;
+    border: 1px solid $text-color;
     border-radius: 10px;
     font-size: 20px;
-    color: $text-main-color;
+    color: $text-color;
     @include square($size: 35px);
     @include center-position;
 
@@ -130,7 +130,7 @@
 
   &__description {
     padding-bottom: $padding-between-description-blocks;
-    color: $text-main-color;
+    color: $text-color;
   }
 
   &__data {
@@ -220,6 +220,6 @@
 
   &__text {
     font-size: 18px;
-    color: $text-main-color;
+    color: $text-color;
   }
 }

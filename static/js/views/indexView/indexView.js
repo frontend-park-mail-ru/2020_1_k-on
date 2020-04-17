@@ -1,8 +1,9 @@
 import View from 'views/view';
 import template from './indexView.tmpl.xml';
-import SwiperComponent from 'components/swiperComponent/swiperComponent';
-import SliderComponent from 'components/sliderComponent/sliderComponent';
 import Api from 'libs/api';
+import CollectionComponent from 'components/collectionComponent/collectionComponent';
+import SliderComponent from 'components/sliderComponent/sliderComponent';
+import CardComponent from 'components/cardComponent/cardComponent';
 import {
     INDEX_EVENTS,
     RANDOM_SHUFFLE_VALUE,
@@ -15,7 +16,7 @@ export default class IndexView extends View {
     }
 
     render(root) {
-        this.root = root;
+        super.render(root);
 
         Api.getIndex()
             .then((res) => {
@@ -26,8 +27,9 @@ export default class IndexView extends View {
                 }
             })
             .then((res) => {
-                this.data = res.body;
-                this.afterFetch();
+                this.collections = res.body.collections;
+                this.recommendations = res.body.recommendations;
+                this.afterRender();
             })
             .catch((err) => {
                 console.log(err);
@@ -35,25 +37,28 @@ export default class IndexView extends View {
             });
     }
 
-    afterFetch() {
-        this.data.collections.map((collection) => {
+    afterRender() {
+        this.slider = new SliderComponent(this.recommendations);
+        this.root.prepend(this.slider.render());
+
+        this.collections.map((collection) => {
             collection.list.sort(() => Math.random() - RANDOM_SHUFFLE_VALUE);
         });
 
-        super.render(this.root);
-        this.afterRender();
-    }
+        const collectionsElem = this.root.getElementsByClassName('collections')[0];
 
-    afterRender() {
-        this.slider = new SliderComponent(this.data.recommendations);
-        this.mainSlider = this.root.getElementsByClassName('main-slider')[0];
-        this.slider.render(this.mainSlider);
+        this.collections.forEach((collection) => {
+            const cards = collection.list.map((item) => {
+                const cardComponent = new CardComponent(item);
+                return cardComponent.render();
+            });
 
-        this.collections = this.root.getElementsByClassName('collections')[0];
+            const collectionComponent = new CollectionComponent({
+                name: collection.name,
+                elements: cards,
+            });
 
-        this.data.collections.forEach((colletion) => {
-            const swiper = new SwiperComponent(colletion);
-            swiper.render(this.collections);
+            collectionsElem.appendChild(collectionComponent.render());
         });
     }
 

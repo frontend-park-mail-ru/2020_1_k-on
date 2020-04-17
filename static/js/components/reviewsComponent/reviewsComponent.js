@@ -1,15 +1,15 @@
-import Component from 'components/component';
 import template from './reviewsComponent.tmpl.xml';
 import Api from 'libs/api';
 import {DEFAULT_AVATAR, SUCCESS_STATUS} from 'libs/constants';
 
-export default class ReviewsComponent extends Component {
+export default class ReviewsComponent {
     constructor(type) {
-        super(template);
+        this.tmpl = template;
         this.type = type;
     }
 
     render(root) {
+        this.root = root;
         this.data = {};
 
         Api.getUserReview(this.type, this.id).then((res) => {
@@ -28,10 +28,10 @@ export default class ReviewsComponent extends Component {
                             this.data.reviews = res.body;
                             this.data.defaultAvatar = DEFAULT_AVATAR;
                         }
-                        super.render(root);
+                        this.root.innerHTML += this.tmpl(this.data);
                     });
                 } else {
-                    super.render(root);
+                    this.root.innerHTML += this.tmpl(this.data);
                     console.log('something went wrong');
                 }
             });

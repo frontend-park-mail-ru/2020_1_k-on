@@ -12,6 +12,7 @@ import {
     DEFAULT_AVATAR,
     PROFILE_INPUTS,
 } from 'libs/constants';
+import InputErrorComponent from 'components/inputErrorComponent/inputErrorComponent';
 
 export default class ProfileSettingsView extends View {
     constructor(eventBus) {
@@ -63,7 +64,10 @@ export default class ProfileSettingsView extends View {
         const dataInputs = dataForm.getElementsByClassName('inputs')[0];
         PROFILE_INPUTS.profile.forEach((input) => {
             const inputComponent = new InputComponent(input);
-            inputComponent.render(dataInputs);
+            dataInputs.appendChild(inputComponent.render());
+
+            const inputErrorComponent = new InputErrorComponent(inputComponent.getName());
+            dataInputs.appendChild(inputErrorComponent.render());
         });
 
         const modalForm = this.root.getElementsByClassName('auth-form')[1];
@@ -71,7 +75,10 @@ export default class ProfileSettingsView extends View {
         const modalInputs = modalForm.getElementsByClassName('inputs')[0];
         PROFILE_INPUTS.modal.forEach((input) => {
             const inputComponent = new InputComponent(input);
-            inputComponent.render(modalInputs);
+            modalInputs.appendChild(inputComponent.render());
+
+            const inputErrorComponent = new InputErrorComponent(inputComponent.getName());
+            modalInputs.appendChild(inputErrorComponent.render());
         });
 
         this.email = this.data.email;

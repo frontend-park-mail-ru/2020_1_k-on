@@ -13,20 +13,27 @@ import View from 'views/view';
 import PersonController from 'controllers/personController';
 import {
     GLOBAL_EVENTS,
-    INTERNAL_ERROR_MSG,
+    INTERNAL_ERROR_MSG, INTERNAL_ERROR_STATUS, NOT_FOUND_ERROR_MSG,
 } from 'libs/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js', {scope: '/'})
+            .catch((err) => (console.log('SW registration FAIL:', err)));
+    }
+
     const header = document.getElementById('header');
     const container = document.getElementById('container');
     const globalEventBus = new EventBus();
     const navbar = new Navbar(globalEventBus);
     const router = new Router(container);
 
-    globalEventBus.subscribe(
-        GLOBAL_EVENTS.internalError,
-        (code) => router.renderError(code, INTERNAL_ERROR_MSG),
-    );
+    globalEventBus.subscribe(GLOBAL_EVENTS.internalError, (code) => {
+        router.renderError(code, code === INTERNAL_ERROR_STATUS ?
+            INTERNAL_ERROR_MSG :
+            NOT_FOUND_ERROR_MSG
+        );
+    });
 
     const controllers = {
         login: new LoginController(router, globalEventBus),
@@ -55,6 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/series/<string>', controllers.seriesList.view);
     router.add('/films/<string>', controllers.filmsList.view);
 
-    navbar.render(header);
+    header.appendChild(navbar.render());
     router.start();
 });

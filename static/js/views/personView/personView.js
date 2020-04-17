@@ -1,8 +1,13 @@
 import View from 'views/view';
 import template from './personView.tmpl.xml';
-import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Api from 'libs/api';
-import {PERSON_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import convertDate from 'libs/convertDate';
+import CardComponent from 'components/cardComponent/cardComponent';
+import CollectionComponent from 'components/collectionComponent/collectionComponent';
+import {
+    PERSON_EVENTS,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 
 export default class PersonView extends View {
     constructor(eventBus) {
@@ -11,48 +16,56 @@ export default class PersonView extends View {
     }
 
     render(root) {
-        Api.getPerson(this.id).then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                res.json().then((res) => {
-                    this.data = res.body;
+        Api.getPerson(this.id)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                res.body.birthDate = convertDate(res.body.birthDate);
+                this.data = res.body;
+                super.render(root);
 
-                    const dtf = new Intl.DateTimeFormat(
-                        'ru',
-                        {year: 'numeric', month: 'long', day: 'numeric'}
-                    );
-                    const [
-                        {value: day},
-                        ,
-                        {value: month},
-                        ,
-                        {value: year},
-                    ] = dtf.formatToParts(new Date(this.data.birthDate));
-                    this.data.birthDate = `${day} ${month} ${year}`;
+                this.afterRender();
+            })
+            .catch((err) => {
+                this.eventBus.publish(PERSON_EVENTS.internalError, err.status);
+            });
+    }
 
-                    super.render(root);
+    afterRender() {
+        const listsContainer = document.getElementById('person-lists-container');
 
-                    const listsContainer = document.getElementById('person-lists-container');
+        if (this.data.films) {
+            const cards = this.data.films.map((item) => {
+                const cardComponent = new CardComponent(item);
+                return cardComponent.render();
+            });
 
-                    if (this.data.films) {
-                        const filmsSwiper = new SwiperComponent({
-                            name: 'Фильмы с участием актера',
-                            list: this.data.films,
-                        });
-                        filmsSwiper.render(listsContainer);
-                    }
+            const collectionComponent = new CollectionComponent({
+                name: 'Фильмы с участием актера',
+                elements: cards,
+            });
 
-                    if (this.data.series) {
-                        const seriesSwiper = new SwiperComponent({
-                            name: 'Сериалы с участием актера',
-                            list: this.data.series,
-                        });
-                        seriesSwiper.render(listsContainer);
-                    }
-                });
-            }
-        }).catch((err) => {
-            this.eventBus.publish(PERSON_EVENTS.internalError, err.status);
-        });
+            listsContainer.appendChild(collectionComponent.render());
+        }
+
+        if (this.data.series) {
+            const cards = this.data.series.map((item) => {
+                const cardComponent = new CardComponent(item);
+                return cardComponent.render();
+            });
+
+            const collectionComponent = new CollectionComponent({
+                name: 'Сериалы с участием актера',
+                elements: cards,
+            });
+
+            listsContainer.appendChild(collectionComponent.render());
+        }
     }
 
     setId(id) {

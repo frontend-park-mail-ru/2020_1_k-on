@@ -1,4 +1,5 @@
 import template from './navbar.tmpl.xml';
+import Component from 'components/component';
 import Api from 'libs/api';
 import {
     SUCCESS_STATUS,
@@ -10,14 +11,16 @@ import {
 /**
  * Компонент navbar
  */
-export default class Navbar {
+export default class Navbar extends Component {
     constructor(globalEventBus) {
-        this.globalEventBus = globalEventBus;
-        this.globalEventBus.subscribe(
+        super(template, globalEventBus);
+
+        this.eventBus.subscribe(
             GLOBAL_EVENTS.renderForAuth,
             this.renderForAuth.bind(this)
         );
-        this.globalEventBus.subscribe(
+
+        this.eventBus.subscribe(
             GLOBAL_EVENTS.renderForUnauth,
             this.renderForUnauth.bind(this)
         );
@@ -25,18 +28,16 @@ export default class Navbar {
         this.navbarAuthItems = NAVBAR_AUTH_ITEMS;
         this.navbarUnauthItems = NAVBAR_UNAUTH_ITEMS;
 
-        this.tmpl = template;
+        this.element = document.createElement('div');
+        this.element.classList.add('navbar', 'page-layout');
     }
 
-    render(root) {
-        this.root = root;
-        this.root.innerHTML = this.tmpl();
-
+    afterRender() {
         Api.getUserData()
             .then((res) => {
                 res.status === SUCCESS_STATUS ?
-                    this.globalEventBus.publish(GLOBAL_EVENTS.renderForAuth) :
-                    this.globalEventBus.publish(GLOBAL_EVENTS.renderForUnauth);
+                    this.eventBus.publish(GLOBAL_EVENTS.renderForAuth) :
+                    this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             })
             .catch((error) => {
                 console.log(error);
@@ -47,7 +48,7 @@ export default class Navbar {
         this.renderRightSide.bind(this);
         this.renderRightSide(this.navbarAuthItems);
 
-        const logout = this.root.querySelector('[href="/logout"]');
+        const logout = this.element.querySelector('[href="/logout"]');
         this.onLogout = this.onLogout.bind(this);
         logout.addEventListener('click', this.onLogout);
     }
@@ -57,9 +58,7 @@ export default class Navbar {
     }
 
     renderRightSide(items) {
-        const rightSide = this.root.getElementsByClassName(
-            'navbar__right-side'
-        )[0];
+        const rightSide = this.element.getElementsByClassName('navbar__right-side')[0];
         rightSide.innerHTML = '';
 
         Object.keys(items).forEach((key) => {
@@ -78,7 +77,7 @@ export default class Navbar {
     onLogout(event) {
         Api.doLogout()
             .then((res) => {
-                this.globalEventBus.publish(GLOBAL_EVENTS.renderForUnauth);
+                this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             })
             .catch((error) => {
                 console.log(error);
