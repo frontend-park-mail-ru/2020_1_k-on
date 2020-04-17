@@ -1,0 +1,32 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <fest:for iterate="data.filterList" index="i" value="filterName">
+        <div class="filter-button" data-name="{filterName}">
+            <span class="filter-button__filter-value">
+                <fest:value>data.chosenFilters[filterName].name</fest:value>
+            </span>
+            <div class="filter-button__arrow"/>
+        </div>
+
+        <div class="filter-submenu page-layout" data-name="{filterName}">
+            <fest:for iterate="data.filters[filterName]" index="j" value="filterItem">
+                <div>
+                    <fest:choose>
+                        <fest:when test="filterItem.name === data.chosenFilters[filterName].name">
+                            <span class="filter-submenu__item filter-submenu__item_active"
+                                  data-reference="{filterItem.reference}">
+                                <fest:value>filterItem.name</fest:value>
+                            </span>
+                        </fest:when>
+
+                        <fest:otherwise>
+                            <span class="filter-submenu__item" data-reference="{filterItem.reference}">
+                                <fest:value>filterItem.name</fest:value>
+                            </span>
+                        </fest:otherwise>
+                    </fest:choose>
+                </div>
+
+            </fest:for>
+        </div>
+    </fest:for>
+</fest:template>

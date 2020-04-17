@@ -1,0 +1,36 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="series-card__image" style="background-image: url({data.image})">
+        <span class="series-card__age-limit">
+            <fest:value>data.ageLimit</fest:value>+
+        </span>
+        <div class="series-card__gradient" />
+
+        <div class="series-card__content">
+            <div class="series-card__content-row">
+                <fest:if test="data.type === 'series'">
+                    <fest:value>data.yearFirst</fest:value>
+                    <fest:if test="data.yearFirst !== data.yearLast">
+                        <fest:space/>-
+                        <fest:space/>
+                        <fest:value>data.yearLast</fest:value>
+                    </fest:if>
+                </fest:if>
+
+                <fest:if test="data.type === 'films'">
+                    <fest:value>data.year</fest:value>
+                </fest:if>
+                ,
+            </div>
+            <div class="series-card__content-row">
+                <fest:value>data.country</fest:value>,
+            </div>
+            <div class="series-card__content-row">
+                <fest:value>data.mainGenre</fest:value>
+            </div>
+        </div>
+    </div>
+
+    <span class="series-card__name">
+        <fest:value>data.russianName</fest:value>
+    </span>
+</fest:template>

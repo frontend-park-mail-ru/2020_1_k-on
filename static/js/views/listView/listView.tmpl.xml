@@ -1,0 +1,21 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="list-page">
+        <div class="list-header page-layout">
+            <div class="list-header__path user-path">
+                <a class="movie-header__path-href user-path__href" href="/">
+                    Главная
+                </a>
+                <fest:space/>/<fest:space/>
+
+                <fest:value>data.category</fest:value>
+            </div>
+
+            <div class="list-header__headline">
+                <fest:value>data.category</fest:value>
+            </div>
+        </div>
+
+        <div id="filter-container" />
+        <div id="list-container" class="page-layout" />
+    </div>
+</fest:template>

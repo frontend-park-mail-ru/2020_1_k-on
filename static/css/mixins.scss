@@ -1,0 +1,82 @@
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+@mixin center-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin gradientButton {
+  border-radius: 8px;
+  min-height: 44px;
+  color: $bg-color;
+  padding: 0 16px;
+  transition: all 0.4s ease-in-out;
+  font-family: OpenSans-Regular, sans-serif;
+
+  background: {
+    image: $button-bg-color-hover;
+    size: 300% 100%;
+  }
+
+  font: {
+    weight: lighter;
+    size: 1.25em;
+  }
+
+  &:hover {
+    background-position: 100% 0;
+    transition: all 0.4s ease-in-out;
+  }
+}
+@mixin transformScale($scaleValue: 1.25, $transitionValue: 0.2s) {
+  transition: transform $transitionValue linear;
+
+  &:hover {
+    transform: scale($scaleValue);
+    transition: transform $transitionValue linear;
+  }
+}
+@mixin sliderArrow($side) {
+  position: absolute;
+  top: 50%;
+  #{$side}: 16px;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0.4;
+  @include transformScale;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+@mixin swiperArrow($side) {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  #{$side}: 0px;
+  width: 80px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 16px;
+  @include transformScale;
+  @if $side == left {
+    background-image: url('/static/img/left-arrow.svg');
+    background-position-x: 16px;
+  }
+  @if $side == right {
+    background-image: url('/static/img/right-arrow.svg');
+    background-position-x: 32px;
+  }
+}
+@mixin labelActive {
+  top: 1.4em;
+  font-size: 0.7em;
+}

@@ -1,0 +1,65 @@
+@import 'css/variables';
+
+.navbar {
+  min-height: $navbar-height;
+  display: flex;
+  background-color: $navbar-bg-color;
+  font-family: 'OpenSans-Regular', sans-serif;
+}
+
+.navbar__left-side {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-right: 5%;
+}
+
+.navbar__right-side {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navbar__logo {
+  margin-right: $margin-between-links;
+  font-family: 'OpenSans-Bold', sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: $text-color;
+
+  &_color {
+    color: $text-bright-color;
+  }
+}
+
+.navbar__link {
+  margin: 0 $margin-between-links;
+  font-size: 22px;
+  color: $text-color;
+}
+
+.navbar__search-form {
+  height: 2.5em;
+  display: flex;
+  box-sizing: content-box;
+}
+
+.navbar__search-input {
+  width: 350px;
+  border-top-left-radius: $search-form-border-radius;
+  border-bottom-left-radius: $search-form-border-radius;
+  padding-left: 1em;
+}
+
+.navbar__search-button {
+  width: 2.5em;
+  border-top-right-radius: $search-form-border-radius;
+  border-bottom-right-radius: $search-form-border-radius;
+  background-color: $search-form-color;
+}
+
+.navbar__search-icon {
+  height: 1.1em;
+}

@@ -1,0 +1,5 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="swiper__arrows_left" />
+    <div class="swiper__arrows_right" />
+    <div class="swiper__wrapper page-layout" />
+</fest:template>

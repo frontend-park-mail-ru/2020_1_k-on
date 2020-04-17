@@ -1,0 +1,115 @@
+@import 'variables';
+@import 'form';
+@import 'reset';
+@import 'mixins';
+@import 'components/navbar/navbar';
+@import 'components/listComponent/listComponent';
+@import 'components/reviewsComponent/reviewsComponent';
+@import 'components/userReviewComponent/userReviewComponent';
+@import 'components/swiperComponent/swiperComponent';
+@import 'components/sliderComponent/sliderComponent';
+@import 'components/inputComponent/inputComponent';
+@import 'components/inputErrorComponent/inputErrorComponent';
+@import 'components/cardComponent/cardComponent';
+@import 'components/filterComponent/filterComponent';
+@import 'components/collectionComponent/collectionComponent';
+@import 'views/listView/listView';
+@import 'views/movieView/movieView';
+@import 'views/profileView/profileView';
+@import 'views/profileSettingsView/profileSettingsView';
+@import 'views/authView/authView';
+@import 'views/personView/personView';
+@import 'views/errorView/errorView';
+@import 'fonts/fonts';
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: $bg-color;
+  color: $text-color;
+
+  font: {
+    family: 'Roboto', sans-serif;
+    weight: 100;
+    style: normal;
+  }
+}
+
+#header {
+  min-height: 60px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 2px 2px $navbar-bg-color;
+}
+
+#container {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+#footer {
+  min-height: 50px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: white;
+  opacity: 0.4;
+}
+
+.page-layout {
+  padding-left: $paragraph;
+  padding-right: $paragraph;
+}
+
+.avatar {
+  border-radius: 50%;
+  background: no-repeat center / cover;
+}
+
+.user-path {
+  font-family: 'Montserrat-Regular', sans-serif;
+  color: $path-color;
+}
+
+.user-path > * {
+  display: inline;
+}
+
+.user-path__href {
+  text-decoration: underline;
+  color: $path-color;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: $text-ref-color;
+}
+
+input {
+  border: 0;
+  font-family: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a:focus {
+  outline: none;
+}

@@ -1,0 +1,36 @@
+@import 'css/mixins';
+
+.swiper {
+  position: relative;
+  overflow: hidden;
+
+  &__wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    padding-top: 12px;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & > * {
+      margin-right: $swiper-gap-between-elements;
+    }
+  }
+
+  &__arrows {
+
+    &_left {
+      @include swiperArrow(left);
+    }
+
+    &_right {
+      @include swiperArrow(right);
+    }
+  }
+}

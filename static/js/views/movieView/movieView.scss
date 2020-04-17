@@ -1,0 +1,225 @@
+@import 'css/variables';
+@import 'css/mixins';
+
+.movie-page {
+  overflow: hidden;
+  background-color: $bg-color;
+  font-family: OpenSans-Regular, sans-serif;
+  color: $text-color;
+}
+
+.movie-bg {
+  position: relative;
+  height: 95vh;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center 0 / cover;
+  }
+
+  &__shade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba($bg-color, 0), $bg-color);
+  }
+}
+
+.movie-header {
+  position: absolute;
+  bottom: 15%;
+  padding: 0 $paragraph;
+
+  &__name {
+    margin-bottom: 2 * $padding-between-rows;
+    font-family: Montserrat-Medium, sans-serif;
+    font-size: 70px;
+  }
+
+  &__original-name {
+    margin-bottom: 4 * $padding-between-rows;
+    font-family: Montserrat-Light, sans-serif;
+    font-size: 24px;
+    color: $path-color;
+    text-transform: uppercase;
+  }
+
+  &__path {
+    margin-bottom: $padding-between-rows;
+    font-size: 20px;
+  }
+}
+
+.seasons-block {
+  display: flex;
+  align-items: center;
+  font-family: Montserrat-Regular, sans-serif;
+  font-size: 22px;
+
+  &__name {
+    margin-right: 20px;
+  }
+
+  &__season-link {
+    margin-right: 15px;
+    border: 1px solid $text-color;
+    border-radius: 10px;
+    font-size: 20px;
+    color: $text-color;
+    @include square($size: 35px);
+    @include center-position;
+
+    &_active {
+      border: 0;
+      color: $bg-color;
+      background-color: $active-season-link-bg-color;
+    }
+  }
+}
+
+.movie-content {
+  position: relative;
+  margin-bottom: 60px;
+  display: flex;
+  padding-top: 60px;
+  font-family: OpenSans-Regular, sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.movie-trailer {
+  width: 50%;
+  height: auto;
+
+  &__headline {
+    height: $description-header-height;
+    font-size: $headline-size;
+  }
+
+  &__video-frame {
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+
+    & iframe {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+}
+
+.movie-info {
+  display: block;
+  width: 50%;
+  padding-left: $indent-between-description-data;
+  padding-top: $description-header-height;
+
+  &__short-description {
+    padding-bottom: $padding-between-description-blocks;
+    font-family: OpenSans-SemiBold, sans-serif;
+    font-size: $headline-size;
+    color: $text-bright-color;
+  }
+
+  &__description {
+    padding-bottom: $padding-between-description-blocks;
+    color: $text-color;
+  }
+
+  &__data {
+    display: grid;
+    grid-gap: 14px;
+    grid-template-columns: 1fr 5fr;
+
+    &_title {
+      color: $text-dark-color;
+    }
+
+    &_ref {
+      color: $text-ref-color;
+    }
+
+    &_ref:hover {
+      color: $text-bright-color;
+    }
+
+    &_genre {
+      text-transform: lowercase;
+    }
+  }
+}
+
+.add-to-list-block {
+  padding-top: 3 * $padding-between-rows;
+}
+
+.reviews {
+  width: 55%;
+  //padding-top: 60px;
+  font-family: OpenSans-Regular, sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+
+  &__headline {
+    margin-bottom: $headline-margin;
+    font-size: $headline-size;
+  }
+}
+
+.review-layout {
+  padding-left: $review-padding-left;
+  padding-top: $review-padding-y;
+  padding-bottom: $review-padding-y;
+  display: flex;
+}
+
+.review-info {
+  width: 100%;
+}
+
+.review-block {
+  border-top: 0.2px solid $text-dark-color;
+
+  &__avatar {
+    flex-shrink: 0;
+    @include square($size: 70px);
+  }
+}
+
+.review-info {
+  padding-left: 30px;
+  display: block;
+
+  &__header {
+    padding-bottom: 10px;
+    display: flex;
+  }
+
+  &__username {
+    margin-right: 40px;
+    font-size: 22px;
+  }
+
+  &__rate {
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    background: $rate-bg-color;
+    font-family: Montserrat-Regular, sans-serif;
+    font-size: 14px;
+    color: $bg-color;
+    @include center-position;
+  }
+
+  &__text {
+    font-size: 18px;
+    color: $text-color;
+  }
+}

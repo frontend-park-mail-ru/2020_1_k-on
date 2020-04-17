@@ -1,53 +1,69 @@
-import View from '../view';
+import View from 'views/view';
 import template from './movieView.tmpl.xml';
-
-const data = {
-    image: 'static/img/brigada.jpg',
-    category: 'Сериалы',
-    genre: 'Боевики',
-    name: 'Бригада',
-    russian_name: 'БРИГАДА',
-    english_name: 'BRIGADA',
-    description: 'Российский криминальный телесериал 2002 года.\n' +
-        'Сериал состоит из 15 серий,\n' +
-        'охватывающих события с 1989 по 2000 годы.\n' +
-        'В центре сюжета стоит история четырёх друзей,\n' +
-        'объединившихся в преступную группировку,\n' +
-        'лидером которой стал Александр Белов (Саша Белый).\n' +
-        'Телесериал снят кинокомпанией «Аватар фильм».\n' +
-        'Фильм стал режиссёрским дебютом Алексея Сидорова\n' +
-        'и принёс широкую известность исполнителям главных\n' +
-        'ролей — Сергею Безрукову, Андрею Панину и\n' +
-        'Екатерине Гусевой, а также Дмитрию Дюжеву,\n' +
-        'Владимиру Вдовиченкову и Павлу Майкову.\n' +
-        'Несколько ролей второго плана в фильме исполнили «звёзды»\n' +
-        'старшего поколения актёров (Валентина Теличкина,\n' +
-        'Николай Ерёменко-младший (последняя роль в кино),\n' +
-        'Виктор Павлов, Александр Белявский и др).\n' +
-        '«Бригада» позиционируется как «Российская гангстерская сага».\n' +
-        'По словам режиссёра Алексея Сидорова,\n' +
-        'ориентиром для него служили такие классические фильмы,\n' +
-        'как «Крёстный отец» и «Однажды в Америке»,\n' +
-        'но в первую очередь — «Лицо со шрамом» 1932 года.',
-    producer: 'Алексей Сидоров',
-    actors: [
-        'Сергей Безруков',
-        'Дмитрий Дюжев',
-        'Павел Майков',
-        'Владимир Вдовиченков',
-        'Екатерина Гусева',
-        'Андрей Панин',
-    ],
-    country: 'Россия',
-};
+import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
+import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
+import Api from 'libs/api';
+import {MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class MovieView extends View {
-    constructor(router) {
-        super(template, router);
-        this._data = data;
+    constructor(eventBus, type) {
+        super(template, eventBus);
+        this.type = type;
+        this.id = 0;
+
+        this.userReviewComponent = new UserReviewComponent(type);
+        this.reviewsComponent = new ReviewsComponent(type);
     }
 
     render(root) {
-        super.render(root, this._data);
+        this.root = root;
+
+        Api.getMovie(this.type, this.id)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                this.data = res.body;
+                this.data.type = this.type;
+                this.data.path = [
+                    {
+                        name: 'Главная',
+                        reference: '/',
+                    },
+                    {
+                        name: this.type === 'series' ? 'Сериалы' : 'Фильмы',
+                        reference: `/${this.type}`,
+                    },
+                    {
+                        name: this.data.genres[0].name,
+                        reference: `/${this.data.type}/${this.data.genres[0].reference}`,
+                    },
+                ];
+
+                super.render(root);
+
+                this.afterRender();
+            })
+            .catch((err) => {
+                this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
+            });
+    }
+
+    afterRender() {
+        this.userReviewComponent.setId(this.id);
+        const userReviewContainer = document.getElementById('user-review-container');
+        this.userReviewComponent.render(userReviewContainer);
+
+        this.reviewsComponent.setId(this.id);
+        const reviewsContainer = document.getElementById('reviews-container');
+        this.reviewsComponent.render(reviewsContainer);
+    }
+
+    setId(id) {
+        this.id = id;
     }
 }

@@ -1,0 +1,18 @@
+@import 'css/variables';
+@import 'css/mixins';
+
+.list-component {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  & > * {
+    margin-right: $list-right-gap;
+    margin-bottom: $list-bottom-gap;
+  }
+
+  &__no-results {
+    font-family: OpenSans-Regular, sans-serif;
+    font-size: 20px;
+  }
+}

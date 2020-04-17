@@ -16,10 +16,12 @@
         "semi": ["error", "always"],
         "quotes": ["error", "single"],
         "eqeqeq": ["error", "smart"],
-        "no-magic-numbers": ["error", { "detectObjects": true, "ignoreArrayIndexes": true }],
+        "no-magic-numbers": ["error", { "detectObjects": true, "ignoreArrayIndexes": true, "ignore": [0, 1, -1] }],
         "indent": ["error", 4],
         "keyword-spacing": "error",
         "camelcase": "error",
-        "require-jsdoc": "off"
+        "require-jsdoc": "off",
+        "max-len": ["error", 100],
+        "eol-last": ["error", "always"]
     }
 }

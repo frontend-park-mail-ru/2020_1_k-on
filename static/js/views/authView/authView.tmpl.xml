@@ -1,0 +1,28 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="auth-page">
+        <div class="auth-page__bg-img" style="background-image: url({data.bg_img_url});"/>
+        <div class="auth-page__bg-shade"/>
+
+        <div class="auth-content">
+            <h1 class="auth-content__headline">
+                <fest:value>data.headline</fest:value>
+            </h1>
+
+            <form class="auth-form" novalidate="true">
+                <div class="inputs" />
+                <button class="auth-form__button" type="submit">
+                    <fest:value>data.button_text</fest:value>
+                </button>
+            </form>
+
+            <div class="auth-content__no-account">
+                <fest:value>data.no_account_msg</fest:value>
+                <a class="auth-content__no-account_href" href="{data.no_account_href}">
+                    <fest:value>data.no_account_href_txt</fest:value>
+                </a>
+            </div>
+
+        </div>
+        <div class="auth-page__form-error" id="form_error">Error</div>
+    </div>
+</fest:template>
