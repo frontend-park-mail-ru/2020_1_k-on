@@ -3,6 +3,7 @@
 .swiper {
   position: relative;
   overflow: hidden;
+  min-height: 60px;
 
   &__wrapper {
     overflow-x: scroll;
