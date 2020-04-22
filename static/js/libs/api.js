@@ -10,7 +10,10 @@ export default class Api {
      * @param {string} password
      * @return {Promise<Response>}
      */
-    static doLogin(login, password) {
+    static doLogin({
+        login = '',
+        password = '',
+    }) {
         return Network.doPost({
             url: '/login',
             body: JSON.stringify({
@@ -31,7 +34,11 @@ export default class Api {
      * @param {string} password
      * @return {Promise<Response>}
      */
-    static doSignUp(login, email, password) {
+    static doSignUp({
+        login= '',
+        email = '',
+        password = '',
+    }) {
         return Network.doPost({
             url: '/signup',
             body: JSON.stringify({
