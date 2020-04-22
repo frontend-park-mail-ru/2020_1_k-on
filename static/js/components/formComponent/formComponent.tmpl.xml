@@ -1,0 +1,6 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="form">
+    <div class="inputs" />
+    <button class="auth-form__button" type="submit">
+        <fest:value>form.buttonText</fest:value>
+    </button>
+</fest:template>
