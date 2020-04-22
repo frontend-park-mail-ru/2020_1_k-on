@@ -15,10 +15,6 @@ export default class LoginView extends AuthView {
                 LOGIN_EVENTS.renderForAuth,
             ],
             apiMethod: Api.doLogin,
-            inputsID: [
-                'login',
-                'password',
-            ],
         });
     }
 }

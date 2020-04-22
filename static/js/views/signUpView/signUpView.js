@@ -15,11 +15,6 @@ export default class SignUpView extends AuthView {
                 SIGN_UP_EVENTS.renderForAuth,
             ],
             apiMethod: Api.doSignUp,
-            inputsID: [
-                'login',
-                'email',
-                'password',
-            ],
         });
     }
 }
