@@ -181,3 +181,8 @@ export const PROFILE_INPUTS = {
         },
     ],
 };
+
+export const DESKTOP_WIDTH = 1440;
+export const DESKTOP_HEIGHT = 1024;
+export const MOBILE_WIDTH = 720;
+export const MOBILE_HEIGHT = 1280;

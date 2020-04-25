@@ -1,6 +1,5 @@
 import template from './reviewsComponent.tmpl.xml';
-import Api from 'libs/api';
-import {DEFAULT_AVATAR, SUCCESS_STATUS} from 'libs/constants';
+import {DEFAULT_AVATAR} from 'libs/constants';
 import Component from 'components/component';
 
 export default class ReviewsComponent extends Component {
@@ -13,7 +12,7 @@ export default class ReviewsComponent extends Component {
         this.data = {
             userReviewId: userReviewId,
             reviews: reviews,
-            defaultAvatar: DEFAULT_AVATAR
+            defaultAvatar: DEFAULT_AVATAR,
         };
 
         this.element = document.createElement('div');

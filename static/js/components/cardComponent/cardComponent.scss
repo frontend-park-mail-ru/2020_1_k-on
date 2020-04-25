@@ -1,21 +1,22 @@
 @import 'css/variables';
+@import 'css/mediaQueries';
 
 .series-card {
   cursor: pointer;
   display: inline-block;
-  @media (min-width: $five-cards-max-width) {
+  @include media('6cards') {
     width: calc(16.6% - #{$padding-between-cards});
   }
-  @media (min-width: $four-cards-max-width) and (max-width: $five-cards-max-width) {
+  @include media('5cards') {
     width: calc(20% - #{$padding-between-cards});
   }
-  @media (min-width: $three-cards-max-width) and (max-width: $four-cards-max-width) {
+  @include media('4cards') {
     width: calc(25% - #{$padding-between-cards});
   }
-  @media (min-width: $two-cards-max-width) and (max-width: $three-cards-max-width) {
+  @include media('3cards') {
     width: calc(33.3% - #{$padding-between-cards});
   }
-  @media (max-width: $two-cards-max-width) {
+  @include media('2cards') {
     width: calc(50% - #{$padding-between-cards});
   }
 

@@ -6,17 +6,19 @@ import MovieController from 'controllers/movieController';
 import ProfileController from 'controllers/profileController';
 import ListController from 'controllers/listController';
 import IndexController from 'controllers/indexController';
+import PersonController from 'controllers/personController';
 import Navbar from 'components/navbar/navbar';
 import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
 import View from 'views/view';
-import PersonController from 'controllers/personController';
+import initScale from 'libs/scale';
 import {
     GLOBAL_EVENTS,
     INTERNAL_ERROR_MSG, INTERNAL_ERROR_STATUS, NOT_FOUND_ERROR_MSG,
 } from 'libs/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initScale();
     // if ('serviceWorker' in navigator) {
     //     navigator.serviceWorker.register('sw.js', {scope: '/'})
     //         .catch((err) => (console.log('SW registration FAIL:', err)));

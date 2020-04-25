@@ -1,6 +1,6 @@
 import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
-import {DEFAULT_AVATAR, MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
+import {MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
 import Component from 'components/component';
 
 export default class UserReviewComponent extends Component {
@@ -14,7 +14,7 @@ export default class UserReviewComponent extends Component {
 
         this.data = {
             review: review,
-            user: user
+            user: user,
         };
 
         this.type = type;
@@ -32,10 +32,10 @@ export default class UserReviewComponent extends Component {
 
         Array.from(this.element.getElementsByClassName('review-form__star-icon')).forEach(
             (starIcon) => {
-            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
-            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
-            starIcon.addEventListener('click', this.onStarClick.bind(this));
-        });
+                starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
+                starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
+                starIcon.addEventListener('click', this.onStarClick.bind(this));
+            });
 
         const submitButton = this.element.getElementsByClassName('review-form__button')[0];
         submitButton.addEventListener('click', this.onSubmit.bind(this));
