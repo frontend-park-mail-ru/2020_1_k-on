@@ -1,0 +1,101 @@
+@import '~css/variables';
+
+.user-settings-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.user-settings {
+  box-sizing: border-box;
+  padding: 16px;
+  width: 300px;
+  background-color: $shade-color;
+  border-radius: 0 0 24px 24px;
+
+  &__change-password {
+    font-family: OpenSans-Regular;
+    text-align: center;
+    color: $text-bright-color;
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      display: block;
+      border-bottom: 1px solid;
+      margin-top: 4px;
+      opacity: 0;
+      transition: opacity 0.35s, transform 0.35s;
+      transform: scale(0, 1);
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  z-index: 2000;
+  background-color: rgba($bg-color, 0.9);
+  height: 100%;
+  width: 100vw;
+  max-width: 100%
+}
+
+.modal-password {
+  position: relative;
+  border: solid 1px $auth-content-border-color;
+  border-radius: 24px;
+  padding: 40px 28px 20px;
+  color: $text-color;
+  background-color: $auth-content-bg-color;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transition: border-color 0.5s linear;
+  @media (max-width: 450px) {
+    width: 90%;
+  }
+  @media (min-width: 450px) and (max-width: 800px) {
+    width: 50%;
+  }
+  @media (min-width: 800px) and (max-width: 1200px) {
+    width: 28%;
+  }
+  @media (min-width: 1200px) {
+    width: 20%;
+  }
+
+  &_error {
+    border-color: $error-color;
+  }
+}
+
+.modal-error {
+  color: $error-color;
+  font-size: 1.5em;
+  margin-top: $auth-form-error-margin;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+.modal-close {
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  fill: black;
+  transition: fill 0.2s;
+
+  &:hover {
+    fill: $text-bright-color;
+  }
+}
