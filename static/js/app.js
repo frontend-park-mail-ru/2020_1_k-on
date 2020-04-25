@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/login', controllers.login.view);
     router.add('/signup', controllers.signup.view);
     router.add('/profile', controllers.profile.view);
-    router.add('/profile/settings', controllers.profile.settingsView);
     router.add('/', controllers.index.view);
     router.add('/series', controllers.seriesList.view);
     router.add('/films', controllers.filmsList.view);
