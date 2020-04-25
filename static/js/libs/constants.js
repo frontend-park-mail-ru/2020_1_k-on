@@ -40,8 +40,18 @@ export const SIGN_UP_EVENTS = {
 
 export const PROFILE_EVENTS = {
     unauthUser: 'unauthUser',
-    logout: 'logout',
     internalError: 'internalError',
+    showMsg: 'showMsg',
+    updateUserData: 'updateUserData',
+};
+
+export const PROFILE_MSGS = {
+    success_avatar_upload: 'Аватар загружен',
+    error_avatar_upload: 'Ошибка при загрузке аватара',
+    settings_update: 'Данные успешно изменены',
+    user_exists: 'Такой пользователь уже существует',
+    passwords_not_match: 'Пароли не совпадают',
+    updatePassword: 'Пароль успешно изменен',
 };
 
 export const INDEX_EVENTS = {
@@ -143,8 +153,8 @@ export const DEFAULT_AVATAR = '/static/img/avatar.svg';
 
 export const RANDOM_SHUFFLE_VALUE = 0.5;
 
-export const PROFILE_INPUTS = {
-    profile: [
+export const PROFILE_SETTINGS_INPUTS = {
+    settings: [
         {
             name: 'login',
             label: 'Логин',
@@ -162,7 +172,7 @@ export const PROFILE_INPUTS = {
             autofocus: 'false',
         },
     ],
-    modal: [
+    password_modal: [
         {
             name: 'password',
             label: 'Новый пароль',
