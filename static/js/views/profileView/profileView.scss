@@ -1,4 +1,4 @@
-@import 'css/mixins';
+@import '~css/mixins';
 
 .user-info-wrapper {
   display: flex;
@@ -14,11 +14,14 @@
   @media (max-width: 700px) {
     width: 90%;
   }
-  @media (min-width: 700px) and (max-width: 1200px) {
+  @media (min-width: 700px) and (max-width: 900px) {
+    width: 65%;
+  }
+  @media (min-width: 900px) and (max-width: 1200px) {
     width: 50%;
   }
   @media (min-width: 1200px) {
-    width: 36%;
+    width: 40%;
   }
 }
 
@@ -40,20 +43,73 @@
   }
 
   &__name {
-    font-family: Montserrat-Medium;
+    font-family: OpenSans-Bold;
     font-weight: bold;
     font-size: 1.7em;
     position: absolute;
     bottom: 36px;
     text-transform: uppercase;
   }
+
+  &__upload {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+    @include transformScale;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__msg {
+    position: absolute;
+    top: 16px;
+    min-height: 36px;
+    width: 100%;
+    padding: 0 48px;
+    box-sizing: border-box;
+    font-family: OpenSans-Regular;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+
+    &_error {
+      color: $error-color;
+    }
+
+    &_success {
+      color: $success-color;
+    }
+  }
 }
 
-.user-actions {
+.user-action {
+  box-sizing: border-box;
   display: flex;
-  width: 50%;
-  height: 64px;
-  background-color: rgba(black, 0.2);
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+
+  &__svg {
+    height: 32px;
+    fill: $text-bright-color;
+    @include transformScale;
+  }
+
+  &__name {
+    font-family: OpenSans-Light;
+    padding-top: 8px;
+  }
+}
+
+.user-actions-block {
+  display: flex;
+  box-sizing: border-box;
+  padding: 12px 0;
+  min-height: 64px;
+  background-color: $shade-color;
   border-radius: 0 0 24px 24px;
 
   &-gear {
@@ -61,11 +117,6 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-
-    &__svg {
-      fill: $text-bright-color;
-      @include transformScale;
-    }
   }
 
   &-logout {
@@ -73,10 +124,9 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-
-    &__svg {
-      fill: $text-bright-color;
-      @include transformScale;
-    }
   }
+}
+
+#playlist-container {
+  margin-top: 36px;
 }
