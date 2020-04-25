@@ -25,7 +25,6 @@
                         </fest:otherwise>
                     </fest:choose>
                 </div>
-
             </fest:for>
         </div>
     </fest:for>

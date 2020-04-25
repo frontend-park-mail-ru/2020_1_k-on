@@ -1,44 +1,44 @@
 import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
 import {DEFAULT_AVATAR, MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
+import Component from 'components/component';
 
-export default class UserReviewComponent {
-    constructor(type, id, review) {
-        this.tmpl = template;
+export default class UserReviewComponent extends Component {
+    constructor(
+        type = 'films',
+        id = '1',
+        user = null,
+        review = null
+    ) {
+        super(template);
+
+        this.data = {
+            review: review,
+            user: user
+        };
+
         this.type = type;
         this.id = id;
         this.rating = 0;
+
+        this.element = document.createElement('div');
+        this.element.classList.add('reviews', 'page-layout');
     }
 
-    render(root) {
-        this.root = root;
-        this.data = {};
+    afterRender() {
+        if (this.data.review) {
+            return;
+        }
 
-        Api.getUserData().then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                res.json().then((res) => {
-                    this.data.user = res.body;
-                    this.data.user.image = res.body.image === '' ?
-                        DEFAULT_AVATAR : ` http://64.225.100.179:8080/image/${res.body.image}`;
-
-                    Api.getUserReview(this.type, this.id).then((res) => {
-                        if (res.status === SUCCESS_STATUS) {
-                            res.json().then((res) => {
-                                this.data.review = res.body;
-
-                                this.root.innerHTML += this.tmpl(this.data);
-                            });
-                        } else {
-                            this.renderOnNoReview(root);
-                        }
-                    });
-                });
-            }
+        Array.from(this.element.getElementsByClassName('review-form__star-icon')).forEach(
+            (starIcon) => {
+            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
+            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
+            starIcon.addEventListener('click', this.onStarClick.bind(this));
         });
-    }
 
-    setId(id) {
-        this.id = id;
+        const submitButton = this.element.getElementsByClassName('review-form__button')[0];
+        submitButton.addEventListener('click', this.onSubmit.bind(this));
     }
 
     onStarMouseOver(evt) {
@@ -103,20 +103,7 @@ export default class UserReviewComponent {
             rating: this.rating,
             body: reviewText,
         };
-        this.root.innerHTML += this.tmpl(this.data);
-    }
-
-    renderOnNoReview(root) {
-        this.root.innerHTML += this.tmpl(this.data);
-
-        for (const starIcon of document.getElementsByClassName('review-form__star-icon')) {
-            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
-            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
-            starIcon.addEventListener('click', this.onStarClick.bind(this));
-        }
-
-        const submitButton = document.getElementsByClassName('review-form__button')[0];
-        submitButton.addEventListener('click', this.onSubmit.bind(this));
+        this.element.innerHTML = this.tmpl(this.data);
     }
 
     showError() {
