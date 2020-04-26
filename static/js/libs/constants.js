@@ -72,6 +72,12 @@ export const PERSON_EVENTS = {
     internalError: 'internalError',
 };
 
+export const PLAYLIST_EVENTS = {
+    clickTab: 'changeTab',
+    deleteTab: 'deleteTab',
+    addTab: 'addTab',
+};
+
 export const MAX_BG_IMGS = 5;
 
 export const BG_IMG_KEY = 'bg_img';
@@ -191,3 +197,14 @@ export const PROFILE_SETTINGS_INPUTS = {
         },
     ],
 };
+
+export const TAB_ADD_INPUTS = [
+    {
+        name: 'tab-add',
+        label: 'Название',
+        type: 'text',
+        id: 'tab-add',
+        required: 'true',
+        autofocus: 'true',
+    },
+];
