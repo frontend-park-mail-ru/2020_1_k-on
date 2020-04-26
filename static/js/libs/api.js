@@ -21,7 +21,7 @@ export default class Api {
                 'password': password,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -47,7 +47,7 @@ export default class Api {
                 'email': email,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -87,7 +87,7 @@ export default class Api {
                 'email': email,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -103,7 +103,7 @@ export default class Api {
             url: '/user/image',
             body: formData,
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
             },
         });
     }
@@ -112,7 +112,7 @@ export default class Api {
         return Network.doDelete({
             url: '/logout',
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
             },
         });
     }
@@ -159,7 +159,7 @@ export default class Api {
                 'body': text,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -185,7 +185,7 @@ export default class Api {
                 public: isPublic,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('X-CSRF-TOKEN'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
