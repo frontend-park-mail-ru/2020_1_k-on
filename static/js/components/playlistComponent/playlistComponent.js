@@ -12,7 +12,7 @@ import {
     PROFILE_EVENTS,
     SUCCESS_STATUS,
     TAB_ADD_INPUTS,
-    FORBIDDEN_STATUS,
+    BAD_REQUEST_STATUS,
 } from 'libs/constants';
 
 export default class PlaylistComponent extends Component {
@@ -134,16 +134,15 @@ export default class PlaylistComponent extends Component {
         Api.createPlaylist(inputsValue['tab-add'])
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    return res.json();
-                } else if (res.status === FORBIDDEN_STATUS) {
+                    res.json().then((res) => {
+                        this.addTab(res.body.name, res.body.id);
+                        this.closeModal();
+                    });
+                } else if (res.status === BAD_REQUEST_STATUS) {
                     this.showModalError('modal-tab-add', 'Плейлист уже существует');
                 } else {
                     return Promise.reject(res);
                 }
-            })
-            .then((res) => {
-                this.addTab(res.body.name, res.body.id);
-                this.closeModal();
             })
             .catch((err) => {
                 this.globalEventBus.publish(PROFILE_EVENTS.internalError, err.status);
@@ -164,8 +163,8 @@ export default class PlaylistComponent extends Component {
         this.element.getElementsByClassName(modalClassName)[0]
             ?.classList.add('modal-form_error');
         const modalError = this.element.getElementsByClassName('modal-error')[0];
-        modalError.style.opacity = '1';
         modalError.innerHTML = errorMsg;
+        modalError.style.opacity = '1';
     }
 
     openModal() {
