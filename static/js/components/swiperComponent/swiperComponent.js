@@ -13,17 +13,22 @@ export default class SwiperComponent extends Component {
     }
 
     afterRender() {
-        const swiperWrapper = this.element.getElementsByClassName('swiper__wrapper')[0];
-        this.elements.forEach((elem) => (swiperWrapper.appendChild(elem)));
+        this.swiperWrapper = this.element.getElementsByClassName('swiper__wrapper')[0];
+
+        this.elements.forEach((elem) => (this.swiperWrapper.appendChild(elem)));
 
         this.element.getElementsByClassName('swiper__arrows_left')[0]
             .addEventListener('click', () => {
-                swiperWrapper.scrollLeft -= SLIDER_DISTANCE;
+                this.swiperWrapper.scrollLeft -= SLIDER_DISTANCE;
             });
 
         this.element.getElementsByClassName('swiper__arrows_right')[0]
             .addEventListener('click', () => {
-                swiperWrapper.scrollLeft += SLIDER_DISTANCE;
+                this.swiperWrapper.scrollLeft += SLIDER_DISTANCE;
             });
+    }
+
+    insertBeforeLast(elem) {
+        this.swiperWrapper.insertBefore(elem, this.swiperWrapper.lastChild);
     }
 }
