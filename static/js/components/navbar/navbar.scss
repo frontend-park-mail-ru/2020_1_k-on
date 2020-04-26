@@ -44,7 +44,7 @@
     cursor: pointer;
     margin-right: $margin-between-links;
     background-image: url(/static/img/menu.svg);
-    @include square($size: 7rem);
+    @include square($size: 28px);
     @include center-background;
   }
 
@@ -69,7 +69,7 @@
 
     &__link {
       color: white;
-      font-size: $navbar-link-size;
+      font-size: 20px;
     }
   }
 
@@ -86,7 +86,7 @@
 
   &__link {
     margin-left: $margin-between-links;
-    font-size: $navbar-link-size;
+    font-size: 20px;
     color: $text-color;
 
     & > &_avatar {
@@ -95,7 +95,7 @@
 
     &_avatar {
       margin-left: 10px;
-      @include avatar($size: 32px);
+      @include avatar($size: 28px);
     }
 
     &_logout {

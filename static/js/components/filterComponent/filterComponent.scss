@@ -4,11 +4,15 @@
   position: relative;
   margin-bottom: 40px;
   display: flex;
-  overflow: hidden;
+
+  @include media('mobile') {
+    flex-direction: column;
+  }
 }
 
 .filter-button {
-  z-index: 2;
+  box-sizing: border-box;
+  z-index: 1;
   cursor: pointer;
   margin-right: 30px;
   width: 250px;
@@ -21,6 +25,11 @@
   border: 2px solid $path-color;
   border-radius: 15px;
   font-size: 16px;
+
+  @include media('mobile') {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
   &:hover {
     border-color: $main-color;
@@ -59,16 +68,52 @@
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: $submenu-bg-color;
-  font-size: 22px;
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-column-gap: 80px;
-  grid-row-gap: 30px;
+  font-size: 20px;
   @include submenu;
+  @include media('mobile') {
+    z-index: 2000;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    padding-top: 50px;
+    font-size: 16px;
+  }
 
   &_active {
     visibility: visible;
     opacity: 1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    @include media('mobile') {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__headline {
+    font-size: 26px;
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__close-icon {
+    background: no-repeat center / cover url(/static/img/close-icon.svg);
+    @include square(26px);
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 30px;
+    @include media('mobile') {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__item {

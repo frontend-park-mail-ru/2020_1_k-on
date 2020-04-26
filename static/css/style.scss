@@ -107,3 +107,9 @@ button {
 a:focus {
   outline: none;
 }
+
+.no-scroll-mobile {
+  @include media('mobile') {
+    overflow: hidden;
+  }
+}
