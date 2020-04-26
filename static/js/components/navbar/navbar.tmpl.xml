@@ -1,5 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
     <div class="navbar__left-side">
+        <div class="navbar__menu-link"/>
+
         <a class="navbar__logo" href="/">
             <span>kino</span>
             <span class="navbar__logo_color">|on</span>
@@ -16,4 +18,9 @@
     </div>
 
     <div class="navbar__right-side"/>
+
+    <div class="navbar-menu">
+        <a class="navbar-menu__link" href="/series">Сериалы</a>
+        <a class="navbar-menu__link" href="/films">Фильмы</a>
+    </div>
 </fest:template>

@@ -2,6 +2,11 @@
   width: $size;
   height: $size;
 }
+@mixin center-background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 @mixin center-position {
   display: flex;
   justify-content: center;
@@ -79,4 +84,19 @@
 @mixin labelActive {
   top: 1.4em;
   font-size: 0.7em;
+}
+@mixin avatar($size) {
+  border-radius: 50%;
+  @include square($size);
+  @include center-background;
+}
+@mixin page-layout {
+  @include media('mobile') {
+    padding-left: $mobile-paragraph;
+    padding-right: $mobile-paragraph;
+  }
+  @include media('desktop') {
+    padding-left: $desktop-paragraph;
+    padding-right: $desktop-paragraph;
+  }
 }

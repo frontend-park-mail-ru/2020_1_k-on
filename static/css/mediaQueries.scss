@@ -2,13 +2,16 @@ $two-cards-max-width: 800px;
 $three-cards-max-width: 1150px;
 $four-cards-max-width: 1400px;
 $five-cards-max-width: 1800px;
+$mobile-max-width: 720px;
 
 $media-expressions: (
   '2cards': '(max-width: #{$two-cards-max-width})',
   '3cards': '(min-width: #{$two-cards-max-width}) and (max-width: #{$three-cards-max-width})',
   '4cards': '(min-width: #{$three-cards-max-width}) and (max-width: #{$four-cards-max-width})',
   '5cards': '(min-width: #{$four-cards-max-width}) and (max-width: #{$five-cards-max-width})',
-  '6cards': '(min-width: #{$five-cards-max-width})'
+  '6cards': '(min-width: #{$five-cards-max-width})',
+  'mobile': '(max-width: #{$mobile-max-width})',
+  'desktop': '(min-width: #{$mobile-max-width})'
 );
 
 @function slice($list, $start: 1, $end: length($list)) {
@@ -20,7 +23,6 @@ $media-expressions: (
   @for $i from $start through $end {
     $result: append($result, nth($list, $i));
   }
-
   @return $result;
 }
 

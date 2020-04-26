@@ -27,7 +27,7 @@ $auth-shade-color: rgba(0, 0, 0, 0.6);
 $navbar-height: 60px;
 $navbar-bg-color: $shade-color;
 $search-form-color: $text-color;
-$margin-between-links: 25px;
+$margin-between-links: 28px;
 $search-form-border-radius: 40px;
 
 // List page
@@ -75,3 +75,5 @@ $swiper-gap-between-elements: $padding-between-cards;
 
 // Layout
 $paragraph: 80px;
+$mobile-paragraph: 20px;
+$desktop-paragraph: 80px;

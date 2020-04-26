@@ -189,7 +189,7 @@
 
   &__avatar {
     flex-shrink: 0;
-    @include square($size: 70px);
+    @include avatar($size: 70px);
   }
 }
 

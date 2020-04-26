@@ -67,13 +67,7 @@ body {
 }
 
 .page-layout {
-  padding-left: $paragraph;
-  padding-right: $paragraph;
-}
-
-.avatar {
-  border-radius: 50%;
-  background: no-repeat center / cover;
+  @include page-layout;
 }
 
 .user-path {

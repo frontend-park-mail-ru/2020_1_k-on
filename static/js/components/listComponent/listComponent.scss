@@ -4,10 +4,9 @@
 .list-component {
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
 
   & > * {
-    margin-right: $list-right-gap;
+    //margin-right: $list-right-gap;
     margin-bottom: $list-bottom-gap;
   }
 

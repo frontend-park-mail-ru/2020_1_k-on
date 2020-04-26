@@ -10,11 +10,6 @@ export const INTERNAL_ERROR_STATUS = 500;
 export const INTERNAL_ERROR_MSG = 'Произошла внутренняя ошибка сервера';
 export const NOT_FOUND_ERROR_MSG = 'Сраница не найдена';
 
-export const NAVBAR_AUTH_ITEMS = {
-    profile: 'Профиль',
-    logout: 'Выйти',
-};
-
 export const NAVBAR_UNAUTH_ITEMS = {
     login: 'Войти',
     signup: 'Зарегистрироваться',

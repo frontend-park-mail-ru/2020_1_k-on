@@ -3,9 +3,9 @@ import Component from 'components/component';
 import Api from 'libs/api';
 import {
     SUCCESS_STATUS,
-    NAVBAR_AUTH_ITEMS,
     NAVBAR_UNAUTH_ITEMS,
     GLOBAL_EVENTS,
+    DEFAULT_AVATAR,
 } from 'libs/constants';
 
 /**
@@ -25,7 +25,6 @@ export default class Navbar extends Component {
             this.renderForUnauth.bind(this)
         );
 
-        this.navbarAuthItems = NAVBAR_AUTH_ITEMS;
         this.navbarUnauthItems = NAVBAR_UNAUTH_ITEMS;
 
         this.element = document.createElement('div');
@@ -39,18 +38,37 @@ export default class Navbar extends Component {
                     this.eventBus.publish(GLOBAL_EVENTS.renderForAuth) :
                     this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((err) => {
+                this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
             });
     }
 
     renderForAuth() {
-        this.renderRightSide.bind(this);
-        this.renderRightSide(this.navbarAuthItems);
+        Api.getUserData()
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                this.renderRightSide.bind(this);
+                this.renderRightSide({
+                    profile: {
+                        username: res.body.username,
+                        image: res.body.image,
+                    },
+                    logout: '',
+                });
 
-        const logout = this.element.querySelector('[href="/logout"]');
-        this.onLogout = this.onLogout.bind(this);
-        logout.addEventListener('click', this.onLogout);
+                const logout = this.element.querySelector('[href="/logout"]');
+                this.onLogout = this.onLogout.bind(this);
+                logout.addEventListener('click', this.onLogout);
+            })
+            .catch((err) => {
+                this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
+            });
     }
 
     renderForUnauth() {
@@ -64,8 +82,30 @@ export default class Navbar extends Component {
         Object.keys(items).forEach((key) => {
             const link = document.createElement('a');
             link.href = `/${key}`;
-            link.textContent = items[key];
             link.className = 'navbar__link';
+
+            switch (key) {
+            case 'profile':
+                link.textContent = items[key].username;
+
+                const avatar = document.createElement('div');
+                avatar.className = 'navbar__link_avatar';
+                avatar.style.backgroundImage = items[key].image ?
+                    `url(http://64.225.100.179:8080/image/${items[key].image})` :
+                    `url(${DEFAULT_AVATAR})`;
+                link.appendChild(avatar);
+
+                break;
+            case 'logout':
+                const logoutImage = document.createElement('div');
+                logoutImage.className = 'navbar__link_logout';
+                link.appendChild(logoutImage);
+
+                break;
+            default:
+                link.textContent = items[key];
+            }
+
             rightSide.appendChild(link);
         });
     }
@@ -79,8 +119,8 @@ export default class Navbar extends Component {
             .then((res) => {
                 this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((err) => {
+                this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
             });
     }
 }
