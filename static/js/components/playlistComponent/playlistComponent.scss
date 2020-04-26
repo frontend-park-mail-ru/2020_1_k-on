@@ -1,0 +1,10 @@
+@import '~css/variables';
+
+.playlist {
+  margin-top: 24px;
+}
+
+.tabs-container__br {
+  margin: 0 $paragraph;
+  border-bottom: 2px solid $shade-color;
+}
