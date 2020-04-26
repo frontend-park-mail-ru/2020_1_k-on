@@ -34,6 +34,7 @@ export default class ListView extends View {
 
         this.listContainer = document.getElementById('list-container');
         this.listComponent = new ListComponent();
+        this.listContainer.appendChild(this.listComponent.render());
 
         Api.getFilters(this.type)
             .then((res) => {
@@ -88,9 +89,6 @@ export default class ListView extends View {
 
             this.listComponent.setElements(cards);
         }
-
-        this.listContainer.innerHTML = '';
-        this.listContainer.appendChild(this.listComponent.render());
     }
 
     parseFiltersFromBody(body) {
