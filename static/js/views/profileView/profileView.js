@@ -2,6 +2,7 @@ import View from 'views/view';
 import template from './profileView.tmpl.xml';
 import Api from 'libs/api';
 import ProfileSettingsComponent from 'components/profileSettingsComponent/profileSettingsComponent';
+import PlaylistComponent from 'components/playlistComponent/playlistComponent';
 import {
     DEFAULT_AVATAR,
     INTERNAL_ERROR_STATUS,
@@ -10,159 +11,6 @@ import {
     UNAUTHORIZED_STATUS,
     PROFILE_MSGS,
 } from 'libs/constants';
-
-// const cardList = [
-//     {
-//         type: 'films',
-//         russianName: 'Навстречу Тьме',
-//         id: '1',
-//         image: '/static/img/series2.jpg',
-//         ageLimit: '18',
-//         year: '2018',
-//         country: 'США',
-//         mainGenre: 'Боевики',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Столкновение',
-//         id: '1',
-//         image: '/static/img/series3.jpg',
-//         ageLimit: '16',
-//         year: '2018 - 2019',
-//         country: 'Турция',
-//         mainGenre: 'Триллеры',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Триггер',
-//         id: '1',
-//         image: '/static/img/series4.jpg',
-//         ageLimit: '18',
-//         year: '2020',
-//         country: 'Россия',
-//         mainGenre: 'Драмы',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Навстречу Тьме',
-//         id: '1',
-//         image: '/static/img/series2.jpg',
-//         ageLimit: '18',
-//         year: '2018',
-//         country: 'США',
-//         mainGenre: 'Боевики',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Столкновение',
-//         id: '1',
-//         image: '/static/img/series3.jpg',
-//         ageLimit: '16',
-//         year: '2018 - 2019',
-//         country: 'Турция',
-//         mainGenre: 'Триллеры',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Триггер',
-//         id: '1',
-//         image: '/static/img/series4.jpg',
-//         ageLimit: '18',
-//         year: '2020',
-//         country: 'Россия',
-//         mainGenre: 'Драмы',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Навстречу Тьме',
-//         id: '1',
-//         image: '/static/img/series2.jpg',
-//         ageLimit: '18',
-//         year: '2018',
-//         country: 'США',
-//         mainGenre: 'Боевики',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Столкновение',
-//         id: '1',
-//         image: '/static/img/series3.jpg',
-//         ageLimit: '16',
-//         year: '2018 - 2019',
-//         country: 'Турция',
-//         mainGenre: 'Триллеры',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Триггер',
-//         id: '1',
-//         image: '/static/img/series4.jpg',
-//         ageLimit: '18',
-//         year: '2020',
-//         country: 'Россия',
-//         mainGenre: 'Драмы',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Навстречу Тьме',
-//         id: '1',
-//         image: '/static/img/series2.jpg',
-//         ageLimit: '18',
-//         year: '2018',
-//         country: 'США',
-//         mainGenre: 'Боевики',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Столкновение',
-//         id: '1',
-//         image: '/static/img/series3.jpg',
-//         ageLimit: '16',
-//         year: '2018 - 2019',
-//         country: 'Турция',
-//         mainGenre: 'Триллеры',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Триггер',
-//         id: '1',
-//         image: '/static/img/series4.jpg',
-//         ageLimit: '18',
-//         year: '2020',
-//         country: 'Россия',
-//         mainGenre: 'Драмы',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Навстречу Тьме',
-//         id: '1',
-//         image: '/static/img/series2.jpg',
-//         ageLimit: '18',
-//         year: '2018',
-//         country: 'США',
-//         mainGenre: 'Боевики',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Столкновение',
-//         id: '1',
-//         image: '/static/img/series3.jpg',
-//         ageLimit: '16',
-//         year: '2018 - 2019',
-//         country: 'Турция',
-//         mainGenre: 'Триллеры',
-//     },
-//     {
-//         type: 'films',
-//         russianName: 'Триггер',
-//         id: '1',
-//         image: '/static/img/series4.jpg',
-//         ageLimit: '18',
-//         year: '2020',
-//         country: 'Россия',
-//         mainGenre: 'Драмы',
-//     },
-// ];
 
 export default class ProfileView extends View {
     constructor(eventBus) {
@@ -240,17 +88,31 @@ export default class ProfileView extends View {
 
     onPlaylist() {
         this.actionContainer.innerHTML = '';
-        console.log('on playlist');
+
+        Api.getUserPlaylists()
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                res.body = res.body === null ? [] : res.body;
+                const playlistComponent = new PlaylistComponent(res.body, this.eventBus);
+                this.actionContainer.appendChild(playlistComponent.render());
+            })
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+            });
     }
 
     onStats() {
-        this.actionContainer.innerHTML = '';
-        console.log('on stats');
+        this.actionContainer.innerHTML = 'Здесь будет статистика';
     }
 
     onSubscriptions() {
-        this.actionContainer.innerHTML = '';
-        console.log('on subs');
+        this.actionContainer.innerHTML = 'Здесь будут подписки';
     }
 
     onUploadAvatar(event) {
