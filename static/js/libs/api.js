@@ -170,4 +170,36 @@ export default class Api {
             url: `/persons/${id}`,
         });
     }
+
+    static getUserPlaylists() {
+        return Network.doGet({
+            url: '/playlist',
+        });
+    }
+
+    static createPlaylist(name = '', isPublic = true) {
+        return Network.doPost({
+            url: '/playlist',
+            body: JSON.stringify({
+                name: name,
+                public: isPublic,
+            }),
+            headers: {
+                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
+    static deletePlaylist(id) {
+        return Network.doDelete({
+            url: `/playlist/${id}`,
+        });
+    }
+
+    static getPlaylistContent(id) {
+        return Network.doGet({
+            url: `/playlist/${id}`,
+        });
+    }
 }
