@@ -4,24 +4,30 @@ const VALIDATION_ERR_MESSAGES = {
     PASSWORD: `Пароль должен содержать минимум 6 символов и состоять
                из латинских букв и цифр`,
     EMAIL: 'Неправильный формат электронной почты',
+    TAB_ADD: 'Название плейлиста не должно быть пустым',
 };
 
 const INPUTS = {
-    login: {
+    'login': {
         regex: /^[a-zA-Z][a-zA-Z0-9]{5,}$/,
         inputName: 'login',
         errorMsg: VALIDATION_ERR_MESSAGES.LOGIN,
 
     },
-    password: {
+    'password': {
         regex: /[a-zA-Z0-9]{6,}$/,
         inputName: 'password',
         errorMsg: VALIDATION_ERR_MESSAGES.PASSWORD,
     },
-    email: {
+    'email': {
         regex: /^\S+@\S+\.\S+$/,
         inputName: 'email',
         errorMsg: VALIDATION_ERR_MESSAGES.EMAIL,
+    },
+    'tab-add': {
+        regex: /^(?!\s*$).+/,
+        inputName: 'tab-add',
+        errorMsg: VALIDATION_ERR_MESSAGES.TAB_ADD,
     },
 };
 
