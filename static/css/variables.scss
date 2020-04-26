@@ -24,7 +24,7 @@ $auth-form-error-margin: 24px;
 $auth-shade-color: rgba(0, 0, 0, 0.6);
 
 // Navbar
-$navbar-height: 60px;
+$navbar-height: 6.5rem;
 $navbar-bg-color: $shade-color;
 $search-form-color: $text-color;
 $margin-between-links: 3rem;
@@ -35,7 +35,7 @@ $navbar-link-size: 20px;
 $menu-transition-time: 0.15s;
 
 // Card component
-$padding-between-cards: 20px;
+$padding-between-cards: 1.5rem;
 $series-card-shadow: 0 4px 4px $shade-color;
 $age-limit-color: $text-color;
 $age-limit-background: $shade-color;
@@ -69,7 +69,7 @@ $input-border: 8px;
 
 // ListComponent
 $list-right-gap: $padding-between-cards;
-$list-bottom-gap: 60px;
+$list-bottom-gap: 4.5rem;
 
 // SwiperComponent
 $swiper-gap-between-elements: $padding-between-cards;
@@ -77,4 +77,4 @@ $swiper-gap-between-elements: $padding-between-cards;
 // Layout
 $paragraph: 80px;
 $mobile-paragraph: 20px;
-$desktop-paragraph: 80px;
+$desktop-paragraph: 8rem;

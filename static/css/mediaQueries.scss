@@ -1,8 +1,8 @@
-$two-cards-max-width: 800px;
-$three-cards-max-width: 1150px;
-$four-cards-max-width: 1400px;
-$five-cards-max-width: 1800px;
-$mobile-max-width: 720px;
+$two-cards-max-width: 500px;
+$three-cards-max-width: 650px;
+$four-cards-max-width: 950px;
+$five-cards-max-width: 1270px;
+$mobile-max-width: 770px;
 
 $media-expressions: (
   '2cards': '(max-width: #{$two-cards-max-width})',

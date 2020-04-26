@@ -2,7 +2,7 @@
 
 .filters-block {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
   display: flex;
 
   @include media('mobile') {
@@ -14,21 +14,20 @@
   box-sizing: border-box;
   z-index: 1;
   cursor: pointer;
-  margin-right: 30px;
-  width: 250px;
-  height: $filter-button-height;
-  padding-left: 1em;
-  padding-right: 1em;
+  margin-right: 4rem;
+  width: 30rem;
+  padding: 0.6em 1.2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid $path-color;
-  border-radius: 15px;
-  font-size: 16px;
+  border: 0.2rem solid $path-color;
+  border-radius: 1.3rem;
+  font-size: 1.7rem;
 
   @include media('mobile') {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 1.6rem;
+    margin-right: 0;
   }
 
   &:hover {
@@ -49,7 +48,7 @@
   &__arrow {
     background-image: url(/static/img/down-arrow.svg);
     transition: transform $menu-transition-time;
-    @include square($size: 20px);
+    @include square($size: 2rem);
     @include center-background;
   }
 
