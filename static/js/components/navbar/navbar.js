@@ -41,6 +41,14 @@ export default class Navbar extends Component {
             .catch((err) => {
                 this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
             });
+
+        const menuLink = this.element.getElementsByClassName('navbar__menu-link')[0];
+        menuLink.addEventListener('click', this.onMenuClick.bind(this));
+
+        Array.from(this.element.getElementsByClassName('navbar-menu__link'))
+            .forEach((menuItem) => {
+                menuItem.addEventListener('click', this.onMenuLinkClick.bind(this));
+            });
     }
 
     renderForAuth() {
@@ -86,6 +94,8 @@ export default class Navbar extends Component {
 
             switch (key) {
             case 'profile':
+                link.style.display = 'flex';
+                link.style.alignItems = 'center';
                 link.textContent = items[key].username;
 
                 const avatar = document.createElement('div');
@@ -122,5 +132,26 @@ export default class Navbar extends Component {
             .catch((err) => {
                 this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
             });
+    }
+
+    onMenuClick(evt) {
+        const navbar = evt.target.parentNode.parentNode;
+        const menu = navbar.lastElementChild;
+
+        if (menu.classList.contains('navbar-menu_active')) {
+            navbar.classList.remove('navbar_menu-active');
+            menu.classList.remove('navbar-menu_active');
+        } else {
+            navbar.classList.add('navbar_menu-active');
+            menu.classList.add('navbar-menu_active');
+        }
+    }
+
+    onMenuLinkClick(evt) {
+        const navbar = evt.target.parentNode.parentNode;
+        const menu = navbar.lastElementChild;
+
+        navbar.classList.remove('navbar_menu-active');
+        menu.classList.remove('navbar-menu_active');
     }
 }

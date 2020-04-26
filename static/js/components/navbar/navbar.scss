@@ -4,7 +4,26 @@
   min-height: $navbar-height;
   display: flex;
   background-color: $navbar-bg-color;
+  box-shadow: 0 0 2px 2px $navbar-bg-color;
   font-family: OpenSans-Regular, sans-serif;
+  transition: background-color $menu-transition-time, box-shadow $menu-transition-time;
+
+  &_menu-active {
+    background-color: $submenu-bg-color;
+    box-shadow: none;
+  }
+
+  &__desktop-item {
+    @include media('mobile') {
+      display: none;
+    }
+  }
+
+  &__mobile-item {
+    @include media('desktop') {
+      display: none;
+    }
+  }
 
   &__left-side {
     position: relative;
@@ -25,7 +44,7 @@
     cursor: pointer;
     margin-right: $margin-between-links;
     background-image: url(/static/img/menu.svg);
-    @include square($size: 28px);
+    @include square($size: 7rem);
     @include center-background;
   }
 
@@ -41,10 +60,16 @@
     width: 100%;
     background-color: $submenu-bg-color;
     @include page-layout;
+    @include submenu;
+
+    &_active {
+      visibility: visible;
+      opacity: 1;
+    }
 
     &__link {
       color: white;
-      font-size: 20px;
+      font-size: $navbar-link-size;
     }
   }
 
@@ -61,10 +86,12 @@
 
   &__link {
     margin-left: $margin-between-links;
-    display: flex;
-    align-items: center;
-    font-size: 20px;
+    font-size: $navbar-link-size;
     color: $text-color;
+
+    & > &_avatar {
+      display: flex;
+    }
 
     &_avatar {
       margin-left: 10px;

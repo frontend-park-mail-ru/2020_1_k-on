@@ -1,13 +1,13 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
     <div class="navbar__left-side">
-        <div class="navbar__menu-link"/>
+        <div class="navbar__menu-link navbar__mobile-item"/>
 
         <a class="navbar__logo" href="/">
             <span>kino</span>
             <span class="navbar__logo_color">|on</span>
         </a>
-        <a class="navbar__link" href="/series">Сериалы</a>
-        <a class="navbar__link" href="/films">Фильмы</a>
+        <a class="navbar__link navbar__desktop-item" href="/series">Сериалы</a>
+        <a class="navbar__link navbar__desktop-item" href="/films">Фильмы</a>
 
         <!--            <form class="navbar__search-form">-->
         <!--                <input class="navbar__search-input" type="search" placeholder="Поиск"/>-->

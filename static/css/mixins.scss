@@ -100,3 +100,8 @@
     padding-right: $desktop-paragraph;
   }
 }
+@mixin submenu {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility $menu-transition-time, opacity $menu-transition-time;
+}
