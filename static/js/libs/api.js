@@ -202,4 +202,10 @@ export default class Api {
             url: `/playlist/${id}`,
         });
     }
+
+    static deleteCardFromPlaylist(pid, cid, type) {
+        return Network.doDelete({
+            url: `/playlist/${pid}/${type}/${cid}`,
+        });
+    }
 }
