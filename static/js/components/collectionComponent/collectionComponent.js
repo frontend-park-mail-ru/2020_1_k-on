@@ -1,16 +1,27 @@
 import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Component from 'components/component';
 import template from './collectionComponent.tmpl.xml';
+import Api from 'libs/api';
+import {SUBSCRIPTIONS_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import EventBus from 'libs/eventBus';
 
 export default class CollectionComponent extends Component {
     constructor({
         name = 'collection',
         elements = [],
+        isPlaylist = false,
+        id = 0,
+        isUserSubscribed = false,
+        eventBus = new EventBus(),
     } = {}) {
-        super(template);
+        super(template, eventBus);
 
         this.data = {
             name: name,
+            isPlaylist: isPlaylist,
+            id: id,
+            isUserAuth: window.sessionStorage.getItem('isUserAuth'),
+            isUserSubscribed: isUserSubscribed,
         };
 
         this.elements = elements;
@@ -22,5 +33,31 @@ export default class CollectionComponent extends Component {
     afterRender() {
         const swiperComponent = new SwiperComponent(this.elements);
         this.element.appendChild(swiperComponent.render());
+
+        if (!this.data.isPlaylist) {
+            return;
+        }
+
+        this.subButton = this.element.getElementsByClassName('collection__subscribe-button')[0];
+        this.subButton.addEventListener('click', this.onSubButtonClick.bind(this));
+    }
+
+    onSubButtonClick() {
+        if (this.subButton.textContent === 'Подписаться') {
+            Api.subscribeToPlaylist(this.subButton.dataset.id)
+                .then((res) => {
+                    if (res.status === SUCCESS_STATUS) {
+                        this.subButton.textContent = 'Отписаться';
+                    }
+                });
+        } else {
+            Api.unsubscribeFromPlaylist(this.subButton.dataset.id)
+                .then((res) => {
+                    if (res.status === SUCCESS_STATUS) {
+                        this.subButton.textContent = 'Подписаться';
+                        this.eventBus.publish(SUBSCRIPTIONS_EVENTS.unsubscribe, this.element);
+                    }
+                });
+        }
     }
 }
