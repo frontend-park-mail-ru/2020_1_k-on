@@ -2,7 +2,7 @@
 
 .user-info-wrapper {
   display: flex;
-  margin-top: 128px;
+  margin-top: 12.8rem;
   justify-content: center;
 }
 
@@ -43,18 +43,18 @@
   }
 
   &__name {
-    font-family: OpenSans-Bold;
+    font-family: Montserrat-Medium, sans-serif;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.7rem;
     position: absolute;
-    bottom: 36px;
+    bottom: 3.6rem;
     text-transform: uppercase;
   }
 
   &__upload {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 1.6rem;
+    right: 1.6rem;
     z-index: 1;
     @include transformScale;
   }
@@ -65,12 +65,12 @@
 
   &__msg {
     position: absolute;
-    top: 16px;
-    min-height: 36px;
+    top: 1.6rem;
+    min-height: 3.6rem;
     width: 100%;
-    padding: 0 48px;
+    padding: 0 4.8rem;
     box-sizing: border-box;
-    font-family: OpenSans-Regular;
+    font-family: Montserrat-Medium, sans-serif;
     text-align: center;
     opacity: 0;
     transition: opacity 0.2s linear;
@@ -94,13 +94,14 @@
   cursor: pointer;
 
   &__svg {
-    height: 32px;
+    height: 3.6rem;
     fill: $text-bright-color;
     @include transformScale;
   }
 
   &__name {
     font-family: OpenSans-Light;
+    font-size: 1.6rem;
     padding-top: 8px;
   }
 }
@@ -109,23 +110,9 @@
   display: flex;
   box-sizing: border-box;
   padding: 12px 0;
-  min-height: 64px;
   background-color: $shade-color;
+  min-height: 6.4rem;
   border-radius: 0 0 24px 24px;
-
-  &-gear {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-  }
-
-  &-logout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-  }
 }
 
 #playlist-container {

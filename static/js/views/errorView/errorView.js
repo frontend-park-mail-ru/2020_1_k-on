@@ -16,7 +16,7 @@ export default class ErrorView extends View {
      * @param {int} code - код ошибки
      * @param {string} msg - сообщение
      */
-    render(root, code= INTERNAL_ERROR_STATUS, msg=INTERNAL_ERROR_MSG) {
+    render(root, code=INTERNAL_ERROR_STATUS, msg=INTERNAL_ERROR_MSG) {
         this.root = root;
         this.data = {
             code: code,

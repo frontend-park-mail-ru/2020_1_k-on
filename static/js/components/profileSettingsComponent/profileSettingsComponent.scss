@@ -7,13 +7,15 @@
 
 .user-settings {
   box-sizing: border-box;
-  padding: 16px;
-  width: 300px;
+  padding: 3.2rem 6.4rem;
+  width: 40rem;
   background-color: $shade-color;
-  border-radius: 0 0 24px 24px;
+  border-radius: 0 0 2.4rem 2.4rem;
 
   &__change-password {
-    font-family: OpenSans-Regular;
+    font-family: Roboto, sans-serif;
+    font-size: 1.6rem;
+    font-weight: bolder;
     text-align: center;
     color: $text-bright-color;
     cursor: pointer;
@@ -21,8 +23,8 @@
     &:after {
       content: '';
       display: block;
-      border-bottom: 1px solid;
-      margin-top: 4px;
+      border-bottom: 0.1rem solid;
+      margin-top: 0.4rem;
       opacity: 0;
       transition: opacity 0.35s, transform 0.35s;
       transform: scale(0, 1);
@@ -47,14 +49,14 @@
   background-color: rgba($bg-color, 0.9);
   height: 100%;
   width: 100vw;
-  max-width: 100%
+  max-width: 100%;
 }
 
 .modal-form {
   position: relative;
-  border: solid 1px $auth-content-border-color;
-  border-radius: 24px;
-  padding: 40px 28px 20px;
+  border: solid 0.1rem $auth-content-border-color;
+  border-radius: 2.4rem;
+  padding: 4rem 2.8rem 2rem;
   color: $text-color;
   background-color: $auth-content-bg-color;
   display: flex;
@@ -81,8 +83,8 @@
   &__close {
     cursor: pointer;
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 1.6rem;
+    right: 1.6rem;
     fill: black;
     transition: fill 0.2s;
 
@@ -94,7 +96,7 @@
 
 .modal-error {
   color: $error-color;
-  font-size: 1.5em;
+  font-size: 2rem;
   margin-top: $auth-form-error-margin;
   opacity: 0;
   transition: opacity 0.5s linear;

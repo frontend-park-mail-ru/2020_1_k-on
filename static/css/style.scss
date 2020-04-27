@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'reset';
 @import 'mixins';
+@import 'mediaQueries';
 @import '~components/navbar/navbar';
 @import '~components/listComponent/listComponent';
 @import '~components/reviewsComponent/reviewsComponent';
@@ -43,18 +44,17 @@ body {
   position: absolute;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 0 2px 2px $navbar-bg-color;
 }
 
 #container {
   display: inline-block;
   height: 100%;
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 6rem;
 }
 
 #footer {
-  min-height: 50px;
+  min-height: 6rem;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -62,19 +62,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 1.5rem;
   color: white;
   opacity: 0.4;
 }
 
 .page-layout {
-  padding-left: $paragraph;
-  padding-right: $paragraph;
-}
-
-.avatar {
-  border-radius: 50%;
-  background: no-repeat center / cover;
+  @include page-layout;
 }
 
 .user-path {
@@ -114,4 +108,10 @@ button {
 
 a:focus {
   outline: none;
+}
+
+.no-scroll-mobile {
+  @include media('mobile') {
+    overflow: hidden;
+  }
 }

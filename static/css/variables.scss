@@ -20,25 +20,22 @@ $auth-form-input-bg-color: rgb(10, 10, 10);
 // Auth page
 $auth-content-border-color: rgb(86, 92, 103);
 $auth-content-bg-color: rgba($bg-color, 0.7);
-$auth-form-error-margin: 24px;
+$auth-form-error-margin: 2.4rem;
 $auth-shade-color: rgba(0, 0, 0, 0.6);
 
 // Navbar
-$navbar-height: 60px;
+$navbar-height: 6.5rem;
 $navbar-bg-color: $shade-color;
 $search-form-color: $text-color;
-$margin-between-links: 25px;
+$margin-between-links: 3rem;
 $search-form-border-radius: 40px;
+$navbar-link-size: 20px;
 
 // List page
 $menu-transition-time: 0.15s;
 
 // Card component
-$padding-between-cards: 20px;
-$two-cards-max-width: 800px;
-$three-cards-max-width: 1150px;
-$four-cards-max-width: 1400px;
-$five-cards-max-width: 1800px;
+$padding-between-cards: 1.5rem;
 $series-card-shadow: 0 4px 4px $shade-color;
 $age-limit-color: $text-color;
 $age-limit-background: $shade-color;
@@ -53,29 +50,31 @@ $submenu-bg-color: rgba(22, 24, 28, 0.95);
 $bg-color: #1d2025;
 $active-season-link-bg-color: $main-color;
 $rate-bg-color: #8091bd;
-$description-header-height: 50px;
-$padding-between-rows: 8px;
+$description-header-height: 5.5rem;
+$padding-between-rows: 0.8rem;
 $indent-between-description-data: 80px;
 $margin-between-bg-content: -100px;
 $gradient-height: 90vh;
-$padding-between-description-blocks: 30px;
-$headline-size: 24px;
-$headline-margin: 20px;
-$review-padding-y: 25px;
-$review-padding-left: 10px;
+$padding-between-description-blocks: 2.4rem;
+$headline-size: 2.5rem;
+$headline-margin: 2rem;
+$review-padding-y: 2.6rem;
+$review-padding-left: 1rem;
 
 // Input
-$input-left-padding: 21px;
-$input-top-padding: 16px;
-$input-min-height: 52px;
-$input-border: 8px;
+$input-left-padding: 2.1rem;
+$input-top-padding: 1.6rem;
+$input-min-height: 5.2rem;
+$input-border: 0.8rem;
 
 // ListComponent
 $list-right-gap: $padding-between-cards;
-$list-bottom-gap: 60px;
+$list-bottom-gap: 4.5rem;
 
 // SwiperComponent
 $swiper-gap-between-elements: $padding-between-cards;
 
 // Layout
 $paragraph: 80px;
+$mobile-paragraph: 20px;
+$desktop-paragraph: 8rem;

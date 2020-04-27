@@ -10,11 +10,6 @@ export const INTERNAL_ERROR_STATUS = 500;
 export const INTERNAL_ERROR_MSG = 'Произошла внутренняя ошибка сервера';
 export const NOT_FOUND_ERROR_MSG = 'Сраница не найдена';
 
-export const NAVBAR_AUTH_ITEMS = {
-    profile: 'Профиль',
-    logout: 'Выйти',
-};
-
 export const NAVBAR_UNAUTH_ITEMS = {
     login: 'Войти',
     signup: 'Зарегистрироваться',
@@ -208,3 +203,8 @@ export const TAB_ADD_INPUTS = [
         autofocus: 'true',
     },
 ];
+
+export const DESKTOP_WIDTH = 1440;
+export const DESKTOP_HEIGHT = 1024;
+export const MOBILE_WIDTH = 720;
+export const MOBILE_HEIGHT = 1280;

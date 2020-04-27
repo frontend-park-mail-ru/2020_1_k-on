@@ -56,7 +56,7 @@
 
 .main-slider-content {
   position: absolute;
-  bottom: 64px;
+  bottom: 7rem;
   left: 0;
   font-family: Montserrat-Medium, sans-serif;
   @media (min-width: 1000px) {
@@ -67,15 +67,16 @@
   }
 
   &__title {
-    font-size: 3em;
-    margin-bottom: 16px;
+    font-size: 5rem;
+    margin-bottom: 2rem;
   }
 
   &__description {
-    line-height: 1.4em;
-    font-size: 0.7em;
+    line-height: 2.3rem;
+    font-family: OpenSans-Regular, sans-serif;
+    font-size: 1.4rem;
     text-align: left;
-    margin-bottom: 16px;
+    margin-bottom: 3rem;
   }
 
   &__button {

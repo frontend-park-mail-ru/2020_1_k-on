@@ -3,7 +3,7 @@ import template from './movieView.tmpl.xml';
 import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
 import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
 import Api from 'libs/api';
-import {MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import {DEFAULT_AVATAR, MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
 
 export default class MovieView extends View {
     constructor(eventBus, type) {
@@ -45,7 +45,6 @@ export default class MovieView extends View {
                 ];
 
                 super.render(root);
-
                 this.afterRender();
             })
             .catch((err) => {
@@ -54,13 +53,75 @@ export default class MovieView extends View {
     }
 
     afterRender() {
-        this.userReviewComponent.setId(this.id);
-        const userReviewContainer = document.getElementById('user-review-container');
-        this.userReviewComponent.render(userReviewContainer);
+        Api.getUserData()
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    this.renderReviews();
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                const userData = {
+                    username: res.body.username,
+                    image: res.body.image === '' ?
+                        DEFAULT_AVATAR : ` http://64.225.100.179:8080/image/${res.body.image}`,
+                };
 
-        this.reviewsComponent.setId(this.id);
-        const reviewsContainer = document.getElementById('reviews-container');
-        this.reviewsComponent.render(reviewsContainer);
+                Api.getUserReview(this.type, this.id)
+                    .then((res) => {
+                        if (res.status === SUCCESS_STATUS) {
+                            return res.json();
+                        } else {
+                            this.userReviewComponent = new UserReviewComponent(
+                                this.type,
+                                this.id,
+                                userData
+                            );
+                            document.getElementById('user-review-container')
+                                .appendChild(this.userReviewComponent.render());
+
+                            this.renderReviews();
+                            return Promise.reject(res);
+                        }
+                    })
+                    .then((res) => {
+                        this.userReviewComponent = new UserReviewComponent(
+                            this.type,
+                            this.id,
+                            userData,
+                            res.body
+                        );
+                        document.getElementById('user-review-container')
+                            .appendChild(this.userReviewComponent.render());
+
+                        this.renderReviews(res.body.id);
+                    });
+            });
+    }
+
+    renderReviews(userReviewId = 0) {
+        Api.getReviews(this.type, this.id)
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                this.reviewsComponent = new ReviewsComponent(
+                    userReviewId,
+                    (userReviewId === 0 || res.body.length !== 1) ? res.body : null
+                );
+
+                document.getElementById('reviews-container')
+                    .appendChild(this.reviewsComponent.render());
+            })
+            .catch((err) => {
+                this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
+            });
     }
 
     setId(id) {

@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="tab">
     <div class="tabs-container" />
-    <div class="tabs-container__br" />
+<!--    <div class="tabs-container__br" />-->
     <div class="list-container page-layout" />
 
     <div class="modal-wrapper">
