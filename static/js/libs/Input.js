@@ -1,5 +1,5 @@
 const VALIDATION_ERR_MESSAGES = {
-    LOGIN: `Логин должен содержать минимум 6 символов, 
+    LOGIN: `Логин должен содержать минимум 5 символов, 
             состоять из цифр и латинских букв и начинаться с буквы`,
     PASSWORD: `Пароль должен содержать минимум 6 символов и состоять
                из латинских букв и цифр`,
@@ -9,7 +9,7 @@ const VALIDATION_ERR_MESSAGES = {
 
 const INPUTS = {
     'login': {
-        regex: /^[a-zA-Z][a-zA-Z0-9]{5,}$/,
+        regex: /^[a-zA-Z][a-zA-Z0-9]{4,}$/,
         inputName: 'login',
         errorMsg: VALIDATION_ERR_MESSAGES.LOGIN,
 
