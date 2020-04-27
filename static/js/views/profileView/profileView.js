@@ -113,7 +113,7 @@ export default class ProfileView extends View {
     }
 
     onSubscriptions() {
-        this.actionContainer.innerHTML = 'Здесь будут подписки';
+        this.actionContainer.innerHTML = '';
 
         Api.getSubscriptions()
             .then((res) => {
