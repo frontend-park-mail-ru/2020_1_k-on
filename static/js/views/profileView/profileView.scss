@@ -2,7 +2,7 @@
 
 .user-info-wrapper {
   display: flex;
-  margin-top: 128px;
+  margin-top: 12.8rem;
   justify-content: center;
 }
 
@@ -40,11 +40,11 @@
   }
 
   &__name {
-    font-family: Montserrat-Medium;
+    font-family: Montserrat-Medium, sans-serif;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.7rem;
     position: absolute;
-    bottom: 36px;
+    bottom: 3.6rem;
     text-transform: uppercase;
   }
 }
@@ -52,7 +52,7 @@
 .user-actions {
   display: flex;
   width: 50%;
-  height: 64px;
+  height: 6.4rem;
   background-color: rgba(black, 0.2);
   border-radius: 0 0 24px 24px;
 
