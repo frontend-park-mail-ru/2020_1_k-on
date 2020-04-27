@@ -73,6 +73,8 @@ export default class Navbar extends Component {
                 const logout = this.element.querySelector('[href="/logout"]');
                 this.onLogout = this.onLogout.bind(this);
                 logout.addEventListener('click', this.onLogout);
+
+                window.sessionStorage.setItem('isUserAuth', true);
             })
             .catch((err) => {
                 this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
@@ -81,6 +83,7 @@ export default class Navbar extends Component {
 
     renderForUnauth() {
         this.renderRightSide(this.navbarUnauthItems);
+        window.sessionStorage.setItem('isUserAuth', false);
     }
 
     renderRightSide(items) {
