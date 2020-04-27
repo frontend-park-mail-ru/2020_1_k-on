@@ -1,4 +1,4 @@
-export const SERVER_ADDRESS = 'http://64.225.100.179:8080';
+export const SERVER_ADDRESS = 'http://64.225.100.179/api';
 
 export const SUCCESS_STATUS = 200;
 export const BAD_REQUEST_STATUS = 400;
