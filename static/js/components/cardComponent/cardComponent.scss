@@ -6,55 +6,19 @@
   display: inline-block;
   @include media('6cards') {
     width: calc(16.6% - #{$padding-between-cards});
-    margin-left: 6 / 5 * $padding-between-cards;
   }
   @include media('5cards') {
     width: calc(20% - #{$padding-between-cards});
-    margin-left: 5 / 4 * $padding-between-cards;
   }
   @include media('4cards') {
     width: calc(25% - #{$padding-between-cards});
-    margin-left: 4 / 3 * $padding-between-cards;
   }
   @include media('3cards') {
     width: calc(33.3% - #{$padding-between-cards});
-    margin-left: 3 / 2 * $padding-between-cards;
   }
   @include media('2cards') {
     width: calc(50% - #{$padding-between-cards});
-    margin-left: 2 * $padding-between-cards;
   }
-
-  &:nth-child(6n+1) {
-    @include media('6cards') {
-      margin-left: 0;
-    }
-  }
-
-  &:nth-child(5n+1) {
-    @include media('5cards') {
-      margin-left: 0;
-    }
-  }
-
-  &:nth-child(4n+1) {
-    @include media('4cards') {
-      margin-left: 0;
-    }
-  }
-
-  &:nth-child(3n+1) {
-    @include media('3cards') {
-      margin-left: 0;
-    }
-  }
-
-  &:nth-child(2n+1) {
-    @include media('2cards') {
-      margin-left: 0;
-    }
-  }
-
 
   &__image {
     position: relative;
@@ -122,6 +86,7 @@
     height: 2.7rem;
     border-radius: 0.5rem;
     background-color: $age-limit-background;
+    font-family: OpenSans-Regular, sans-serif;
     font-size: 1.5rem;
     color: $age-limit-color;
     @include center-position;
