@@ -1,0 +1,62 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="reviews__headline">
+        Добавить в список
+    </div>
+
+    <div class="add-to-list-block">
+
+        <fest:if test="!data.playlists">
+            <div class="message">
+                У вас нет ни одного плейлиста, в который можно добавить этот
+                <fest:space/>
+
+                <fest:choose>
+                    <fest:when test="data.type === 'series'">
+                        сериал
+                    </fest:when>
+                    <fest:otherwise>
+                        фильм
+                    </fest:otherwise>
+                </fest:choose>
+
+                . Создайте новый у себя в
+                <fest:space/>
+                <a class="message__link" href="/profile">
+                    профиле
+                </a>
+                !
+            </div>
+        </fest:if>
+
+        <fest:if test="data.playlists">
+            <div class="add-to-list-block__buttons-block">
+                <button class="choose-list-button">
+                    <div class="choose-list-button__value">
+                        <fest:value>data.playlists[0].name</fest:value>
+                    </div>
+                    <div class="choose-list-button__arrow"/>
+                </button>
+                <button class="add-to-list-button">Добавить</button>
+            </div>
+
+            <div class="choose-list-block">
+                <div class="choose-list-block__scroll-block">
+                    <fest:for iterate="data.playlists" index="i" value="playlist">
+                        <!--                    <fest:choose>-->
+                        <!--                        <fest:when test="playlist.id === data.chosenPlaylistId"-->
+                        <!--                    </fest:choose>-->
+
+                        <div class="choose-list-block__playlist" data-id="{playlist.id}">
+                            <span class="choose-list-block__playlist-name" data-id="{playlist.id}">
+                                <fest:value>playlist.name</fest:value>
+                            </span>
+                        </div>
+                    </fest:for>
+                </div>
+            </div>
+
+            <div class="result-message"/>
+        </fest:if>
+
+    </div>
+</fest:template>

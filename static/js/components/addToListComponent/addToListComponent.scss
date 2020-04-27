@@ -1,0 +1,103 @@
+.add-to-list {
+  margin-bottom: 5rem;
+  font-family: OpenSans-Regular, sans-serif;
+}
+
+.add-to-list-block {
+  padding-top: 3 * $padding-between-rows;
+  border-top: 0.1rem solid $text-dark-color;
+  font-size: 2rem;
+  position: relative;
+
+  &__buttons-block {
+    display: flex;
+    width: $buttons-block-width;
+    height: $buttons-block-height;
+  }
+}
+
+.choose-list-button {
+  color: white;
+  background-color: $shade-color;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  border-top-left-radius: $add-to-list-button-border-radius;
+  border-bottom-left-radius: $add-to-list-button-border-radius;
+
+  &__arrow {
+    background-image: url(/static/img/down-arrow.svg);
+    @include square($size: 2rem);
+    @include center-background;
+  }
+
+  &_active {
+    width: 100%;
+    border-top-right-radius: $add-to-list-button-border-radius;
+    border-bottom-right-radius: $add-to-list-button-border-radius;
+  }
+}
+
+.add-to-list-button {
+  border-top-right-radius: $add-to-list-button-border-radius;
+  border-bottom-right-radius: $add-to-list-button-border-radius;
+  width: 40%;
+  @include gradient;
+
+  &_hidden {
+    display: none;
+  }
+}
+
+.choose-list-block {
+  width: $choose-list-block-width;
+  position: absolute;
+  left: - $choose-list-block-padding;
+  background-color: $submenu-bg-color;
+  border-radius: 1rem;
+  overflow: hidden;
+  max-height: 30rem;
+  @include submenu;
+
+  &_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__scroll-block {
+    width: 100%;
+    overflow-y: scroll;
+    //padding: 0 $choose-list-block-padding;
+    //padding-right: 17px;
+    padding-left: $choose-list-block-padding;
+    //box-sizing: content-box;
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 2rem;
+  }
+
+  &__playlist {
+    font-size: inherit;
+
+    &_active {
+      color: $text-bright-color;
+    }
+  }
+
+  &__playlist-name {
+    cursor: pointer;
+  }
+}
+
+.result-message {
+  color: white;
+  margin-top: 2rem;
+  @include submenu;
+
+  &_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+}
