@@ -23,6 +23,7 @@ export default class PlaylistComponent extends Component {
 
         this.eventBus.subscribe(PLAYLIST_EVENTS.clickTab, this.onTabClick.bind(this));
         this.eventBus.subscribe(PLAYLIST_EVENTS.deleteTab, this.onDeleteTab.bind(this));
+        this.eventBus.subscribe(PLAYLIST_EVENTS.deleteCard, this.onDeleteCard.bind(this));
 
         this.tabList = tabList;
 
@@ -119,6 +120,8 @@ export default class PlaylistComponent extends Component {
                 res.body.films = res.body.films === null ? [] : res.body.films;
                 res.body.series = res.body.series === null ? [] : res.body.series;
                 const cards = res.body.films.concat(res.body.series).map((item) => {
+                    item.isRemovable = true;
+                    item.eventBus = this.eventBus;
                     const card = new CardComponent(item);
                     return card.render();
                 });
@@ -179,5 +182,19 @@ export default class PlaylistComponent extends Component {
         this.element.getElementsByClassName('modal-error')[0].style.opacity = '0';
         this.modalWrapper.style.visibility = 'hidden';
         document.body.style.overflow = 'auto';
+    }
+
+    onDeleteCard(card, id, type) {
+        card.remove();
+        type = type === 'films' ? type.slice(0, -1) : type;
+        Api.deleteCardFromPlaylist(this.choosenTab.dataset.id, id, type)
+            .then((res) => {
+                if (res.status !== SUCCESS_STATUS) {
+                    return Promise.reject(res);
+                }
+            })
+            .catch((err) => {
+                this.globalEventBus.publish(PROFILE_EVENTS.internalError, err.status);
+            });
     }
 }
