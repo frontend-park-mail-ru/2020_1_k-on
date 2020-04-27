@@ -4,7 +4,7 @@
     </div>
 
     <fest:if test="data.isPlaylist === true">
-        <fest:if test="data.isUserAuth === 'true'">
+        <fest:if test="data.isUserAuth === true">
             <button class="collection__subscribe-button" data-id="{data.id}">
                 <fest:choose>
                     <fest:when test="data.isUserSubscribed === true">

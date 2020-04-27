@@ -2,7 +2,10 @@ import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Component from 'components/component';
 import template from './collectionComponent.tmpl.xml';
 import Api from 'libs/api';
-import {SUBSCRIPTIONS_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import {
+    SUBSCRIPTIONS_EVENTS,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 import EventBus from 'libs/eventBus';
 
 export default class CollectionComponent extends Component {
@@ -20,7 +23,7 @@ export default class CollectionComponent extends Component {
             name: name,
             isPlaylist: isPlaylist,
             id: id,
-            isUserAuth: window.sessionStorage.getItem('isUserAuth'),
+            isUserAuth: window.sessionStorage.getItem('isUserAuth') === 'true',
             isUserSubscribed: isUserSubscribed,
         };
 
@@ -34,7 +37,7 @@ export default class CollectionComponent extends Component {
         const swiperComponent = new SwiperComponent(this.elements);
         this.element.appendChild(swiperComponent.render());
 
-        if (!this.data.isPlaylist) {
+        if (!this.data.isPlaylist || !this.data.isUserAuth) {
             return;
         }
 
