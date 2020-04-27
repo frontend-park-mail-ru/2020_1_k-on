@@ -71,6 +71,7 @@ export const PLAYLIST_EVENTS = {
     clickTab: 'changeTab',
     deleteTab: 'deleteTab',
     addTab: 'addTab',
+    deleteCard: 'deleteCard',
 };
 
 export const MAX_BG_IMGS = 5;
