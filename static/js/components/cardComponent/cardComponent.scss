@@ -1,5 +1,5 @@
-@import 'css/variables';
-@import 'css/mediaQueries';
+@import '~css/variables';
+@import '~css/mediaQueries';
 
 .series-card {
   cursor: pointer;
@@ -90,5 +90,19 @@
     font-size: 1.5rem;
     color: $age-limit-color;
     @include center-position;
+  }
+
+  &__remove {
+    fill: $text-color;
+    width: 1.6rem;
+    height: 1.6rem;
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    @include transformScale($scaleValue: 1.5);
+
+    &:hover {
+      fill: $error-color;
+    }
   }
 }
