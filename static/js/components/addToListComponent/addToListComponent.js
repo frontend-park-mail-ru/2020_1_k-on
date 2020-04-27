@@ -102,7 +102,7 @@ export default class AddToListComponent extends Component {
                 return Promise.reject();
             }
         }).catch((err) => {
-            this.showMessage('Произошла ошибка');
+            this.showMessage('Уже добавлено!');
             console.log(err);
         })
     }
