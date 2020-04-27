@@ -2,12 +2,12 @@
 @import 'css/mixins';
 
 .write-review-block {
-  margin-bottom: 20px;
-  border-top: 0.2px solid $text-dark-color;
+  margin-bottom: 2rem;
+  border-top: 0.1rem solid $text-dark-color;
 
   &__avatar {
     flex-shrink: 0;
-    @include avatar($size: 70px);
+    @include avatar($size: 7rem);
   }
 }
 
@@ -22,14 +22,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: $text-dark-color;
   }
 
   &__star-icon {
-    padding-right: 5px;
-    width: 27px;
-    height: 25px;
+    padding-right: 0.5rem;
+    width: 2.7rem;
+    height: 2.5rem;
     background: url(/static/img/star-icon.svg) no-repeat center;
     transition: background-image 0.2s ease-in-out;
 
@@ -50,10 +50,10 @@
     width: 100%;
     display: block;
     border: 0;
-    border-bottom: 2px solid #eaeea9;
+    border-bottom: 0.2rem solid #eaeea9;
     background: none;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: $text-color;
     transition: border-bottom 0.15s ease-in-out;
 
@@ -62,7 +62,7 @@
     }
 
     &:focus {
-      border-bottom: 2px solid $text-bright-color;
+      border-bottom: 0.2rem solid $text-bright-color;
     }
   }
 
@@ -78,16 +78,16 @@
   }
 
   &__button {
-    padding: 0.5em 1.5em;
-    font-size: 18px;
     @include gradientButton;
+    padding: 0.5em 1.5em;
+    font-size: 1.8rem;
   }
 }
 
 .review-info__edit-button {
-  margin-top: 20px;
+  margin-top: 2rem;
   min-height: 0;
   padding: 0.5em 0.7em;
-  font-size: 16px;
+  font-size: 1.6rem;
   @include gradientButton;
 }
