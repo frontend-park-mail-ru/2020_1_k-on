@@ -11,9 +11,9 @@ export default class Api {
      * @return {Promise<Response>}
      */
     static doLogin({
-        login = '',
-        password = '',
-    }) {
+                       login = '',
+                       password = '',
+                   }) {
         return Network.doPost({
             url: '/login',
             body: JSON.stringify({
@@ -35,10 +35,10 @@ export default class Api {
      * @return {Promise<Response>}
      */
     static doSignUp({
-        login= '',
-        email = '',
-        password = '',
-    }) {
+                        login = '',
+                        email = '',
+                        password = '',
+                    }) {
         return Network.doPost({
             url: '/signup',
             body: JSON.stringify({
@@ -201,5 +201,21 @@ export default class Api {
         return Network.doGet({
             url: `/playlist/${id}`,
         });
+    }
+
+    static getPlaylistsWithoutFilm(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}/playlists`,
+        });
+    }
+
+    static addFilmToPlaylist(pid, type, id) {
+        return Network.doPost({
+                url: `/playlist/${pid}/${type}/${id}`,
+                headers: {
+                    'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+                    'Content-Type': 'application/json',
+                }
+            });
     }
 }

@@ -4,6 +4,7 @@ import UserReviewComponent from 'components/userReviewComponent/userReviewCompon
 import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
 import Api from 'libs/api';
 import {DEFAULT_AVATAR, MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
+import AddToListComponent from "components/addToListComponent/addToListComponent";
 
 export default class MovieView extends View {
     constructor(eventBus, type) {
@@ -97,6 +98,28 @@ export default class MovieView extends View {
                             .appendChild(this.userReviewComponent.render());
 
                         this.renderReviews(res.body.id);
+                    });
+
+                Api.getPlaylistsWithoutFilm(this.type, this.id)
+                    .then((res) => {
+                        if (res.status === SUCCESS_STATUS) {
+                            return res.json();
+                        } else {
+                            return Promise.reject(res);
+                        }
+                    })
+                    .then((res) => {
+                        this.addToListComponent = new AddToListComponent(
+                            this.type,
+                            this.id,
+                            res.body
+                        );
+                        document.getElementById('add-to-list-container')
+                            .appendChild(this.addToListComponent.render());
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
                     });
             });
     }

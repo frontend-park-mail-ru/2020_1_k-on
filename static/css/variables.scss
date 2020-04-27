@@ -57,9 +57,14 @@ $margin-between-bg-content: -100px;
 $gradient-height: 90vh;
 $padding-between-description-blocks: 2.4rem;
 $headline-size: 2.5rem;
-$headline-margin: 2rem;
+$headline-margin: 1.5rem;
 $review-padding-y: 2.6rem;
 $review-padding-left: 1rem;
+$add-to-list-button-border-radius: 1rem;
+$buttons-block-width: 36rem;
+$buttons-block-height: 5rem;
+$choose-list-block-width: 40rem;
+$choose-list-block-padding: ($choose-list-block-width - $buttons-block-width) / 2;
 
 // Input
 $input-left-padding: 2.1rem;
