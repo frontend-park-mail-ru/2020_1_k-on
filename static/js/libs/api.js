@@ -67,8 +67,14 @@ export default class Api {
      * Выполняет запрос на получения данных страницы index
      * @return {Promise<Response>}
      */
-    static getIndex() {
+    static getSlider() {
         return Network.doGet();
+    }
+
+    static getIndex() {
+        return Network.doGet({
+            url: '/index',
+        });
     }
 
     /**
