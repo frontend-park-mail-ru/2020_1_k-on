@@ -208,4 +208,29 @@ export default class Api {
             url: `/playlist/${pid}/${type}/${cid}`,
         });
     }
+
+    static getSubscriptions() {
+        return Network.doGet({
+            url: '/subscriptions',
+        });
+    }
+
+    static subscribeToPlaylist(pid) {
+        return Network.doPost({
+            url: `/subscribe/${pid}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
+    static unsubscribeFromPlaylist(pid) {
+        return Network.doDelete({
+            url: `/unsubscribe/${pid}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+            },
+        });
+    }
 }
