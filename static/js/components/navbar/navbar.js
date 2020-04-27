@@ -96,13 +96,18 @@ export default class Navbar extends Component {
             case 'profile':
                 link.style.display = 'flex';
                 link.style.alignItems = 'center';
-                link.textContent = items[key].username;
+
+                const username = document.createElement('span');
+                username.classList.add('navbar__link_username');
+                username.textContent = items[key].username;
 
                 const avatar = document.createElement('div');
                 avatar.className = 'navbar__link_avatar';
                 avatar.style.backgroundImage = items[key].image ?
                     `url(http://64.225.100.179:8080/image/${items[key].image})` :
                     `url(${DEFAULT_AVATAR})`;
+
+                link.appendChild(username);
                 link.appendChild(avatar);
 
                 break;

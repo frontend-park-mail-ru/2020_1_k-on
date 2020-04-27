@@ -155,5 +155,6 @@ export default class ProfileView extends View {
         this.data.username = username;
         this.data.email = email;
         this.root.getElementsByClassName('user-avatar__name')[0].innerText = username;
+        document.getElementsByClassName('navbar__link_username')[0].textContent = username;
     }
 }
