@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="reviews__headline">
-        Добавить в список
+        Добавить в плейлист
     </div>
 
     <div class="add-to-list-block">
