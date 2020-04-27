@@ -3,6 +3,7 @@ import template from './profileView.tmpl.xml';
 import Api from 'libs/api';
 import ProfileSettingsComponent from 'components/profileSettingsComponent/profileSettingsComponent';
 import PlaylistComponent from 'components/playlistComponent/playlistComponent';
+import SubscriptionsComponent from 'components/subscriptionsComponent/subscriptionsComponent';
 import {
     DEFAULT_AVATAR,
     INTERNAL_ERROR_STATUS,
@@ -113,6 +114,23 @@ export default class ProfileView extends View {
 
     onSubscriptions() {
         this.actionContainer.innerHTML = 'Здесь будут подписки';
+
+        Api.getSubscriptions()
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .then((res) => {
+                res.body = res.body === null ? [] : res.body;
+                const subscriptionsComponent = new SubscriptionsComponent(res.body, this.eventBus);
+                this.actionContainer.appendChild(subscriptionsComponent.render());
+            })
+            .catch((err) => {
+                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+            });
     }
 
     onUploadAvatar(event) {
