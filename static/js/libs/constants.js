@@ -74,6 +74,10 @@ export const PLAYLIST_EVENTS = {
     deleteCard: 'deleteCard',
 };
 
+export const SUBSCRIPTIONS_EVENTS = {
+    unsubscribe: 'unsubscribe',
+};
+
 export const MAX_BG_IMGS = 5;
 
 export const BG_IMG_KEY = 'bg_img';
