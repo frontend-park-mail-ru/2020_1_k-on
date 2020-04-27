@@ -20,7 +20,7 @@ $auth-form-input-bg-color: rgb(10, 10, 10);
 // Auth page
 $auth-content-border-color: rgb(86, 92, 103);
 $auth-content-bg-color: rgba($bg-color, 0.7);
-$auth-form-error-margin: 24px;
+$auth-form-error-margin: 2.4rem;
 $auth-shade-color: rgba(0, 0, 0, 0.6);
 
 // Navbar
@@ -62,10 +62,10 @@ $review-padding-y: 2.6rem;
 $review-padding-left: 1rem;
 
 // Input
-$input-left-padding: 21px;
-$input-top-padding: 16px;
-$input-min-height: 52px;
-$input-border: 8px;
+$input-left-padding: 2.1rem;
+$input-top-padding: 1.6rem;
+$input-min-height: 5.2rem;
+$input-border: 0.8rem;
 
 // ListComponent
 $list-right-gap: $padding-between-cards;

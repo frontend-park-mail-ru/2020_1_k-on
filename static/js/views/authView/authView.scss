@@ -1,7 +1,7 @@
 @import 'css/variables';
 
 .form-container {
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 }
 
 .auth-page {
@@ -36,7 +36,7 @@
 
   &__form-error {
     color: $error-color;
-    font-size: 1.5em;
+    font-size: 3rem;
     margin-top: $auth-form-error-margin;
     opacity: 0;
     z-index: 1000;
@@ -46,9 +46,9 @@
 
 .auth-content {
   z-index: 1000;
-  border: solid 1px $auth-content-border-color;
-  border-radius: 24px;
-  padding: 40px 28px 20px;
+  border: solid 0.1rem $auth-content-border-color;
+  border-radius: 2.4rem;
+  padding: 4rem 2.8rem 2rem;
   color: $text-color;
   background-color: $auth-content-bg-color;
   display: flex;
@@ -58,18 +58,19 @@
 
   &__headline {
     text-align: center;
-    font-size: xx-large;
+    font-size: 3.4rem;
     font-weight: bold;
-    margin-bottom: 24px;
+    margin-bottom: 2.4rem;
   }
 
   &__no-account {
     display: inline;
     font-weight: bolder;
+    font-size: 1.6rem;
 
     &_href {
       color: $text-bright-color;
-      margin-left: 4px;
+      margin-left: 0.4rem;
       cursor: pointer;
     }
   }
