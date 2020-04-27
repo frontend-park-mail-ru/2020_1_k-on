@@ -39,6 +39,11 @@ export default class CollectionComponent extends Component {
         }
 
         this.subButton = this.element.getElementsByClassName('collection__subscribe-button')[0];
+
+        if (this.subButton.textContent === 'Отписаться') {
+            this.subButton.classList.add('collection__subscribe-button_err');
+        }
+
         this.subButton.addEventListener('click', this.onSubButtonClick.bind(this));
     }
 
@@ -48,6 +53,7 @@ export default class CollectionComponent extends Component {
                 .then((res) => {
                     if (res.status === SUCCESS_STATUS) {
                         this.subButton.textContent = 'Отписаться';
+                        this.subButton.classList.add('collection__subscribe-button_err');
                     }
                 });
         } else {
@@ -56,6 +62,7 @@ export default class CollectionComponent extends Component {
                     if (res.status === SUCCESS_STATUS) {
                         this.subButton.textContent = 'Подписаться';
                         this.eventBus.publish(SUBSCRIPTIONS_EVENTS.unsubscribe, this.element);
+                        this.subButton.classList.remove('collection__subscribe-button_err');
                     }
                 });
         }

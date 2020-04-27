@@ -12,5 +12,12 @@
 
   &__subscribe-button {
     @include gradientButton;
+
+    &_err {
+      background: {
+        image: linear-gradient(to right, #ff6600, $error-color, #ff9933);
+        size: 300% 100%;
+      }
+    }
   }
 }
