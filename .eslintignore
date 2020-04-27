@@ -1,1 +1,2 @@
 *.tmpl.js
+/static/js/libs/scale.js
