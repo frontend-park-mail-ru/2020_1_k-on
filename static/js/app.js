@@ -7,7 +7,7 @@ import ProfileController from 'controllers/profileController';
 import ListController from 'controllers/listController';
 import IndexController from 'controllers/indexController';
 import PersonController from 'controllers/personController';
-import Navbar from 'components/navbar/navbar';
+import NavbarComponent from 'components/navbarComponent/navbarComponent';
 import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
 import View from 'views/view';
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
     const container = document.getElementById('container');
     const globalEventBus = new EventBus();
-    const navbar = new Navbar(globalEventBus);
+    const navbar = new NavbarComponent(globalEventBus);
     const router = new Router(container);
 
     globalEventBus.subscribe(GLOBAL_EVENTS.internalError, (code) => {

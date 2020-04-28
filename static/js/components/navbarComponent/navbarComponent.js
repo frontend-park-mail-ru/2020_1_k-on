@@ -1,4 +1,4 @@
-import template from './navbar.tmpl.xml';
+import template from './navbarComponent.tmpl.xml';
 import Component from 'components/component';
 import Api from 'libs/api';
 import {
@@ -11,7 +11,7 @@ import {
 /**
  * Компонент navbar
  */
-export default class Navbar extends Component {
+export default class NavbarComponent extends Component {
     constructor(globalEventBus) {
         super(template, globalEventBus);
 
