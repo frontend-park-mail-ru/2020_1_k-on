@@ -8,22 +8,7 @@
             <fest:for iterate="data.reviews" index="i" value="review">
                 <fest:if test="data.userReviewId !== review.id">
                     <div class="review-block review-layout">
-                        <div class="review-block__avatar">
-                            <fest:attributes>
-                                <fest:choose>
-                                    <fest:when test="review.user.image">
-                                        <fest:attribute name="style"
-                                                        value="background-image: url(http://64.225.100.179:8080/image/{review.user.image})"/>
-                                    </fest:when>
-
-                                    <fest:otherwise>
-                                        <fest:attribute name="style"
-                                                        value="background-image: url({data.defaultAvatar})"/>
-                                    </fest:otherwise>
-                                </fest:choose>
-                            </fest:attributes>
-                        </div>
-
+                        <div class="review-block__avatar" style="background-image: url('{review.user.image}')" />
                         <div class="review-info">
                             <div class="review-info__header">
                                 <div class="review-info__username">
