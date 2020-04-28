@@ -10,7 +10,10 @@ export default class Network {
      * @param {string} url
      * @return {Promise<Response>}
      */
-    static doGet({host = SERVER_ADDRESS, url = '/'} = {}) {
+    static doGet({
+        host = SERVER_ADDRESS,
+        url = '/',
+    } = {}) {
         return fetch(host + url, {
             method: 'GET',
             credentials: 'include',
@@ -29,7 +32,8 @@ export default class Network {
      * @param {object} headers
      * @return {Promise<Response>}
      */
-    static doPost({host = SERVER_ADDRESS,
+    static doPost({
+        host = SERVER_ADDRESS,
         url = '/',
         body = '',
         headers = {},
