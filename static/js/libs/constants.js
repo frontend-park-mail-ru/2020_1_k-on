@@ -1,4 +1,4 @@
-export const SERVER_ADDRESS = 'http://64.225.100.179/api';
+export const SERVER_ADDRESS = 'https://kino-on.ru/api';
 
 export const SUCCESS_STATUS = 200;
 export const BAD_REQUEST_STATUS = 400;
@@ -40,15 +40,6 @@ export const PROFILE_EVENTS = {
     updateUserData: 'updateUserData',
 };
 
-export const PROFILE_MSGS = {
-    success_avatar_upload: 'Аватар загружен',
-    error_avatar_upload: 'Ошибка при загрузке аватара',
-    settings_update: 'Данные успешно изменены',
-    user_exists: 'Такой пользователь уже существует',
-    passwords_not_match: 'Пароли не совпадают',
-    updatePassword: 'Пароль успешно изменен',
-};
-
 export const INDEX_EVENTS = {
     internalError: 'internalError',
 };
@@ -76,6 +67,15 @@ export const PLAYLIST_EVENTS = {
 
 export const SUBSCRIPTIONS_EVENTS = {
     unsubscribe: 'unsubscribe',
+};
+
+export const PROFILE_MSGS = {
+    success_avatar_upload: 'Аватар загружен',
+    error_avatar_upload: 'Ошибка при загрузке аватара',
+    settings_update: 'Данные успешно изменены',
+    user_exists: 'Такой пользователь уже существует',
+    passwords_not_match: 'Пароли не совпадают',
+    updatePassword: 'Пароль успешно изменен',
 };
 
 export const MAX_BG_IMGS = 5;
@@ -156,8 +156,6 @@ export const SLIDER_DISTANCE = 400;
 export const MAX_RATING = 10;
 
 export const DEFAULT_AVATAR = '/static/img/avatar.svg';
-
-export const RANDOM_SHUFFLE_VALUE = 0.5;
 
 export const PROFILE_SETTINGS_INPUTS = {
     settings: [
