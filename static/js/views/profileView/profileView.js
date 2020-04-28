@@ -27,20 +27,19 @@ export default class ProfileView extends View {
         Api.getUserData()
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    return res.json();
+                    res.json().then((res) => {
+                        this.data = res.body;
+                        this.data.avatar = this.data.image === '' ?
+                            DEFAULT_AVATAR :
+                            `${SERVER_ADDRESS}/image/${this.data.image}`;
+                        super.render(root);
+                        this.afterRender();
+                    });
                 } else if (res.status === UNAUTHORIZED_STATUS) {
                     this.eventBus.publish(PROFILE_EVENTS.unauthUser);
                 } else {
                     return Promise.reject(res);
                 }
-            })
-            .then((res) => {
-                this.data = res.body;
-                this.data.avatar = this.data.image === '' ?
-                    DEFAULT_AVATAR :
-                    `${SERVER_ADDRESS}/image/${this.data.image}`;
-                super.render(root);
-                this.afterRender();
             })
             .catch((err) => {
                 this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
@@ -154,7 +153,7 @@ export default class ProfileView extends View {
             })
             .then((res) => {
                 this.avatar.style.backgroundImage =
-                    `url(http://64.225.100.179:8080/image/${res.body})`;
+                    `url(${SERVER_ADDRESS}/image/${res.body})`;
                 this.showMessage(PROFILE_MSGS.success_avatar_upload);
             })
             .catch((err) => {
