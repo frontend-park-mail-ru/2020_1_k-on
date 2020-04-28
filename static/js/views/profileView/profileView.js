@@ -11,6 +11,7 @@ import {
     SUCCESS_STATUS,
     UNAUTHORIZED_STATUS,
     PROFILE_MSGS,
+    SHOW_MSG_TIMEOUT,
 } from 'libs/constants';
 
 export default class ProfileView extends View {
@@ -167,6 +168,10 @@ export default class ProfileView extends View {
         );
         this.msgElement.textContent = msg;
         this.msgElement.style.opacity = '1';
+
+        setTimeout(() => {
+            this.msgElement.style.opacity = '0';
+        }, SHOW_MSG_TIMEOUT);
     }
 
     updateUserData(username = '', email = '') {
