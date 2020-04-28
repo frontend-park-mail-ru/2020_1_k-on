@@ -3,8 +3,8 @@ import template from './movieView.tmpl.xml';
 import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
 import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
 import Api from 'libs/api';
+import AddToListComponent from 'components/addToListComponent/addToListComponent';
 import {DEFAULT_AVATAR, MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
-import AddToListComponent from "components/addToListComponent/addToListComponent";
 
 export default class MovieView extends View {
     constructor(eventBus, type) {

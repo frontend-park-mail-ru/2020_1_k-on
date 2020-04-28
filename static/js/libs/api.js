@@ -248,11 +248,11 @@ export default class Api {
 
     static addFilmToPlaylist(pid, type, id) {
         return Network.doPost({
-                url: `/playlist/${pid}/${type}/${id}`,
-                headers: {
-                    'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
-                    'Content-Type': 'application/json',
-                }
-            });
+            url: `/playlist/${pid}/${type}/${id}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+                'Content-Type': 'application/json',
+            },
+        });
     }
 }

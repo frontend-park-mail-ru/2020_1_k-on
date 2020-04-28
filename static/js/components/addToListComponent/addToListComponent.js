@@ -1,7 +1,10 @@
 import Component from 'components/component';
 import template from './addToListComponent.tmpl.xml';
-import {MOVIE_EVENTS, SUCCESS_STATUS} from 'libs/constants';
 import Api from 'libs/api';
+import {
+    SHOW_MSG_TIMEOUT,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 
 export default class AddToListComponent extends Component {
     constructor(
@@ -86,7 +89,6 @@ export default class AddToListComponent extends Component {
         chooseListButton.classList.remove('choose-list-button_active');
         addToListButton.classList.remove('add-to-list-button_hidden');
         chooseListBlock.classList.remove('choose-list-block_visible');
-
     }
 
     onAddToListButtonClick(evt) {
@@ -94,17 +96,19 @@ export default class AddToListComponent extends Component {
             this.chosenPlaylist.id,
             this.type,
             this.id,
-        ).then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                this.showMessage('Добавлено!');
-                this.deletePlaylist(this.chosenPlaylist.id);
-            } else {
-                return Promise.reject();
-            }
-        }).catch((err) => {
-            this.showMessage('Уже добавлено!');
-            console.log(err);
-        })
+        )
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    this.showMessage('Добавлено!');
+                    this.deletePlaylist(this.chosenPlaylist.id);
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch((err) => {
+                this.showMessage('Уже добавлено!');
+                console.log(err);
+            });
     }
 
     showMessage(text) {
@@ -113,7 +117,7 @@ export default class AddToListComponent extends Component {
         resultMessage.classList.add('result-message_visible');
         setTimeout(() => {
             resultMessage.classList.remove('result-message_visible');
-        }, 3000);
+        }, SHOW_MSG_TIMEOUT);
     }
 
     deletePlaylist(id) {
