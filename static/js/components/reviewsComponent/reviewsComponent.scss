@@ -1,5 +1,5 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/variables';
+@import '~css/mixins';
 
 .no-reviews-message {
   padding: 3 * $padding-between-rows 0 6 * $padding-between-rows;
