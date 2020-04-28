@@ -6,6 +6,7 @@ import {
     NAVBAR_UNAUTH_ITEMS,
     GLOBAL_EVENTS,
     DEFAULT_AVATAR,
+    SERVER_ADDRESS,
 } from 'libs/constants';
 
 /**
@@ -107,7 +108,7 @@ export default class NavbarComponent extends Component {
                 const avatar = document.createElement('div');
                 avatar.className = 'navbar__link_avatar';
                 avatar.style.backgroundImage = items[key].image ?
-                    `url(http://64.225.100.179:8080/image/${items[key].image})` :
+                    `url(${SERVER_ADDRESS}/image/${items[key].image})` :
                     `url(${DEFAULT_AVATAR})`;
 
                 link.appendChild(username);
