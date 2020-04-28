@@ -24,6 +24,8 @@ export default class ProfileView extends View {
     }
 
     render(root) {
+        this.root = root;
+
         Api.getUserData()
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
