@@ -12,6 +12,7 @@ import {
     UNAUTHORIZED_STATUS,
     PROFILE_MSGS,
     SHOW_MSG_TIMEOUT,
+    SERVER_ADDRESS,
 } from 'libs/constants';
 
 export default class ProfileView extends View {
@@ -37,7 +38,7 @@ export default class ProfileView extends View {
                 this.data = res.body;
                 this.data.avatar = this.data.image === '' ?
                     DEFAULT_AVATAR :
-                    `http://64.225.100.179:8080/image/${this.data.image}`;
+                    `${SERVER_ADDRESS}/image/${this.data.image}`;
                 super.render(root);
                 this.afterRender();
             })
