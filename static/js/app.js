@@ -14,7 +14,9 @@ import View from 'views/view';
 import initScale from 'libs/scale';
 import {
     GLOBAL_EVENTS,
-    INTERNAL_ERROR_MSG, INTERNAL_ERROR_STATUS, NOT_FOUND_ERROR_MSG,
+    INTERNAL_ERROR_MSG,
+    INTERNAL_ERROR_STATUS,
+    NOT_FOUND_ERROR_MSG,
 } from 'libs/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
