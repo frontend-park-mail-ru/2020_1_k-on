@@ -1,0 +1,69 @@
+@import '~css/variables.scss';
+
+@mixin tab {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  //height: 48px;
+  padding: 2.4rem 4.8rem;
+  margin-right: 0;
+  box-sizing: border-box;
+  font-family: OpenSans-Regular;
+  font-size: 3rem;
+  color: $text-color;
+  border-bottom: 2px solid transparent;
+  transition: {
+    property: color, border-bottom-color;
+    duration: 0.2s;
+    timing-function: linear;
+  };
+
+  &:hover {
+    color: $main-color;
+    border-bottom-color: $main-color;
+    transition: {
+      property: color, border-bottom-color;
+      duration: 0.2s;
+      timing-function: linear;
+    };
+  }
+
+  &_active {
+    color: $main-color;
+    border-bottom-color: $main-color;
+    transition: {
+      property: color, border-bottom-color;
+      duration: 0.2s;
+      timing-function: linear;
+    };
+  }
+}
+
+.tab-add {
+  @include tab;
+}
+
+.tab {
+  @include tab;
+
+  &__delete {
+    position: absolute;
+    right: 1.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+    fill: $shade-color;
+    transition: fill 0.2s linear;
+    width: 1.6rem;
+    height: 1.6rem;
+
+    &:hover {
+      fill: $error-color;
+      transition: fill 0.2s linear
+    }
+
+    &_active {
+      visibility: visible;
+    }
+  }
+}

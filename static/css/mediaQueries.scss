@@ -1,0 +1,39 @@
+$two-cards-max-width: 500px;
+$three-cards-max-width: 650px;
+$four-cards-max-width: 950px;
+$five-cards-max-width: 1270px;
+$mobile-max-width: 770px;
+
+$media-expressions: (
+  '2cards': '(max-width: #{$two-cards-max-width})',
+  '3cards': '(min-width: #{$two-cards-max-width}) and (max-width: #{$three-cards-max-width})',
+  '4cards': '(min-width: #{$three-cards-max-width}) and (max-width: #{$four-cards-max-width})',
+  '5cards': '(min-width: #{$four-cards-max-width}) and (max-width: #{$five-cards-max-width})',
+  '6cards': '(min-width: #{$five-cards-max-width})',
+  'mobile': '(max-width: #{$mobile-max-width})',
+  'desktop': '(min-width: #{$mobile-max-width})'
+);
+
+@function slice($list, $start: 1, $end: length($list)) {
+  @if (length($list) == 0 or $start > $end) {
+    @return ();
+  }
+
+  $result: ();
+  @for $i from $start through $end {
+    $result: append($result, nth($list, $i));
+  }
+  @return $result;
+}
+
+@mixin media($expressions...) {
+  @if length($expressions) == 0 {
+    @content;
+  } @else {
+    @media #{unquote(map_get($media-expressions, nth($expressions, 1)))} {
+      @include media(slice($expressions, 2)...) {
+        @content;
+      }
+    }
+  }
+}

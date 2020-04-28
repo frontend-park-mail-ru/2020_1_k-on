@@ -6,7 +6,6 @@ import SliderComponent from 'components/sliderComponent/sliderComponent';
 import CardComponent from 'components/cardComponent/cardComponent';
 import {
     INDEX_EVENTS,
-    RANDOM_SHUFFLE_VALUE,
     SUCCESS_STATUS,
 } from 'libs/constants';
 
@@ -18,7 +17,7 @@ export default class IndexView extends View {
     render(root) {
         super.render(root);
 
-        Api.getIndex()
+        Api.getSlider()
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     return res.json();
@@ -27,39 +26,50 @@ export default class IndexView extends View {
                 }
             })
             .then((res) => {
-                this.collections = res.body.collections;
-                this.recommendations = res.body.recommendations;
-                this.afterRender();
+                this.slider = new SliderComponent(res.body.recommendations);
+                this.root.prepend(this.slider.render());
             })
             .catch((err) => {
                 console.log(err);
                 this.eventBus.publish(INDEX_EVENTS.internalError, err.status);
             });
-    }
 
-    afterRender() {
-        this.slider = new SliderComponent(this.recommendations);
-        this.root.prepend(this.slider.render());
+        Api.getIndex()
+            .then((res) => {
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                }
+            })
+            .then((res) => {
+                this.collections = res.body;
+                this.collections = this.collections === null ? [] : this.collections;
 
-        this.collections.map((collection) => {
-            collection.list.sort(() => Math.random() - RANDOM_SHUFFLE_VALUE);
-        });
+                const collectionsElem = this.root.getElementsByClassName('collections')[0];
 
-        const collectionsElem = this.root.getElementsByClassName('collections')[0];
+                this.collections.forEach((subItem) => {
+                    subItem.films = subItem.films === null ? [] : subItem.films;
+                    subItem.series = subItem.series === null ? [] : subItem.series;
+                    const cards = subItem.films.concat(subItem.series).map((cardItem) => {
+                        const card = new CardComponent(cardItem);
+                        return card.render();
+                    });
 
-        this.collections.forEach((collection) => {
-            const cards = collection.list.map((item) => {
-                const cardComponent = new CardComponent(item);
-                return cardComponent.render();
+                    const collectionComponent = new CollectionComponent({
+                        name: subItem.name,
+                        elements: cards,
+                        isPlaylist: true,
+                        isUserSubscribed: false,
+                        id: subItem.id,
+                        eventBus: this.eventBus,
+                    });
+
+                    collectionsElem.appendChild(collectionComponent.render());
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                this.eventBus.publish(INDEX_EVENTS.internalError, err.status);
             });
-
-            const collectionComponent = new CollectionComponent({
-                name: collection.name,
-                elements: cards,
-            });
-
-            collectionsElem.appendChild(collectionComponent.render());
-        });
     }
 
     close() {

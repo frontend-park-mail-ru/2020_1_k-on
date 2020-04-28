@@ -34,6 +34,7 @@ export default class ListView extends View {
 
         this.listContainer = document.getElementById('list-container');
         this.listComponent = new ListComponent();
+        this.listContainer.appendChild(this.listComponent.render());
 
         Api.getFilters(this.type)
             .then((res) => {
@@ -72,7 +73,6 @@ export default class ListView extends View {
                 res.status === SUCCESS_STATUS ? this.updateList(res.body): this.updateList(null);
             })
             .catch((err) => {
-                console.log(err);
                 this.eventBus.publish(LIST_EVENTS.internalError, err.status);
             });
     }
@@ -88,9 +88,6 @@ export default class ListView extends View {
 
             this.listComponent.setElements(cards);
         }
-
-        this.listContainer.innerHTML = '';
-        this.listContainer.appendChild(this.listComponent.render());
     }
 
     parseFiltersFromBody(body) {
@@ -101,10 +98,10 @@ export default class ListView extends View {
                 filters[filterName] = [];
                 filters[filterName].push(body[filterName][0]);
 
-                const maxyear = parseInt(body[filterName][1].reference);
-                const minyear = parseInt(body[filterName][2].reference);
+                const maxYear = parseInt(body[filterName][1].reference);
+                const minYear = parseInt(body[filterName][2].reference);
 
-                for (let year = maxyear; year >= minyear; year--) {
+                for (let year = maxYear; year >= minYear; year--) {
                     filters[filterName].push({name: year, reference: year});
                 }
             } else {

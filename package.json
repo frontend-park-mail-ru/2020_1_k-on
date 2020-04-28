@@ -43,7 +43,7 @@
     "start": "node server.js",
     "build": "webpack --mode development",
     "stylelint": "stylelint **/*.scss",
-    "lint": "./node_modules/.bin/eslint ./static || stylelint **/*.scss",
+    "lint": "./node_modules/.bin/eslint ./static ; stylelint **/*.scss",
     "lint-write": "./node_modules/.bin/eslint --fix ./static"
   },
   "husky": {

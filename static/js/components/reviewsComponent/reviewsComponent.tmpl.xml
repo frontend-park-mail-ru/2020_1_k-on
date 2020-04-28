@@ -8,7 +8,7 @@
             <fest:for iterate="data.reviews" index="i" value="review">
                 <fest:if test="data.userReviewId !== review.id">
                     <div class="review-block review-layout">
-                        <div class="review-block__avatar avatar">
+                        <div class="review-block__avatar">
                             <fest:attributes>
                                 <fest:choose>
                                     <fest:when test="review.user.image">

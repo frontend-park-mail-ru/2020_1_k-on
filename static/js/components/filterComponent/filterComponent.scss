@@ -2,24 +2,31 @@
 
 .filters-block {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
   display: flex;
+  @include media('mobile') {
+    flex-direction: column;
+  }
 }
 
 .filter-button {
-  z-index: 2;
+  box-sizing: border-box;
+  z-index: 1;
   cursor: pointer;
-  margin-right: 30px;
-  width: 250px;
-  height: $filter-button-height;
-  padding-left: 1em;
-  padding-right: 1em;
+  margin-right: 4rem;
+  width: 30rem;
+  padding: 0.6em 1.2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid $path-color;
-  border-radius: 15px;
-  font-size: 16px;
+  border: 0.2rem solid $path-color;
+  border-radius: 1.3rem;
+  font-size: 1.7rem;
+  @include media('mobile') {
+    width: 100%;
+    margin-bottom: 1.6rem;
+    margin-right: 0;
+  }
 
   &:hover {
     border-color: $main-color;
@@ -37,9 +44,10 @@
   }
 
   &__arrow {
-    background: url(/static/img/down-arrow.svg) no-repeat center / cover;
+    background-image: url(/static/img/down-arrow.svg);
     transition: transform $menu-transition-time;
-    @include square($size: 20px);
+    @include square($size: 2rem);
+    @include center-background;
   }
 
   &__arrow_active {
@@ -48,27 +56,61 @@
 }
 
 .filter-submenu {
-  opacity: 0;
-  visibility: hidden;
-  transition: visibility $menu-transition-time, opacity $menu-transition-time;
   position: absolute;
   left: 0;
   top: $filter-button-height + 12px;
-  z-index: 1;
+  z-index: 2;
   box-sizing: border-box;
   width: 100%;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: $submenu-bg-color;
-  font-size: 22px;
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-column-gap: 80px;
-  grid-row-gap: 30px;
+  font-size: 20px;
+  @include submenu;
+  @include media('mobile') {
+    z-index: 2000;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    padding-top: 50px;
+    font-size: 16px;
+  }
 
   &_active {
     visibility: visible;
     opacity: 1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    @include media('mobile') {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__headline {
+    font-size: 26px;
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__close-icon {
+    background: no-repeat center / cover url(/static/img/close-icon.svg);
+    @include square(26px);
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 30px;
+    @include media('mobile') {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__item {

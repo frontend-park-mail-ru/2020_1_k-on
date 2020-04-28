@@ -55,12 +55,8 @@
                             msallowfullscreen="msallowfullscreen"
                             oallowfullscreen="oallowfullscreen"
                             webkitallowfullscreen="webkitallowfullscreen"
-                            width="100%" height="100%" />
+                            width="100%" height="100%"/>
                 </div>
-
-                <!--                <div class="add-to-list-block">-->
-                <!--                    <button class="add-to-list-block__button button">Добавить в список</button>-->
-                <!--                </div>-->
             </div>
 
             <div class="movie-info">
@@ -145,7 +141,8 @@
             </div>
         </div>
 
-        <div id="user-review-container" class="reviews page-layout"/>
-        <div id="reviews-container" class="reviews page-layout"/>
+        <div id="add-to-list-container"/>
+        <div id="user-review-container"/>
+        <div id="reviews-container"/>
     </div>
 </fest:template>

@@ -1,30 +1,31 @@
-@import 'css/variables';
+@import '~css/variables';
+@import '~css/mediaQueries';
 
 .series-card {
   cursor: pointer;
   display: inline-block;
-  @media (min-width: $five-cards-max-width) {
+  @include media('6cards') {
     width: calc(16.6% - #{$padding-between-cards});
   }
-  @media (min-width: $four-cards-max-width) and (max-width: $five-cards-max-width) {
+  @include media('5cards') {
     width: calc(20% - #{$padding-between-cards});
   }
-  @media (min-width: $three-cards-max-width) and (max-width: $four-cards-max-width) {
+  @include media('4cards') {
     width: calc(25% - #{$padding-between-cards});
   }
-  @media (min-width: $two-cards-max-width) and (max-width: $three-cards-max-width) {
+  @include media('3cards') {
     width: calc(33.3% - #{$padding-between-cards});
   }
-  @media (max-width: $two-cards-max-width) {
+  @include media('2cards') {
     width: calc(50% - #{$padding-between-cards});
   }
 
   &__image {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     width: 100%;
     padding-bottom: 150%;
-    border-radius: 15px;
+    border-radius: 1.7rem;
     box-shadow: $series-card-shadow;
     background: no-repeat center 0 / cover;
     transition: transform 0.2s;
@@ -59,11 +60,11 @@
   &__content {
     visibility: hidden;
     position: absolute;
-    bottom: 15px;
-    left: 20px;
+    bottom: 2rem;
+    left: 2.5rem;
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.7rem;
+    line-height: 2.7rem;
     color: $card-content-color;
   }
 
@@ -73,20 +74,35 @@
     text-overflow: ellipsis;
     font-family: Roboto, sans-serif;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 2rem;
     color: $text-color;
   }
 
   &__age-limit {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 35px;
-    height: 25px;
-    border-radius: 5px;
+    bottom: 1rem;
+    right: 1rem;
+    width: 4rem;
+    height: 2.7rem;
+    border-radius: 0.5rem;
     background-color: $age-limit-background;
-    font-size: 14px;
+    font-family: OpenSans-Regular, sans-serif;
+    font-size: 1.5rem;
     color: $age-limit-color;
     @include center-position;
+  }
+
+  &__remove {
+    fill: $text-color;
+    width: 1.6rem;
+    height: 1.6rem;
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    @include transformScale($scaleValue: 1.5);
+
+    &:hover {
+      fill: $error-color;
+    }
   }
 }

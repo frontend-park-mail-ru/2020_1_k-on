@@ -1,5 +1,21 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-    <div class="collection__header page-layout">
+    <div class="collection__header">
         <fest:value>data.name</fest:value>
     </div>
+
+    <fest:if test="data.isPlaylist === true">
+        <fest:if test="data.isUserAuth === true">
+            <button class="collection__subscribe-button" data-id="{data.id}">
+                <fest:choose>
+                    <fest:when test="data.isUserSubscribed === true">
+                        <fest:text>Отписаться</fest:text>
+                    </fest:when>
+
+                    <fest:otherwise>
+                        <fest:text>Подписаться</fest:text>
+                    </fest:otherwise>
+                </fest:choose>
+            </button>
+        </fest:if>
+    </fest:if>
 </fest:template>

@@ -11,6 +11,8 @@ export default class ListComponent extends Component {
 
     setElements(elements) {
         this.elements = elements;
+        this.element.innerHTML = '';
+        this.afterRender();
     }
 
     afterRender() {

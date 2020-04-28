@@ -7,16 +7,16 @@
 }
 
 .list-header {
-  margin-bottom: 60px;
-  margin-top: 80px;
+  margin-bottom: 6rem;
+  margin-top: 7rem;
 
   &__path {
-    margin-bottom: 2 * $padding-between-rows;
-    font-size: 16px;
+    margin-bottom: 1.5rem;
+    font-size: 1.7rem;
   }
 
   &__headline {
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 45px;
+    font-size: 5rem;
   }
 }

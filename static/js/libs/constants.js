@@ -1,4 +1,4 @@
-export const SERVER_ADDRESS = 'http://64.225.100.179:8080';
+export const SERVER_ADDRESS = 'http://64.225.100.179/api';
 
 export const SUCCESS_STATUS = 200;
 export const BAD_REQUEST_STATUS = 400;
@@ -9,11 +9,6 @@ export const INTERNAL_ERROR_STATUS = 500;
 
 export const INTERNAL_ERROR_MSG = 'Произошла внутренняя ошибка сервера';
 export const NOT_FOUND_ERROR_MSG = 'Сраница не найдена';
-
-export const NAVBAR_AUTH_ITEMS = {
-    profile: 'Профиль',
-    logout: 'Выйти',
-};
 
 export const NAVBAR_UNAUTH_ITEMS = {
     login: 'Войти',
@@ -40,8 +35,18 @@ export const SIGN_UP_EVENTS = {
 
 export const PROFILE_EVENTS = {
     unauthUser: 'unauthUser',
-    logout: 'logout',
     internalError: 'internalError',
+    showMsg: 'showMsg',
+    updateUserData: 'updateUserData',
+};
+
+export const PROFILE_MSGS = {
+    success_avatar_upload: 'Аватар загружен',
+    error_avatar_upload: 'Ошибка при загрузке аватара',
+    settings_update: 'Данные успешно изменены',
+    user_exists: 'Такой пользователь уже существует',
+    passwords_not_match: 'Пароли не совпадают',
+    updatePassword: 'Пароль успешно изменен',
 };
 
 export const INDEX_EVENTS = {
@@ -60,6 +65,17 @@ export const MOVIE_EVENTS = {
 
 export const PERSON_EVENTS = {
     internalError: 'internalError',
+};
+
+export const PLAYLIST_EVENTS = {
+    clickTab: 'changeTab',
+    deleteTab: 'deleteTab',
+    addTab: 'addTab',
+    deleteCard: 'deleteCard',
+};
+
+export const SUBSCRIPTIONS_EVENTS = {
+    unsubscribe: 'unsubscribe',
 };
 
 export const MAX_BG_IMGS = 5;
@@ -143,8 +159,8 @@ export const DEFAULT_AVATAR = '/static/img/avatar.svg';
 
 export const RANDOM_SHUFFLE_VALUE = 0.5;
 
-export const PROFILE_INPUTS = {
-    profile: [
+export const PROFILE_SETTINGS_INPUTS = {
+    settings: [
         {
             name: 'login',
             label: 'Логин',
@@ -162,7 +178,7 @@ export const PROFILE_INPUTS = {
             autofocus: 'false',
         },
     ],
-    modal: [
+    password_modal: [
         {
             name: 'password',
             label: 'Новый пароль',
@@ -181,3 +197,19 @@ export const PROFILE_INPUTS = {
         },
     ],
 };
+
+export const TAB_ADD_INPUTS = [
+    {
+        name: 'tab-add',
+        label: 'Название',
+        type: 'text',
+        id: 'tab-add',
+        required: 'true',
+        autofocus: 'true',
+    },
+];
+
+export const DESKTOP_WIDTH = 1440;
+export const DESKTOP_HEIGHT = 1024;
+export const MOBILE_WIDTH = 720;
+export const MOBILE_HEIGHT = 1280;

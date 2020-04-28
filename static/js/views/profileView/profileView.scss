@@ -1,8 +1,8 @@
-@import 'css/mixins';
+@import '~css/mixins';
 
 .user-info-wrapper {
   display: flex;
-  margin-top: 128px;
+  margin-top: 12.8rem;
   justify-content: center;
 }
 
@@ -14,11 +14,14 @@
   @media (max-width: 700px) {
     width: 90%;
   }
-  @media (min-width: 700px) and (max-width: 1200px) {
+  @media (min-width: 700px) and (max-width: 900px) {
+    width: 65%;
+  }
+  @media (min-width: 900px) and (max-width: 1200px) {
     width: 50%;
   }
   @media (min-width: 1200px) {
-    width: 36%;
+    width: 40%;
   }
 }
 
@@ -40,43 +43,79 @@
   }
 
   &__name {
-    font-family: Montserrat-Medium;
+    font-family: Montserrat-Medium, sans-serif;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.7rem;
     position: absolute;
-    bottom: 36px;
+    bottom: 3.6rem;
     text-transform: uppercase;
+  }
+
+  &__upload {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    z-index: 1;
+    @include transformScale;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__msg {
+    position: absolute;
+    top: 1.6rem;
+    min-height: 3.6rem;
+    width: 100%;
+    padding: 0 4.8rem;
+    box-sizing: border-box;
+    font-family: Montserrat-Medium, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+
+    &_error {
+      color: $error-color;
+    }
+
+    &_success {
+      color: $success-color;
+    }
   }
 }
 
-.user-actions {
+.user-action {
+  box-sizing: border-box;
   display: flex;
-  width: 50%;
-  height: 64px;
-  background-color: rgba(black, 0.2);
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  cursor: pointer;
+
+  &__svg {
+    height: 3.6rem;
+    fill: $text-bright-color;
+    @include transformScale;
+  }
+
+  &__name {
+    font-family: OpenSans-Light;
+    font-size: 1.6rem;
+    padding-top: 8px;
+  }
+}
+
+.user-actions-block {
+  display: flex;
+  box-sizing: border-box;
+  padding: 12px 0;
+  background-color: $shade-color;
+  min-height: 6.4rem;
   border-radius: 0 0 24px 24px;
+}
 
-  &-gear {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-
-    &__svg {
-      fill: $text-bright-color;
-      @include transformScale;
-    }
-  }
-
-  &-logout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-
-    &__svg {
-      fill: $text-bright-color;
-      @include transformScale;
-    }
-  }
+#playlist-container {
+  margin-top: 36px;
 }

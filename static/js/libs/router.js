@@ -59,13 +59,10 @@ export default class Router {
 
         for (const key of this.routes.keys()) {
             if (this.currentRoute && this.currentRoute.match(key)) {
-                if (path === '/logout' && this.currentRoute === '/') {
-                    return;
-                }
-
                 this.routes.get(key).view.close();
 
                 if (path === '/logout') {
+                    this.currentRoute = '/logout';
                     this.change('/');
                     return;
                 }
