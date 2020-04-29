@@ -85,7 +85,7 @@ export default class UserReviewComponent extends Component {
 
         const reviewText = document.getElementsByClassName('review-form__input')[0].value;
         if (!reviewText || this.rating === 0) {
-            this.showError();
+            this.showError('Пожалуйста, напишите отзыв и оставьте оценку');
             return;
         }
 
@@ -94,7 +94,11 @@ export default class UserReviewComponent extends Component {
         Api.createReview(this.type, this.id, this.rating, reviewText)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    this.showError('Пожалуйста, напишите отзыв и оставьте оценку');
+                    this.data.review = {
+                        rating: this.rating,
+                        body: reviewText,
+                    };
+                    this.element.innerHTML = this.tmpl(this.data);
                 } else {
                     return Promise.reject(res);
                 }
@@ -103,12 +107,6 @@ export default class UserReviewComponent extends Component {
                 console.error(`${err.status}: FAILED TO LOAD COMMENT`);
                 this.showError('Не удалось загрузить комментарий');
             });
-
-        this.data.review = {
-            rating: this.rating,
-            body: reviewText,
-        };
-        this.element.innerHTML = this.tmpl(this.data);
     }
 
     showError(errMsg = '') {
