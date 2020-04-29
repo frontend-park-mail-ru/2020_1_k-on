@@ -4,7 +4,7 @@ import EventBus from 'libs/eventBus';
 import Api from 'libs/api';
 import FormComponent from 'components/formComponent/formComponent';
 import {
-    INTERNAL_ERROR_STATUS,
+    CONFLICT_STATUS,
     PROFILE_EVENTS,
     PROFILE_MSGS,
     PROFILE_SETTINGS_INPUTS,
@@ -88,8 +88,8 @@ export default class ProfileSettingsComponent extends Component {
             .catch((err) => {
                 this.settingsForm.setInputValue('login', this.login);
                 this.settingsForm.setInputValue('email', this.email);
-                const msg = err.status === INTERNAL_ERROR_STATUS ?
-                    PROFILE_MSGS.error_change_user_data : PROFILE_MSGS.user_exists;
+                const msg = err.status === CONFLICT_STATUS ?
+                    PROFILE_MSGS.user_exists : PROFILE_MSGS.error_change_user_data;
                 this.eventBus.publish(PROFILE_EVENTS.showMsg, msg, true);
             });
     }
