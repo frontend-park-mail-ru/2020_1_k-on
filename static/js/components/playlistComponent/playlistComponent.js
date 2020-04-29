@@ -166,6 +166,7 @@ export default class PlaylistComponent extends Component {
                     PROFILE_MSGS.error_playlists_create,
                     true
                 );
+                this.closeModal();
             });
     }
 
