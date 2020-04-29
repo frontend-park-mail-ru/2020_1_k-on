@@ -6,7 +6,6 @@ import PlaylistComponent from 'components/playlistComponent/playlistComponent';
 import SubscriptionsComponent from 'components/subscriptionsComponent/subscriptionsComponent';
 import {
     DEFAULT_AVATAR,
-    INTERNAL_ERROR_STATUS,
     PROFILE_EVENTS,
     SUCCESS_STATUS,
     UNAUTHORIZED_STATUS,
@@ -44,6 +43,7 @@ export default class ProfileView extends View {
                 }
             })
             .catch((err) => {
+                console.error(`${err.status}: FAILED TO LOAD USER DATA`);
                 this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
             });
     }
@@ -107,7 +107,8 @@ export default class ProfileView extends View {
                 this.actionContainer.appendChild(playlistComponent.render());
             })
             .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                this.showMessage(PROFILE_MSGS.error_playlists_upload, true);
+                console.error(`${err.status}: FAILED TO LOAD PLAYLISTS`);
             });
     }
 
@@ -132,7 +133,8 @@ export default class ProfileView extends View {
                 this.actionContainer.appendChild(subscriptionsComponent.render());
             })
             .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                this.showMessage(PROFILE_MSGS.error_subscriptions_upload, true);
+                console.error(`${err.status}: FAILED TO LOAD SUBSCRIPTIONS`);
             });
     }
 
@@ -147,10 +149,8 @@ export default class ProfileView extends View {
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     return res.json();
-                } else if (res.status === INTERNAL_ERROR_STATUS) {
-                    return Promise.reject(res);
                 } else {
-                    this.showMessage(PROFILE_MSGS.error_avatar_upload, true);
+                    return Promise.reject(res);
                 }
             })
             .then((res) => {
@@ -159,7 +159,8 @@ export default class ProfileView extends View {
                 this.showMessage(PROFILE_MSGS.success_avatar_upload);
             })
             .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                this.showMessage(PROFILE_MSGS.error_avatar_upload, true);
+                console.error(`${err.status}: FAILED TO UPLOAD AVATAR`);
             });
     }
 

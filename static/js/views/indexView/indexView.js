@@ -30,7 +30,7 @@ export default class IndexView extends View {
                 this.root.prepend(this.slider.render());
             })
             .catch((err) => {
-                console.log(err);
+                console.error(`${err.status}: FAILED TO LOAD MAIN SLIDER`);
                 this.eventBus.publish(INDEX_EVENTS.internalError, err.status);
             });
 
@@ -38,38 +38,40 @@ export default class IndexView extends View {
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     return res.json();
+                } else {
+                    return Promise.reject(res);
                 }
             })
             .then((res) => {
-                this.collections = res.body;
-                this.collections = this.collections === null ? [] : this.collections;
-
-                const collectionsElem = this.root.getElementsByClassName('collections')[0];
-
-                this.collections.forEach((subItem) => {
-                    subItem.films = subItem.films === null ? [] : subItem.films;
-                    subItem.series = subItem.series === null ? [] : subItem.series;
-                    const cards = subItem.films.concat(subItem.series).map((cardItem) => {
-                        const card = new CardComponent(cardItem);
-                        return card.render();
-                    });
-
-                    const collectionComponent = new CollectionComponent({
-                        name: subItem.name,
-                        elements: cards,
-                        isPlaylist: true,
-                        isUserSubscribed: false,
-                        id: subItem.id,
-                        eventBus: this.eventBus,
-                    });
-
-                    collectionsElem.appendChild(collectionComponent.render());
-                });
+                this.renderSubscriptions(res.body === null ? [] : res.body);
             })
             .catch((err) => {
-                console.log(err);
+                console.error(`${err.status}: FAILED TO LOAD MAIN PLAYLISTS`);
                 this.eventBus.publish(INDEX_EVENTS.internalError, err.status);
             });
+    }
+
+    renderSubscriptions(subsList = []) {
+        subsList.forEach((subItem) => {
+            subItem.films = subItem.films === null ? [] : subItem.films;
+            subItem.series = subItem.series === null ? [] : subItem.series;
+            const cards = subItem.films.concat(subItem.series).map((cardItem) => {
+                const card = new CardComponent(cardItem);
+                return card.render();
+            });
+
+            const collectionComponent = new CollectionComponent({
+                name: subItem.name,
+                elements: cards,
+                isPlaylist: true,
+                isUserSubscribed: false,
+                id: subItem.id,
+                eventBus: this.eventBus,
+            });
+
+            const collectionsElem = this.root.getElementsByClassName('collections')[0];
+            collectionsElem.appendChild(collectionComponent.render());
+        });
     }
 
     close() {

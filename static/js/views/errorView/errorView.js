@@ -28,9 +28,7 @@ export default class ErrorView extends View {
     }
 
     afterRender() {
-        const refreshButton = this.root.getElementsByClassName(
-            'internal-error__btn'
-        )[0];
+        const refreshButton = this.root.getElementsByClassName('internal-error__btn')[0];
         refreshButton.addEventListener('click', () => location.pathname = '/');
     }
 }

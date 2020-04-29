@@ -21,20 +21,12 @@ export default class SliderComponent extends Component {
         this.curSlide.classList.remove('hidden');
 
         this.element.getElementsByClassName('main-slider__arrows_left')[0]
-            .addEventListener(
-                'click', this.doSlide.bind(this, 'left')
-            );
+            .addEventListener('click', this.doSlide.bind(this, 'left'));
 
         this.element.getElementsByClassName('main-slider__arrows_right')[0]
-            .addEventListener(
-                'click', this.doSlide.bind(this, 'right')
-            );
+            .addEventListener('click', this.doSlide.bind(this, 'right'));
 
-        this.slideInterval = setInterval(
-            this.doSlide.bind(this),
-            SLIDER_INTERVAL,
-            'right'
-        );
+        this.slideInterval = setInterval(this.doSlide.bind(this), SLIDER_INTERVAL, 'right');
     }
 
     doSlide(direction) {

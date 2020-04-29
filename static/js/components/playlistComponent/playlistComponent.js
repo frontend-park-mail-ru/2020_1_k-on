@@ -1,9 +1,9 @@
 import Component from 'components/component';
 import template from './playlistComponent.tmpl.xml';
-import TabComponent from 'components/tabComponent/tabComponent';
-import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import EventBus from 'libs/eventBus';
 import Api from 'libs/api';
+import SwiperComponent from 'components/swiperComponent/swiperComponent';
+import TabComponent from 'components/tabComponent/tabComponent';
 import FormComponent from 'components/formComponent/formComponent';
 import CardComponent from 'components/cardComponent/cardComponent';
 import ListComponent from 'components/listComponent/listComponent';
@@ -13,6 +13,7 @@ import {
     SUCCESS_STATUS,
     TAB_ADD_INPUTS,
     BAD_REQUEST_STATUS,
+    PROFILE_MSGS,
 } from 'libs/constants';
 
 export default class PlaylistComponent extends Component {
@@ -93,7 +94,12 @@ export default class PlaylistComponent extends Component {
                 }
             })
             .catch((err) => {
-                this.globalEventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                console.error(`${err.status}: FAILED TO DELETE PLAYLIST`);
+                this.globalEventBus.publish(
+                    PROFILE_EVENTS.showMsg,
+                    PROFILE_MSGS.error_playlists_delete,
+                    true
+                );
             });
     }
 
@@ -129,7 +135,13 @@ export default class PlaylistComponent extends Component {
                 this.listComponent.setElements(cards);
             })
             .catch((err) => {
-                this.globalEventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                this.listComponent.setElements(null);
+                console.error(`${err.status}: FAILED TO LOAD PLAYLIST DATA`);
+                this.globalEventBus.publish(
+                    PROFILE_EVENTS.showMsg,
+                    PROFILE_MSGS.error_playlists_load,
+                    true
+                );
             });
     }
 
@@ -148,7 +160,12 @@ export default class PlaylistComponent extends Component {
                 }
             })
             .catch((err) => {
-                this.globalEventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                console.error(`${err.status}: FAILED TO CREATE PLAYLIST`);
+                this.globalEventBus.publish(
+                    PROFILE_EVENTS.showMsg,
+                    PROFILE_MSGS.error_playlists_create,
+                    true
+                );
             });
     }
 
@@ -185,16 +202,22 @@ export default class PlaylistComponent extends Component {
     }
 
     onDeleteCard(card, id, type) {
-        card.remove();
         type = type === 'films' ? type.slice(0, -1) : type;
         Api.deleteCardFromPlaylist(this.choosenTab.dataset.id, id, type)
             .then((res) => {
-                if (res.status !== SUCCESS_STATUS) {
+                if (res.status === SUCCESS_STATUS) {
+                    card.remove();
+                } else {
                     return Promise.reject(res);
                 }
             })
             .catch((err) => {
-                this.globalEventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                console.error(`${err.status}: FAILED TO DELETE FROM PLAYLIST`);
+                this.globalEventBus.publish(
+                    PROFILE_EVENTS.showMsg,
+                    PROFILE_MSGS.error_delete_from_playlist,
+                    true
+                );
             });
     }
 }

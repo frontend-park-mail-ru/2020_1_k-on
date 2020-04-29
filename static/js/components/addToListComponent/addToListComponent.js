@@ -43,34 +43,22 @@ export default class AddToListComponent extends Component {
 
         const chooseListButton = this.element
             .getElementsByClassName('choose-list-button')[0];
-        chooseListButton.addEventListener(
-            'click',
-            this.onChooseListButtonClick.bind(this)
-        );
+        chooseListButton.addEventListener('click', this.onChooseListButtonClick.bind(this));
 
         const addToListButton = this.element
             .getElementsByClassName('add-to-list-button')[0];
-        addToListButton.addEventListener(
-            'click',
-            this.onAddToListButtonClick.bind(this)
-        );
+        addToListButton.addEventListener('click', this.onAddToListButtonClick.bind(this));
 
         const chooseListBlock = this.element
             .getElementsByClassName('choose-list-block')[0];
-        chooseListBlock.addEventListener(
-            'click',
-            this.onListChoose.bind(this)
-        );
+        chooseListBlock.addEventListener('click', this.onListChoose.bind(this));
     }
 
     onChooseListButtonClick(evt) {
         const button = evt.currentTarget;
 
-        if (button.classList.contains('choose-list-button_active')) {
-            this.closeList(button);
-        } else {
-            this.openList(button);
-        }
+        button.classList.contains('choose-list-button_active') ?
+            this.closeList(button) : this.openList(button);
     }
 
     openList(chooseListButton) {
@@ -91,7 +79,7 @@ export default class AddToListComponent extends Component {
         chooseListBlock.classList.remove('choose-list-block_visible');
     }
 
-    onAddToListButtonClick(evt) {
+    onAddToListButtonClick() {
         Api.addFilmToPlaylist(
             this.chosenPlaylist.id,
             this.type,

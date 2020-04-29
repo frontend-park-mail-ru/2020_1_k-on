@@ -1,14 +1,14 @@
 import View from 'views/view';
 import template from './movieView.tmpl.xml';
+import Api from 'libs/api';
 import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
 import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
-import Api from 'libs/api';
 import AddToListComponent from 'components/addToListComponent/addToListComponent';
 import {
     DEFAULT_AVATAR,
     MOVIE_EVENTS,
     SUCCESS_STATUS,
-    SERVER_ADDRESS,
+    SERVER_ADDRESS, INTERNAL_ERROR_STATUS,
 } from 'libs/constants';
 
 export default class MovieView extends View {
@@ -51,81 +51,104 @@ export default class MovieView extends View {
                 this.afterRender();
             })
             .catch((err) => {
+                console.error(`${err.url} ${err.status}: FAILED TO LOAD`);
                 this.eventBus.publish(MOVIE_EVENTS.internalError, err.status);
             });
     }
 
     afterRender() {
         Api.getUserData().then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                res.json().then((res) => {
-                    const userData = {
-                        username: res.body.username,
-                        image: res.body.image === '' ?
-                            DEFAULT_AVATAR : `${SERVER_ADDRESS}/image/${res.body.image}`,
-                    };
+            if (res.status !== SUCCESS_STATUS) {
+                return Promise.reject(res);
+            }
 
-                    Api.getUserReview(this.type, this.id).then((res) => {
+            res.json().then((res) => {
+                const userData = {
+                    username: res.body.username,
+                    image: res.body.image === '' ?
+                        DEFAULT_AVATAR : `${SERVER_ADDRESS}/image/${res.body.image}`,
+                };
+
+                Api.getUserReview(this.type, this.id)
+                    .then((res) => {
                         if (res.status === SUCCESS_STATUS) {
                             res.json().then((res) => {
-                                this.userReviewComponent = new UserReviewComponent(
-                                    this.type,
-                                    this.id,
-                                    userData,
-                                    res.body
-                                );
-                                document.getElementById('user-review-container')
-                                    .appendChild(this.userReviewComponent.render());
-
+                                this.renderUserReview(userData, res.body);
                                 this.renderReviews(res.body.id);
                             });
                         } else {
-                            this.userReviewComponent = new UserReviewComponent(
-                                this.type,
-                                this.id,
-                                userData
-                            );
-                            document.getElementById('user-review-container')
-                                .appendChild(this.userReviewComponent.render());
-
-                            this.renderReviews();
+                            return Promise.reject(res);
                         }
+                    })
+                    .catch((err) => {
+                        if (err.status === INTERNAL_ERROR_STATUS) {
+                            console.error(`${err.status}: FAILED TO LOAD USER REVIEW`);
+                        } else {
+                            this.renderUserReview(userData);
+                        }
+                        this.renderReviews();
                     });
 
-                    Api.getPlaylistsWithoutFilm(this.type, this.id).then((res) => {
-                        if (res.status === SUCCESS_STATUS) {
-                            res.json().then((res) => {
-                                this.addToListComponent = new AddToListComponent(
-                                    this.type,
-                                    this.id,
-                                    res.body
-                                );
-                                document.getElementById('add-to-list-container')
-                                    .appendChild(this.addToListComponent.render());
-                            });
-                        }
+                Api.getPlaylistsWithoutFilm(this.type, this.id).then((res) => {
+                    if (res.status === SUCCESS_STATUS) {
+                        return res.json();
+                    } else {
+                        return Promise.reject(res);
+                    }
+                })
+                    .then((res) => {
+                        this.addToListComponent = new AddToListComponent(
+                            this.type,
+                            this.id,
+                            res.body
+                        );
+                        document.getElementById('add-to-list-container')
+                            .appendChild(this.addToListComponent.render());
+                    })
+                    .catch((err) => {
+                        console.error(`${err.status}: FAILED TO FETCH USER PLAYLISTS`);
                     });
-                });
-            } else {
+            });
+        })
+            .catch((err) => {
                 this.renderReviews();
-            }
-        });
+                if (err.status === INTERNAL_ERROR_STATUS) {
+                    console.error(`${err.status}: FAILED TO LOAD USER DATA`);
+                }
+            });
+    }
+
+    renderUserReview(userData, reviewData = null) {
+        const userReviewComponent = new UserReviewComponent(
+            this.type,
+            this.id,
+            userData,
+            reviewData
+        );
+
+        document.getElementById('user-review-container')
+            .appendChild(userReviewComponent.render());
     }
 
     renderReviews(userReviewId = 0) {
         Api.getReviews(this.type, this.id)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    res.json().then((res) => {
-                        this.reviewsComponent = new ReviewsComponent(
-                            userReviewId,
-                            res.body !== null ? res.body : []
-                        );
-
-                        document.getElementById('reviews-container')
-                            .appendChild(this.reviewsComponent.render());
-                    });
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
                 }
+            })
+            .then((res) => {
+                this.reviewsComponent = new ReviewsComponent(
+                    userReviewId,
+                    res.body !== null ? res.body : []
+                );
+                document.getElementById('reviews-container')
+                    .appendChild(this.reviewsComponent.render());
+            })
+            .catch((err) => {
+                console.error(`${err.status}: FAILED TO FETCH REVIEWS`);
             });
     }
 

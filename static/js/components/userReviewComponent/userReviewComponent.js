@@ -1,7 +1,10 @@
+import Component from 'components/component';
 import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
-import {MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
-import Component from 'components/component';
+import {
+    MAX_RATING,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 
 export default class UserReviewComponent extends Component {
     constructor(
@@ -30,12 +33,11 @@ export default class UserReviewComponent extends Component {
             return;
         }
 
-        Array.from(this.element.getElementsByClassName('review-form__star-icon')).forEach(
-            (starIcon) => {
-                starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
-                starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
-                starIcon.addEventListener('click', this.onStarClick.bind(this));
-            });
+        for (const starIcon of this.element.getElementsByClassName('review-form__star-icon')) {
+            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
+            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
+            starIcon.addEventListener('click', this.onStarClick.bind(this));
+        }
 
         const submitButton = this.element.getElementsByClassName('review-form__button')[0];
         submitButton.addEventListener('click', this.onSubmit.bind(this));
@@ -92,11 +94,14 @@ export default class UserReviewComponent extends Component {
         Api.createReview(this.type, this.id, this.rating, reviewText)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    res.json().then((res) => {
-                    });
+                    this.showError('Пожалуйста, напишите отзыв и оставьте оценку');
                 } else {
-                    console.log('something went wrong');
+                    return Promise.reject(res);
                 }
+            })
+            .catch((err) => {
+                console.error(`${err.status}: FAILED TO LOAD COMMENT`);
+                this.showError('Не удалось загрузить комментарий');
             });
 
         this.data.review = {
@@ -106,9 +111,10 @@ export default class UserReviewComponent extends Component {
         this.element.innerHTML = this.tmpl(this.data);
     }
 
-    showError() {
+    showError(errMsg = '') {
         const error = document.getElementsByClassName('review-form__error')[0];
         error.classList.add('review-form__error_shown');
+        error.innerText = errMsg;
     }
 
     hideError() {

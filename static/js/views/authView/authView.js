@@ -4,10 +4,9 @@ import FormComponent from 'components/formComponent/formComponent';
 import {
     BAD_REQUEST_STATUS,
     FORBIDDEN_STATUS,
-    INTERNAL_ERROR_STATUS,
     NOT_FOUND_STATUS,
-    PROFILE_EVENTS,
     SUCCESS_STATUS,
+    SERVER_UNAVAILABLE_MSG,
 } from 'libs/constants';
 
 export default class AuthView extends View {
@@ -39,21 +38,22 @@ export default class AuthView extends View {
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccess();
-                } else if (res.status === INTERNAL_ERROR_STATUS) {
-                    return Promise.reject(res);
                 } else {
-                    this.root.getElementsByClassName('auth-content')[0]
-                        .classList.add('auth-content_error');
-
-                    if (res.status === BAD_REQUEST_STATUS || res.status === NOT_FOUND_STATUS) {
-                        this.onInvalid(this.data.messages.bad_request);
-                    } else if (res.status === FORBIDDEN_STATUS) {
-                        this.onInvalid(this.data.messages.forbidden);
-                    }
+                    return Promise.reject(res.status);
                 }
             })
-            .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+            .catch((status) => {
+                switch (status) {
+                case BAD_REQUEST_STATUS:
+                case NOT_FOUND_STATUS:
+                    this.onInvalid(this.data.messages.bad_request);
+                    break;
+                case FORBIDDEN_STATUS:
+                    this.onInvalid(this.data.messages.forbidden);
+                    break;
+                default:
+                    this.onInvalid(SERVER_UNAVAILABLE_MSG);
+                }
             });
     }
 
@@ -71,6 +71,9 @@ export default class AuthView extends View {
      * @param {string} resErrMsg
      */
     onInvalid(resErrMsg) {
+        this.root.getElementsByClassName('auth-content')[0]
+            .classList.add('auth-content_error');
+
         const formError = this.root.getElementsByClassName('auth-page__form-error')[0];
         formError.textContent = resErrMsg;
         formError.style.opacity = '1';

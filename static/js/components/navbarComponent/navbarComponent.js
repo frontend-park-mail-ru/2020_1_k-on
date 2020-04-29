@@ -38,18 +38,14 @@ export default class NavbarComponent extends Component {
                 res.status === SUCCESS_STATUS ?
                     this.eventBus.publish(GLOBAL_EVENTS.renderForAuth) :
                     this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
-            })
-            .catch((err) => {
-                this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
             });
 
         const menuLink = this.element.getElementsByClassName('navbar__menu-link')[0];
         menuLink.addEventListener('click', this.onMenuClick.bind(this));
 
-        Array.from(this.element.getElementsByClassName('navbar-menu__link'))
-            .forEach((menuItem) => {
-                menuItem.addEventListener('click', this.onMenuLinkClick.bind(this));
-            });
+        for (const menuItem of this.element.getElementsByClassName('navbar-menu__link')) {
+            menuItem.addEventListener('click', this.onMenuLinkClick.bind(this));
+        }
     }
 
     renderForAuth() {
@@ -78,7 +74,8 @@ export default class NavbarComponent extends Component {
                 window.sessionStorage.setItem('isUserAuth', true);
             })
             .catch((err) => {
-                this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
+                console.log(`${err.status}: FAILED TO FETCH USER DATA`);
+                this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             });
     }
 
@@ -136,10 +133,14 @@ export default class NavbarComponent extends Component {
     onLogout(event) {
         Api.doLogout()
             .then((res) => {
-                this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
+                if (res.status === SUCCESS_STATUS) {
+                    this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
+                } else {
+                    return Promise.reject(res);
+                }
             })
             .catch((err) => {
-                this.eventBus.publish(GLOBAL_EVENTS.internalError, err.status);
+                console.log(`${err.status}: FAILED TO LOGOUT`);
             });
     }
 

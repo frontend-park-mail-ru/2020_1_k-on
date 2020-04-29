@@ -30,29 +30,18 @@ export default class FilterComponent extends Component {
     }
 
     afterRender() {
-        Array.from(this.element.getElementsByClassName('filter-button'))
-            .forEach((elem) => {
-                elem.addEventListener(
-                    'click',
-                    this.onFilterButtonClick.bind(this)
-                );
-            });
+        for (const elem of this.element.getElementsByClassName('filter-button')) {
+            elem.addEventListener('click', this.onFilterButtonClick.bind(this)
+            );
+        }
 
-        Array.from(this.element.getElementsByClassName('filter-submenu__list'))
-            .forEach((elem) => {
-                elem.addEventListener(
-                    'click',
-                    this.onFilterValueClick.bind(this)
-                );
-            });
+        for (const elem of this.element.getElementsByClassName('filter-submenu__list')) {
+            elem.addEventListener('click', this.onFilterValueClick.bind(this));
+        }
 
-        Array.from(this.element.getElementsByClassName('filter-submenu__close-icon'))
-            .forEach((elem) => {
-                elem.addEventListener(
-                    'click',
-                    this.onCloseIconClick.bind(this)
-                );
-            });
+        for (const elem of this.element.getElementsByClassName('filter-submenu__close-icon')) {
+            elem.addEventListener('click', this.onCloseIconClick.bind(this));
+        }
     }
 
     onFilterValueClick(evt) {

@@ -71,7 +71,14 @@ export const SUBSCRIPTIONS_EVENTS = {
 
 export const PROFILE_MSGS = {
     success_avatar_upload: 'Аватар загружен',
-    error_avatar_upload: 'Ошибка при загрузке аватара',
+    error_avatar_upload: 'Не удалось загрузить аватар',
+    error_subscriptions_upload: 'Не удалось загрузить подписки',
+    error_playlists_upload: 'Не удалось загрузить плейлисты',
+    error_playlists_delete: 'Не удалось удалить плейлист',
+    error_playlists_load: 'Не удалось загрузить плейлист',
+    error_playlists_create: 'Не удалось создать плейлист',
+    error_delete_from_playlist: 'Не удалось изменить плейлист',
+    error_change_user_data: 'Не удалось изменить данные',
     settings_update: 'Данные успешно изменены',
     user_exists: 'Такой пользователь уже существует',
     passwords_not_match: 'Пароли не совпадают',
@@ -213,3 +220,5 @@ export const MOBILE_WIDTH = 720;
 export const MOBILE_HEIGHT = 1280;
 
 export const SHOW_MSG_TIMEOUT = 3000;
+
+export const SERVER_UNAVAILABLE_MSG = 'Сервер недоступен';

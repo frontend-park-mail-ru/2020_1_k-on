@@ -1,9 +1,9 @@
 import View from 'views/view';
 import template from './listView.tmpl.xml';
+import Api from 'libs/api';
 import ListComponent from 'components/listComponent/listComponent';
 import FilterComponent from 'components/filterComponent/filterComponent';
 import CardComponent from 'components/cardComponent/cardComponent';
-import Api from 'libs/api';
 import {
     LIST_EVENTS,
     SUCCESS_STATUS,
@@ -16,17 +16,8 @@ export default class ListView extends View {
 
         this.data.category = type === 'series' ? 'Сериалы' : 'Фильмы';
 
-        this.eventBus.subscribe(LIST_EVENTS.updateList, () => {
-            this.getList();
-        });
-        this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, (genreReference) => {
-            if (genreReference === '%') {
-                window.history.pushState(null, null, `/${this.type}`);
-            } else {
-                window.history.pushState(null, null,
-                    `/${this.type}/${genreReference}`);
-            }
-        });
+        this.eventBus.subscribe(LIST_EVENTS.updateList, this.getList.bind(this));
+        this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, this.updateHistory.bind(this));
     }
 
     render(root) {
@@ -70,10 +61,11 @@ export default class ListView extends View {
                 }
             })
             .then((res) => {
-                res.status === SUCCESS_STATUS ? this.updateList(res.body): this.updateList(null);
+                this.updateList(res.body);
             })
             .catch((err) => {
-                this.eventBus.publish(LIST_EVENTS.internalError, err.status);
+                this.updateList(null);
+                console.error(`${err.url} ${err.status}: FAILED TO UPLOAD`);
             });
     }
 
@@ -118,5 +110,10 @@ export default class ListView extends View {
         if (genre !== this.type) {
             this.filterComponent.setFilterIfExists('genre', genre);
         }
+    }
+
+    updateHistory(genreReference) {
+        const url = genreReference === '%' ? `/${this.type}` : `/${this.type}/${genreReference}`;
+        window.history.pushState(null, null, url);
     }
 }

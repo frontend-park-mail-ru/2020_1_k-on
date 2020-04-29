@@ -1,12 +1,12 @@
-import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import Component from 'components/component';
 import template from './collectionComponent.tmpl.xml';
 import Api from 'libs/api';
+import EventBus from 'libs/eventBus';
+import SwiperComponent from 'components/swiperComponent/swiperComponent';
 import {
     SUBSCRIPTIONS_EVENTS,
     SUCCESS_STATUS,
 } from 'libs/constants';
-import EventBus from 'libs/eventBus';
 
 export default class CollectionComponent extends Component {
     constructor({
@@ -57,6 +57,8 @@ export default class CollectionComponent extends Component {
                     if (res.status === SUCCESS_STATUS) {
                         this.subButton.textContent = 'Отписаться';
                         this.subButton.classList.add('collection__subscribe-button_err');
+                    } else {
+                        console.error(`${res.status} : FAILED TO SUBSCRIBE`);
                     }
                 });
         } else {
@@ -66,6 +68,8 @@ export default class CollectionComponent extends Component {
                         this.subButton.textContent = 'Подписаться';
                         this.eventBus.publish(SUBSCRIPTIONS_EVENTS.unsubscribe, this.element);
                         this.subButton.classList.remove('collection__subscribe-button_err');
+                    } else {
+                        console.error(`${res.status} : FAILED TO UNSUBSCRIBE`);
                     }
                 });
         }

@@ -81,26 +81,22 @@ export default class ProfileSettingsComponent extends Component {
                         inputsValue.login,
                         inputsValue.email
                     );
-                } else if (res.status === INTERNAL_ERROR_STATUS) {
-                    return Promise.reject(res);
                 } else {
-                    this.settingsForm.setInputValue('login', this.login);
-                    this.settingsForm.setInputValue('email', this.email);
-                    this.eventBus.publish(PROFILE_EVENTS.showMsg, PROFILE_MSGS.user_exists, true);
+                    return Promise.reject(res);
                 }
             })
             .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                this.settingsForm.setInputValue('login', this.login);
+                this.settingsForm.setInputValue('email', this.email);
+                const msg = err.status === INTERNAL_ERROR_STATUS ?
+                    PROFILE_MSGS.error_change_user_data : PROFILE_MSGS.user_exists;
+                this.eventBus.publish(PROFILE_EVENTS.showMsg, msg, true);
             });
     }
 
     onPasswordSubmit(inputsValue) {
         if (inputsValue.password !== inputsValue['repeat-password']) {
-            this.element.getElementsByClassName('modal-password')[0]
-                .classList.add('modal-form_error');
-            const modalError = this.element.getElementsByClassName('modal-error')[0];
-            modalError.style.opacity = '1';
-            modalError.innerHTML = PROFILE_MSGS.passwords_not_match;
+            this.renderModalError(PROFILE_MSGS.passwords_not_match);
             return;
         }
 
@@ -116,7 +112,16 @@ export default class ProfileSettingsComponent extends Component {
                 }
             })
             .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+                console.error(`${err.status}: FAILED TO CHANGE PASSWORD`);
+                this.renderModalError(PROFILE_EVENTS.showMsg);
             });
+    }
+
+    renderModalError(msg = '') {
+        this.element.getElementsByClassName('modal-password')[0]
+            .classList.add('modal-form_error');
+        const modalError = this.element.getElementsByClassName('modal-error')[0];
+        modalError.style.opacity = '1';
+        modalError.innerHTML = msg;
     }
 }
