@@ -75,7 +75,7 @@ export default class IndexView extends View {
     }
 
     close() {
-        this.slider.close();
+        this.slider?.close();
         super.close();
     }
 }
