@@ -32,5 +32,5 @@ function fit() {
 
 export default function initScale() {
     fit();
-    // window.addEventListener('resize', fit);
+    window.addEventListener('orientationchange', fit);
 }
