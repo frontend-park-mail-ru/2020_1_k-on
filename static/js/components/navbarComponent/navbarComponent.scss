@@ -1,4 +1,6 @@
 @import '~css/variables';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .navbar {
   display: flex;
@@ -77,7 +79,7 @@
   }
 
   &__logo {
-    font-family: 'OpenSans-Bold', sans-serif;
+    font-family: OpenSans-Bold, sans-serif;
     text-transform: uppercase;
     color: $text-color;
     @include media('desktop') {

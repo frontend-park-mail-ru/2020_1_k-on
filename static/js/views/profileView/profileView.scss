@@ -1,3 +1,4 @@
+@import '~css/variables';
 @import '~css/mixins';
 
 .user-info-wrapper {
@@ -101,7 +102,7 @@
   }
 
   &__name {
-    font-family: OpenSans-Light;
+    font-family: OpenSans-Light, sans-serif;
     font-size: 1.6rem;
     padding-top: 8px;
   }

@@ -145,7 +145,7 @@ export default class NavbarComponent extends Component {
     }
 
     onMenuClick(evt) {
-        const navbar = evt.target.parentNode.parentNode;
+        const navbar = evt.currentTarget.parentNode.parentNode;
         const menu = navbar.lastElementChild;
 
         if (menu.classList.contains('navbar-menu_active')) {

@@ -1,3 +1,7 @@
+@import '~css/variables';
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
 .collection {
   position: relative;
   width: 100%;
@@ -6,12 +10,13 @@
   &__header {
     display: inline-block;
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 3rem;
-    @include media('mobile') {
-      padding: 0 2rem 1.3rem $mobile-paragraph;
-    }
     @include media('desktop') {
       padding: 0 2rem 1.3rem $desktop-paragraph;
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      padding: 0 2rem 1.3rem * $mobile-factor $mobile-paragraph;
+      font-size: 3rem * $mobile-factor;
     }
   }
 

@@ -1,4 +1,5 @@
 @import '~css/variables';
+@import '~css/mediaQueries';
 
 .form-container {
   @include media('desktop') {
