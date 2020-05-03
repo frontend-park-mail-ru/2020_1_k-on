@@ -1,12 +1,17 @@
 @import '~css/variables';
 
 .navbar {
-  min-height: $navbar-height;
   display: flex;
   background-color: $navbar-bg-color;
   box-shadow: 0 0 2px 2px $navbar-bg-color;
   font-family: OpenSans-Regular, sans-serif;
   transition: background-color $menu-transition-time, box-shadow $menu-transition-time;
+  @include media('desktop') {
+    min-height: $navbar-height;
+  }
+  @include media('mobile') {
+    min-height: $navbar-height * $mobile-factor;
+  }
 
   &_menu-active {
     background-color: $submenu-bg-color;
@@ -43,20 +48,18 @@
   &__menu-link {
     cursor: pointer;
     margin-right: $margin-between-links;
-    background-image: url(/static/img/menu.svg);
-    @include square($size: 3rem);
-    @include center-background;
+    @include square($size: 4.5rem);
   }
 
   &-menu {
     position: absolute;
-    top: $navbar-height;
+    top: $navbar-height * $mobile-factor;
     left: 0;
     box-sizing: border-box;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
     display: grid;
-    grid-row-gap: 4rem;
+    grid-row-gap: 6rem;
     width: 100%;
     background-color: $submenu-bg-color;
     @include page-layout;
@@ -69,15 +72,20 @@
 
     &__link {
       color: white;
-      font-size: 3rem;
+      font-size: 4.5rem;
     }
   }
 
   &__logo {
     font-family: 'OpenSans-Bold', sans-serif;
-    font-size: 3rem;
     text-transform: uppercase;
     color: $text-color;
+    @include media('desktop') {
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      font-size: 3rem * $mobile-factor;
+    }
 
     &_color {
       color: $text-bright-color;
