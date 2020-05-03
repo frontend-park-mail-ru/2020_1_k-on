@@ -26,9 +26,13 @@
 @import '~views/errorView/errorView';
 @import '~fonts/fonts';
 
+html {
+  height: 100%;
+}
+
 body {
   position: relative;
-  min-height: 100vh;
+  min-height: 100%;
   background-color: $bg-color;
   color: $text-color;
 
