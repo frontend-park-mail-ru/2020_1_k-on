@@ -69,9 +69,15 @@
     bottom: 2rem;
     left: 2.5rem;
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 1.7rem;
-    line-height: 2.7rem;
     color: $card-content-color;
+    @include media('desktop') {
+      font-size: 1.7rem;
+      line-height: 2.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+      line-height: 2.7rem * $mobile-factor;
+    }
   }
 
   &__name {
@@ -112,12 +118,18 @@
 
   &__remove {
     fill: $text-color;
-    width: 1.6rem;
-    height: 1.6rem;
     position: absolute;
     top: 1.6rem;
     right: 1.6rem;
     @include transformScale($scaleValue: 1.5);
+    @include media('desktop') {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    @include media('mobile') {
+      width: 1.6rem * $mobile-factor;
+      height: 1.6rem * $mobile-factor;
+    }
 
     &:hover {
       fill: $error-color;

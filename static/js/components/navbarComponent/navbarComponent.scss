@@ -96,8 +96,19 @@
 
   &__link {
     margin-left: $margin-between-links;
-    font-size: 2.2rem;
     color: $text-color;
+    @include media('desktop') {
+      font-size: 2.2rem;
+    }
+    @include media('mobile') {
+      font-size: 2.2rem * $mobile-factor;
+    }
+
+    &_username {
+      @include media('mobile') {
+        display: none;
+      }
+    }
 
     & > &_avatar {
       display: flex;
@@ -105,13 +116,23 @@
 
     &_avatar {
       margin-left: 1rem;
-      @include avatar($size: 3rem);
+      @include media('desktop') {
+        @include avatar($size: 3rem);
+      }
+      @include media('mobile') {
+        @include avatar($size: 3rem * $mobile-factor);
+      }
     }
 
     &_logout {
       background-image: url(/static/img/logout-white.svg);
-      @include square($size: 3rem);
       @include center-background;
+      @include media('desktop') {
+        @include square($size: 3rem);
+      }
+      @include media('mobile') {
+        @include square($size: 3rem * $mobile-factor);
+      }
     }
   }
 

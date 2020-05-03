@@ -21,13 +21,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid $path-color;
+  border: solid $path-color;
   border-radius: 1.3rem;
-  font-size: 1.7rem;
+  @include media('desktop') {
+    font-size: 1.7rem;
+    border-width: 0.2rem;
+  }
   @include media('mobile') {
     width: 100%;
     margin-bottom: 1.6rem;
     margin-right: 0;
+    font-size: 1.7rem * $mobile-factor;
+    border-width: 0.2rem * $mobile-factor;
   }
 
   &:hover {
@@ -48,8 +53,13 @@
   &__arrow {
     background-image: url(/static/img/down-arrow.svg);
     transition: transform $menu-transition-time;
-    @include square($size: 2rem);
     @include center-background;
+    @include media('desktop') {
+      @include square($size: 2rem);
+    }
+    @include media('mobile') {
+      @include square($size: 2rem * $mobile-factor);
+    }
   }
 
   &__arrow_active {
