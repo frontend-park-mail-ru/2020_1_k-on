@@ -5,17 +5,28 @@
 
   &__input_wrapper {
     position: relative;
+    @include media('desktop') {
+      font-size: 1.6rem;
+    }
+    @include media('mobile') {
+      font-size: 1.6rem * $mobile-factor;
+    }
   }
 
   &__input {
     background-color: $auth-form-input-bg-color;
     border-radius: $input-border $input-border 0 0;
     padding: $input-top-padding $input-left-padding 0;
-    min-height: $input-min-height;
     width: 100%;
     box-sizing: border-box;
     color: inherit;
-    font-size: 1.6rem;
+    font-size: inherit;
+    @include media('desktop') {
+      min-height: $input-min-height;
+    }
+    @include media('mobile') {
+      min-height: $input-min-height * $mobile-factor;
+    }
   }
 
   &__input-border {
@@ -23,7 +34,7 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 0.2rem;
+    height: 2px;
     background-color: $main-color;
     transition: {
       property: background-color, width;
@@ -52,7 +63,7 @@
     transform: translateY(-50%);
     font-family: inherit;
     font-weight: bolder;
-    font-size: 1.6rem;
+    font-size: inherit;
     color: $label-color;
     cursor: text;
     transition: {
@@ -68,5 +79,16 @@
 
   &__input:not(:placeholder-shown) ~ &__label {
     @include labelActive;
+  }
+
+  &__eye {
+    @include media('desktop') {
+      height: 2.2rem;
+      width: 2.2rem;
+    }
+    @include media('mobile') {
+      height: 2.2rem * $mobile-factor;
+      width: 2.2rem * $mobile-factor;
+    }
   }
 }

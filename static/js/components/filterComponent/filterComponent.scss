@@ -19,7 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 0.2rem solid $path-color;
+  border: 2px solid $path-color;
   border-radius: 1.3rem;
   font-size: 1.7rem;
   @include media('mobile') {

@@ -3,7 +3,7 @@
 
 .write-review-block {
   margin-bottom: 2rem;
-  border-top: 0.1rem solid $text-dark-color;
+  border-top: 1px solid $text-dark-color;
 
   &__avatar {
     flex-shrink: 0;
@@ -50,7 +50,7 @@
     width: 100%;
     display: block;
     border: 0;
-    border-bottom: 0.2rem solid #eaeea9;
+    border-bottom: 2px solid #eaeea9;
     background: none;
     font-family: inherit;
     font-size: 1.8rem;
@@ -62,7 +62,7 @@
     }
 
     &:focus {
-      border-bottom: 0.2rem solid $text-bright-color;
+      border-bottom: 2px solid $text-bright-color;
     }
   }
 

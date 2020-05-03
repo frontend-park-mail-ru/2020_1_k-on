@@ -36,37 +36,57 @@
 
   &__form-error {
     color: $error-color;
-    font-size: 3rem;
     margin-top: $auth-form-error-margin;
     opacity: 0;
     z-index: 1000;
     transition: opacity 0.5s linear;
+    @include media('desktop') {
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      font-size: 3rem * $mobile-factor;
+    }
   }
 }
 
 .auth-content {
   z-index: 1000;
-  border: solid 0.1rem $auth-content-border-color;
+  border: solid 1px $auth-content-border-color;
   border-radius: 2.4rem;
-  padding: 4rem 2.8rem 2rem;
   color: $text-color;
   background-color: $auth-content-bg-color;
   display: flex;
   justify-content: center;
   flex-direction: column;
   transition: border-color 0.5s linear;
+  @include media('desktop') {
+    padding: 4rem 2.8rem 2rem;
+  }
+  @include media('mobile') {
+    padding: 4rem * $mobile-factor 2.8rem * $mobile-factor 2rem * $mobile-factor;
+  }
 
   &__headline {
     text-align: center;
-    font-size: 3.4rem;
     font-weight: bold;
     margin-bottom: 2.4rem;
+    @include media('desktop') {
+      font-size: 3.4rem;
+    }
+    @include media('mobile') {
+      font-size: 3.4rem * $mobile-factor;
+    }
   }
 
   &__no-account {
     display: inline;
     font-weight: bolder;
-    font-size: 1.6rem;
+    @include media('desktop') {
+      font-size: 1.6rem;
+    }
+    @include media('mobile') {
+      font-size: 1.6rem * $mobile-factor;
+    }
 
     &_href {
       color: $text-bright-color;

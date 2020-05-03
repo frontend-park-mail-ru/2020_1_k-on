@@ -23,7 +23,7 @@
     &:after {
       content: '';
       display: block;
-      border-bottom: 0.1rem solid;
+      border-bottom: 1px solid;
       margin-top: 0.4rem;
       opacity: 0;
       transition: opacity 0.35s, transform 0.35s;
@@ -54,7 +54,7 @@
 
 .modal-form {
   position: relative;
-  border: solid 0.1rem $auth-content-border-color;
+  border: solid 1px $auth-content-border-color;
   border-radius: 2.4rem;
   padding: 4rem 2.8rem 2rem;
   color: $text-color;

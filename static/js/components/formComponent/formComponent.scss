@@ -15,8 +15,13 @@
     position: absolute;
     right: 1.4rem;
     top: 50%;
-    margin-top: -1.1rem;
     cursor: pointer;
+    @include media('desktop') {
+      margin-top: -1.1rem;
+    }
+    @include media('mobile') {
+      margin-top: -1.1rem * $mobile-factor;
+    }
 
     &_hide {
       display: none;

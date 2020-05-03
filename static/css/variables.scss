@@ -41,7 +41,7 @@ $age-limit-color: $text-color;
 $age-limit-background: $shade-color;
 $card-content-color: #c6ceda;
 
-// Filter Component
+// Filter component
 $filter-button-border: $text-color;
 $filter-button-height: 40px;
 $submenu-bg-color: rgba(22, 24, 28, 0.95);
@@ -72,14 +72,15 @@ $input-top-padding: 1.6rem;
 $input-min-height: 5.2rem;
 $input-border: 0.8rem;
 
-// ListComponent
+// List component
 $list-right-gap: $padding-between-cards;
 $list-bottom-gap: 4.5rem;
 
-// SwiperComponent
+// Swiper component
 $swiper-gap-between-elements: $padding-between-cards;
 
 // Layout
 $paragraph: 80px;
 $mobile-paragraph: 20px;
 $desktop-paragraph: 8rem;
+$mobile-factor: 1.5;
