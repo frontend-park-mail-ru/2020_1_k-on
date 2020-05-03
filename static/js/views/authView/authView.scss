@@ -1,7 +1,12 @@
 @import '~css/variables';
 
 .form-container {
-  margin-bottom: 2.4rem;
+  @include media('desktop') {
+    margin-bottom: 2.4rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 2.4rem * $mobile-factor;
+  }
 }
 
 .auth-page {
@@ -69,12 +74,13 @@
   &__headline {
     text-align: center;
     font-weight: bold;
-    margin-bottom: 2.4rem;
     @include media('desktop') {
       font-size: 3.4rem;
+      margin-bottom: 2.4rem;
     }
     @include media('mobile') {
       font-size: 3.4rem * $mobile-factor;
+      margin-bottom: 2.4rem * $mobile-factor;
     }
   }
 
