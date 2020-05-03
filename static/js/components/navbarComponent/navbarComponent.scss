@@ -105,6 +105,7 @@
     }
 
     &_username {
+      margin-right: 1rem;
       @include media('mobile') {
         display: none;
       }
@@ -115,7 +116,6 @@
     }
 
     &_avatar {
-      margin-left: 1rem;
       @include media('desktop') {
         @include avatar($size: 3rem);
       }

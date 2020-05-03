@@ -44,13 +44,13 @@ export default class UserReviewComponent extends Component {
     }
 
     onStarMouseOver(evt) {
-        this.toPreviousStars(evt.target.dataset['value'], (starIcon) => {
+        this.toPreviousStars(evt.currentTarget.dataset['value'], (starIcon) => {
             starIcon.classList.add('review-form__star-icon_active');
         });
     }
 
     onStarMouseOut(evt) {
-        this.toPreviousStars(evt.target.dataset['value'], (starIcon) => {
+        this.toPreviousStars(evt.currentTarget.dataset['value'], (starIcon) => {
             if (parseInt(starIcon.dataset['value']) > this.rating) {
                 starIcon.classList.remove('review-form__star-icon_active');
             }
@@ -58,7 +58,7 @@ export default class UserReviewComponent extends Component {
     }
 
     onStarClick(evt) {
-        const starIcon = evt.target;
+        const starIcon = evt.currentTarget;
         this.rating = starIcon.dataset['value'];
 
         this.toPreviousStars(MAX_RATING, (starIcon) => {
