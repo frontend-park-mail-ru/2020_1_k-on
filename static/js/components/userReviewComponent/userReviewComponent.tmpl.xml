@@ -7,7 +7,7 @@
             </fest:if>
 
             <fest:if test="!data.review">
-                Оставьте свой отзыв
+                Оставить отзыв
             </fest:if>
         </div>
 

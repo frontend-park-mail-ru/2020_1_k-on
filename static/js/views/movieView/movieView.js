@@ -142,7 +142,7 @@ export default class MovieView extends View {
             .then((res) => {
                 this.reviewsComponent = new ReviewsComponent(
                     userReviewId,
-                    res.body !== null ? res.body : []
+                    (!res.body || res.body.length === 1 && res.body[0].id === userReviewId) ? [] : res.body
                 );
                 document.getElementById('reviews-container')
                     .appendChild(this.reviewsComponent.render());

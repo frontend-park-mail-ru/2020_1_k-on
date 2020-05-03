@@ -115,9 +115,19 @@
   color: white;
   margin-top: 2rem;
   @include submenu;
+  @include media('desktop') {
+    font-size: 2rem;
+  }
+  @include media('mobile') {
+    font-size: 2rem * $mobile-factor;
+  }
 
   &_visible {
     visibility: visible;
     opacity: 1;
   }
+}
+
+.message {
+  color: $path-color;
 }
