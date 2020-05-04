@@ -102,12 +102,7 @@
       padding-top: 1rem;
 
       &_visible {
-        @include media('mobile', 'portrait') {
-          display: flex;
-        }
-        @include media('mobile', 'landscape') {
-          display: none;
-        }
+        display: flex;
       }
     }
   }
@@ -133,7 +128,7 @@
     color: $text-color;
 
     &_unauthorized {
-      @include media('mobile', 'portrait') {
+      @include media('mobile') {
         display: none;
       }
     }
