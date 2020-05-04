@@ -14,12 +14,21 @@ window.isMobile = function () {
 };
 
 function fit() {
-    const currentWidth = window.innerWidth;
-    const currentHeight = window.innerHeight;
+    const mobile = window.isMobile();
+
+    let currentWidth, currentHeight;
+    if (mobile) {
+        currentWidth = Math.min(window.innerWidth, window.innerHeight);
+        currentHeight = Math.max(window.innerWidth, window.innerHeight);
+    } else {
+        currentWidth = window.innerWidth;
+        currentHeight = window.innerHeight;
+    }
+
     const initScale = 10;
     let currentScale = 1;
 
-    const [aspectWidth, aspectHeight] = window.isMobile() ? SIZE.MOBILE : SIZE.DESKTOP;
+    const [aspectWidth, aspectHeight] = mobile ? SIZE.MOBILE : SIZE.DESKTOP;
     if (currentWidth < aspectWidth) {
         currentScale = currentWidth / aspectWidth;
     }
@@ -32,13 +41,11 @@ function fit() {
 
 export default function initScale() {
     fit();
-    window.addEventListener('orientationchange', () => {
-        const afterOrientationChanged = () => {
-            if (document.activeElement.attributes['type'] !== 'text') {
-                fit();
-            }
-            window.removeEventListener('resize', afterOrientationChanged);
-        };
-        window.addEventListener('resize', afterOrientationChanged);
-    });
+    // window.addEventListener('orientationchange', () => {
+    //     const afterOrientationChanged = () => {
+    //         fit();
+    //         window.removeEventListener('resize', afterOrientationChanged);
+    //     };
+    //     window.addEventListener('resize', afterOrientationChanged);
+    // });
 }

@@ -12,12 +12,20 @@
 
 .auth-page {
   position: absolute;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  @include media('desktop') {
+    justify-content: center;
+  }
+  @include media('mobile', 'portrait') {
+    justify-content: center;
+  }
+  @include media('mobile') {
+    //padding-top: $navbar-height * $mobile-factor + 3rem;
+  }
 
   &__bg-img {
     position: absolute;
@@ -71,6 +79,9 @@
   }
   @include media('mobile') {
     padding: 4rem * $mobile-factor 2.8rem * $mobile-factor 2rem * $mobile-factor;
+    @include media('landscape') {
+      margin-top: $navbar-height * $mobile-factor + 4rem;
+    }
   }
 
   &__headline {
