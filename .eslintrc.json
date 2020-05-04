@@ -23,6 +23,7 @@
         "require-jsdoc": "off",
         "max-len": ["error", 100],
         "eol-last": ["error", "always"],
-        "no-case-declarations": "off"
+        "no-case-declarations": "off",
+        "no-fallthrough": "off"
     }
 }

@@ -1,4 +1,5 @@
-@import '~css/variables.scss';
+@import '~css/variables';
+@import '~css/mediaQueries';
 
 @mixin tab {
   cursor: pointer;
@@ -10,17 +11,17 @@
   font-size: 3rem;
   color: $text-color;
   border-bottom: 2px solid transparent;
-  transition: {
-    property: color, border-bottom-color;
-    duration: 0.2s;
-    timing-function: linear;
-  };
   @include media('desktop') {
     padding: 2.4rem 4.8rem;
   }
   @include media('mobile') {
     padding: 2.4rem 4rem * $mobile-factor;
   }
+  transition: {
+    property: color, border-bottom-color;
+    duration: 0.2s;
+    timing-function: linear;
+  };
 
   &:hover {
     color: $main-color;
