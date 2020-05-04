@@ -1,11 +1,15 @@
 @import '~css/variables';
 @import '~css/mixins';
+@import '~css/mediaQueries';
 
 .main-slider {
   height: 75vh;
   overflow: hidden;
   position: relative;
   margin-bottom: 24px;
+  @include media('mobile', 'landscape') {
+    height: 95vh;
+  }
 
   &__arrows {
 

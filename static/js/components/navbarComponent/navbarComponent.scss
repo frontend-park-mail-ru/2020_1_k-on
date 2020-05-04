@@ -10,14 +10,10 @@
   transition: background-color $menu-transition-time, box-shadow $menu-transition-time;
   @include media('desktop') {
     min-height: $navbar-height;
-  }
-  @include media('mobile') {
-    min-height: $navbar-height * $mobile-factor;
-  }
-  @include media('desktop') {
     font-size: 2.2rem;
   }
   @include media('mobile') {
+    min-height: $navbar-height * $mobile-factor;
     font-size: 2.2rem * $mobile-factor;
   }
 
@@ -70,7 +66,7 @@
     grid-row-gap: 6rem;
     width: 100%;
     background-color: $submenu-bg-color;
-    font-size: 4.5rem;
+    font-size: 4rem;
     @include page-layout;
     @include submenu;
 
@@ -106,7 +102,12 @@
       padding-top: 1rem;
 
       &_visible {
-        display: flex;
+        @include media('mobile', 'portrait') {
+          display: flex;
+        }
+        @include media('mobile', 'landscape') {
+          display: none;
+        }
       }
     }
   }
@@ -132,7 +133,7 @@
     color: $text-color;
 
     &_unauthorized {
-      @include media('mobile') {
+      @include media('mobile', 'portrait') {
         display: none;
       }
     }
