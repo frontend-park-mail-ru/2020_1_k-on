@@ -26,6 +26,8 @@ export default class NavbarComponent extends Component {
             this.renderForUnauth.bind(this)
         );
 
+        this.eventBus.subscribe(GLOBAL_EVENTS.linkClick, this.closeMenu.bind(this));
+
         this.navbarUnauthItems = NAVBAR_UNAUTH_ITEMS;
 
         this.element = document.createElement('div');
@@ -42,13 +44,12 @@ export default class NavbarComponent extends Component {
 
         const menuLink = this.element.getElementsByClassName('navbar__menu-link')[0];
         menuLink.addEventListener('click', this.onMenuClick.bind(this));
-
-        for (const menuItem of this.element.getElementsByClassName('navbar-menu__link')) {
-            menuItem.addEventListener('click', this.onMenuLinkClick.bind(this));
-        }
     }
 
     renderForAuth() {
+        const unauth = this.element.getElementsByClassName('navbar-menu__unauthorized')[0];
+        unauth.classList.remove('navbar-menu__unauthorized_visible');
+
         Api.getUserData()
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
@@ -80,6 +81,9 @@ export default class NavbarComponent extends Component {
     }
 
     renderForUnauth() {
+        const unauth = this.element.getElementsByClassName('navbar-menu__unauthorized')[0];
+        unauth.classList.add('navbar-menu__unauthorized_visible');
+
         this.renderRightSide(this.navbarUnauthItems);
         window.sessionStorage.setItem('isUserAuth', false);
     }
@@ -94,6 +98,13 @@ export default class NavbarComponent extends Component {
             link.className = 'navbar__link';
 
             switch (key) {
+            case 'signup':
+                link.classList.add('navbar-menu__link_bright');
+            case 'login':
+                link.textContent = items[key];
+                link.classList.add('navbar__link_unauthorized', 'navbar-menu__link_circled');
+
+                break;
             case 'profile':
                 link.style.display = 'flex';
                 link.style.alignItems = 'center';
@@ -157,8 +168,8 @@ export default class NavbarComponent extends Component {
         }
     }
 
-    onMenuLinkClick(evt) {
-        const navbar = evt.target.parentNode.parentNode;
+    closeMenu(evt) {
+        const navbar = this.element;
         const menu = navbar.lastElementChild;
 
         navbar.classList.remove('navbar_menu-active');

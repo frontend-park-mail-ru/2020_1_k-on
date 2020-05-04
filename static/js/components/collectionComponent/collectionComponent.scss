@@ -5,7 +5,12 @@
 .collection {
   position: relative;
   width: 100%;
-  margin-bottom: 8rem;
+  @include media('desktop') {
+    margin-bottom: 8rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 6rem * $mobile-factor;
+  }
 
   &__header {
     display: inline-block;

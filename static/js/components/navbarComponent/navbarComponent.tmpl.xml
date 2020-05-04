@@ -30,5 +30,12 @@
     <div class="navbar-menu">
         <a class="navbar-menu__link" href="/series">Сериалы</a>
         <a class="navbar-menu__link" href="/films">Фильмы</a>
+
+        <div class="navbar-menu__unauthorized">
+            <a class="navbar-menu__link navbar-menu__link_circled" href="/login">Войти</a>
+            <a class="navbar-menu__link navbar-menu__link_circled navbar-menu__link_bright" href="/signup">
+                Зарегистрироваться
+            </a>
+        </div>
     </div>
 </fest:template>

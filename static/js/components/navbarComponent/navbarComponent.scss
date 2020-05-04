@@ -14,6 +14,12 @@
   @include media('mobile') {
     min-height: $navbar-height * $mobile-factor;
   }
+  @include media('desktop') {
+    font-size: 2.2rem;
+  }
+  @include media('mobile') {
+    font-size: 2.2rem * $mobile-factor;
+  }
 
   &_menu-active {
     background-color: $submenu-bg-color;
@@ -64,6 +70,7 @@
     grid-row-gap: 6rem;
     width: 100%;
     background-color: $submenu-bg-color;
+    font-size: 4.5rem;
     @include page-layout;
     @include submenu;
 
@@ -74,7 +81,33 @@
 
     &__link {
       color: white;
-      font-size: 4.5rem;
+
+      &_circled {
+        padding: 0.5em 1em;
+        border: 1px solid white;
+        border-radius: 0.5em;
+        @include media('desktop') {
+          font-size: 1.7rem;
+        }
+        @include media('mobile') {
+          font-size: 3rem;
+        }
+      }
+
+      &_bright {
+        border-color: $text-bright-color;
+      }
+    }
+
+    &__unauthorized {
+      display: none;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 1rem;
+
+      &_visible {
+        display: flex;
+      }
     }
   }
 
@@ -97,11 +130,11 @@
   &__link {
     margin-left: $margin-between-links;
     color: $text-color;
-    @include media('desktop') {
-      font-size: 2.2rem;
-    }
-    @include media('mobile') {
-      font-size: 2.2rem * $mobile-factor;
+
+    &_unauthorized {
+      @include media('mobile') {
+        display: none;
+      }
     }
 
     &_username {

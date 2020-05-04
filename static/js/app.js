@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('container');
     const globalEventBus = new EventBus();
     const navbar = new NavbarComponent(globalEventBus);
-    const router = new Router(container);
+    const router = new Router(container, globalEventBus);
 
     globalEventBus.subscribe(GLOBAL_EVENTS.internalError, (code) => {
         router.renderError(code, code === INTERNAL_ERROR_STATUS ?
