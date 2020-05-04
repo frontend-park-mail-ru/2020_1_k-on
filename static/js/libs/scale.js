@@ -41,11 +41,4 @@ function fit() {
 
 export default function initScale() {
     fit();
-    // window.addEventListener('orientationchange', () => {
-    //     const afterOrientationChanged = () => {
-    //         fit();
-    //         window.removeEventListener('resize', afterOrientationChanged);
-    //     };
-    //     window.addEventListener('resize', afterOrientationChanged);
-    // });
 }
