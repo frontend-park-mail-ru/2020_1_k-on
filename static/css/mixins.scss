@@ -29,13 +29,13 @@
   padding: 0.4em 1em;
   transition: all 0.4s ease-in-out;
   font-family: Openans-Regular, sans-serif;
+  @include gradient;
   @include media('desktop') {
     font-size: 2.2rem;
   }
   @include media('mobile') {
     font-size: 2.2rem * $mobile-factor;
   }
-  @include gradient;
 }
 @mixin transformScale($scaleValue: 1.25, $transitionValue: 0.2s) {
   transition: transform $transitionValue linear;

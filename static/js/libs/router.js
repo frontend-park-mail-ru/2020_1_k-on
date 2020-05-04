@@ -2,15 +2,17 @@ import MovieView from 'views/movieView/movieView';
 import PersonView from 'views/personView/personView';
 import ErrorView from 'views/errorView/errorView';
 import {
+    GLOBAL_EVENTS,
     NOT_FOUND_ERROR_MSG,
     NOT_FOUND_STATUS,
 } from 'libs/constants';
 
 export default class Router {
-    constructor(root) {
+    constructor(root, eventBus) {
         this.root = root;
-        this.routes = new Map();
+        this.eventBus = eventBus;
 
+        this.routes = new Map();
         this.errorView = new ErrorView();
 
         this.currentRoute = null;
@@ -99,6 +101,7 @@ export default class Router {
 
             if (linkElement) {
                 evt.preventDefault();
+                this.eventBus.publish(GLOBAL_EVENTS.linkClick);
                 this.change(linkElement.pathname);
             }
         });

@@ -11,7 +11,9 @@ $media-expressions: (
   '5cards': '(min-width: #{$four-cards-max-width}) and (max-width: #{$five-cards-max-width})',
   '6cards': '(min-width: #{$five-cards-max-width})',
   'mobile': '(max-width: #{$mobile-max-width})',
-  'desktop': '(min-width: #{$mobile-max-width})'
+  'desktop': '(min-width: #{$mobile-max-width})',
+  'portrait': '(orientation: portrait)',
+  'landscape': '(orientation: landscape)'
 );
 
 @function slice($list, $start: 1, $end: length($list)) {

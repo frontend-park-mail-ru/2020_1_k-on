@@ -1,12 +1,21 @@
 @import '~css/variables';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .navbar {
-  min-height: $navbar-height;
   display: flex;
   background-color: $navbar-bg-color;
   box-shadow: 0 0 2px 2px $navbar-bg-color;
   font-family: OpenSans-Regular, sans-serif;
   transition: background-color $menu-transition-time, box-shadow $menu-transition-time;
+  @include media('desktop') {
+    min-height: $navbar-height;
+    font-size: 2.2rem;
+  }
+  @include media('mobile') {
+    min-height: $navbar-height * $mobile-factor;
+    font-size: 2.2rem * $mobile-factor;
+  }
 
   &_menu-active {
     background-color: $submenu-bg-color;
@@ -43,22 +52,21 @@
   &__menu-link {
     cursor: pointer;
     margin-right: $margin-between-links;
-    background-image: url(/static/img/menu.svg);
-    @include square($size: 3rem);
-    @include center-background;
+    @include square($size: 4.5rem);
   }
 
   &-menu {
     position: absolute;
-    top: $navbar-height;
+    top: $navbar-height * $mobile-factor;
     left: 0;
     box-sizing: border-box;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
     display: grid;
-    grid-row-gap: 4rem;
+    grid-row-gap: 6rem;
     width: 100%;
     background-color: $submenu-bg-color;
+    font-size: 4rem;
     @include page-layout;
     @include submenu;
 
@@ -69,15 +77,46 @@
 
     &__link {
       color: white;
-      font-size: 3rem;
+
+      &_circled {
+        padding: 0.5em 1em;
+        border: 1px solid white;
+        border-radius: 0.5em;
+        @include media('desktop') {
+          font-size: 1.7rem;
+        }
+        @include media('mobile') {
+          font-size: 3rem;
+        }
+      }
+
+      &_bright {
+        border-color: $text-bright-color;
+      }
+    }
+
+    &__unauthorized {
+      display: none;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 1rem;
+
+      &_visible {
+        display: flex;
+      }
     }
   }
 
   &__logo {
-    font-family: 'OpenSans-Bold', sans-serif;
-    font-size: 3rem;
+    font-family: OpenSans-Bold, sans-serif;
     text-transform: uppercase;
     color: $text-color;
+    @include media('desktop') {
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      font-size: 3rem * $mobile-factor;
+    }
 
     &_color {
       color: $text-bright-color;
@@ -86,22 +125,43 @@
 
   &__link {
     margin-left: $margin-between-links;
-    font-size: 2.2rem;
     color: $text-color;
+
+    &_unauthorized {
+      @include media('mobile') {
+        display: none;
+      }
+    }
+
+    &_username {
+      margin-right: 1rem;
+      @include media('mobile') {
+        display: none;
+      }
+    }
 
     & > &_avatar {
       display: flex;
     }
 
     &_avatar {
-      margin-left: 1rem;
-      @include avatar($size: 3rem);
+      @include media('desktop') {
+        @include avatar($size: 3rem);
+      }
+      @include media('mobile') {
+        @include avatar($size: 3.5rem * $mobile-factor);
+      }
     }
 
     &_logout {
       background-image: url(/static/img/logout-white.svg);
-      @include square($size: 3rem);
       @include center-background;
+      @include media('desktop') {
+        @include square($size: 3rem);
+      }
+      @include media('mobile') {
+        @include square($size: 3rem * $mobile-factor);
+      }
     }
   }
 

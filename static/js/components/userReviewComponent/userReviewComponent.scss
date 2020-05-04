@@ -1,13 +1,24 @@
 @import '~css/variables';
 @import '~css/mixins';
+@import '~css/mediaQueries';
 
 .write-review-block {
-  margin-bottom: 2rem;
   border-top: 1px solid $text-dark-color;
+  @include media('desktop') {
+    margin-bottom: 2rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 2rem * $mobile-factor;
+  }
 
   &__avatar {
     flex-shrink: 0;
-    @include avatar($size: 7rem);
+    @include media('desktop') {
+      @include avatar($size: 7rem);
+    }
+    @include media('mobile') {
+      @include avatar($size: 7rem * $mobile-factor);
+    }
   }
 }
 
@@ -28,13 +39,21 @@
 
   &__star-icon {
     padding-right: 0.5rem;
-    width: 2.7rem;
-    height: 2.5rem;
-    background: url(/static/img/star-icon.svg) no-repeat center;
-    transition: background-image 0.2s ease-in-out;
 
-    &_active {
-      background-image: url(/static/img/star-icon-active.svg);
+    & > svg {
+      transition: fill 0.2s ease-in-out;
+      @include media('desktop') {
+        width: 2.7rem;
+        height: 2.5rem;
+      }
+      @include media('mobile') {
+        width: 2.7rem * 1.2;
+        height: 2.5rem * 1.2;
+      }
+    }
+
+    &_active > svg {
+      fill: $star-color-bright;
     }
   }
 
@@ -53,9 +72,14 @@
     border-bottom: 2px solid #eaeea9;
     background: none;
     font-family: inherit;
-    font-size: 1.8rem;
     color: $text-color;
     transition: border-bottom 0.15s ease-in-out;
+    @include media('desktop') {
+      font-size: 1.8rem;
+    }
+    @include media('mobile') {
+      font-size: 1.8rem * $mobile-factor;
+    }
 
     &::placeholder {
       color: $text-dark-color;
@@ -71,6 +95,12 @@
     transition: opacity 0.2ms linear;
     margin-bottom: 1 * $padding-between-rows;
     color: $error-color;
+    @include media('desktop') {
+      font-size: 1.2rem;
+    }
+    @include media('mobile') {
+      font-size: 1.2rem * $mobile-factor;
+    }
 
     &_shown {
       opacity: 1;

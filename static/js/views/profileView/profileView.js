@@ -113,7 +113,11 @@ export default class ProfileView extends View {
     }
 
     onStats() {
-        this.actionContainer.innerHTML = 'Здесь будет статистика';
+        const stats = document.createElement('div');
+        stats.classList.add('stats');
+        stats.innerHTML = 'Здесь будет статистика';
+        this.actionContainer.innerHTML = '';
+        this.actionContainer.appendChild(stats);
     }
 
     onSubscriptions() {

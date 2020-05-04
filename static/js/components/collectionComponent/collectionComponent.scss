@@ -1,17 +1,27 @@
+@import '~css/variables';
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
 .collection {
   position: relative;
   width: 100%;
-  margin-bottom: 8rem;
+  @include media('desktop') {
+    margin-bottom: 8rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 6rem * $mobile-factor;
+  }
 
   &__header {
     display: inline-block;
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 3rem;
-    @include media('mobile') {
-      padding: 2px 1.3rem $mobile-paragraph;
-    }
     @include media('desktop') {
-      padding: 2px 1.3rem $desktop-paragraph;
+      padding: 0 2rem 1.3rem $desktop-paragraph;
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      padding: 0 2rem 1.3rem * $mobile-factor * $mobile-factor $mobile-paragraph;
+      font-size: 3rem * $mobile-factor;
     }
   }
 

@@ -17,6 +17,7 @@ export const NAVBAR_UNAUTH_ITEMS = {
 };
 
 export const GLOBAL_EVENTS = {
+    linkClick: 'linkClick',
     renderForAuth: 'renderFotAuth',
     renderForUnauth: 'renderForUnauth',
     internalError: 'internalError',

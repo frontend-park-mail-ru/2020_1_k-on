@@ -17,7 +17,8 @@
 @import '~components/profileSettingsComponent/profileSettingsComponent';
 @import '~components/playlistComponent/playlistComponent';
 @import '~components/tabComponent/tabComponent';
-@import '~components/addToListComponent/addToListComponent.scss';
+@import '~components/addToListComponent/addToListComponent';
+@import '~components/subscriptionsComponent/subscriptionsComponent';
 @import '~views/listView/listView';
 @import '~views/movieView/movieView';
 @import '~views/profileView/profileView';
@@ -40,11 +41,16 @@ body {
 }
 
 #header {
-  min-height: 60px;
   width: 100%;
   position: absolute;
   top: 0;
-  z-index: 1000;
+  z-index: 2000;
+  @include media('desktop') {
+    min-height: $navbar-height;
+  }
+  @include media('mobile') {
+    min-height: $navbar-height * $mobile-factor;
+  }
 }
 
 #container {
@@ -55,7 +61,6 @@ body {
 }
 
 #footer {
-  min-height: 6rem;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -63,9 +68,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
   color: white;
   opacity: 0.4;
+  @include media('desktop') {
+    min-height: 6rem;
+    font-size: 1.5rem;
+  }
+  @include media('mobile') {
+    min-height: 6rem * $mobile-factor;
+    font-size: 1.5rem * $mobile-factor;
+  }
 }
 
 .page-layout {
@@ -73,7 +85,7 @@ body {
 }
 
 .user-path {
-  font-family: 'Montserrat-Regular', sans-serif;
+  font-family: Montserrat-Regular, sans-serif;
   color: $path-color;
 }
 

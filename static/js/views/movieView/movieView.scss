@@ -1,5 +1,6 @@
 @import '~css/variables';
 @import '~css/mixins';
+@import '~css/mediaQueries';
 
 .movie-page {
   overflow: hidden;
@@ -30,13 +31,14 @@
 
 .movie-header {
   position: absolute;
-  bottom: 15%;
   @include page-layout;
-  @include media('mobile') {
-    max-width: 80%;
-  }
   @include media('desktop') {
     max-width: 60%;
+    bottom: 15%;
+  }
+  @include media('mobile') {
+    max-width: 80%;
+    bottom: 20%;
   }
 
   &__name {
@@ -48,14 +50,25 @@
   &__original-name {
     margin-bottom: 4 * $padding-between-rows;
     font-family: Montserrat-Light, sans-serif;
-    font-size: 2.5rem;
     color: $path-color;
     text-transform: uppercase;
+    @include media('desktop') {
+      font-size: 2.5rem;
+    }
+    @include media('mobile') {
+      font-size: 2rem * $mobile-factor;
+    }
   }
 
   &__path {
     margin-bottom: 1rem;
-    font-size: 2rem;
+    @include media('desktop') {
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+      line-height: 2.5rem * $mobile-factor;
+    }
   }
 }
 
@@ -91,13 +104,15 @@
   margin-bottom: 8rem;
   padding-top: 8rem;
   font-family: OpenSans-Regular, sans-serif;
-  font-size: 1.7rem;
-  line-height: 3.2rem;
   @include media('desktop') {
     display: flex;
+    font-size: 1.7rem;
+    line-height: 3.2rem;
   }
   @include media('mobile') {
     display: block;
+    font-size: 1.7rem * $mobile-factor;
+    line-height: 3.2rem * $mobile-factor;
   }
 }
 
@@ -111,8 +126,14 @@
   }
 
   &__headline {
-    height: $description-header-height;
-    font-size: $headline-size;
+    @include media('desktop') {
+      font-size: $headline-size;
+      height: $description-header-height;
+    }
+    @include media('mobile') {
+      font-size: $headline-size * $mobile-factor;
+      height: $description-header-height * $mobile-factor;
+    }
   }
 
   &__video-frame {
@@ -142,8 +163,13 @@
   &__short-description {
     padding-bottom: $padding-between-description-blocks;
     font-family: OpenSans-SemiBold, sans-serif;
-    font-size: $headline-size;
     color: $text-bright-color;
+    @include media('desktop') {
+      font-size: $headline-size;
+    }
+    @include media('mobile') {
+      font-size: $headline-size * $mobile-factor;
+    }
   }
 
   &__description {
@@ -158,7 +184,7 @@
       grid-template-columns: 1fr 5fr;
     }
     @include media('mobile') {
-      grid-template-columns: 1fr 3fr;
+      grid-template-columns: 1fr 2fr;
     }
 
     &_title {
@@ -181,23 +207,39 @@
 
 .reviews {
   font-family: OpenSans-Regular, sans-serif;
-  font-size: 1.7rem;
-  line-height: 2.5rem;
   @include media('desktop') {
     width: 55%;
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+  @include media('mobile') {
+    font-size: 1.7rem * $mobile-factor;
+    line-height: 2.5rem * $mobile-factor;
   }
 
   &__headline {
-    margin-bottom: $headline-margin;
-    font-size: $headline-size;
+    @include media('desktop') {
+      font-size: $headline-size;
+      margin-bottom: $headline-margin;
+    }
+    @include media('mobile') {
+      font-size: $headline-size * $mobile-factor;
+      margin-bottom: $headline-margin * $mobile-factor;
+    }
   }
 }
 
 .review-layout {
   padding-left: $review-padding-left;
-  padding-top: $review-padding-y;
-  padding-bottom: $review-padding-y;
   display: flex;
+  @include media('desktop') {
+    padding-top: $review-padding-y;
+    padding-bottom: $review-padding-y;
+  }
+  @include media('mobile') {
+    padding-top: $review-padding-y * $mobile-factor;
+    padding-bottom: $review-padding-y * $mobile-factor;
+  }
 }
 
 .review-info {
@@ -209,7 +251,12 @@
 
   &__avatar {
     flex-shrink: 0;
-    @include avatar($size: 7rem);
+    @include media('desktop') {
+      @include avatar($size: 7rem);
+    }
+    @include media('mobile') {
+      @include avatar($size: 7rem * $mobile-factor);
+    }
   }
 }
 
@@ -223,23 +270,41 @@
   }
 
   &__username {
-    margin-right: 4rem;
-    font-size: 2.2rem;
+    @include media('desktop') {
+      margin-right: 4rem;
+      font-size: 2.2rem;
+    }
+    @include media('mobile') {
+      margin-right: 2rem;
+      font-size: 2.2rem * $mobile-factor;
+    }
   }
 
   &__rate {
-    width: 8rem;
-    height: 3rem;
     border-radius: 1rem;
     background: $rate-bg-color;
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 1.4rem;
     color: $bg-color;
     @include center-position;
+    @include media('desktop') {
+      width: 8rem;
+      height: 3rem;
+      font-size: 1.4rem;
+    }
+    @include media('mobile') {
+      width: 8rem * $mobile-factor;
+      height: 3rem * $mobile-factor;
+      font-size: 1.4rem * $mobile-factor;
+    }
   }
 
   &__text {
-    font-size: 1.8rem;
     color: $text-color;
+    @include media('desktop') {
+      font-size: 1.8rem;
+    }
+    @include media('mobile') {
+      font-size: 1.8rem * $mobile-factor;
+    }
   }
 }

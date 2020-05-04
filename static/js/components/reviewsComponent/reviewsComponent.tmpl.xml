@@ -3,7 +3,7 @@
         Отзывы
     </div>
 
-    <fest:if test="data.reviews">
+    <fest:if test="data.reviews.length !== 0">
         <div class="all-reviews">
             <fest:for iterate="data.reviews" index="i" value="review">
                 <fest:if test="data.userReviewId !== review.id">
@@ -31,7 +31,7 @@
         </div>
     </fest:if>
 
-    <fest:if test="!data.reviews">
+    <fest:if test="data.reviews.length === 0">
         <div class="no-reviews-message">
             Отзывов пока нет.
         </div>

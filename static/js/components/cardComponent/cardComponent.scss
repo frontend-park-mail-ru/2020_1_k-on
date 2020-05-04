@@ -1,4 +1,5 @@
 @import '~css/variables';
+@import '~css/mixins';
 @import '~css/mediaQueries';
 
 .series-card {
@@ -22,13 +23,18 @@
 
   &__image {
     position: relative;
-    margin-bottom: 2rem;
     width: 100%;
     padding-bottom: 150%;
     border-radius: 1.7rem;
     box-shadow: $series-card-shadow;
     background: no-repeat center 0 / cover;
     transition: transform 0.2s;
+    @include media('desktop') {
+      margin-bottom: 2rem;
+    }
+    @include media('mobile') {
+      margin-bottom: 2rem * $mobile-factor;
+    }
 
     &:hover {
       transform: scale(1.02);
@@ -63,9 +69,15 @@
     bottom: 2rem;
     left: 2.5rem;
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 1.7rem;
-    line-height: 2.7rem;
     color: $card-content-color;
+    @include media('desktop') {
+      font-size: 1.7rem;
+      line-height: 2.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+      line-height: 2.7rem * $mobile-factor;
+    }
   }
 
   &__name {
@@ -74,32 +86,50 @@
     text-overflow: ellipsis;
     font-family: Roboto, sans-serif;
     font-weight: 300;
-    font-size: 2rem;
     color: $text-color;
+    @include media('desktop') {
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      font-size: 2rem * $mobile-factor;
+    }
   }
 
   &__age-limit {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    width: 4rem;
-    height: 2.7rem;
     border-radius: 0.5rem;
     background-color: $age-limit-background;
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 1.5rem;
     color: $age-limit-color;
     @include center-position;
+    @include media('desktop') {
+      font-size: 1.5rem;
+      width: 4rem;
+      height: 2.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.5rem * $mobile-factor;
+      width: 4rem * $mobile-factor;
+      height: 2.7rem * $mobile-factor;
+    }
   }
 
   &__remove {
     fill: $text-color;
-    width: 1.6rem;
-    height: 1.6rem;
     position: absolute;
     top: 1.6rem;
     right: 1.6rem;
     @include transformScale($scaleValue: 1.5);
+    @include media('desktop') {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    @include media('mobile') {
+      width: 1.6rem * $mobile-factor;
+      height: 1.6rem * $mobile-factor;
+    }
 
     &:hover {
       fill: $error-color;

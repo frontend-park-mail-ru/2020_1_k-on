@@ -1,5 +1,6 @@
 @import '~css/variables';
 @import '~css/mixins';
+@import '~css/mediaQueries';
 
 .list-component {
   display: flex;
@@ -56,6 +57,11 @@
 
   &__no-results {
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 20px;
+    @include media('desktop') {
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      font-size: 2rem * $mobile-factor;
+    }
   }
 }
