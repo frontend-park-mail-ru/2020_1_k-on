@@ -2,20 +2,40 @@
 @import '~css/mediaQueries';
 
 .person-page {
-  padding-top: $navbar-height;
+  margin-top: $navbar-height;
+  padding-top: 7rem;
   font-family: OpenSans-Regular, sans-serif;
+
+  &__name {
+    @include media('desktop') {
+      display: none;
+    }
+    @include media('mobile', 'landscape') {
+      display: none;
+    }
+    @include media('mobile') {
+      font-family: Montserrat-Medium, sans-serif;
+      margin-bottom: 3rem * $mobile-factor;
+      font-size: 3.6rem * $mobile-factor;
+    }
+  }
 }
 
 .person-info {
   padding-bottom: 6rem;
   display: flex;
-  padding-top: 7rem;
 
   &__image {
     border-radius: 1rem;
-    height: 26.6rem;
-    width: 20rem;
     background: no-repeat center 0 / cover;
+    @include media('desktop') {
+      height: 26.6rem;
+      width: 20rem;
+    }
+    @include media('mobile') {
+      height: 26.6rem * $mobile-factor;
+      width: 20rem * $mobile-factor;
+    }
   }
 }
 
@@ -24,20 +44,39 @@
   font-family: Montserrat-Regular, sans-serif;
 
   &__name {
-    font-size: 3.6rem;
     font-family: Montserrat-Medium, sans-serif;
     margin-bottom: 3rem;
+    @include media('desktop') {
+      font-size: 3.6rem;
+    }
+    @include media('mobile') {
+      @include media('portrait') {
+        display: none;
+      }
+      @include media('landscape') {
+        font-size: 3.6rem * $mobile-factor;
+      }
+    }
   }
 
   &__data {
     display: grid;
-    grid-gap: 1.8rem;
-    font-size: 1.7rem;
     @include media('desktop') {
       grid-template-columns: 1fr 3fr;
+      font-size: 1.7rem;
+      grid-gap: 1.8rem;
     }
     @include media('mobile') {
-      grid-template-columns: 1fr 1fr;
+      font-size: 1.7rem * $mobile-factor;
+      @include media('portrait') {
+        grid-template-columns: 1fr;
+        grid-gap: 1rem * $mobile-factor;
+        line-height: 2.5rem * $mobile-factor;
+      }
+      @include media('landscape') {
+        grid-template-columns: 1fr 2fr;
+        grid-gap: 1.8rem * $mobile-factor;
+      }
     }
 
     &_title {

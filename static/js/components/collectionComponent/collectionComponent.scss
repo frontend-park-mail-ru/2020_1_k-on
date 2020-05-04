@@ -15,7 +15,7 @@
       font-size: 3rem;
     }
     @include media('mobile') {
-      padding: 0 2rem 1.3rem * $mobile-factor $mobile-paragraph;
+      padding: 0 2rem 1.3rem * $mobile-factor * $mobile-factor $mobile-paragraph;
       font-size: 3rem * $mobile-factor;
     }
   }

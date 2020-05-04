@@ -1,0 +1,11 @@
+@import '~css/variables';
+@import '~css/mediaQueries';
+
+.subscriptions {
+  @include media('desktop') {
+    margin-top: 3rem;
+  }
+  @include media('mobile') {
+    margin-top: 3rem * $mobile-factor;
+  }
+}

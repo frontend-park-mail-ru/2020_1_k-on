@@ -4,7 +4,6 @@
   cursor: pointer;
   position: relative;
   display: inline-block;
-  padding: 2.4rem 4.8rem;
   margin-right: 0;
   box-sizing: border-box;
   font-family: OpenSans-Regular, sans-serif;
@@ -16,6 +15,12 @@
     duration: 0.2s;
     timing-function: linear;
   };
+  @include media('desktop') {
+    padding: 2.4rem 4.8rem;
+  }
+  @include media('mobile') {
+    padding: 2.4rem 4rem * $mobile-factor;
+  }
 
   &:hover {
     color: $main-color;
@@ -47,14 +52,20 @@
 
   &__delete {
     position: absolute;
-    right: 1.6rem;
+    right: 1rem;
     top: 50%;
     transform: translateY(-50%);
     visibility: hidden;
     fill: $shade-color;
     transition: fill 0.2s linear;
-    width: 1.6rem;
-    height: 1.6rem;
+    @include media('desktop') {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    @include media('mobile') {
+      width: 1.6rem * $mobile-factor;
+      height: 1.6rem * $mobile-factor;
+    }
 
     &:hover {
       fill: $error-color;

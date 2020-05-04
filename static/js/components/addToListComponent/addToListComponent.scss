@@ -48,8 +48,13 @@
 
   &__arrow {
     background-image: url(/static/img/down-arrow.svg);
-    @include square($size: 2rem);
     @include center-background;
+    @include media('desktop') {
+      @include square($size: 2rem);
+    }
+    @include media('mobile') {
+      @include square($size: 2rem * $mobile-factor);
+    }
   }
 
   &_active {
@@ -71,14 +76,22 @@
 }
 
 .choose-list-block {
-  width: $choose-list-block-width;
+  z-index: 1000;
   position: absolute;
-  left: - $choose-list-block-padding;
   background-color: $submenu-bg-color;
   border-radius: 1rem;
   overflow: hidden;
-  max-height: 30rem;
   @include submenu;
+  @include media('desktop') {
+    max-height: 30rem;
+    width: $choose-list-block-width;
+    left: - $choose-list-block-padding;
+  }
+  @include media('mobile') {
+    max-height: 30rem * $mobile-factor;
+    width: $choose-list-block-width * $mobile-factor;
+    left: - $choose-list-block-padding * $mobile-factor;
+  }
 
   &_visible {
     visibility: visible;
@@ -89,13 +102,19 @@
     width: 100%;
     overflow-y: scroll;
     //padding: 0 $choose-list-block-padding;
-    //padding-right: 17px;
+    padding-right: 1rem;
     padding-left: $choose-list-block-padding;
     //box-sizing: content-box;
-    margin: 3rem 0;
     display: grid;
     grid-template-columns: 1fr;
-    grid-row-gap: 2rem;
+    @include media('desktop') {
+      margin: 3rem 0;
+      grid-row-gap: 2rem;
+    }
+    @include media('mobile') {
+      margin: 3rem * $mobile-factor 0;
+      grid-row-gap: 2rem * $mobile-factor;
+    }
   }
 
   &__playlist {
@@ -126,8 +145,4 @@
     visibility: visible;
     opacity: 1;
   }
-}
-
-.message {
-  color: $path-color;
 }

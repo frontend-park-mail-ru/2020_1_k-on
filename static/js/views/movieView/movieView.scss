@@ -270,11 +270,12 @@
   }
 
   &__username {
-    margin-right: 4rem;
     @include media('desktop') {
+      margin-right: 4rem;
       font-size: 2.2rem;
     }
     @include media('mobile') {
+      margin-right: 2rem;
       font-size: 2.2rem * $mobile-factor;
     }
   }

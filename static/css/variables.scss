@@ -63,7 +63,7 @@ $review-padding-left: 1rem;
 $add-to-list-button-border-radius: 1rem;
 $buttons-block-width: 36rem;
 $buttons-block-height: 5rem;
-$choose-list-block-width: 40rem;
+$choose-list-block-width: 38rem;
 $choose-list-block-padding: ($choose-list-block-width - $buttons-block-width) / 2;
 
 // Input
@@ -85,6 +85,6 @@ $star-color-bright: #8091BD;
 
 // Layout
 $paragraph: 80px;
-$mobile-paragraph: 20px;
+$mobile-paragraph: 4rem;
 $desktop-paragraph: 8rem;
 $mobile-factor: 1.5;

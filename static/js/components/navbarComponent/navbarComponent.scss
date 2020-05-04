@@ -120,7 +120,7 @@
         @include avatar($size: 3rem);
       }
       @include media('mobile') {
-        @include avatar($size: 3rem * $mobile-factor);
+        @include avatar($size: 3.5rem * $mobile-factor);
       }
     }
 
