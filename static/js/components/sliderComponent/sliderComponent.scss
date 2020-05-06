@@ -91,12 +91,10 @@
     @include media('desktop') {
       font-size: 1.7rem;
       line-height: 2.7rem;
-      //max-height: 10rem;
     }
     @include media('mobile') {
       font-size: 1.5rem * $mobile-factor;
       line-height: 2.5rem * $mobile-factor;
-      //max-height: 5rem * $mobile-factor;
     }
   }
 
