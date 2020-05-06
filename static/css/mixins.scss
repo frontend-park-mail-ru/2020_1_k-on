@@ -106,3 +106,8 @@
   visibility: hidden;
   transition: visibility $menu-transition-time, opacity $menu-transition-time;
 }
+@mixin ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

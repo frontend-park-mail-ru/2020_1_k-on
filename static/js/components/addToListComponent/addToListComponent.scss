@@ -46,14 +46,21 @@
   border-top-left-radius: $add-to-list-button-border-radius;
   border-bottom-left-radius: $add-to-list-button-border-radius;
 
+  &__value {
+    padding-right: 0.5em;
+    @include ellipsis-overflow;
+  }
+
   &__arrow {
     background-image: url(/static/img/down-arrow.svg);
     @include center-background;
     @include media('desktop') {
       @include square($size: 2rem);
+      min-width: 2rem;
     }
     @include media('mobile') {
       @include square($size: 2rem * $mobile-factor);
+      min-width: 2rem * $mobile-factor;
     }
   }
 
@@ -119,6 +126,8 @@
 
   &__playlist {
     font-size: inherit;
+    padding-right: 1em;
+    @include ellipsis-overflow;
 
     &_active {
       color: $text-bright-color;

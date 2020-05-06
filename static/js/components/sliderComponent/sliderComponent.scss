@@ -86,6 +86,7 @@
     margin-bottom: 3rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     @include media('desktop') {
       font-size: 1.7rem;
       line-height: 2.7rem;
