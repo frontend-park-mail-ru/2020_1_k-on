@@ -200,6 +200,9 @@ export default class Api {
     static deletePlaylist(id) {
         return Network.doDelete({
             url: `/playlist/${id}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+            },
         });
     }
 
@@ -212,6 +215,9 @@ export default class Api {
     static deleteCardFromPlaylist(pid, cid, type) {
         return Network.doDelete({
             url: `/playlist/${pid}/${type}/${cid}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+            },
         });
     }
 
