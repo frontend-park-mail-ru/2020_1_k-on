@@ -158,8 +158,12 @@ export default class ProfileView extends View {
                 }
             })
             .then((res) => {
-                this.avatar.style.backgroundImage =
-                    `url(${SERVER_ADDRESS}/image/${res.body})`;
+                const avatarPath = `url(${SERVER_ADDRESS}/image/${res.body})`;
+
+                this.avatar.style.backgroundImage = avatarPath;
+                const navbarAvatar = document.getElementsByClassName('navbar__link_avatar')[0];
+                navbarAvatar.style.backgroundImage = avatarPath;
+
                 this.showMessage(PROFILE_MSGS.success_avatar_upload);
             })
             .catch((err) => {
