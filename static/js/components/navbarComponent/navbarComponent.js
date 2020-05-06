@@ -47,6 +47,7 @@ export default class NavbarComponent extends Component {
     }
 
     renderForAuth() {
+        window.sessionStorage.setItem('isUserAuth', true);
         const unauth = this.element.getElementsByClassName('navbar-menu__unauthorized')[0];
         unauth.classList.remove('navbar-menu__unauthorized_visible');
 
@@ -60,6 +61,7 @@ export default class NavbarComponent extends Component {
             })
             .then((res) => {
                 this.renderRightSide.bind(this);
+
                 this.renderRightSide({
                     profile: {
                         username: res.body.username,
@@ -67,25 +69,24 @@ export default class NavbarComponent extends Component {
                     },
                     logout: '',
                 });
-
                 const logout = this.element.querySelector('[href="/logout"]');
                 this.onLogout = this.onLogout.bind(this);
-                logout.addEventListener('click', this.onLogout);
 
-                window.sessionStorage.setItem('isUserAuth', true);
+                logout.addEventListener('click', this.onLogout);
             })
             .catch((err) => {
                 console.log(`${err.status}: FAILED TO FETCH USER DATA`);
+                window.sessionStorage.setItem('isUserAuth', false);
                 this.eventBus.publish(GLOBAL_EVENTS.renderForUnauth);
             });
     }
 
     renderForUnauth() {
-        const unauth = this.element.getElementsByClassName('navbar-menu__unauthorized')[0];
-        unauth.classList.add('navbar-menu__unauthorized_visible');
-
-        this.renderRightSide(this.navbarUnauthItems);
         window.sessionStorage.setItem('isUserAuth', false);
+        const unauth = this.element.getElementsByClassName('navbar-menu__unauthorized')[0];
+
+        unauth.classList.add('navbar-menu__unauthorized_visible');
+        this.renderRightSide(this.navbarUnauthItems);
     }
 
     renderRightSide(items) {
