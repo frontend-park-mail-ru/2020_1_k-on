@@ -30,6 +30,9 @@ export default class SliderComponent extends Component {
     }
 
     doSlide(direction) {
+        clearInterval(this.slideInterval);
+        this.slideInterval = setInterval(this.doSlide.bind(this), SLIDER_INTERVAL, 'right');
+
         this.curSlide.classList.add('hidden');
 
         const offset = direction === 'left' ? -1 : 1;
