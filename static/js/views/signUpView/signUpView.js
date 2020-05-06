@@ -11,8 +11,8 @@ export default class SignUpView extends AuthView {
             eventBus: eventBus,
             data: SIGN_UP_PAGE_DATA,
             onSuccessEvents: [
-                SIGN_UP_EVENTS.signUpSuccess,
                 SIGN_UP_EVENTS.renderForAuth,
+                SIGN_UP_EVENTS.signUpSuccess,
             ],
             apiMethod: Api.doSignUp,
         });

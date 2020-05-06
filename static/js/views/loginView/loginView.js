@@ -3,7 +3,7 @@ import Api from 'libs/api';
 import {
     LOGIN_EVENTS,
     LOGIN_PAGE_DATA,
-} from '../../libs/constants';
+} from 'libs/constants';
 
 export default class LoginView extends AuthView {
     constructor(eventBus) {
@@ -11,8 +11,8 @@ export default class LoginView extends AuthView {
             eventBus: eventBus,
             data: LOGIN_PAGE_DATA,
             onSuccessEvents: [
-                LOGIN_EVENTS.loginSuccess,
                 LOGIN_EVENTS.renderForAuth,
+                LOGIN_EVENTS.loginSuccess,
             ],
             apiMethod: Api.doLogin,
         });
