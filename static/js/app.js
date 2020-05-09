@@ -21,10 +21,11 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
     initScale();
-    // if ('serviceWorker' in navigator) {
-    //     navigator.serviceWorker.register('sw.js', {scope: '/'})
-    //         .catch((err) => (console.log('SW registration FAIL:', err)));
-    // }
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js', {scope: '/'})
+            .catch((err) => (console.log('SW registration FAIL:', err)));
+    }
 
     const header = document.getElementById('header');
     const container = document.getElementById('container');
