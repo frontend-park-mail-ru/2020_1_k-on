@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -53,6 +54,10 @@ module.exports = {
                 test: /\.xml$/,
                 loader: 'fest-webpack-loader',
             },
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+            },
         ],
     },
     plugins: [
@@ -61,6 +66,10 @@ module.exports = {
         }),
         new ServiceWorkerWebpackPlugin({
             entry: path.resolve(__dirname, 'static/js/sw.js'),
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'static/index.html'),
+            base: 'dist/',
         }),
     ],
 };
