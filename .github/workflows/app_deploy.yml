@@ -1,4 +1,4 @@
-name: Node.js CI
+name: App deploy
 
 on:
   push:
@@ -40,21 +40,21 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: build
-    
+        
     - name: Delete previous bundle
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
-          script: rm -rf /frontend/dist/*
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        script: rm -rf /frontend/dist/*
             
     - name: Transfer build file to server
-        uses: appleboy/scp-action@v0.0.10
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
-          source: "build/*"
-          target: "/frontend/dist/"
+      uses: appleboy/scp-action@v0.0.10
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        source: "build/*"
+        target: "/frontend/dist/"
           
