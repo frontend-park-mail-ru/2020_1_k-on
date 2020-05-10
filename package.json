@@ -43,6 +43,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "build-watch": "webpack --mode development --watch",
     "build": "webpack --mode development",
     "stylelint": "stylelint **/*.scss",
     "lint": "./node_modules/.bin/eslint ./static ; stylelint **/*.scss",

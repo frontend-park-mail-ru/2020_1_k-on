@@ -11,7 +11,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
     },
-    watch: true,
     resolve: {
         alias: {
             views: path.resolve(__dirname, 'static/js/views'),
