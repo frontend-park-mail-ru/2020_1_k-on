@@ -4,6 +4,7 @@ const autoprefixer = require('autoprefixer');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackGitHash = require('webpack-git-hash');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const githashLength = 24;
 
 module.exports = {
@@ -75,5 +76,6 @@ module.exports = {
         new WebpackGitHash({
             hashLength: githashLength,
         }),
+        new CleanWebpackPlugin(),
     ],
 };
