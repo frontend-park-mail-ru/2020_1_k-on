@@ -1,4 +1,0 @@
-buttons:
-  - title: Manual deploy
-    action: "manual_deploy"
-    description: Deploy branch manually
