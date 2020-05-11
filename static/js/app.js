@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScale();
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js', {scope: '/'})
+        navigator.serviceWorker.register('../sw.js', {scope: '/'})
             .catch((err) => (console.log('SW registration FAIL:', err)));
     }
 

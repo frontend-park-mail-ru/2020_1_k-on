@@ -1,12 +1,14 @@
 const CACHE_NAME = 'service-worker';
 
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
+
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => (cache.addAll([
                 '/dist/bundle.js',
                 '/dist/style.css',
-                '/static/index.html',
+                '/dist/index.html',
                 '/static/fallback.html',
                 '/static/img/favicon-play.ico',
             ])))
@@ -14,7 +16,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-    console.log('activate!');
+    console.log('Service worker activated!');
 });
 
 self.addEventListener('fetch', (event) => {
