@@ -71,7 +71,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'static/index.html'),
-            base: 'dist/',
+            base: '/dist/',
         }),
         new WebpackGitHash({
             hashLength: githashLength,
