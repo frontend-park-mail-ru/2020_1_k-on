@@ -8,7 +8,7 @@ import {
     DEFAULT_AVATAR,
     MOVIE_EVENTS,
     SUCCESS_STATUS,
-    SERVER_ADDRESS, INTERNAL_ERROR_STATUS,
+    SERVER_ADDRESS, INTERNAL_ERROR_STATUS, HOST_ADDRESS,
 } from 'libs/constants';
 
 export default class MovieView extends View {
@@ -66,7 +66,7 @@ export default class MovieView extends View {
                 const userData = {
                     username: res.body.username,
                     image: res.body.image === '' ?
-                        DEFAULT_AVATAR : `${SERVER_ADDRESS}/image/${res.body.image}`,
+                        DEFAULT_AVATAR : `${HOST_ADDRESS}/static/img/${res.body.image}`,
                 };
 
                 Api.getUserReview(this.type, this.id)

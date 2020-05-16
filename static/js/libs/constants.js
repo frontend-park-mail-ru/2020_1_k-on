@@ -1,4 +1,5 @@
 export const SERVER_ADDRESS = 'https://kino-on.ru/api';
+export const HOST_ADDRESS = 'https://kino-on.ru';
 
 export const SUCCESS_STATUS = 200;
 export const BAD_REQUEST_STATUS = 400;
@@ -50,6 +51,11 @@ export const LIST_EVENTS = {
     internalError: 'internalError',
     updateList: 'updateList',
     genrePushHistory: 'genrePushHistory',
+    updatePage: 'updatePage',
+};
+
+export const PAGINATOR_EVENTS = {
+    updatePage: 'updatePage',
 };
 
 export const MOVIE_EVENTS = {

@@ -1,7 +1,7 @@
 import template from './reviewsComponent.tmpl.xml';
 import Component from 'components/component';
 import {
-    DEFAULT_AVATAR,
+    DEFAULT_AVATAR, HOST_ADDRESS,
     SERVER_ADDRESS,
 } from 'libs/constants';
 
@@ -15,7 +15,7 @@ export default class ReviewsComponent extends Component {
         reviews = reviews.map((item) => {
             item.user.image = item.user.image === '' ?
                 DEFAULT_AVATAR :
-                `${SERVER_ADDRESS}/image/${item.user.image}`;
+                `${HOST_ADDRESS}/static/img/${item.user.image}`;
             return item;
         });
 

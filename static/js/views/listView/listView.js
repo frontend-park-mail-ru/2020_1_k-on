@@ -4,8 +4,10 @@ import Api from 'libs/api';
 import ListComponent from 'components/listComponent/listComponent';
 import FilterComponent from 'components/filterComponent/filterComponent';
 import CardComponent from 'components/cardComponent/cardComponent';
+import PaginatorComponent from 'components/paginatorComponent/paginatorComponent';
 import {
     LIST_EVENTS,
+    PAGINATOR_EVENTS,
     SUCCESS_STATUS,
 } from 'libs/constants';
 
@@ -17,6 +19,7 @@ export default class ListView extends View {
         this.data.category = type === 'series' ? 'Сериалы' : 'Фильмы';
 
         this.eventBus.subscribe(LIST_EVENTS.updateList, this.getList.bind(this));
+        this.eventBus.subscribe(PAGINATOR_EVENTS.updatePage, this.getList.bind(this));
         this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, this.updateHistory.bind(this));
     }
 
@@ -45,14 +48,19 @@ export default class ListView extends View {
                     .appendChild(this.filterComponent.render());
 
                 this.getList();
+
+                this.paginatorComponent = new PaginatorComponent(this.eventBus);
+                this.root.appendChild(this.paginatorComponent.render());
             })
             .catch((err) => {
                 this.eventBus.publish(LIST_EVENTS.internalError, err.status);
             });
     }
 
-    getList() {
-        Api.getList(this.type, this.filterComponent.getChosenFilters(), 1)
+    getList(page = 1) {
+        console.log(page);
+
+        Api.getList(this.type, this.filterComponent.getChosenFilters(), page)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     return res.json();
@@ -61,10 +69,21 @@ export default class ListView extends View {
                 }
             })
             .then((res) => {
-                this.updateList(res.body);
+                if (page === 1) {
+                    this.paginatorComponent.setPage(page);
+                    this.paginatorComponent.setIsLastPage(false);
+                    this.updateList(res.body);
+                } else {
+                    if (res.body !== null) {
+                        this.paginatorComponent.setIsLastPage(false);
+                        this.paginatorComponent.setPage(page);
+                        this.updateList(res.body);
+                    } else {
+                        this.paginatorComponent.setIsLastPage(true);
+                    }
+                }
             })
             .catch((err) => {
-                this.updateList(null);
                 console.error(`${err.url} ${err.status}: FAILED TO UPLOAD`);
             });
     }
