@@ -69,18 +69,12 @@ export default class ListView extends View {
                 }
             })
             .then((res) => {
-                if (page === 1) {
-                    this.paginatorComponent.setPage(page);
+                if (page === 1 || res.body !== null) {
                     this.paginatorComponent.setIsLastPage(false);
+                    this.paginatorComponent.setPage(page);
                     this.updateList(res.body);
                 } else {
-                    if (res.body !== null) {
-                        this.paginatorComponent.setIsLastPage(false);
-                        this.paginatorComponent.setPage(page);
-                        this.updateList(res.body);
-                    } else {
-                        this.paginatorComponent.setIsLastPage(true);
-                    }
+                    this.paginatorComponent.setIsLastPage(true);
                 }
             })
             .catch((err) => {
