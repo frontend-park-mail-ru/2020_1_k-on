@@ -11,6 +11,8 @@ export default class PaginatorComponent extends Component {
             currentPage: currentPage,
         };
 
+        this.isLastPage = false;
+
         this.element = document.createElement('div');
         this.element.classList.add('paginator');
     }
@@ -25,17 +27,34 @@ export default class PaginatorComponent extends Component {
     onBtnClick(direction) {
         const add = direction === 'left' ? -1 : 1;
 
-        if (this.data.currentPage + add !== 0) {
+        const leftCondition = this.data.currentPage !== 1 && direction === 'left';
+        const rightCondition = !this.isLastPage && direction === 'right';
+
+        if (leftCondition || rightCondition) {
             this.eventBus.publish(PAGINATOR_EVENTS.updatePage, this.data.currentPage + add);
         }
     }
 
     setPage(page) {
         this.data.currentPage = page;
+        if (page === 1) {
+            this.setBtnDisabled(this.prevBtn);
+        } else {
+            this.setBtnActive(this.prevBtn);
+        }
         this.element.getElementsByClassName('paginator__current-page')[0].innerHTML = page;
+    }
+
+    setBtnActive(btn) {
+        btn.classList.add('paginator__btn_active');
+    }
+
+    setBtnDisabled(btn) {
+        btn.classList.remove('paginator__btn_active');
     }
 
     setIsLastPage(flag = false) {
         this.isLastPage = flag;
+        !flag ? this.setBtnActive(this.nextBtn) : this.setBtnDisabled(this.nextBtn);
     }
 }

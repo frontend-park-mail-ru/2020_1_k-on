@@ -18,12 +18,15 @@
     opacity: 0.7;
     width: 3.5rem;
     height: 3.5rem;
-    cursor: pointer;
-    @include transformScale();
 
-    &:hover {
-      opacity: 1;
-      fill: $main-color;
+    &_active {
+      cursor: pointer;
+      @include transformScale();
+
+      &:hover {
+        opacity: 1;
+        fill: $main-color;
+      }
     }
   }
 }
