@@ -32,7 +32,7 @@ export default class ProfileView extends View {
                         this.data = res.body;
                         this.data.avatar = this.data.image === '' ?
                             DEFAULT_AVATAR :
-                            `${SERVER_ADDRESS}/image/${this.data.image}`;
+                            `${SERVER_ADDRESS}/static/img/${this.data.image}`;
                         super.render(root);
                         this.afterRender();
                     });
@@ -158,7 +158,7 @@ export default class ProfileView extends View {
                 }
             })
             .then((res) => {
-                const avatarPath = `url(${SERVER_ADDRESS}/image/${res.body})`;
+                const avatarPath = `url(${SERVER_ADDRESS}/static/img/${res.body})`;
 
                 this.avatar.style.backgroundImage = avatarPath;
                 const navbarAvatar = document.getElementsByClassName('navbar__link_avatar')[0];
