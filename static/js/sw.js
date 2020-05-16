@@ -16,6 +16,21 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            cache.keys().then((requests) => {
+                return Promise.all(
+                    requests.filter((request) => {
+                        console.log(request.url);
+                        return !request.url.includes('/static/');
+                    }).map((request) => {
+                        return cache.delete(request);
+                    })
+                );
+            });
+        })
+    );
+
     console.log('Service worker activated!');
 });
 
@@ -23,7 +38,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then((cachedResponse) => {
-                if (!navigator.onLine && cachedResponse) {
+                if (!navigator.onLine && cachedResponse || event.request.url.includes('/static/')) {
                     return cachedResponse;
                 }
 
