@@ -12,6 +12,7 @@ import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
 import View from 'views/view';
 import initScale from 'libs/scale';
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import {
     GLOBAL_EVENTS,
     INTERNAL_ERROR_MSG,
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScale();
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../sw.js', {scope: '/'})
+        runtime.register();
+        navigator.serviceWorker.register('/sw.js', {scope: '/'})
             .catch((err) => (console.log('SW registration FAIL:', err)));
     }
 

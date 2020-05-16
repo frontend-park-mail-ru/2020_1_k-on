@@ -77,5 +77,8 @@ module.exports = {
             hashLength: githashLength,
         }),
         new CleanWebpackPlugin(),
+        new ServiceWorkerWebpackPlugin({
+            entry: path.join(__dirname, 'static/js/sw.js'),
+        }),
     ],
 };
