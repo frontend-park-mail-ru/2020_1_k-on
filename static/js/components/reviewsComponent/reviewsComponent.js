@@ -1,8 +1,8 @@
 import template from './reviewsComponent.tmpl.xml';
 import Component from 'components/component';
 import {
-    DEFAULT_AVATAR, HOST_ADDRESS,
-    SERVER_ADDRESS,
+    DEFAULT_AVATAR,
+    HOST_ADDRESS,
 } from 'libs/constants';
 
 export default class ReviewsComponent extends Component {

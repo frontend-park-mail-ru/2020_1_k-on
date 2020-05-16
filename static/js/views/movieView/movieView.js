@@ -8,7 +8,8 @@ import {
     DEFAULT_AVATAR,
     MOVIE_EVENTS,
     SUCCESS_STATUS,
-    SERVER_ADDRESS, INTERNAL_ERROR_STATUS, HOST_ADDRESS,
+    INTERNAL_ERROR_STATUS,
+    HOST_ADDRESS,
 } from 'libs/constants';
 
 export default class MovieView extends View {

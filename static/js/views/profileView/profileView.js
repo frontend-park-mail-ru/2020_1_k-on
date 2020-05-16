@@ -11,7 +11,7 @@ import {
     UNAUTHORIZED_STATUS,
     PROFILE_MSGS,
     SHOW_MSG_TIMEOUT,
-    SERVER_ADDRESS, HOST_ADDRESS,
+    HOST_ADDRESS,
 } from 'libs/constants';
 
 export default class ProfileView extends View {

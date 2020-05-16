@@ -6,7 +6,7 @@ import {
     NAVBAR_UNAUTH_ITEMS,
     GLOBAL_EVENTS,
     DEFAULT_AVATAR,
-    SERVER_ADDRESS, HOST_ADDRESS,
+    HOST_ADDRESS,
 } from 'libs/constants';
 
 /**
