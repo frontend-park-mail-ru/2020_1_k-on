@@ -9,7 +9,7 @@ export default class SearchController {
 
         this.eventBus.subscribe(SEARCH_EVENTS.internalError,
             (code) => {
-                this.globalEventBus.publish(GLOBAL_EVENTS.internalError, code)
+                this.globalEventBus.publish(GLOBAL_EVENTS.internalError, code);
             }
         );
 

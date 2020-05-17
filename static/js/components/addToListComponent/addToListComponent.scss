@@ -55,12 +55,12 @@
     background-image: url(/static/img/down-arrow.svg);
     @include center-background;
     @include media('desktop') {
-      @include square($size: 2rem);
       min-width: 2rem;
+      @include square($size: 2rem);
     }
     @include media('mobile') {
-      @include square($size: 2rem * $mobile-factor);
       min-width: 2rem * $mobile-factor;
+      @include square($size: 2rem * $mobile-factor);
     }
   }
 

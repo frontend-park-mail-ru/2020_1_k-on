@@ -253,3 +253,5 @@ export const SEARCH_TABS = [
         value: 'persons',
     },
 ];
+
+export const SEARCH_DELAY = 500;

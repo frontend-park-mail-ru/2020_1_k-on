@@ -1,11 +1,11 @@
 import View from 'views/view';
 import template from './searchView.tmpl.xml';
 import debounce from 'libs/debounce';
-import {SEARCH_EVENTS, SEARCH_TABS, SUCCESS_STATUS} from 'libs/constants';
+import {SEARCH_DELAY, SEARCH_EVENTS, SEARCH_TABS, SUCCESS_STATUS} from 'libs/constants';
 import Api from 'libs/api';
 import CardComponent from 'components/cardComponent/cardComponent';
 import CollectionComponent from 'components/collectionComponent/collectionComponent';
-import ListComponent from "components/listComponent/listComponent";
+import ListComponent from 'components/listComponent/listComponent';
 
 export default class SearchView extends View {
     constructor(eventBus) {
@@ -20,9 +20,12 @@ export default class SearchView extends View {
         super.render(root);
 
         this.searchInput = document.getElementsByClassName('search-header__input')[0];
-        this.searchInput.addEventListener('input', debounce(this.onInputChange.bind(this), 500));
+        this.searchInput.addEventListener(
+            'input',
+            debounce(this.onInputChange.bind(this), SEARCH_DELAY)
+        );
 
-        for (let searchTab of document.getElementsByClassName('search-tabs__tab')) {
+        for (const searchTab of document.getElementsByClassName('search-tabs__tab')) {
             searchTab.addEventListener('click', this.onTabClick.bind(this));
         }
 
@@ -57,7 +60,7 @@ export default class SearchView extends View {
         this.clear();
         this.currentTab = value;
 
-        for (let searchTab of document.getElementsByClassName('search-tabs__tab')) {
+        for (const searchTab of document.getElementsByClassName('search-tabs__tab')) {
             if (searchTab.classList.contains('search-tabs__tab_active')) {
                 searchTab.classList.remove('search-tabs__tab_active');
             }
@@ -107,7 +110,8 @@ export default class SearchView extends View {
                     });
 
                     return new CollectionComponent({
-                        name: type === 'series' ? 'Сериалы' : type === 'films' ? 'Фильмы' : 'Актеры',
+                        name: type === 'series' ? 'Сериалы' :
+                            type === 'films' ? 'Фильмы' : 'Актеры',
                         elements: cards,
                         isSearchResult: true,
                         type: type,
@@ -120,7 +124,7 @@ export default class SearchView extends View {
             searchPromise('films'),
             searchPromise('persons'),
         ])
-            .then(results => {
+            .then((results) => {
                 this.clear();
                 const isEmpty = !results.some((elem) => {
                     return elem;
@@ -136,10 +140,11 @@ export default class SearchView extends View {
                     if (collection) {
                         this.collectionsContainer.appendChild(collection);
 
-                        const showAllButton = collection.getElementsByClassName('collection__show-all-button')[0];
+                        const showAllButton = collection
+                            .getElementsByClassName('collection__show-all-button')[0];
                         showAllButton.addEventListener('click', (evt) => {
                             this.setTab(evt.currentTarget.dataset.type);
-                        })
+                        });
                     }
                 });
             })
@@ -156,12 +161,12 @@ export default class SearchView extends View {
             1
         )
             .then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                return res.json();
-            } else {
-                return Promise.reject(res);
-            }
-        })
+                if (res.status === SUCCESS_STATUS) {
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
             .then((res) => {
                 this.clear();
 
@@ -190,7 +195,7 @@ export default class SearchView extends View {
             .catch((err) => {
                 this.eventBus.publish(SEARCH_EVENTS.internalError, err.status);
                 console.error(`${err.status}: FAILED TO GET SEARCH RESULTS`);
-            })
+            });
     }
 
     clear() {
