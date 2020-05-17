@@ -29,6 +29,7 @@ export default class CollectionComponent extends Component {
             isUserSubscribed: isUserSubscribed,
             isSearchResult: isSearchResult,
             type: type,
+            size: elements.length,
         };
 
         this.elements = elements;

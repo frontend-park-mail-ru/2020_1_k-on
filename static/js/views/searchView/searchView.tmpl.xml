@@ -36,5 +36,6 @@
 
         <div id="search-page__collections"/>
         <div id="search-page__list" class="page-layout"/>
+        <div id="search-page__paginator"/>
     </div>
 </fest:template>

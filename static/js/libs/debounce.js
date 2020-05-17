@@ -1,10 +1,10 @@
 export default function debounce(func, time) {
     return function(args) {
-        const previousCall = lastCall;
-        const lastCall = Date.now();
-        if (previousCall && (lastCall - previousCall <= time)) {
-            clearTimeout(lastCallTimeout);
+        const previousCall = this.lastCall;
+        this.lastCall = Date.now();
+        if (previousCall && (this.lastCall - previousCall <= time)) {
+            clearTimeout(this.lastCallTimeout);
         }
-        const lastCallTimeout = setTimeout(() => func(args), time);
+        this.lastCallTimeout = setTimeout(() => func(args), time);
     };
 }
