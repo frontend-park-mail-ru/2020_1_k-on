@@ -230,3 +230,22 @@ export const MOBILE_HEIGHT = 1280;
 export const SHOW_MSG_TIMEOUT = 3000;
 
 export const SERVER_UNAVAILABLE_MSG = 'Сервер недоступен';
+
+export const SEARCH_TABS = [
+    {
+        name: 'Все',
+        value: 'all',
+    },
+    {
+        name: 'Сериалы',
+        value: 'series',
+    },
+    {
+        name: 'Фильмы',
+        value: 'films',
+    },
+    {
+        name: 'Актеры',
+        value: 'actors',
+    },
+];

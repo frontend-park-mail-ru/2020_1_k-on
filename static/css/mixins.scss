@@ -111,3 +111,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@mixin page-margin-top {
+  @include media('desktop') {
+    margin-top: $navbar-height;
+  }
+  @include media('mobile') {
+    margin-top: $navbar-height * $mobile-factor;
+  }
+}

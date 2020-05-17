@@ -97,6 +97,8 @@ export default class AddToListComponent extends Component {
                 this.showMessage('Уже добавлено!');
                 console.log(err);
             });
+
+
     }
 
     showMessage(text) {

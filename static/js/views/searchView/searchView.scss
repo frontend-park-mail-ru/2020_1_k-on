@@ -1,0 +1,69 @@
+@import '~css/variables';
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
+.search-page {
+  padding-top: 7rem;
+  @include page-margin-top;
+}
+
+.search-header {
+  &__path {
+    margin-bottom: 3rem;
+    @include media('desktop') {
+      font-size: 1.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    margin-bottom: 3rem;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid white;
+    background-color: $bg-color;
+    color: white;
+    font-family: Montserrat-Regular, sans-serif;
+    @include media('desktop') {
+      font-size: 4rem;
+    }
+    @include media('mobile') {
+      font-size: 4rem * $mobile-factor;
+    }
+
+    &::placeholder {
+      color: $path-color;
+    }
+  }
+}
+
+.search-tabs {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__tab {
+    cursor: pointer;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 2em;
+    background-color: #25282F;
+    color: white;
+    font-family: Montserrat-Light, sans-serif;
+    @include media('desktop') {
+      padding: 1em 1.2em;
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      padding: 0.8em 1.2em;
+      font-size: 2rem * $mobile-factor;
+    }
+
+    &_active {
+      font-family: Montserrat-Regular, sans-serif;
+      color: $bg-color;
+      background: $button-bg-color;
+    }
+  }
+}

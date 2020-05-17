@@ -126,6 +126,15 @@
   &__link {
     margin-left: $margin-between-links;
     color: $text-color;
+    @include media('desktop') {
+      display: flex;
+      align-items: center;
+    }
+
+    &_search-icon {
+      margin-right: 1rem;
+      @include square(0.8em);
+    }
 
     &_unauthorized {
       @include media('mobile') {

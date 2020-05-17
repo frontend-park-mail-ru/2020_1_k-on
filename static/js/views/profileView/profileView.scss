@@ -4,8 +4,9 @@
 
 .user-info-wrapper {
   display: flex;
-  margin-top: 12.8rem;
   justify-content: center;
+  padding-top: 6rem;
+  @include page-margin-top;
 }
 
 .user-info {

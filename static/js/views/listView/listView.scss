@@ -1,19 +1,15 @@
 @import '~css/variables';
 @import '~css/mediaQueries';
+@import '~css/mixins';
 
 .list-page {
+  padding-top: 7rem;
   font-family: OpenSans-Regular, sans-serif;
-  @include media('desktop') {
-    padding-top: $navbar-height;
-  }
-  @include media('mobile') {
-    padding-top: $navbar-height * $mobile-factor;
-  }
+  @include page-margin-top;
 }
 
 .list-header {
   margin-bottom: 6rem;
-  margin-top: 7rem;
 
   &__path {
     margin-bottom: 1.5rem;
