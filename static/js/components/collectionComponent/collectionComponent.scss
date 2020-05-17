@@ -35,4 +35,17 @@
       }
     }
   }
+
+  &__show-all-button {
+    cursor: pointer;
+    text-decoration: underline;
+    color: $path-color;
+    font-family: OpenSans-Regular, sans-serif;
+    @include media('desktop') {
+      font-size: 1.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+    }
+  }
 }

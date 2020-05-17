@@ -30,10 +30,11 @@
                     </fest:choose>
                 </fest:for>
             </div>
+
+        <div class="search-header__message"/>
         </div>
 
-        <div class="search-page__collections"/>
-
-        <div class="search-page__list"/>
+        <div id="search-page__collections"/>
+        <div id="search-page__list" class="page-layout"/>
     </div>
 </fest:template>

@@ -77,6 +77,10 @@ export const SUBSCRIPTIONS_EVENTS = {
     unsubscribe: 'unsubscribe',
 };
 
+export const SEARCH_EVENTS = {
+    internalError: 'internalError',
+};
+
 export const PROFILE_MSGS = {
     success_avatar_upload: 'Аватар загружен',
     error_avatar_upload: 'Не удалось загрузить аватар',
@@ -246,6 +250,6 @@ export const SEARCH_TABS = [
     },
     {
         name: 'Актеры',
-        value: 'actors',
+        value: 'persons',
     },
 ];

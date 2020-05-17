@@ -37,6 +37,18 @@
       color: $path-color;
     }
   }
+
+  &__message {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    font-family: OpenSans-Regular, sans-serif;
+    @include media('desktop') {
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      font-size: 2rem * $mobile-factor;
+    }
+  }
 }
 
 .search-tabs {

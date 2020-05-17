@@ -261,4 +261,10 @@ export default class Api {
             },
         });
     }
+
+    static doSearch(type, text, page) {
+        return Network.doGet({
+            url: `/${type}/search/${text}?page=${page}`,
+        });
+    }
 }
