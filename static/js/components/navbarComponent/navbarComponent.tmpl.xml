@@ -16,13 +16,14 @@
         </a>
         <a class="navbar__link navbar__desktop-item" href="/series">Сериалы</a>
         <a class="navbar__link navbar__desktop-item" href="/films">Фильмы</a>
-
-        <!--            <form class="navbar__search-form">-->
-        <!--                <input class="navbar__search-input" type="search" placeholder="Поиск"/>-->
-        <!--                <button class="navbar__search-button" type="submit">-->
-        <!--                    <img class="navbar__search-icon" src="static/img/search.svg"/>-->
-        <!--                </button>-->
-        <!--            </form>-->
+        <a class="navbar__link navbar__desktop-item" href="/search">
+            <svg class="navbar__link_search-icon" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+                 xmlns="http://www.w3.org/2000/svg" fill="white">
+                <path d="m225.47 0c-124.32 0-225.47 101.15-225.47 225.47 0 124.33 101.15 225.47 225.47 225.47 124.33 0 225.47-101.14 225.47-225.47 0-124.32-101.14-225.47-225.47-225.47zm0 409.32c-101.37 0-183.85-82.475-183.85-183.85s82.475-183.85 183.85-183.85 183.85 82.475 183.85 183.85-82.475 183.85-183.85 183.85z"/>
+                <path d="m505.9 476.47-119.33-119.33c-8.131-8.131-21.299-8.131-29.43 0-8.131 8.124-8.131 21.306 0 29.43l119.33 119.33c4.065 4.065 9.387 6.098 14.715 6.098 5.321 0 10.649-2.033 14.715-6.098 8.131-8.124 8.131-21.306 0-29.43z"/>
+            </svg>
+            Поиск
+        </a>
     </div>
 
     <div class="navbar__right-side"/>
@@ -30,6 +31,14 @@
     <div class="navbar-menu">
         <a class="navbar-menu__link" href="/series">Сериалы</a>
         <a class="navbar-menu__link" href="/films">Фильмы</a>
+        <a class="navbar-menu__link" href="/search">
+            <svg class="navbar__link_search-icon" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+                 xmlns="http://www.w3.org/2000/svg" fill="white">
+                <path d="m225.47 0c-124.32 0-225.47 101.15-225.47 225.47 0 124.33 101.15 225.47 225.47 225.47 124.33 0 225.47-101.14 225.47-225.47 0-124.32-101.14-225.47-225.47-225.47zm0 409.32c-101.37 0-183.85-82.475-183.85-183.85s82.475-183.85 183.85-183.85 183.85 82.475 183.85 183.85-82.475 183.85-183.85 183.85z"/>
+                <path d="m505.9 476.47-119.33-119.33c-8.131-8.131-21.299-8.131-29.43 0-8.131 8.124-8.131 21.306 0 29.43l119.33 119.33c4.065 4.065 9.387 6.098 14.715 6.098 5.321 0 10.649-2.033 14.715-6.098 8.131-8.124 8.131-21.306 0-29.43z"/>
+            </svg>
+            Поиск
+        </a>
 
         <div class="navbar-menu__unauthorized">
             <a class="navbar-menu__link navbar-menu__link_circled" href="/login">Войти</a>

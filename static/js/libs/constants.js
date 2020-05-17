@@ -77,6 +77,10 @@ export const SUBSCRIPTIONS_EVENTS = {
     unsubscribe: 'unsubscribe',
 };
 
+export const SEARCH_EVENTS = {
+    internalError: 'internalError',
+};
+
 export const PROFILE_MSGS = {
     success_avatar_upload: 'Аватар загружен',
     error_avatar_upload: 'Не удалось загрузить аватар',
@@ -230,3 +234,26 @@ export const MOBILE_HEIGHT = 1280;
 export const SHOW_MSG_TIMEOUT = 3000;
 
 export const SERVER_UNAVAILABLE_MSG = 'Сервер недоступен';
+
+export const SEARCH_TABS = [
+    {
+        name: 'Все',
+        value: 'all',
+    },
+    {
+        name: 'Сериалы',
+        value: 'series',
+    },
+    {
+        name: 'Фильмы',
+        value: 'films',
+    },
+    {
+        name: 'Актеры',
+        value: 'persons',
+    },
+];
+
+export const SEARCH_DELAY = 500;
+
+export const SEARCH_SWIPER_LIMIT = 10;

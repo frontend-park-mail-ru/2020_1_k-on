@@ -19,6 +19,7 @@ import {
     INTERNAL_ERROR_STATUS,
     NOT_FOUND_ERROR_MSG,
 } from 'libs/constants';
+import SearchController from 'controllers/searchController';
 
 document.addEventListener('DOMContentLoaded', () => {
     initScale();
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         series: new MovieController(router, globalEventBus, 'series'),
         movie: new MovieController(router, globalEventBus, 'films'),
         person: new PersonController(router, globalEventBus),
+        search: new SearchController(router, globalEventBus),
     };
 
     View.setBgImgInSessionStorage();
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/persons/<int>', controllers.person.view);
     router.add('/series/<string>', controllers.seriesList.view);
     router.add('/films/<string>', controllers.filmsList.view);
+    router.add('/search', controllers.search.view);
 
     header.appendChild(navbar.render());
     router.start();

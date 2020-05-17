@@ -107,8 +107,8 @@ export default class NavbarComponent extends Component {
 
                 break;
             case 'profile':
-                link.style.display = 'flex';
-                link.style.alignItems = 'center';
+                // link.style.display = 'flex';
+                // link.style.alignItems = 'center';
 
                 const username = document.createElement('span');
                 username.classList.add('navbar__link_username');
