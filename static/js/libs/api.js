@@ -71,9 +71,10 @@ export default class Api {
         return Network.doGet();
     }
 
-    static getIndex() {
+    static getIndex(isUserAuth = false) {
+        const url = isUserAuth ? '/main' : '/index';
         return Network.doGet({
-            url: '/index',
+            url: url,
         });
     }
 
