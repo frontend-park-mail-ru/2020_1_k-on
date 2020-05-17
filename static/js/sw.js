@@ -1,17 +1,11 @@
-const CACHE_NAME = 'service-worker';
+const CACHE_NAME = 'kino-on-cache';
+const {assets} = global.serviceWorkerOption;
+assets.push('/static/fallback.html');
 
 self.addEventListener('install', (event) => {
-    self.skipWaiting();
-
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => (cache.addAll([
-                '/dist/bundle.js',
-                '/dist/style.css',
-                '/dist/index.html',
-                '/static/fallback.html',
-                '/static/img/favicon-play.ico',
-            ])))
+            .then((cache) => (cache.addAll(assets)))
     );
 });
 
@@ -21,8 +15,9 @@ self.addEventListener('activate', (event) => {
             cache.keys().then((requests) => {
                 return Promise.all(
                     requests.filter((request) => {
-                        console.log(request.url);
-                        return !request.url.includes('/static/');
+                        const staticCheck = !request.url.includes('/static/') &&
+                            !request.url.includes('.jpg');
+                        return staticCheck && !assets.includes(request.url);
                     }).map((request) => {
                         return cache.delete(request);
                     })
@@ -30,15 +25,15 @@ self.addEventListener('activate', (event) => {
             });
         })
     );
-
-    console.log('Service worker activated!');
 });
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then((cachedResponse) => {
-                if (!navigator.onLine && cachedResponse || event.request.url.includes('/static/')) {
+                const staticCheck = event.request.url.includes('/static/') &&
+                    event.request.url.includes('.jpg');
+                if ((!navigator.onLine || staticCheck) && cachedResponse) {
                     return cachedResponse;
                 }
 
