@@ -34,7 +34,7 @@ export default class IndexView extends View {
                 this.eventBus.publish(INDEX_EVENTS.internalError, err.status);
             });
 
-        Api.getIndex()
+        Api.getIndex(window.sessionStorage.getItem('isUserAuth') === 'true')
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     return res.json();
@@ -64,7 +64,7 @@ export default class IndexView extends View {
                 name: subItem.name,
                 elements: cards,
                 isPlaylist: true,
-                isUserSubscribed: false,
+                isUserSubscribed: subItem.isSubscribed ? subItem.isSubscribed : false,
                 id: subItem.id,
                 eventBus: this.eventBus,
             });

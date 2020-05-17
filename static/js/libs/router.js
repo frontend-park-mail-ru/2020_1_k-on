@@ -64,6 +64,7 @@ export default class Router {
                 this.routes.get(key).view.close();
 
                 if (path === '/logout') {
+                    window.sessionStorage.setItem('isUserAuth', false);
                     this.currentRoute = '/logout';
                     this.change('/');
                     return;
