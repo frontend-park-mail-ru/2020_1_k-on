@@ -27,6 +27,11 @@
 
   &__arrows {
 
+    &_svg {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
     &_left {
       @include swiperArrow(left);
     }

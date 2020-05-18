@@ -1,6 +1,6 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="swiper__arrows_left">
-        <svg class="" width="3.5rem" height="3.5rem" enable-background="new 0 0 443.52 443.52" version="1.1"
+        <svg class="swiper__arrows_svg" enable-background="new 0 0 443.52 443.52" version="1.1"
              viewBox="0 0 443.52 443.52" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
 		<path class="active-path"
               d="m143.49 221.86 192.73-192.73c6.663-6.664 6.663-17.468 0-24.132-6.665-6.662-17.468-6.662-24.132
@@ -10,7 +10,7 @@
         </svg>
     </div>
     <div class="swiper__arrows_right">
-        <svg width="3.5rem" height="3.5rem" enable-background="new 0 0 512.005 512.005" version="1.1" viewBox="0 0 512 512"
+        <svg class="swiper__arrows_svg" enable-background="new 0 0 512.005 512.005" version="1.1" viewBox="0 0 512 512"
              xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
 		<path class="active-path"
               d="m388.42 240.92-234.67-234.67c-8.341-8.341-21.824-8.341-30.165 0s-8.341 21.824 0 30.165l219.58
