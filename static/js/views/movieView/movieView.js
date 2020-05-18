@@ -126,37 +126,26 @@ export default class MovieView extends View {
     renderSimilar(simFilms = [], simSeries = []) {
         const container = document.getElementById('similar-container');
 
-        container.appendChild(this.renderSimilarElem(
-            'Похожие фильмы',
-            simFilms,
-            'Похожих фильмов не найдено',
-        ));
-        container.appendChild(this.renderSimilarElem(
-            'Похожие сериалы',
-            simSeries,
-            'Похожих сериалов не найдено',
-        ));
+        container.appendChild(this.renderSimilarElem('Похожие фильмы', simFilms));
+        container.appendChild(this.renderSimilarElem('Похожие сериалы', simSeries));
     }
 
-    renderSimilarElem(name = '', items = [], notFoundMsg = '') {
-        if (items !== null && items.length !== 0) {
-            const cards = items.map((cardItem) => {
-                const card = new CardComponent(cardItem);
-                return card.render();
-            });
-
-            const collectionComponent = new CollectionComponent({
-                name: name,
-                elements: cards,
-            });
-
-            return collectionComponent.render();
-        } else {
-            const notFoundElem = document.createElement('div');
-            notFoundElem.classList.add('message');
-            notFoundElem.innerText = notFoundMsg;
-            return notFoundElem;
+    renderSimilarElem(name = '', items = []) {
+        if (items === null || items.length === 0) {
+            return document.createElement('div');
         }
+
+        const cards = items.map((cardItem) => {
+            const card = new CardComponent(cardItem);
+            return card.render();
+        });
+
+        const collectionComponent = new CollectionComponent({
+            name: name,
+            elements: cards,
+        });
+
+        return collectionComponent.render();
     }
 
     renderUserReview(userData, reviewData = null) {
