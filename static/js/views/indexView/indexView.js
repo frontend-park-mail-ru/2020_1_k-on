@@ -64,7 +64,7 @@ export default class IndexView extends View {
                 name: subItem.name,
                 elements: cards,
                 isPlaylist: true,
-                isUserSubscribed: subItem.isSubscribed ? subItem.isSubscribed : false,
+                isUserSubscribed: subItem.isSubscribed,
                 id: subItem.id,
                 eventBus: this.eventBus,
             });
