@@ -142,6 +142,7 @@
         </div>
 
         <div id="add-to-list-container"/>
+        <div id="similar-container"/>
         <div id="user-review-container"/>
         <div id="reviews-container"/>
     </div>
