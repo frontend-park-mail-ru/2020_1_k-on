@@ -123,7 +123,7 @@ export default class SearchView extends View {
                         name: type === 'series' ? 'Сериалы' :
                             type === 'films' ? 'Фильмы' : 'Актеры',
                         elements: cards,
-                        isSearchResult: true,
+                        isCropped: res.body.length > SEARCH_SWIPER_LIMIT,
                         type: type,
                     }).render();
                 });

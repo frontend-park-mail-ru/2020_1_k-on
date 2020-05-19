@@ -16,7 +16,7 @@ export default class CollectionComponent extends Component {
         id = 0,
         isUserSubscribed = false,
         eventBus = new EventBus(),
-        isSearchResult = false,
+        isCropped = false,
         type = 'films',
     } = {}) {
         super(template, eventBus);
@@ -27,9 +27,8 @@ export default class CollectionComponent extends Component {
             id: id,
             isUserAuth: window.sessionStorage.getItem('isUserAuth') === 'true',
             isUserSubscribed: isUserSubscribed,
-            isSearchResult: isSearchResult,
+            isCropped: isCropped,
             type: type,
-            size: elements.length,
         };
 
         this.elements = elements;
