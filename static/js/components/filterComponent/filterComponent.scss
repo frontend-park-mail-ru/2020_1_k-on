@@ -127,7 +127,7 @@
       grid-row-gap: 3rem;
     }
     @include media('mobile') {
-      grid-row-gap: 3rem * $mobile-factor;
+      grid-row-gap: 6rem;
     }
     @include media('mobile', 'portrait') {
       grid-template-columns: repeat(2, 1fr);
