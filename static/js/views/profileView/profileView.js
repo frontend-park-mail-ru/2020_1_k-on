@@ -13,6 +13,7 @@ import {
     SHOW_MSG_TIMEOUT,
     HOST_ADDRESS,
 } from 'libs/constants';
+import {switchTheme} from 'libs/theme';
 
 export default class ProfileView extends View {
     constructor(eventBus) {
@@ -33,6 +34,7 @@ export default class ProfileView extends View {
                         this.data.avatar = this.data.image === '' ?
                             DEFAULT_AVATAR :
                             `${HOST_ADDRESS}/static/img/${this.data.image}`;
+                        this.data.isLightTheme = localStorage.getItem('theme') === 'light';
                         super.render(root);
                         this.afterRender();
                     });
@@ -69,14 +71,14 @@ export default class ProfileView extends View {
             this.onPlaylist.bind(this),
         );
 
-        this.root.getElementsByClassName('user-action_stat')[0].addEventListener(
-            'click',
-            this.onStats.bind(this),
-        );
-
         this.root.getElementsByClassName('user-action_subscriptions')[0].addEventListener(
             'click',
             this.onSubscriptions.bind(this),
+        );
+
+        this.root.getElementsByClassName('user-action_theme')[0].addEventListener(
+            'change',
+            switchTheme,
         );
     }
 
@@ -110,14 +112,6 @@ export default class ProfileView extends View {
                 this.showMessage(PROFILE_MSGS.error_playlists_upload, true);
                 console.error(`${err.status}: FAILED TO LOAD PLAYLISTS`);
             });
-    }
-
-    onStats() {
-        const stats = document.createElement('div');
-        stats.classList.add('stats');
-        stats.innerHTML = 'Здесь будет статистика';
-        this.actionContainer.innerHTML = '';
-        this.actionContainer.appendChild(stats);
     }
 
     onSubscriptions() {
