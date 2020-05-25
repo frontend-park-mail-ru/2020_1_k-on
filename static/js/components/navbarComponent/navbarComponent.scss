@@ -49,80 +49,6 @@
     justify-content: flex-end;
   }
 
-  &__menu-link {
-    cursor: pointer;
-    margin-right: $margin-between-links;
-    @include square($size: 4.5rem);
-  }
-
-  &-menu {
-    position: absolute;
-    top: $navbar-height * $mobile-factor;
-    left: 0;
-    box-sizing: border-box;
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem;
-    display: grid;
-    grid-row-gap: 6rem;
-    width: 100%;
-    background-color: $submenu-bg-color;
-    font-size: 4rem;
-    @include page-layout;
-    @include submenu;
-
-    &_active {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    &__link {
-      color: white;
-
-      &_circled {
-        padding: 0.5em 1em;
-        border: 1px solid white;
-        border-radius: 0.5em;
-        @include media('desktop') {
-          font-size: 1.7rem;
-        }
-        @include media('mobile') {
-          font-size: 3rem;
-        }
-      }
-
-      &_bright {
-        border-color: $text-bright-color;
-      }
-    }
-
-    &__unauthorized {
-      display: none;
-      justify-content: space-around;
-      align-items: center;
-      padding-top: 1rem;
-
-      &_visible {
-        display: flex;
-      }
-    }
-  }
-
-  &__logo {
-    font-family: OpenSans-Bold, sans-serif;
-    text-transform: uppercase;
-    color: $text-color;
-    @include media('desktop') {
-      font-size: 3rem;
-    }
-    @include media('mobile') {
-      font-size: 3rem * $mobile-factor;
-    }
-
-    &_color {
-      color: $text-bright-color;
-    }
-  }
-
   &__link {
     margin-left: $margin-between-links;
     color: $text-color;
@@ -171,6 +97,82 @@
       @include media('mobile') {
         @include square($size: 3rem * $mobile-factor);
       }
+    }
+  }
+
+  &__menu-link {
+    cursor: pointer;
+    margin-right: $margin-between-links;
+    @include square($size: 4.5rem);
+  }
+
+  &-menu {
+    position: absolute;
+    top: $navbar-height * $mobile-factor;
+    left: 0;
+    box-sizing: border-box;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+    display: grid;
+    grid-row-gap: 6rem;
+    width: 100%;
+    background-color: $submenu-bg-color;
+    font-size: 4rem;
+    @include page-layout;
+    @include submenu;
+
+    &_active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &__link {
+      color: white;
+
+      &_circled {
+        padding: 0.5em 1em;
+        border: 0.1rem solid white;
+        border-radius: 0.5em;
+        @include media('desktop') {
+          font-size: 1.7rem;
+        }
+        @include media('mobile') {
+          font-size: 3rem;
+        }
+      }
+
+      &_bright {
+        border-color: $text-bright-color;
+        background: $button-bg-color;
+        color: $bg-color;
+      }
+    }
+
+    &__unauthorized {
+      display: none;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 1rem;
+
+      &_visible {
+        display: flex;
+      }
+    }
+  }
+
+  &__logo {
+    font-family: OpenSans-Bold, sans-serif;
+    text-transform: uppercase;
+    color: $text-color;
+    @include media('desktop') {
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      font-size: 3rem * $mobile-factor;
+    }
+
+    &_color {
+      color: $text-bright-color;
     }
   }
 

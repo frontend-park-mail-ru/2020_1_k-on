@@ -21,18 +21,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: solid $path-color;
+  border: 0.2rem solid $path-color;
   border-radius: 1.3rem;
   @include media('desktop') {
     font-size: 1.7rem;
-    border-width: 0.2rem;
   }
   @include media('mobile') {
     width: 100%;
     margin-bottom: 1.6rem;
     margin-right: 0;
     font-size: 1.7rem * $mobile-factor;
-    border-width: 0.2rem * $mobile-factor;
   }
 
   &:hover {
@@ -70,22 +68,28 @@
 .filter-submenu {
   position: absolute;
   left: 0;
-  top: $filter-button-height + 12px;
+  top: $filter-button-height + 1.2rem;
   z-index: 2;
   box-sizing: border-box;
   width: 100%;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   background-color: $submenu-bg-color;
-  font-size: 20px;
+  font-size: 2.2rem;
   @include submenu;
   @include media('mobile') {
     z-index: 2000;
     height: 100%;
     position: fixed;
     top: 0;
-    padding-top: 50px;
-    font-size: 16px;
+    font-size: 3rem;
+    overflow: scroll;
+    @include media('portrait') {
+      padding-top: 8rem;
+    }
+    @include media('landscape') {
+      padding-top: 6rem;
+    }
   }
 
   &_active {
@@ -97,12 +101,12 @@
     display: flex;
     justify-content: space-between;
     @include media('mobile') {
-      margin-bottom: 40px;
+      margin-bottom: 7rem;
     }
   }
 
   &__headline {
-    font-size: 26px;
+    font-size: 5.4rem;
     @include media('desktop') {
       display: none;
     }
@@ -110,7 +114,7 @@
 
   &__close-icon {
     background: no-repeat center / cover url(/static/img/close-icon.svg);
-    @include square(26px);
+    @include square(5rem);
     @include media('desktop') {
       display: none;
     }
@@ -119,7 +123,12 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-row-gap: 30px;
+    @include media('desktop') {
+      grid-row-gap: 3rem;
+    }
+    @include media('mobile') {
+      grid-row-gap: 6rem;
+    }
     @include media('mobile', 'portrait') {
       grid-template-columns: repeat(2, 1fr);
     }

@@ -19,11 +19,9 @@
         </fest:if>
     </fest:if>
 
-    <fest:if test="data.isSearchResult">
-        <fest:if test="data.size > 10">
-            <span class="collection__show-all-button" data-type="{data.type}">
-                Посмотреть все
-            </span>
-        </fest:if>
+    <fest:if test="data.isCropped">
+        <span class="collection__show-all-button" data-type="{data.type}">
+            Посмотреть все
+        </span>
     </fest:if>
 </fest:template>

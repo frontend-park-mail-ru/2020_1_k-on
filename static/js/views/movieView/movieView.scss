@@ -36,9 +36,13 @@
     max-width: 60%;
     bottom: 15%;
   }
-  @include media('mobile') {
-    max-width: 80%;
+  @include media('mobile', 'portrait') {
+    max-width: 90%;
     bottom: 20%;
+  }
+  @include media('mobile', 'landscape') {
+    max-width: 80%;
+    bottom: 15%;
   }
 
   &__name {
