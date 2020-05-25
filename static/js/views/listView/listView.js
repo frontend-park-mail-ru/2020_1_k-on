@@ -58,8 +58,6 @@ export default class ListView extends View {
     }
 
     getList(page = 1) {
-        console.log(page);
-
         Api.getList(this.type, this.filterComponent.getChosenFilters(), page)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
