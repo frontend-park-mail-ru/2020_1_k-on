@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mediaQueries';
 
 @mixin tab {
@@ -9,7 +8,7 @@
   box-sizing: border-box;
   font-family: OpenSans-Regular, sans-serif;
   font-size: 3rem;
-  color: $text-color;
+  color: var(--text-color);
   border-bottom: 2px solid transparent;
   @include media('desktop') {
     padding: 2.4rem 4.8rem;
@@ -24,8 +23,8 @@
   };
 
   &:hover {
-    color: $main-color;
-    border-bottom-color: $main-color;
+    color: var(--main-color);
+    border-bottom-color: var(--main-color);
     transition: {
       property: color, border-bottom-color;
       duration: 0.2s;
@@ -34,8 +33,8 @@
   }
 
   &_active {
-    color: $main-color;
-    border-bottom-color: $main-color;
+    color: var(--main-color);
+    border-bottom-color: var(--main-color);
     transition: {
       property: color, border-bottom-color;
       duration: 0.2s;
@@ -57,7 +56,7 @@
     top: 50%;
     transform: translateY(-50%);
     visibility: hidden;
-    fill: $shade-color;
+    fill: var(--shade-color);
     transition: fill 0.2s linear;
     @include media('desktop') {
       width: 1.6rem;

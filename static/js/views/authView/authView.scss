@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mediaQueries';
 
 .form-container {
@@ -66,10 +65,10 @@
 
 .auth-content {
   z-index: 1000;
-  border: solid 1px $auth-content-border-color;
+  border: solid 1px var(--auth-content-border-color);
   border-radius: 2.4rem;
-  color: $text-color;
-  background-color: $auth-content-bg-color;
+  color: var(--text-color);
+  background-color: var(--auth-content-bg-color);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -108,7 +107,7 @@
     }
 
     &_href {
-      color: $text-bright-color;
+      color: var(--main-color);
       margin-left: 0.4rem;
       cursor: pointer;
     }

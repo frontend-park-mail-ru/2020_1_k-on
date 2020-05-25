@@ -1,11 +1,10 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
 .navbar {
   display: flex;
-  background-color: $navbar-bg-color;
-  box-shadow: 0 0 2px 2px $navbar-bg-color;
+  background-color: var(--navbar-bg-color);
+  box-shadow: 0 0 2px 2px var(--navbar-bg-color);
   font-family: OpenSans-Regular, sans-serif;
   transition: background-color $menu-transition-time, box-shadow $menu-transition-time;
   @include media('desktop') {
@@ -18,7 +17,7 @@
   }
 
   &_menu-active {
-    background-color: $submenu-bg-color;
+    background-color: var(--submenu-bg-color);
     box-shadow: none;
   }
 
@@ -29,6 +28,7 @@
   }
 
   &__mobile-item {
+    fill: var(--text-color);
     @include media('desktop') {
       display: none;
     }
@@ -51,13 +51,14 @@
 
   &__link {
     margin-left: $margin-between-links;
-    color: $text-color;
+    color: var(--text-color);
     @include media('desktop') {
       display: flex;
       align-items: center;
     }
 
     &_search-icon {
+      fill: var(--text-color);
       margin-right: 1rem;
       @include square(0.8em);
     }
@@ -89,8 +90,11 @@
     }
 
     &_logout {
-      background-image: url(/static/img/logout-white.svg);
-      @include center-background;
+      background-color: var(--text-color);
+      mask-image: url(/static/img/logout.svg);
+      mask-size: contain;
+      //background-image: url(/static/img/logout-white.svg);
+      //@include center-background;
       @include media('desktop') {
         @include square($size: 3rem);
       }
@@ -116,7 +120,7 @@
     display: grid;
     grid-row-gap: 6rem;
     width: 100%;
-    background-color: $submenu-bg-color;
+    background-color: var(--submenu-bg-color);
     font-size: 4rem;
     @include page-layout;
     @include submenu;
@@ -127,11 +131,11 @@
     }
 
     &__link {
-      color: white;
+      color: var(--text-color);
 
       &_circled {
         padding: 0.5em 1em;
-        border: 0.1rem solid white;
+        border: 0.1rem solid var(--text-color);
         border-radius: 0.5em;
         @include media('desktop') {
           font-size: 1.7rem;
@@ -142,9 +146,9 @@
       }
 
       &_bright {
-        border-color: $text-bright-color;
-        background: $button-bg-color;
-        color: $bg-color;
+        border-color: var(--main-color);
+        background: var(--button-bg-color);
+        color: var(--button-text-color);
       }
     }
 
@@ -163,7 +167,7 @@
   &__logo {
     font-family: OpenSans-Bold, sans-serif;
     text-transform: uppercase;
-    color: $text-color;
+    color: var(--text-color);
     @include media('desktop') {
       font-size: 3rem;
     }
@@ -172,7 +176,7 @@
     }
 
     &_color {
-      color: $text-bright-color;
+      color: var(--main-color);
     }
   }
 
@@ -195,7 +199,7 @@
       width: 2.5em;
       border-top-right-radius: $search-form-border-radius;
       border-bottom-right-radius: $search-form-border-radius;
-      background-color: $search-form-color;
+      background-color: var(--search-form-color);
     }
 
     &-icon {

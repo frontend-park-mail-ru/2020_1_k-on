@@ -32,8 +32,8 @@
 body {
   position: relative;
   min-height: 100vh;
-  background-color: $bg-color;
-  color: $text-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 
   font: {
     family: 'Roboto', sans-serif;
@@ -70,7 +70,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--text-color);
   opacity: 0.4;
   @include media('desktop') {
     min-height: 6rem;
@@ -88,7 +88,7 @@ body {
 
 .user-path {
   font-family: Montserrat-Regular, sans-serif;
-  color: $path-color;
+  color: var(--path-color);
 }
 
 .user-path > * {
@@ -97,7 +97,7 @@ body {
 
 .user-path__href {
   text-decoration: underline;
-  color: $path-color;
+  color: var(--path-color);
 }
 
 .hidden {
@@ -109,7 +109,7 @@ body {
 
 a {
   text-decoration: none;
-  color: $text-ref-color;
+  color: var(--text-ref-color);
 }
 
 input {

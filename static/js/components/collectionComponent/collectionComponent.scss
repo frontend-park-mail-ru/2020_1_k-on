@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
@@ -39,7 +38,7 @@
   &__show-all-button {
     cursor: pointer;
     text-decoration: underline;
-    color: $path-color;
+    color: var(--path-color);
     font-family: OpenSans-Regular, sans-serif;
     @include media('desktop') {
       font-size: 1.7rem;

@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
@@ -21,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 0.2rem solid $path-color;
+  border: 0.2rem solid var(--path-color);
   border-radius: 1.3rem;
   @include media('desktop') {
     font-size: 1.7rem;
@@ -34,14 +33,14 @@
   }
 
   &:hover {
-    border-color: $main-color;
+    border-color: var(--main-color);
   }
 
   &:hover &__arrow {
   }
 
   &_active {
-    border-color: $main-color;
+    border-color: var(--main-color);
   }
 
   &__filter-value {
@@ -49,7 +48,9 @@
   }
 
   &__arrow {
-    background-image: url(/static/img/down-arrow.svg);
+    background-color: var(--text-color);
+    mask-image: url(/static/img/down-arrow.svg);
+    //background-image: url(/static/img/down-arrow.svg);
     transition: transform $menu-transition-time;
     @include center-background;
     @include media('desktop') {
@@ -74,7 +75,7 @@
   width: 100%;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  background-color: $submenu-bg-color;
+  background-color: var(--submenu-bg-color);
   font-size: 2.2rem;
   @include submenu;
   @include media('mobile') {
@@ -113,7 +114,9 @@
   }
 
   &__close-icon {
-    background: no-repeat center / cover url(/static/img/close-icon.svg);
+    background-color: var(--text-color);
+    mask-image: url(/static/img/close-icon.svg);
+    //background: no-repeat center / cover url(/static/img/close-icon.svg);
     @include square(5rem);
     @include media('desktop') {
       display: none;
@@ -135,6 +138,7 @@
   }
 
   &__item {
+    color: var(--filter-submenu-item-color);
 
     &:hover {
       cursor: pointer;
@@ -142,7 +146,7 @@
     }
 
     &_active {
-      color: $main-color;
+      color: var(--main-color);
     }
   }
 }

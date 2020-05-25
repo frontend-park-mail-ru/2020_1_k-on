@@ -1,10 +1,9 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
 .auth-form {
   display: block;
-  color: $text-color;
+  color: var(--text-color);
 
   &__button {
     width: 100%;

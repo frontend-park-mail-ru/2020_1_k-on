@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
@@ -69,10 +68,10 @@
     width: 100%;
     display: block;
     border: 0;
-    border-bottom: 2px solid #eaeea9;
+    border-bottom: 2px solid var(--text-ref-color);
     background: none;
     font-family: inherit;
-    color: $text-color;
+    color: var(--text-color);
     transition: border-bottom 0.15s ease-in-out;
     @include media('desktop') {
       font-size: 1.8rem;
@@ -86,7 +85,7 @@
     }
 
     &:focus {
-      border-bottom: 2px solid $text-bright-color;
+      border-bottom: 2px solid var(--main-color);
     }
   }
 

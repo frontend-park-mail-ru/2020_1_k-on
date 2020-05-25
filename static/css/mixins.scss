@@ -14,7 +14,7 @@
 }
 @mixin gradient {
   background: {
-    image: $button-bg-color-hover;
+    image: var(--button-bg-color-hover);
     size: 300% 100%;
   }
 
@@ -25,7 +25,7 @@
 }
 @mixin gradientButton {
   border-radius: 1rem;
-  color: $bg-color;
+  color: var(--button-text-color);
   padding: 0.4em 1em;
   transition: all 0.4s ease-in-out;
   font-family: Openans-Regular, sans-serif;

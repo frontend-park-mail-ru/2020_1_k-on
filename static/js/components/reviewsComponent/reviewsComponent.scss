@@ -1,9 +1,7 @@
-@import '~css/variables';
-
 .no-reviews-message {
   padding: 3 * $padding-between-rows 0 6 * $padding-between-rows;
   border-top: 0.2px solid $text-dark-color;
-  color: $path-color;
+  color: var(--path-color);
   @include media('desktop') {
     font-size: 2rem;
   }

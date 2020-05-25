@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mixins';
 
 .swiper {
@@ -30,6 +29,7 @@
     &_svg {
       width: 3.5rem;
       height: 3.5rem;
+      fill: var(--text-color);
     }
 
     &_left {

@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
@@ -38,7 +37,7 @@
 
 .choose-list-button {
   color: white;
-  background-color: $shade-color;
+  background-color: var(--shade-color);
   width: 60%;
   display: flex;
   justify-content: space-between;
@@ -85,7 +84,7 @@
 .choose-list-block {
   z-index: 1000;
   position: absolute;
-  background-color: $submenu-bg-color;
+  background-color: var(--submenu-bg-color);
   border-radius: 1rem;
   overflow: hidden;
   @include submenu;
@@ -130,7 +129,7 @@
     @include ellipsis-overflow;
 
     &_active {
-      color: $text-bright-color;
+      color: var(--main-color);
     }
   }
 
@@ -154,4 +153,8 @@
     visibility: visible;
     opacity: 1;
   }
+}
+
+.message__link:hover {
+  color: var(--main-color);
 }

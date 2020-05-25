@@ -1,4 +1,3 @@
-@import '~css/variables';
 @import '~css/mixins';
 @import '~css/mediaQueries';
 
@@ -12,6 +11,10 @@
   }
 
   &__arrows {
+
+    &_svg {
+      fill: var(--text-color);
+    }
 
     &_left {
       @include sliderArrow(left);
@@ -46,7 +49,7 @@
     bottom: 0;
     width: 50%;
     height: 100%;
-    background-image: linear-gradient(to right, $bg-color, rgba($bg-color, 0));
+    background-image: var(--bg-shadow-color-left);
   }
 
   &__bottom-shade {
@@ -54,7 +57,7 @@
     bottom: 0;
     width: 100%;
     height: 48%;
-    background-image: linear-gradient(to top, $bg-color, rgba($bg-color, 0));
+    background-image: var(--bg-shadow-color);
   }
 }
 
