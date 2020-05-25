@@ -168,7 +168,8 @@
   border-radius: 50em;
   padding: var(--switch-padding);
 
-  &__input, &__label {
+  &__input,
+  &__label {
     position: absolute;
     left: 0;
     top: 0;
