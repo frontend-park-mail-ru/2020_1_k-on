@@ -17,7 +17,12 @@ export default class Network {
         return fetch(host + url, {
             method: 'GET',
             credentials: 'include',
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**
@@ -39,7 +44,12 @@ export default class Network {
             credentials: 'include',
             headers: headers,
             body: body,
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**
@@ -61,7 +71,12 @@ export default class Network {
             credentials: 'include',
             headers: headers,
             body: body,
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**
@@ -80,7 +95,12 @@ export default class Network {
             method: 'DELETE',
             credentials: 'include',
             headers: headers,
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**
