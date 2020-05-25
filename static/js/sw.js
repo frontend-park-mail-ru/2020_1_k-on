@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kino-on-cache';
+const CACHE_NAME = 'kino-on-cache-v2';
 let {assets} = global.serviceWorkerOption;
 assets = assets.map((asset) => String.prototype.concat('/dist', asset));
 assets.push('/static/fallback.html');
