@@ -14,6 +14,7 @@ import EventBus from 'libs/eventBus';
 import View from 'views/view';
 import initScale from 'libs/scale';
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+import {setTheme} from 'libs/theme';
 import {
     GLOBAL_EVENTS,
     INTERNAL_ERROR_MSG,
@@ -23,6 +24,7 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
     initScale();
+    setTheme();
 
     if ('serviceWorker' in navigator) {
         runtime.register();
