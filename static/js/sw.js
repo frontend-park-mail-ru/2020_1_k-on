@@ -1,5 +1,6 @@
 const CACHE_NAME = 'kino-on-cache';
-const {assets} = global.serviceWorkerOption;
+let {assets} = global.serviceWorkerOption;
+assets = assets.map((asset) => String.prototype.concat('/dist', asset));
 assets.push('/static/fallback.html');
 
 self.addEventListener('install', (event) => {
@@ -10,47 +11,43 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            cache.keys().then((requests) => {
-                return Promise.all(
-                    requests.filter((request) => {
-                        const staticCheck = !request.url.includes('/static/') &&
-                            !request.url.includes('.jpg');
-                        return staticCheck && !assets.includes(request.url);
-                    }).map((request) => {
-                        return cache.delete(request);
+    event.waitUntil(caches.open(CACHE_NAME).then((cache) => {
+        cache.keys().then((requests) => {
+            return Promise.all(
+                requests
+                    .filter((request) => {
+                        const url = new URL(request.url);
+                        return !url.pathname.includes('/static/') && !assets.includes(url.pathname);
                     })
-                );
-            });
-        })
-    );
+                    .map((request) => cache.delete(request))
+            );
+        });
+    }));
 });
 
 self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then((cachedResponse) => {
-                const staticCheck = event.request.url.includes('/static/') &&
-                    event.request.url.includes('.jpg');
-                if ((!navigator.onLine || staticCheck) && cachedResponse) {
-                    return cachedResponse;
-                }
+    event.respondWith(caches.match(event.request).then((cachedResponse) => {
+        const staticCheck = event.request.url.includes('/static/');
+        const distCheck = event.request.url.includes('/dist/');
+        if ((!navigator.onLine || staticCheck || distCheck) && cachedResponse) {
+            return cachedResponse;
+        }
 
-                return fetch(event.request)
-                    .then((response) => caches
-                        .open(CACHE_NAME)
-                        .then((cache) => {
-                            if (event.request.method === 'GET') {
-                                cache.put(event.request, response.clone());
-                            }
-                            return response;
-                        }))
-                    .catch((err) => {
-                        if (event.request.mode === 'navigate') {
-                            return caches.match('/static/fallback.html');
-                        }
-                    });
-            })
+        return fetch(event.request)
+            .then((response) => caches
+                .open(CACHE_NAME)
+                .then((cache) => {
+                    if (staticCheck || distCheck) {
+                        cache.put(event.request, response.clone());
+                    }
+                    return response;
+                })
+            )
+            .catch((err) => {
+                if (event.request.mode === 'navigate') {
+                    return caches.match('/static/fallback.html');
+                }
+            });
+    })
     );
 });

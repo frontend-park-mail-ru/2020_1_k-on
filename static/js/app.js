@@ -7,6 +7,7 @@ import ProfileController from 'controllers/profileController';
 import ListController from 'controllers/listController';
 import IndexController from 'controllers/indexController';
 import PersonController from 'controllers/personController';
+import SearchController from 'controllers/searchController';
 import NavbarComponent from 'components/navbarComponent/navbarComponent';
 import Router from 'libs/router';
 import EventBus from 'libs/eventBus';
@@ -19,15 +20,12 @@ import {
     INTERNAL_ERROR_STATUS,
     NOT_FOUND_ERROR_MSG,
 } from 'libs/constants';
-import SearchController from 'controllers/searchController';
 
 document.addEventListener('DOMContentLoaded', () => {
     initScale();
 
     if ('serviceWorker' in navigator) {
         runtime.register();
-        navigator.serviceWorker.register('/sw.js', {scope: '/'})
-            .catch((err) => (console.log('SW registration FAIL:', err)));
     }
 
     const header = document.getElementById('header');

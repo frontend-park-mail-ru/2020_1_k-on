@@ -67,6 +67,9 @@ module.exports = {
         }),
         new ServiceWorkerWebpackPlugin({
             entry: path.resolve(__dirname, 'static/js/sw.js'),
+            options: {
+                scope: '/',
+            },
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'static/index.html'),
@@ -74,9 +77,6 @@ module.exports = {
         }),
         new WebpackGitHash({
             hashLength: githashLength,
-        }),
-        new ServiceWorkerWebpackPlugin({
-            entry: path.join(__dirname, 'static/js/sw.js'),
         }),
     ],
 };
