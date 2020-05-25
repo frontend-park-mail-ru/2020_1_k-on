@@ -257,3 +257,5 @@ export const SEARCH_TABS = [
 export const SEARCH_DELAY = 500;
 
 export const SEARCH_SWIPER_LIMIT = 10;
+
+export const DEFAULT_THEME = 'dark';
