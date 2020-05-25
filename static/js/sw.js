@@ -27,8 +27,9 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(caches.match(event.request).then((cachedResponse) => {
-        const staticCheck = event.request.url.includes('/static/');
-        const distCheck = event.request.url.includes('/dist/');
+        const url = new URL(event.request.url);
+        const staticCheck = url.pathname.includes('/static/') && url.pathname.includes('.');
+        const distCheck = url.pathname.includes('/dist/');
         if ((!navigator.onLine || staticCheck || distCheck) && cachedResponse) {
             return cachedResponse;
         }
