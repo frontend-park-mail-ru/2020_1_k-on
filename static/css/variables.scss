@@ -44,9 +44,14 @@
   --auth-form-input-bg-color: rgb(10, 10, 10);
   --auth-content-border-color: rgb(86, 92, 103);
   --auth-content-bg-color: rgba(30, 31, 35, 0.7);
+
+  // Switch
+  --switch-width: 6.4rem;
+  --switch-height: 3rem;
+  --switch-padding: 3px;
 }
 
-[data-theme='dark'] {
+[data-theme='light'] {
   // Main
   --text-color: black;
   --bg-color: white;
@@ -152,3 +157,6 @@ $mobile-factor: 1.5;
 // Modal
 $modal-content-border-color: rgb(86, 92, 103);
 $modal-content-bg-color: rgba(30, 31, 35, 0.7);
+
+// Switch
+$switch-animation-duration: 0.2s;

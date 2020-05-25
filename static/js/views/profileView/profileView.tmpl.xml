@@ -21,13 +21,25 @@
                     <svg class="user-action__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 163.861 163.861" xml:space="preserve"><g><path d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"/></g></svg>
                     <span class="user-action__name">Плейлисты</span>
                 </div>
-                <div class="user-action user-action_stat">
-                    <svg class="user-action__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><path d="M117.547,234.667H10.88c-5.888,0-10.667,4.779-10.667,10.667v256C0.213,507.221,4.992,512,10.88,512h106.667c5.888,0,10.667-4.779,10.667-10.667v-256C128.213,239.445,123.456,234.667,117.547,234.667z"/></g><g><path d="M309.12,0H202.453c-5.888,0-10.667,4.779-10.667,10.667v490.667c0,5.888,4.779,10.667,10.667,10.667H309.12c5.888,0,10.667-4.779,10.667-10.667V10.667C319.787,4.779,315.008,0,309.12,0z"/></g><g><path d="M501.12,106.667H394.453c-5.888,0-10.667,4.779-10.667,10.667v384c0,5.888,4.779,10.667,10.667,10.667H501.12c5.888,0,10.667-4.779,10.667-10.667v-384C511.787,111.445,507.008,106.667,501.12,106.667z"/></g></svg>
-                    <span class="user-action__name">Статистика</span>
-                </div>
                 <div class="user-action user-action_subscriptions">
                     <svg class="user-action__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 426.667 426.667" xml:space="preserve"><g><rect x="85.333" y="0" width="256" height="42.667"/><path d="M384,170.667H42.667C19.093,170.667,0,189.76,0,213.333V384c0,23.573,19.093,42.667,42.667,42.667H384c23.573,0,42.667-19.093,42.667-42.667V213.333C426.667,189.76,407.573,170.667,384,170.667z M170.667,368.32V229.013l128,69.653L170.667,368.32z"/><rect x="42.667" y="85.333" width="341.333" height="42.667"/></g></svg>
                     <span class="user-action__name">Подписки</span>
+                </div>
+                <div class="user-action user-action_theme">
+                    <div class="switch">
+                        <fest:choose>
+                            <fest:when test="data.isLightTheme === true">
+                                <input class="switch__input" type="checkbox" id="switchCheckbox1" />
+                            </fest:when>
+
+                            <fest:otherwise>
+                                <input class="switch__input" type="checkbox" id="switchCheckbox1" checked="true" />
+                            </fest:otherwise>
+                        </fest:choose>
+                        <label aria-hidden="true" class="switch__label" for="switchCheckbox1">Темный</label>
+                        <div aria-hidden="true" class="switch__marker" />
+                    </div>
+                    <span class="user-action__name">Темный</span>
                 </div>
             </div>
         </div>

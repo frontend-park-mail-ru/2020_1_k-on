@@ -157,3 +157,67 @@
     font-size: 1.6rem * $mobile-factor;
   }
 }
+
+.switch {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  position: relative;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  border-radius: 50em;
+  padding: var(--switch-padding);
+
+  &__input, &__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__input {
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+
+    &:checked + .switch__label {
+      background-color: var(--main-color);
+    }
+
+    &:checked + .switch__label + .switch__marker {
+      left: calc(100% - var(--switch-height) + var(--switch-padding));
+    }
+
+    &:focus + .switch__label,
+    &:active + .switch__label {
+      box-shadow: 0 0 0 3px rgba(var(--main-color), 0.2);
+    }
+  }
+
+  &__label {
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    user-select: none;
+    background-color: var(--main-color);
+    border-radius: inherit;
+    z-index: 1;
+    transition: background $switch-animation-duration;
+  }
+
+  &__marker {
+    position: relative;
+    background-color: var(--bg-color);
+    width: calc(var(--switch-height) - var(--switch-padding) * 2);
+    height: calc(var(--switch-height) - var(--switch-padding) * 2);
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.25);
+    left: var(--switch-padding);
+    transition: left $switch-animation-duration;
+    will-change: left;
+  }
+}
