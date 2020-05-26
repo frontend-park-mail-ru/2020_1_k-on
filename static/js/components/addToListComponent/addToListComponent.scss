@@ -78,6 +78,7 @@
   border-top-right-radius: $add-to-list-button-border-radius;
   border-bottom-right-radius: $add-to-list-button-border-radius;
   width: 40%;
+  color: var(--button-text-color);
   @include gradient;
 
   &_hidden {
