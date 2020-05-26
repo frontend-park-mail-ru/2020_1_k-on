@@ -36,6 +36,8 @@ function fit() {
         currentScale = Math.min(currentScale, currentHeight / aspectHeight);
     }
 
+    currentScale = Math.max(currentScale, 0.5);
+
     document.documentElement.style.fontSize = `${currentScale * initScale}px`;
 }
 
