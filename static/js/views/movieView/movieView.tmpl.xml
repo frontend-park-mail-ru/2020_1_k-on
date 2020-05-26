@@ -141,6 +141,7 @@
             </div>
         </div>
 
+        <div id="share-container"/>
         <div id="add-to-list-container"/>
         <div id="similar-container"/>
         <div id="user-review-container"/>

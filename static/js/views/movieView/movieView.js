@@ -1,6 +1,7 @@
 import View from 'views/view';
 import template from './movieView.tmpl.xml';
 import Api from 'libs/api';
+import ShareComponent from 'components/shareComponent/shareComponent';
 import UserReviewComponent from 'components/userReviewComponent/userReviewComponent';
 import ReviewsComponent from 'components/reviewsComponent/reviewsComponent';
 import AddToListComponent from 'components/addToListComponent/addToListComponent';
@@ -61,6 +62,7 @@ export default class MovieView extends View {
 
     afterRender() {
         this.renderSimilar(this.data.simfilms, this.data.simseries);
+        this.renderShareBlock();
 
         Api.getUserData().then((res) => {
             if (res.status !== SUCCESS_STATUS) {
@@ -181,6 +183,13 @@ export default class MovieView extends View {
             .catch((err) => {
                 console.error(`${err.status}: FAILED TO FETCH REVIEWS`);
             });
+    }
+
+    renderShareBlock() {
+        if (navigator.share) {
+            const shareComponent = new ShareComponent();
+            document.getElementById('share-container').appendChild(shareComponent.render());
+        }
     }
 
     setId(id) {

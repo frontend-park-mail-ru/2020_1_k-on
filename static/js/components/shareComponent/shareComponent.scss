@@ -1,0 +1,17 @@
+@import '~css/mixins';
+
+.share-button-block {
+  margin-bottom: 4rem;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    @include gradientButton;
+  }
+
+  &__icon {
+    margin-right: 0.5em;
+    fill: var(--button-text-color);
+    @include square(1em);
+  }
+}
