@@ -80,6 +80,8 @@ export default class ProfileView extends View {
             'change',
             switchTheme,
         );
+
+        this.onSubscriptions().call(this);
     }
 
     onSettings() {
