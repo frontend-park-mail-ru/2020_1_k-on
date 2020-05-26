@@ -20,6 +20,7 @@
 
   &__input {
     width: 100%;
+    box-sizing: border-box;
     margin-bottom: 3rem;
     padding-bottom: 0.2em;
     border-bottom: 1px solid var(--text-color);
