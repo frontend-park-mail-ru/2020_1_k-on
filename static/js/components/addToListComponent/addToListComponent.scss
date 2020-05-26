@@ -36,11 +36,12 @@
 }
 
 .choose-list-button {
-  color: white;
+  color: var(--text-color);
   background-color: var(--shade-color);
   width: 60%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 1em;
   border-top-left-radius: $add-to-list-button-border-radius;
   border-bottom-left-radius: $add-to-list-button-border-radius;
@@ -51,7 +52,10 @@
   }
 
   &__arrow {
-    background-image: url(/static/img/down-arrow.svg);
+    background-color: var(--text-color);
+    mask-image: url(/static/img/down-arrow.svg);
+    mask-size: contain;
+    //background-image: url(/static/img/down-arrow.svg);
     @include center-background;
     @include media('desktop') {
       min-width: 2rem;
