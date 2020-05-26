@@ -16,8 +16,8 @@ export default class ShareComponent extends Component {
 
     share(evt) {
         navigator.share({
-            title: 'title',
-            text: 'text',
+            title: '',
+            text: '',
             url: window.location.href,
         });
     }
