@@ -63,7 +63,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'style.css',
+            filename: 'style-[contenthash].css',
         }),
         new ServiceWorkerWebpackPlugin({
             entry: path.resolve(__dirname, 'static/js/sw.js'),
