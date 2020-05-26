@@ -13,6 +13,7 @@
   // Button
   --button-bg-color: linear-gradient(to right, #ced756, #eaeea9);
   --button-bg-color-hover: linear-gradient(to right, #ced756, #eaeea9, #abc959);
+  --button-text-color: #1d2025;
 
   // Navbar
   --search-form-color: var(--text-color);
@@ -29,9 +30,6 @@
   --filter-button-border: var(--text-color);
   --submenu-bg-color: rgba(22, 24, 28, 0.95);
   --filter-submenu-item-color: var(--text-color);
-
-  // Gradient button
-  --button-text-color: #1d2025;
 
   // Search
   --search-tab-bg-color: #25282F;
@@ -64,6 +62,7 @@
   // Button
   --button-bg-color: linear-gradient(to right, #0f4c81, #8091bd);
   --button-bg-color-hover: linear-gradient(to right, #0f4c81, #8091bd, #55689a);
+  --button-text-color: var(--bg-color);
 
   // Navbar
   --navbar-bg-color: var(--shade-color);
