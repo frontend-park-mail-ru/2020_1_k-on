@@ -78,10 +78,17 @@ export default class ProfileView extends View {
 
         this.root.getElementsByClassName('user-action_theme')[0].addEventListener(
             'change',
-            switchTheme,
+            this.onTheme.bind(this),
         );
 
         this.onSubscriptions().call(this);
+    }
+
+    onTheme() {
+        switchTheme();
+        const themeMsgElem = this.root.getElementsByClassName('user-action__name_theme')[0];
+
+        themeMsgElem.innerText = themeMsgElem.innerText === 'Светлый' ? 'Темный' : 'Светлый';
     }
 
     onSettings() {

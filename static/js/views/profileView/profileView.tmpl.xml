@@ -39,7 +39,15 @@
                         <label aria-hidden="true" class="switch__label" for="switchCheckbox1">Темный</label>
                         <div aria-hidden="true" class="switch__marker" />
                     </div>
-                    <span class="user-action__name">Темный</span>
+                    <fest:choose>
+                        <fest:when test="data.isLightTheme === true">
+                            <span class="user-action__name user-action__name_theme">Светлый</span>
+                        </fest:when>
+
+                        <fest:otherwise>
+                            <span class="user-action__name user-action__name_theme">Темный</span>
+                        </fest:otherwise>
+                    </fest:choose>
                 </div>
             </div>
         </div>
