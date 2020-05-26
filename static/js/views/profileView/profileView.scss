@@ -146,18 +146,6 @@
   margin-top: 3.6rem;
 }
 
-.stats {
-  text-align: center;
-  @include media('desktop') {
-    margin-top: 2rem;
-    font-size: 1.6rem;
-  }
-  @include media('mobile') {
-    margin-top: 2rem * $mobile-factor;
-    font-size: 1.6rem * $mobile-factor;
-  }
-}
-
 .switch {
   display: flex;
   flex-shrink: 0;
