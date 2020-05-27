@@ -13,6 +13,7 @@
   &__code {
     z-index: 1;
     font-family: Montserrat-Medium, sans-serif;
+    color: var(--text-color);
     font-size: 12em;
     margin-bottom: 24px;
   }
@@ -20,6 +21,7 @@
   &__msg {
     width: 75%;
     z-index: 1;
+    color: var(--text-color);
     font-family: Montserrat-Medium, sans-serif;
     font-size: 3em;
     text-align: center;
