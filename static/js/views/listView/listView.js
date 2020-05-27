@@ -21,6 +21,8 @@ export default class ListView extends View {
         this.eventBus.subscribe(LIST_EVENTS.updateList, this.getList.bind(this));
         this.eventBus.subscribe(PAGINATOR_EVENTS.updatePage, this.getList.bind(this));
         this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, this.updateHistory.bind(this));
+
+        this.isFirstRender = true;
     }
 
     render(root) {
@@ -48,9 +50,6 @@ export default class ListView extends View {
                     .appendChild(this.filterComponent.render());
 
                 this.getList();
-
-                this.paginatorComponent = new PaginatorComponent(this.eventBus);
-                this.root.appendChild(this.paginatorComponent.render());
             })
             .catch((err) => {
                 this.eventBus.publish(LIST_EVENTS.internalError, err.status);
@@ -68,9 +67,14 @@ export default class ListView extends View {
             })
             .then((res) => {
                 if (page === 1 || res.body !== null) {
+                    this.updateList(res.body);
+                    if (this.isFirstRender) {
+                        this.isFirstRender = false;
+                        this.paginatorComponent = new PaginatorComponent(this.eventBus);
+                        this.root.appendChild(this.paginatorComponent.render());
+                    }
                     this.paginatorComponent.setIsLastPage(false);
                     this.paginatorComponent.setPage(page);
-                    this.updateList(res.body);
                 } else {
                     this.paginatorComponent.setIsLastPage(true);
                 }
