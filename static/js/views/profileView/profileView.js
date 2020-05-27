@@ -12,6 +12,7 @@ import {
     PROFILE_MSGS,
     SHOW_MSG_TIMEOUT,
     HOST_ADDRESS,
+    PROFILE_TABS,
 } from 'libs/constants';
 import {switchTheme} from 'libs/theme';
 
@@ -82,6 +83,8 @@ export default class ProfileView extends View {
         );
 
         this.onSubscriptions().call(this);
+
+        this.currentTab = PROFILE_TABS.subscriptions;
     }
 
     onTheme() {
@@ -92,6 +95,12 @@ export default class ProfileView extends View {
     }
 
     onSettings() {
+        if (this.currentTab === PROFILE_TABS.settings) {
+            return;
+        }
+
+        this.currentTab = PROFILE_TABS.settings;
+
         this.actionContainer.innerHTML = '';
         const profileSettingsComponent = new ProfileSettingsComponent({
             email: this.data.email,
@@ -102,6 +111,12 @@ export default class ProfileView extends View {
     }
 
     onPlaylist() {
+        if (this.currentTab === PROFILE_TABS.playlists) {
+            return;
+        }
+
+        this.currentTab = PROFILE_TABS.playlists;
+
         this.actionContainer.innerHTML = '';
 
         Api.getUserPlaylists()
@@ -124,6 +139,12 @@ export default class ProfileView extends View {
     }
 
     onSubscriptions() {
+        if (this.currentTab === PROFILE_TABS.subscriptions) {
+            return;
+        }
+
+        this.currentTab = PROFILE_TABS.subscriptions;
+
         this.actionContainer.innerHTML = '';
 
         Api.getSubscriptions()

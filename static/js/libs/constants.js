@@ -259,3 +259,9 @@ export const SEARCH_DELAY = 500;
 export const SEARCH_SWIPER_LIMIT = 10;
 
 export const DEFAULT_THEME = 'dark';
+
+export const PROFILE_TABS = {
+    settings: 'settings',
+    playlists: 'playlists',
+    subscriptions: 'subscriptions',
+};
