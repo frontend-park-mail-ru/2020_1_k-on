@@ -36,6 +36,8 @@ export default class PaginatorComponent extends Component {
     }
 
     setPage(page) {
+        window.scrollTo(0, 0);
+
         this.data.currentPage = page;
         if (page === 1) {
             this.setBtnDisabled(this.prevBtn);
