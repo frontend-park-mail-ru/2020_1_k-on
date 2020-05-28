@@ -131,4 +131,9 @@ export default class ListView extends View {
         const url = genreReference === '%' ? `/${this.type}` : `/${this.type}/${genreReference}`;
         window.history.pushState(null, null, url);
     }
+
+    close() {
+        this.isFirstRender = true;
+        super.close();
+    }
 }
