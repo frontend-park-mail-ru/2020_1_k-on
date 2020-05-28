@@ -84,7 +84,7 @@ export default class Router {
                 }
                 view.render(this.root);
 
-                // window.scrollTo(0, 0);
+                window.scrollTo(0, 0);
                 window.history.pushState(null, null, path);
                 return;
             }

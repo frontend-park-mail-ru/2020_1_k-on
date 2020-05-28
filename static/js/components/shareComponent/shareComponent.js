@@ -36,8 +36,7 @@ export default class ShareComponent extends Component {
 
     share(evt) {
         navigator.share({
-            title: this.shareData.title,
-            url: `${window.location.href}?share=${this.shareData.image}&description=${this.shareData.title}`,
+            url: `${window.location.href}?share=${this.shareData.image}&title=${this.shareData.title}`,
         });
     }
 }
