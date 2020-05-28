@@ -30,13 +30,14 @@ export default class ShareComponent extends Component {
     }
 
     shareVk(evt) {
-        const linkString = `https://vk.com/share.php?url=${window.location.href}?share=${this.shareData.image}&title=${this.shareData.title}`;
+        const linkString = `https://vk.com/share.php?url=${window.location.href}&title=${this.shareData.title}&image=${HOST_ADDRESS}${this.shareData.image}`;
         window.location = linkString;
     }
 
     share(evt) {
         navigator.share({
-            url: `${window.location.href}?share=${this.shareData.image}&title=${this.shareData.title}&description=${this.shareData.text}`,
+            text: `${this.shareData.title}\n`,
+            url: `${window.location.href}?share=${this.shareData.image}`,
         });
     }
 }
