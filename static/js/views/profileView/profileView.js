@@ -82,9 +82,7 @@ export default class ProfileView extends View {
             this.onTheme.bind(this),
         );
 
-        this.onSubscriptions().call(this);
-
-        this.currentTab = PROFILE_TABS.subscriptions;
+        this.onSubscriptions.call(this);
     }
 
     onTheme() {
@@ -214,5 +212,10 @@ export default class ProfileView extends View {
         this.data.email = email;
         this.root.getElementsByClassName('user-avatar__name')[0].innerText = username;
         document.getElementsByClassName('navbar__link_username')[0].textContent = username;
+    }
+
+    close() {
+        this.currentTab = '';
+        super.close();
     }
 }
