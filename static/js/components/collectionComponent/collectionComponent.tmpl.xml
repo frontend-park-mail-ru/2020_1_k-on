@@ -5,17 +5,20 @@
 
     <fest:if test="data.isPlaylist === true">
         <fest:if test="data.isUserAuth === true">
-            <button class="collection__subscribe-button" data-id="{data.id}">
+            <span class="collection__subscribe-wrapper">
                 <fest:choose>
                     <fest:when test="data.isUserSubscribed === true">
-                        <fest:text>Отписаться</fest:text>
+                        <span class="collection__subscribe-button collection__subscribe-button_unsub" data-id="{data.id}">
+                            Отписаться
+                        </span>
                     </fest:when>
-
                     <fest:otherwise>
-                        <fest:text>Подписаться</fest:text>
+                        <span class="collection__subscribe-button collection__subscribe-button_sub" data-id="{data.id}">
+                            Подписаться
+                        </span>
                     </fest:otherwise>
                 </fest:choose>
-            </button>
+            </span>
         </fest:if>
     </fest:if>
 

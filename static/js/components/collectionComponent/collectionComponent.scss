@@ -25,13 +25,53 @@
   }
 
   &__subscribe-button {
-    @include gradientButton;
+    font-family: Montserrat-Regular, sans-serif;
+    color: var(--text-ref-color);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.35s;
+    @include media('desktop') {
+      font-size: 2.2rem;
+    }
+    @include media('mobile') {
+      font-size: 2.2rem * $mobile-factor;
+    }
 
-    &_err {
-      background: {
-        image: linear-gradient(to right, #ff6600, $error-color, #ff9933);
-        size: 300% 100%;
+    &_sub {
+      color: var(--text-ref-color);
+
+      &:hover {
+        color: var(--main-color);
+        transition: color 0.35s;
       }
+    }
+
+    &_unsub {
+      color: $error-ref-color;
+
+      &:hover {
+        color: $error-color;
+        transition: color 0.35s;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      height: 1em;
+      width: 100%;
+      border-bottom: 1px solid;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.35s, transform 0.35s;
+      transform: scale(0,1);
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
