@@ -15,7 +15,7 @@ export default class ShareComponent extends Component {
         this.shareData = {
             title: title,
             text: text,
-            image: image,
+            image: image.split('/').pop(),
         };
 
         this.element = document.createElement('div');
@@ -36,8 +36,8 @@ export default class ShareComponent extends Component {
 
     share(evt) {
         navigator.share({
-            text: `${this.shareData.title}\n`,
-            url: `${window.location.href}?share=${this.shareData.image}`,
+            title: this.shareData.title,
+            url: `${window.location.href}?share=${this.shareData.image}&description=${this.shareData.text}`,
         });
     }
 }
