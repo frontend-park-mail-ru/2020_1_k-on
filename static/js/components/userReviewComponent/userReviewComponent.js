@@ -84,8 +84,8 @@ export default class UserReviewComponent extends Component {
         evt.preventDefault();
 
         const reviewText = document.getElementsByClassName('review-form__input')[0].value;
-        if (!reviewText || this.rating === 0) {
-            this.showError('Пожалуйста, напишите отзыв и оставьте оценку');
+        if (this.rating === 0) {
+            this.showError('Пожалуйста, поставьте оценку');
             return;
         }
 
