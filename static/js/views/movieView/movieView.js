@@ -186,10 +186,13 @@ export default class MovieView extends View {
     }
 
     renderShareBlock() {
-        if (navigator.share) {
-            const shareComponent = new ShareComponent();
-            document.getElementById('share-container').appendChild(shareComponent.render());
-        }
+        const shareComponent = new ShareComponent(
+            navigator.share ? 'all' : 'vk',
+            this.data.object.russianName,
+            this.data.object.description,
+            this.data.object.image,
+        );
+        document.getElementById('share-container').appendChild(shareComponent.render());
     }
 
     setId(id) {
