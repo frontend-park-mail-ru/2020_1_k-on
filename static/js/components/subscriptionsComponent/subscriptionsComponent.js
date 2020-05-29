@@ -14,7 +14,7 @@ export default class SubscriptionsComponent extends Component {
         this.subsList = subsList;
 
         this.element = document.createElement('div');
-        this.element.classList.add('subscriptions');
+        this.element.classList.add('subscriptions', 'page-layout');
     }
 
     afterRender() {

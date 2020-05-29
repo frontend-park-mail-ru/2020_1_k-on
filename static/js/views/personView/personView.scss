@@ -29,11 +29,11 @@
     background: no-repeat center 0 / cover;
     @include media('desktop') {
       height: 26.6rem;
-      width: 20rem;
+      min-width: 20rem;
     }
     @include media('mobile') {
       height: 26.6rem * $mobile-factor;
-      width: 20rem * $mobile-factor;
+      min-width: 20rem * $mobile-factor;
     }
   }
 }

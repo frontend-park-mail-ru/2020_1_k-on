@@ -54,11 +54,10 @@
                     </fest:for>
                 </div>
             </div>
-
-            <div class="result-message">
-                Добавлено!
-            </div>
         </fest:if>
 
+        <div class="result-message">
+            Добавлено!
+        </div>
     </div>
 </fest:template>

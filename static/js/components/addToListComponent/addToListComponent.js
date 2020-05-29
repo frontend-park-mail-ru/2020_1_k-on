@@ -87,8 +87,8 @@ export default class AddToListComponent extends Component {
         )
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    this.showMessage('Добавлено!');
                     this.deletePlaylist(this.chosenPlaylist.id);
+                    this.showMessage('Добавлено!');
                 } else {
                     return Promise.reject(res);
                 }
@@ -106,11 +106,12 @@ export default class AddToListComponent extends Component {
         resultMessage.classList.add('result-message_visible');
         if (isError) {
             resultMessage.classList.add('result-message_error');
+        } else {
+            resultMessage.classList.remove('result-message_error');
         }
 
         setTimeout(() => {
             resultMessage.classList.remove('result-message_visible');
-            resultMessage.classList.remove('result-message_error');
         }, SHOW_MSG_TIMEOUT);
     }
 

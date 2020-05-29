@@ -8,14 +8,15 @@
 .user-settings {
   box-sizing: border-box;
   padding: 3.2rem 6.4rem;
-  width: 35rem;
   background-color: var(--shade-color);
   border-radius: 0 0 2.4rem 2.4rem;
   @include media('desktop') {
     margin-bottom: 2rem;
+    width: 35rem;
   }
   @include media('mobile') {
     margin-bottom: 2rem * $mobile-factor;
+    width: 40rem;
   }
 
   &__change-password {
