@@ -84,7 +84,7 @@ export default class UserReviewComponent extends Component {
     }
 
     onFormFocus(evt) {
-        screen.orientation.lock('landscape-pimary');
+        screen.orientation.lock('landscape-primary');
     }
 
     onFormBlur(evt) {
