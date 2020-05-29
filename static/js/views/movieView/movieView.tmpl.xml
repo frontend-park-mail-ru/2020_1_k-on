@@ -43,23 +43,35 @@
 
         <div class="movie-content page-layout">
 
-            <div class="movie-trailer">
-                <div class="movie-trailer__headline">
-                    Трейлер
-                </div>
+            <fest:if test="data.object.trailerLink">
+                <div class="movie-trailer">
+                    <div class="movie-trailer__headline">
+                        Трейлер
+                    </div>
 
-                <div class="movie-trailer__video-frame">
-                    <iframe src="https://www.youtube.com/embed/{data.object.trailerLink}"
-                            allowfullscreen="allowfullscreen"
-                            mozallowfullscreen="mozallowfullscreen"
-                            msallowfullscreen="msallowfullscreen"
-                            oallowfullscreen="oallowfullscreen"
-                            webkitallowfullscreen="webkitallowfullscreen"
-                            width="100%" height="100%"/>
+                    <div class="movie-trailer__video-frame">
+                        <iframe src="https://www.youtube.com/embed/{data.object.trailerLink}"
+                                allowfullscreen="allowfullscreen"
+                                mozallowfullscreen="mozallowfullscreen"
+                                msallowfullscreen="msallowfullscreen"
+                                oallowfullscreen="oallowfullscreen"
+                                webkitallowfullscreen="webkitallowfullscreen"
+                                width="100%" height="100%"/>
+                    </div>
                 </div>
-            </div>
+            </fest:if>
 
-            <div class="movie-info">
+            <fest:choose>
+                <fest:when test="data.object.trailerLink">
+                    <fest:var name="noTrailer"/>
+                </fest:when>
+
+                <fest:otherwise>
+                    <fest:var name="noTrailer">_no-trailer</fest:var>
+                </fest:otherwise>
+            </fest:choose>
+
+            <div class="movie-info movie-info{noTrailer}">
                 <div class="movie-info__short-description">
                     <fest:if test="data.type === 'series'">
                         <fest:value>data.object.yearFirst</fest:value>
@@ -81,63 +93,53 @@
                     <fest:value>data.object.ageLimit</fest:value>+
                 </div>
 
-                <div class="movie-info__description">
+                <div class="movie-info__description movie-info__description{noTrailer}">
+
                     <fest:value>data.object.description</fest:value>
-                </div>
-                <div class="movie-info__data">
-                    <div class="movie-info__data_title">Рейтинг:</div>
-                    <div class="movie-info__data_content">
-                        <fest:value>data.object.rating</fest:value>
-                    </div>
 
-                    <div class="movie-info__data_title">Рейтинг IMDb:</div>
-                    <div class="movie-info__data_content">
-                        <fest:value>data.object.imdbRating</fest:value>
-                    </div>
+                    <div class="movie-info__data movie-info__data{noTrailer}">
+                        <div class="movie-info__data_title">Рейтинг:</div>
+                        <div class="movie-info__data_content">
+                            <fest:value>data.object.rating</fest:value>
+                        </div>
 
-                    <!--                    <div class="movie-info__data_title">Режиссеры:</div>-->
-                    <!--                    <div class="movie-info__data_content">-->
-                    <!--                        <fest:for iterate="data.producers" index="i" value="producer">-->
-                    <!--                            <a class="movie-info__data_ref" href="{producer.reference}">-->
-                    <!--                                <fest:value>producer.name</fest:value>-->
-                    <!--                            </a>-->
+                        <div class="movie-info__data_title">Рейтинг IMDb:</div>
+                        <div class="movie-info__data_content">
+                            <fest:value>data.object.imdbRating</fest:value>
+                        </div>
 
-                    <!--                            <fest:if test="i != data.producers.length - 1">-->
-                    <!--                                ,-->
-                    <!--                                <fest:space/>-->
-                    <!--                            </fest:if>-->
-                    <!--                        </fest:for>-->
-                    <!--                    </div>-->
+                        <div class="movie-info__data_title">В ролях:</div>
+                        <div class="movie-info__data_content">
+                            <fest:for iterate="data.actors" index="i" value="actor">
+                                <a class="movie-info__data_ref" href="/persons/{actor.id}">
+                                    <fest:value>actor.name</fest:value>
+                                </a>
 
-                    <div class="movie-info__data_title">В ролях:</div>
-                    <div class="movie-info__data_content">
-                        <fest:for iterate="data.actors" index="i" value="actor">
-                            <a class="movie-info__data_ref" href="/persons/{actor.id}">
-                                <fest:value>actor.name</fest:value>
-                            </a>
+                                <fest:if test="i != data.actors.length - 1">
+                                    ,
+                                    <fest:space/>
+                                </fest:if>
+                            </fest:for>
+                        </div>
 
-                            <fest:if test="i != data.actors.length - 1">
-                                ,
-                                <fest:space/>
-                            </fest:if>
-                        </fest:for>
-                    </div>
+                        <div class="movie-info__data_title">Жанры:</div>
+                        <div class="movie-info__data_content">
+                            <fest:for iterate="data.genres" index="j" value="genre">
+                                <a class="movie-info__data_ref movie-info__data_genre"
+                                   href="/{data.type}/{genre.reference}">
+                                    <fest:value>genre.name</fest:value>
+                                </a>
 
-                    <div class="movie-info__data_title">Жанры:</div>
-                    <div class="movie-info__data_content">
-                        <fest:for iterate="data.genres" index="j" value="genre">
-                            <a class="movie-info__data_ref movie-info__data_genre"
-                               href="/{data.type}/{genre.reference}">
-                                <fest:value>genre.name</fest:value>
-                            </a>
-
-                            <fest:if test="j != data.genres.length - 1">
-                                ,
-                                <fest:space/>
-                            </fest:if>
-                        </fest:for>
+                                <fest:if test="j != data.genres.length - 1">
+                                    ,
+                                    <fest:space/>
+                                </fest:if>
+                            </fest:for>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 

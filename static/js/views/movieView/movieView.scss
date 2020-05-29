@@ -163,6 +163,13 @@
     padding-left: $indent-between-description-data;
   }
 
+  &_no-trailer {
+    @include media('desktop') {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
   &__short-description {
     padding-bottom: $padding-between-description-blocks;
     font-family: OpenSans-SemiBold, sans-serif;
@@ -176,18 +183,33 @@
   }
 
   &__description {
-    padding-bottom: $padding-between-description-blocks;
     color: var(--text-color);
+
+    &_no-trailer {
+      @include media('desktop') {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+      }
+    }
   }
 
   &__data {
+    padding-top: $padding-between-description-blocks;
     display: grid;
     grid-gap: 1rem;
+    height: fit-content;
     @include media('desktop') {
       grid-template-columns: 1fr 5fr;
     }
     @include media('mobile') {
       grid-template-columns: 1fr 2fr;
+    }
+
+    &_no-trailer {
+      @include media('desktop') {
+        padding-top: 0;
+      }
     }
 
     &_title {
