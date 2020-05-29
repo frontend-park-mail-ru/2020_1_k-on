@@ -9,3 +9,20 @@
     font-size: 2rem * $mobile-factor;
   }
 }
+
+.reviews-block {
+  padding-left: $review-padding-left;
+
+  &__review-info {
+    padding-left: 3rem;
+  }
+
+  &__review-text {
+    @include media('desktop') {
+      font-size: 1.8rem;
+    }
+    @include media('mobile') {
+      font-size: 1.8rem * $mobile-factor;
+    }
+  }
+}

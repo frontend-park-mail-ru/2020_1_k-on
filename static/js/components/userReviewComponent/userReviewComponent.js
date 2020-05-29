@@ -70,8 +70,7 @@ export default class UserReviewComponent extends Component {
 
     toPreviousStars(starValue, func) {
         const rateBlock = document.getElementsByClassName('review-form__rate')[0];
-        for (const star of rateBlock.children) {
-            const starIcon = star.firstElementChild;
+        for (const starIcon of rateBlock.children) {
             func(starIcon);
 
             if (starIcon.dataset['value'] === starValue) {
@@ -105,7 +104,7 @@ export default class UserReviewComponent extends Component {
             })
             .catch((err) => {
                 console.error(`${err.status}: FAILED TO LOAD COMMENT`);
-                this.showError('Не удалось загрузить комментарий');
+                this.showError('Не удалось отправить отзыв');
             });
     }
 

@@ -255,7 +255,6 @@
 }
 
 .review-layout {
-  padding-left: $review-padding-left;
   display: flex;
   @include media('desktop') {
     padding-top: $review-padding-y;
@@ -265,10 +264,6 @@
     padding-top: $review-padding-y * $mobile-factor;
     padding-bottom: $review-padding-y * $mobile-factor;
   }
-}
-
-.review-info {
-  width: 100%;
 }
 
 .review-block {
@@ -286,12 +281,17 @@
 }
 
 .review-info {
-  padding-left: 3rem;
+  width: 100%;
   display: block;
 
   &__header {
-    padding-bottom: 1.5rem;
     display: flex;
+    @include media('desktop') {
+      padding-bottom: 1.5rem;
+    }
+    @include media('mobile') {
+      padding-bottom: 1.5rem * $mobile-factor;
+    }
   }
 
   &__username {
@@ -325,11 +325,5 @@
 
   &__text {
     color: var(--text-color);
-    @include media('desktop') {
-      font-size: 1.8rem;
-    }
-    @include media('mobile') {
-      font-size: 1.8rem * $mobile-factor;
-    }
   }
 }
