@@ -1,7 +1,12 @@
 @import '~css/mixins';
 
 .share-button-block {
-  margin-bottom: 4rem;
+  @include media('desktop') {
+    margin-bottom: 4rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 4rem * $mobile-factor;
+  }
 
   &__button {
     display: flex;

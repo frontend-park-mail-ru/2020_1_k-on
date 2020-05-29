@@ -115,11 +115,12 @@ export default class AddToListComponent extends Component {
     }
 
     onListChoose(evt) {
-        if (!(evt.target instanceof HTMLSpanElement)) {
+        const playlistElement = evt.target.closest('div');
+        if (!playlistElement.classList.contains('choose-list-block__playlist')) {
             return;
         }
 
-        const playlistLink = evt.target;
+        const playlistLink = playlistElement.firstElementChild;
         this.chosenPlaylist = {
             id: playlistLink.dataset.id,
             name: playlistLink.innerText,

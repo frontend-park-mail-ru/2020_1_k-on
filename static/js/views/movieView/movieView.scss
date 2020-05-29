@@ -189,7 +189,7 @@
       @include media('desktop') {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 3rem;
+        column-gap: 4rem;
       }
     }
   }

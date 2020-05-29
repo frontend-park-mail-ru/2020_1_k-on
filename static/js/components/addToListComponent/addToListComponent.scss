@@ -29,8 +29,13 @@
       height: $buttons-block-height;
     }
     @include media('mobile') {
-      width: $buttons-block-width * $mobile-factor;
       height: $buttons-block-height * $mobile-factor;
+      @include media('portrait') {
+        width: 100%;
+      }
+      @include media('landscape') {
+        width: $buttons-block-width * $mobile-factor;
+      }
     }
   }
 }
@@ -91,17 +96,21 @@
   position: absolute;
   background-color: var(--submenu-bg-color);
   border-radius: 1rem;
-  overflow: hidden;
+  //overflow-y: scroll;
+  //overflow-x: hidden;
   @include submenu;
   @include media('desktop') {
-    max-height: 30rem;
     width: $choose-list-block-width;
     left: - $choose-list-block-padding;
   }
   @include media('mobile') {
-    max-height: 30rem * $mobile-factor;
-    width: $choose-list-block-width * $mobile-factor;
     left: - $choose-list-block-padding * $mobile-factor;
+    @include media('portrait') {
+      width: calc(100% + 2 * #{$choose-list-block-padding * $mobile-factor});
+    }
+    @include media('landscape') {
+      width: $choose-list-block-width * $mobile-factor;
+    }
   }
 
   &_visible {
@@ -110,36 +119,43 @@
   }
 
   &__scroll-block {
-    width: 100%;
-    overflow-y: scroll;
+    //width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     //padding: 0 $choose-list-block-padding;
-    padding-right: 1rem;
-    padding-left: $choose-list-block-padding;
+    //padding-right: 1rem;
+    //padding-left: $choose-list-block-padding;
     //box-sizing: content-box;
     display: grid;
     grid-template-columns: 1fr;
     @include media('desktop') {
-      margin: 3rem 0;
-      grid-row-gap: 2rem;
+      max-height: 30rem;
+      margin: 2rem 0;
+      grid-row-gap: 1rem;
     }
     @include media('mobile') {
-      margin: 3rem * $mobile-factor 0;
-      grid-row-gap: 2rem * $mobile-factor;
+      max-height: 30rem * $mobile-factor;
+      margin: 2rem * $mobile-factor 0;
+      grid-row-gap: 1rem * $mobile-factor;
     }
   }
 
   &__playlist {
+    cursor: pointer;
+    padding: 0.7em 1em;
+    border-radius: 1rem;
+    margin: 0 0.5em;
     font-size: inherit;
-    padding-right: 1em;
+    //padding-right: 1em;
     @include ellipsis-overflow;
+
+    &:hover {
+      background-color: var(--button-choose-bg-color);
+    }
 
     &_active {
       color: var(--main-color);
     }
-  }
-
-  &__playlist-name {
-    cursor: pointer;
   }
 }
 

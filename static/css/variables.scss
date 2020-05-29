@@ -15,6 +15,9 @@
   --button-bg-color-hover: linear-gradient(to right, #ced756, #eaeea9, #abc959);
   --button-text-color: #1d2025;
 
+  // Add to list button
+  --button-choose-bg-color: rgba(29, 32, 37, 0.7);
+
   // Navbar
   --search-form-color: var(--text-color);
   --navbar-bg-color: rgba(0, 0, 0, 0.4);
@@ -55,7 +58,7 @@
   --bg-color: white;
   --main-color: #0f4c81;
   --text-ref-color: #8091bd;
-  --shade-color: rgba(220, 220, 220, 0.4);
+  --shade-color: rgba(220, 220, 220, 0.5);
   --path-color: #2d2f32;
   --label-color: #2d2f32;
 
@@ -63,6 +66,9 @@
   --button-bg-color: linear-gradient(to right, #0f4c81, #8091bd);
   --button-bg-color-hover: linear-gradient(to right, #0f4c81, #8091bd, #55689a);
   --button-text-color: var(--bg-color);
+
+  // Add to list button
+  --button-choose-bg-color: rgba(255, 255, 255, 0.7);
 
   // Navbar
   --navbar-bg-color: var(--shade-color);
