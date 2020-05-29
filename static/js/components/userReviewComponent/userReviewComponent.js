@@ -39,6 +39,10 @@ export default class UserReviewComponent extends Component {
             starIcon.addEventListener('click', this.onStarClick.bind(this));
         }
 
+        const formInput = this.element.getElementsByClassName('review-form__input')[0];
+        formInput.addEventListener('focus', this.onFormFocus.bind(this));
+        formInput.addEventListener('blur', this.onFormBlur.bind(this));
+
         const submitButton = this.element.getElementsByClassName('review-form__button')[0];
         submitButton.addEventListener('click', this.onSubmit.bind(this));
     }
@@ -77,6 +81,14 @@ export default class UserReviewComponent extends Component {
                 break;
             }
         }
+    }
+
+    onFormFocus(evt) {
+        screen.orientation.lock('landscape-pimary');
+    }
+
+    onFormBlur(evt) {
+        screen.orientation.unlock('landscape-primary');
     }
 
     onSubmit(evt) {
