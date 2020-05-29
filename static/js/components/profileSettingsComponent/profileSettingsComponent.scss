@@ -58,7 +58,8 @@
   top: 0;
   visibility: hidden;
   z-index: 2000;
-  background-color: rgba(var(--bg-color), 0.9);
+  background-color: var(--bg-color);
+  opacity: 0.95;
   height: 100%;
   width: 100vw;
   max-width: 100%;
@@ -66,10 +67,10 @@
 
 .modal-form {
   position: relative;
-  border: solid 1px $modal-content-border-color;
+  border: solid 1px var(--modal-content-border-color);
   border-radius: 2.4rem;
   color: var(--text-color);
-  background-color: $modal-content-bg-color;
+  background-color: var(--modal-content-bg-color);
   display: flex;
   justify-content: center;
   flex-direction: column;

@@ -50,6 +50,10 @@
   --switch-width: 6.4rem;
   --switch-height: 3rem;
   --switch-padding: 3px;
+
+  // Modal
+  --modal-content-border-color: rgb(86, 92, 103);
+  --modal-content-bg-color: rgba(30, 31, 35, 0.9);
 }
 
 [data-theme='light'] {
@@ -92,6 +96,10 @@
   --auth-form-input-bg-color: rgb(255, 255, 255);
   --auth-content-border-color: rgb(0, 0, 0);
   --auth-content-bg-color: rgba(255, 255, 255, 0.7);
+
+  // Modal
+  --modal-content-border-color: rgb(0, 0, 0);
+  --modal-content-bg-color: rgba(220, 220, 220, 0.9);
 }
 
 $text-dark-color: #646e80;
@@ -160,10 +168,6 @@ $paragraph: 80px;
 $mobile-paragraph: 4rem;
 $desktop-paragraph: 8rem;
 $mobile-factor: 1.5;
-
-// Modal
-$modal-content-border-color: rgb(86, 92, 103);
-$modal-content-bg-color: rgba(30, 31, 35, 0.7);
 
 // Switch
 $switch-animation-duration: 0.2s;
