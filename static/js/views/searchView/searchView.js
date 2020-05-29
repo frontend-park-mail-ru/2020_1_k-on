@@ -26,6 +26,7 @@ export default class SearchView extends View {
     }
 
     render(root) {
+        this.currentTab = 'all';
         super.render(root);
 
         this.searchInput = document.getElementsByClassName('search-header__input')[0];
