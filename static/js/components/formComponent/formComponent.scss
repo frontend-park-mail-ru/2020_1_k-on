@@ -27,4 +27,19 @@
       display: none;
     }
   }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__vk-login-button {
+    display: flex;
+    margin-left: 1rem;
+    @include gradientButton;
+  }
+
+  &__vk-login-button_icon {
+    fill: var(--button-text-color);
+    @include square(1em);
+  }
 }

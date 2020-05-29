@@ -18,11 +18,13 @@ export default class FormComponent extends Component {
         buttonText = 'Отправить',
         noValidate = true,
         onSubmitCallback = () => null,
+        onVkAuthCallback = () => null,
     } = {}) {
         super(template);
 
         this.inputs = inputs;
         this.onSubmitCallback = onSubmitCallback;
+        this.onVkAuthCallback = onVkAuthCallback;
 
         this.data.buttonText = buttonText;
 
@@ -46,6 +48,9 @@ export default class FormComponent extends Component {
         }
 
         this.element.addEventListener('submit', this.onSubmit.bind(this));
+
+        const vkAuthButton = this.element.getElementsByClassName('auth-form__vk-login-button')[0];
+        vkAuthButton.addEventListener('click', this.onVkAuthCallback.bind(this));
     }
 
     onSubmit(event) {

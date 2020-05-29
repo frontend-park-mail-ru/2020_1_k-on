@@ -11,11 +11,11 @@ import {
 
 export default class AuthView extends View {
     constructor({
-        eventBus = null,
-        data = null,
-        onSuccessEvents = [],
-        apiMethod = null,
-    } = {}) {
+                    eventBus = null,
+                    data = null,
+                    onSuccessEvents = [],
+                    apiMethod = null,
+                } = {}) {
         super(template, eventBus);
 
         this.data = data;
@@ -57,6 +57,12 @@ export default class AuthView extends View {
             });
     }
 
+    onVkAuth() {
+        window.location = `https://oauth.vk.com/authorize?access_type=offline` +
+            `&client_id=7487797&redirect_uri=https://kino-on.ru/api/oauth` +
+            `&response_type=code&scope=email&state=state`;
+    }
+
     /**
      * Вызывает в шине событий события для успешной отправки формы
      */
@@ -85,6 +91,7 @@ export default class AuthView extends View {
             inputs: this.data.inputs,
             buttonText: this.data.button_text,
             onSubmitCallback: this.onSubmit.bind(this),
+            onVkAuthCallback: this.onVkAuth.bind(this),
         });
         formContainer.appendChild(this.formComponent.render());
     }
