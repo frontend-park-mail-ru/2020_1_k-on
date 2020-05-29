@@ -55,7 +55,9 @@
                 </div>
             </div>
 
-            <div class="result-message"/>
+            <div class="result-message">
+                Добавлено!
+            </div>
         </fest:if>
 
     </div>

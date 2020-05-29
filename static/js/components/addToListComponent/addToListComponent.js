@@ -94,24 +94,41 @@ export default class AddToListComponent extends Component {
                 }
             })
             .catch((err) => {
-                this.showMessage('Уже добавлено!');
-                console.log(err);
+                this.showMessage('Не удалось добавить в плейлист', true);
+                console.error(err.status);
             });
     }
 
-    showMessage(text) {
+    showMessage(text, isError = false) {
         const resultMessage = this.element.getElementsByClassName('result-message')[0];
+
         resultMessage.innerText = text;
         resultMessage.classList.add('result-message_visible');
+        if (isError) {
+            resultMessage.classList.add('result-message_error');
+        }
+
         setTimeout(() => {
             resultMessage.classList.remove('result-message_visible');
+            resultMessage.classList.remove('result-message_error');
         }, SHOW_MSG_TIMEOUT);
     }
 
     deletePlaylist(id) {
-        this.data.playlists = this.data.playlists.filter((playlist) => {
-            return playlist.id !== id;
+        const elementIndex = this.data.playlists.findIndex((element, index, array) => {
+            return element.id === parseInt(id);
         });
+
+        this.data.playlists.splice(elementIndex, 1);
+        if (this.data.playlists.length !== 0) {
+            this.chosenPlaylist = this.data.playlists[0];
+            this.data.chosenPlaylist = this.data.playlists[0];
+        } else {
+            this.data.playlists = null;
+        }
+
+        this.element.innerHTML = this.tmpl(this.data);
+        this.afterRender();
     }
 
     onListChoose(evt) {
