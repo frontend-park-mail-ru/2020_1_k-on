@@ -1,6 +1,6 @@
 import Component from 'components/component';
 import template from './shareComponent.tmpl.xml';
-import {HOST_ADDRESS, SERVER_ADDRESS} from "libs/constants";
+import {HOST_ADDRESS} from 'libs/constants';
 
 export default class ShareComponent extends Component {
     constructor(
@@ -30,13 +30,16 @@ export default class ShareComponent extends Component {
     }
 
     shareVk(evt) {
-        const linkString = `https://vk.com/share.php?url=${window.location.href}&title=${this.shareData.title}&image=${HOST_ADDRESS}/static/img/${this.shareData.image}`;
+        const linkString = `https://vk.com/share.php?url=${window.location.href}` +
+            `&title=${this.shareData.title}` +
+            `&image=${HOST_ADDRESS}/static/img/${this.shareData.image}`;
         window.location = linkString;
     }
 
     share(evt) {
         navigator.share({
-            url: `${window.location.href}?share=${this.shareData.image}&title=${this.shareData.title}`,
+            url: `${window.location.href}?share=${this.shareData.image}` +
+                `&title=${this.shareData.title}`,
         });
     }
 }

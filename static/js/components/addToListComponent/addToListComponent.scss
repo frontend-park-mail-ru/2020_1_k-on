@@ -60,7 +60,6 @@
     background-color: var(--text-color);
     mask-image: url(/static/img/down-arrow.svg);
     mask-size: contain;
-    //background-image: url(/static/img/down-arrow.svg);
     @include center-background;
     @include media('desktop') {
       min-width: 2rem;
@@ -96,8 +95,6 @@
   position: absolute;
   background-color: var(--submenu-bg-color);
   border-radius: 1rem;
-  //overflow-y: scroll;
-  //overflow-x: hidden;
   @include submenu;
   @include media('desktop') {
     width: $choose-list-block-width;
@@ -119,13 +116,8 @@
   }
 
   &__scroll-block {
-    //width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    //padding: 0 $choose-list-block-padding;
-    //padding-right: 1rem;
-    //padding-left: $choose-list-block-padding;
-    //box-sizing: content-box;
     display: grid;
     grid-template-columns: 1fr;
     @include media('desktop') {
@@ -146,7 +138,6 @@
     border-radius: 1rem;
     margin: 0 0.5em;
     font-size: inherit;
-    //padding-right: 1em;
     @include ellipsis-overflow;
 
     &:hover {
