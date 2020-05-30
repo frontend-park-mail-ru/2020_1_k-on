@@ -189,7 +189,7 @@ export default class MovieView extends View {
         const shareComponent = new ShareComponent(
             navigator.share ? 'all' : 'vk',
             this.data.object.russianName,
-            this.data.object.description,
+            this.data.object.englishName,
             this.data.object.image,
         );
         document.getElementById('share-container').appendChild(shareComponent.render());

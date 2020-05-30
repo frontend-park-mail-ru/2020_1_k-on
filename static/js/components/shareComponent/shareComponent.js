@@ -6,7 +6,7 @@ export default class ShareComponent extends Component {
     constructor(
         shareType = 'all',
         title = '',
-        text = '',
+        englishName = '',
         image = ''
     ) {
         super(template);
@@ -14,7 +14,7 @@ export default class ShareComponent extends Component {
 
         this.shareData = {
             title: title,
-            text: text,
+            englishName: englishName,
             image: image.split('/').pop(),
         };
 
@@ -39,7 +39,7 @@ export default class ShareComponent extends Component {
     share(evt) {
         navigator.share({
             url: `${window.location.href}?share=${this.shareData.image}` +
-                `&title=${this.shareData.title}`,
+                `&title=${this.shareData.englishName}`,
         });
     }
 }
