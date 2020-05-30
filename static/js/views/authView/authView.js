@@ -92,7 +92,6 @@ export default class AuthView extends View {
             buttonText: this.data.button_text,
             onSubmitCallback: this.onSubmit.bind(this),
             onVkAuthCallback: this.onVkAuth.bind(this),
-            isVkAuth: true,
         });
         formContainer.appendChild(this.formComponent.render());
     }
