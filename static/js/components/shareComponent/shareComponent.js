@@ -38,8 +38,8 @@ export default class ShareComponent extends Component {
 
     share(evt) {
         navigator.share({
-            url: escape(`${window.location.href}?share=${this.shareData.image}` +
-                `&title=${this.shareData.title}`),
+            url: `${window.location.href}?share=${this.shareData.image}` +
+                `&title=${this.shareData.title}`,
         });
     }
 }
