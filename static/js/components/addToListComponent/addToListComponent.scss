@@ -1,0 +1,176 @@
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
+.add-to-list {
+  font-family: OpenSans-Regular, sans-serif;
+  @include media('desktop') {
+    margin-bottom: 3rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 3rem * $mobile-factor;
+  }
+}
+
+.add-to-list-block {
+  padding-top: 3 * $padding-between-rows;
+  border-top: 1px solid $text-dark-color;
+  position: relative;
+  @include media('desktop') {
+    font-size: 2rem;
+  }
+  @include media('mobile') {
+    font-size: 2rem * $mobile-factor;
+  }
+
+  &__buttons-block {
+    display: flex;
+    @include media('desktop') {
+      width: $buttons-block-width;
+      height: $buttons-block-height;
+    }
+    @include media('mobile') {
+      height: $buttons-block-height * $mobile-factor;
+      @include media('portrait') {
+        width: 100%;
+      }
+      @include media('landscape') {
+        width: $buttons-block-width * $mobile-factor;
+      }
+    }
+  }
+}
+
+.choose-list-button {
+  color: var(--text-color);
+  background-color: var(--shade-color);
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  border-top-left-radius: $add-to-list-button-border-radius;
+  border-bottom-left-radius: $add-to-list-button-border-radius;
+
+  &__value {
+    padding-right: 0.5em;
+    @include ellipsis-overflow;
+  }
+
+  &__arrow {
+    background-color: var(--text-color);
+    mask-image: url(/static/img/down-arrow.svg);
+    mask-size: contain;
+    @include center-background;
+    @include media('desktop') {
+      min-width: 2rem;
+      @include square($size: 2rem);
+    }
+    @include media('mobile') {
+      min-width: 2rem * $mobile-factor;
+      @include square($size: 2rem * $mobile-factor);
+    }
+  }
+
+  &_active {
+    width: 100%;
+    border-top-right-radius: $add-to-list-button-border-radius;
+    border-bottom-right-radius: $add-to-list-button-border-radius;
+  }
+}
+
+.add-to-list-button {
+  border-top-right-radius: $add-to-list-button-border-radius;
+  border-bottom-right-radius: $add-to-list-button-border-radius;
+  width: 40%;
+  color: var(--button-text-color);
+  @include gradient;
+
+  &_hidden {
+    display: none;
+  }
+}
+
+.choose-list-block {
+  z-index: 1000;
+  position: absolute;
+  background-color: var(--submenu-bg-color);
+  border-radius: 1rem;
+  @include submenu;
+  @include media('desktop') {
+    width: $choose-list-block-width;
+    left: - $choose-list-block-padding;
+  }
+  @include media('mobile') {
+    left: - $choose-list-block-padding * $mobile-factor;
+    @include media('portrait') {
+      width: calc(100% + 2 * #{$choose-list-block-padding * $mobile-factor});
+    }
+    @include media('landscape') {
+      width: $choose-list-block-width * $mobile-factor;
+    }
+  }
+
+  &_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__scroll-block {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    @include media('desktop') {
+      max-height: 30rem;
+      margin: 2rem 0;
+      grid-row-gap: 1rem;
+    }
+    @include media('mobile') {
+      max-height: 30rem * $mobile-factor;
+      margin: 2rem * $mobile-factor 0;
+      grid-row-gap: 1rem * $mobile-factor;
+    }
+  }
+
+  &__playlist {
+    cursor: pointer;
+    padding: 0.7em 1em;
+    border-radius: 1rem;
+    margin: 0 0.5em;
+    font-size: inherit;
+    @include ellipsis-overflow;
+
+    &:hover {
+      background-color: var(--button-choose-bg-color);
+    }
+
+    &_active {
+      color: var(--main-color);
+    }
+  }
+}
+
+.result-message {
+  color: var(--text-color);
+  margin-top: 1.5rem;
+  @include submenu;
+  @include media('desktop') {
+    font-size: 2rem;
+  }
+  @include media('mobile') {
+    font-size: 2rem * $mobile-factor;
+  }
+
+  &_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &_error {
+    color: red;
+  }
+}
+
+.message__link:hover {
+  color: var(--main-color);
+}

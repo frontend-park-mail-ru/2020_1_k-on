@@ -1,32 +1,41 @@
 @import 'variables';
-@import 'form';
 @import 'reset';
 @import 'mixins';
-@import 'components/navbar/navbar';
-@import 'components/listComponent/listComponent';
-@import 'components/reviewsComponent/reviewsComponent';
-@import 'components/userReviewComponent/userReviewComponent';
-@import 'components/swiperComponent/swiperComponent';
-@import 'components/sliderComponent/sliderComponent';
-@import 'components/inputComponent/inputComponent';
-@import 'components/inputErrorComponent/inputErrorComponent';
-@import 'components/cardComponent/cardComponent';
-@import 'components/filterComponent/filterComponent';
-@import 'components/collectionComponent/collectionComponent';
-@import 'views/listView/listView';
-@import 'views/movieView/movieView';
-@import 'views/profileView/profileView';
-@import 'views/profileSettingsView/profileSettingsView';
-@import 'views/authView/authView';
-@import 'views/personView/personView';
-@import 'views/errorView/errorView';
-@import 'fonts/fonts';
+@import 'mediaQueries';
+@import '~components/navbarComponent/navbarComponent';
+@import '~components/listComponent/listComponent';
+@import '~components/reviewsComponent/reviewsComponent';
+@import '~components/userReviewComponent/userReviewComponent';
+@import '~components/swiperComponent/swiperComponent';
+@import '~components/sliderComponent/sliderComponent';
+@import '~components/inputComponent/inputComponent';
+@import '~components/inputErrorComponent/inputErrorComponent';
+@import '~components/cardComponent/cardComponent';
+@import '~components/filterComponent/filterComponent';
+@import '~components/formComponent/formComponent';
+@import '~components/collectionComponent/collectionComponent';
+@import '~components/profileSettingsComponent/profileSettingsComponent';
+@import '~components/playlistComponent/playlistComponent';
+@import '~components/tabComponent/tabComponent';
+@import '~components/addToListComponent/addToListComponent';
+@import '~components/subscriptionsComponent/subscriptionsComponent';
+@import '~components/paginatorComponent/paginatorComponent';
+@import '~components/shareComponent/shareComponent';
+@import '~views/listView/listView';
+@import '~views/movieView/movieView';
+@import '~views/profileView/profileView';
+@import '~views/authView/authView';
+@import '~views/personView/personView';
+@import '~views/errorView/errorView';
+@import '~views/searchView/searchView';
+@import '~fonts/fonts';
 
 body {
   position: relative;
   min-height: 100vh;
-  background-color: $bg-color;
-  color: $text-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: color 0.2s linear, background 0.2s linear;
 
   font: {
     family: 'Roboto', sans-serif;
@@ -36,23 +45,26 @@ body {
 }
 
 #header {
-  min-height: 60px;
   width: 100%;
   position: absolute;
   top: 0;
-  z-index: 1000;
-  box-shadow: 0 0 2px 2px $navbar-bg-color;
+  z-index: 2000;
+  @include media('desktop') {
+    min-height: $navbar-height;
+  }
+  @include media('mobile') {
+    min-height: $navbar-height * $mobile-factor;
+  }
 }
 
 #container {
   display: inline-block;
   height: 100%;
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 6rem;
 }
 
 #footer {
-  min-height: 50px;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -60,24 +72,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
-  color: white;
+  color: var(--text-color);
   opacity: 0.4;
+  @include media('desktop') {
+    min-height: 6rem;
+    font-size: 1.5rem;
+  }
+  @include media('mobile') {
+    min-height: 6rem * $mobile-factor;
+    font-size: 1.5rem * $mobile-factor;
+  }
 }
 
 .page-layout {
-  padding-left: $paragraph;
-  padding-right: $paragraph;
-}
-
-.avatar {
-  border-radius: 50%;
-  background: no-repeat center / cover;
+  @include page-layout;
 }
 
 .user-path {
-  font-family: 'Montserrat-Regular', sans-serif;
-  color: $path-color;
+  font-family: Montserrat-Regular, sans-serif;
+  color: var(--path-color);
 }
 
 .user-path > * {
@@ -86,7 +99,7 @@ body {
 
 .user-path__href {
   text-decoration: underline;
-  color: $path-color;
+  color: var(--path-color);
 }
 
 .hidden {
@@ -98,7 +111,7 @@ body {
 
 a {
   text-decoration: none;
-  color: $text-ref-color;
+  color: var(--text-ref-color);
 }
 
 input {
@@ -112,4 +125,10 @@ button {
 
 a:focus {
   outline: none;
+}
+
+.no-scroll-mobile {
+  @include media('mobile') {
+    overflow: hidden;
+  }
 }

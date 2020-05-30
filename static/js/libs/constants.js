@@ -1,19 +1,16 @@
-export const SERVER_ADDRESS = 'http://64.225.100.179:8080';
+export const SERVER_ADDRESS = 'https://kino-on.ru/api';
+export const HOST_ADDRESS = 'https://kino-on.ru';
 
 export const SUCCESS_STATUS = 200;
 export const BAD_REQUEST_STATUS = 400;
 export const UNAUTHORIZED_STATUS = 401;
 export const FORBIDDEN_STATUS = 403;
 export const NOT_FOUND_STATUS = 404;
+export const CONFLICT_STATUS = 409;
 export const INTERNAL_ERROR_STATUS = 500;
 
 export const INTERNAL_ERROR_MSG = 'Произошла внутренняя ошибка сервера';
 export const NOT_FOUND_ERROR_MSG = 'Сраница не найдена';
-
-export const NAVBAR_AUTH_ITEMS = {
-    profile: 'Профиль',
-    logout: 'Выйти',
-};
 
 export const NAVBAR_UNAUTH_ITEMS = {
     login: 'Войти',
@@ -21,6 +18,7 @@ export const NAVBAR_UNAUTH_ITEMS = {
 };
 
 export const GLOBAL_EVENTS = {
+    linkClick: 'linkClick',
     renderForAuth: 'renderFotAuth',
     renderForUnauth: 'renderForUnauth',
     internalError: 'internalError',
@@ -40,8 +38,9 @@ export const SIGN_UP_EVENTS = {
 
 export const PROFILE_EVENTS = {
     unauthUser: 'unauthUser',
-    logout: 'logout',
     internalError: 'internalError',
+    showMsg: 'showMsg',
+    updateUserData: 'updateUserData',
 };
 
 export const INDEX_EVENTS = {
@@ -52,6 +51,11 @@ export const LIST_EVENTS = {
     internalError: 'internalError',
     updateList: 'updateList',
     genrePushHistory: 'genrePushHistory',
+    updatePage: 'updatePage',
+};
+
+export const PAGINATOR_EVENTS = {
+    updatePage: 'updatePage',
 };
 
 export const MOVIE_EVENTS = {
@@ -60,6 +64,37 @@ export const MOVIE_EVENTS = {
 
 export const PERSON_EVENTS = {
     internalError: 'internalError',
+};
+
+export const PLAYLIST_EVENTS = {
+    clickTab: 'changeTab',
+    deleteTab: 'deleteTab',
+    addTab: 'addTab',
+    deleteCard: 'deleteCard',
+};
+
+export const SUBSCRIPTIONS_EVENTS = {
+    unsubscribe: 'unsubscribe',
+};
+
+export const SEARCH_EVENTS = {
+    internalError: 'internalError',
+};
+
+export const PROFILE_MSGS = {
+    success_avatar_upload: 'Аватар загружен',
+    error_avatar_upload: 'Не удалось загрузить аватар',
+    error_subscriptions_upload: 'Не удалось загрузить подписки',
+    error_playlists_upload: 'Не удалось загрузить плейлисты',
+    error_playlists_delete: 'Не удалось удалить плейлист',
+    error_playlists_load: 'Не удалось загрузить плейлист',
+    error_playlists_create: 'Не удалось создать плейлист',
+    error_delete_from_playlist: 'Не удалось изменить плейлист',
+    error_change_user_data: 'Не удалось изменить данные',
+    settings_update: 'Данные успешно изменены',
+    user_exists: 'Такой пользователь уже существует',
+    passwords_not_match: 'Пароли не совпадают',
+    updatePassword: 'Пароль успешно изменен',
 };
 
 export const MAX_BG_IMGS = 5;
@@ -141,10 +176,8 @@ export const MAX_RATING = 10;
 
 export const DEFAULT_AVATAR = '/static/img/avatar.svg';
 
-export const RANDOM_SHUFFLE_VALUE = 0.5;
-
-export const PROFILE_INPUTS = {
-    profile: [
+export const PROFILE_SETTINGS_INPUTS = {
+    settings: [
         {
             name: 'login',
             label: 'Логин',
@@ -162,7 +195,7 @@ export const PROFILE_INPUTS = {
             autofocus: 'false',
         },
     ],
-    modal: [
+    password_modal: [
         {
             name: 'password',
             label: 'Новый пароль',
@@ -180,4 +213,55 @@ export const PROFILE_INPUTS = {
             autofocus: 'false',
         },
     ],
+};
+
+export const TAB_ADD_INPUTS = [
+    {
+        name: 'tab-add',
+        label: 'Название',
+        type: 'text',
+        id: 'tab-add',
+        required: 'true',
+        autofocus: 'true',
+    },
+];
+
+export const DESKTOP_WIDTH = 1440;
+export const DESKTOP_HEIGHT = 1024;
+export const MOBILE_WIDTH = 720;
+export const MOBILE_HEIGHT = 1280;
+
+export const SHOW_MSG_TIMEOUT = 3000;
+
+export const SERVER_UNAVAILABLE_MSG = 'Сервер недоступен';
+
+export const SEARCH_TABS = [
+    {
+        name: 'Все',
+        value: 'all',
+    },
+    {
+        name: 'Сериалы',
+        value: 'series',
+    },
+    {
+        name: 'Фильмы',
+        value: 'films',
+    },
+    {
+        name: 'Актеры',
+        value: 'persons',
+    },
+];
+
+export const SEARCH_DELAY = 500;
+
+export const SEARCH_SWIPER_LIMIT = 10;
+
+export const DEFAULT_THEME = 'dark';
+
+export const PROFILE_TABS = {
+    settings: 'settings',
+    playlists: 'playlists',
+    subscriptions: 'subscriptions',
 };

@@ -1,0 +1,52 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="items">
+    <div class="navbar__left-side">
+        <svg class="navbar__menu-link navbar__mobile-item" viewBox="0 -53 384 384"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031
+                0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/>
+            <path d="m368 32h-352c-8.832031
+                0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/>
+            <path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16
+                7.167969 16 16s-7.167969 16-16 16zm0 0"/>
+        </svg>
+
+        <a class="navbar__logo" href="/">
+            <span>kino</span>
+            <span class="navbar__logo_color">|on</span>
+        </a>
+        <a class="navbar__link navbar__desktop-item" href="/series">Сериалы</a>
+        <a class="navbar__link navbar__desktop-item" href="/films">Фильмы</a>
+        <a class="navbar__link navbar__desktop-item" href="/search">
+            <svg class="navbar__link_search-icon" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="m225.47 0c-124.32 0-225.47 101.15-225.47 225.47 0 124.33 101.15 225.47 225.47 225.47 124.33 0 225.47-101.14 225.47-225.47 0-124.32-101.14-225.47-225.47-225.47zm0 409.32c-101.37 0-183.85-82.475-183.85-183.85s82.475-183.85 183.85-183.85 183.85 82.475 183.85 183.85-82.475 183.85-183.85 183.85z"/>
+                <path d="m505.9 476.47-119.33-119.33c-8.131-8.131-21.299-8.131-29.43 0-8.131 8.124-8.131 21.306 0 29.43l119.33 119.33c4.065 4.065 9.387 6.098 14.715 6.098 5.321 0 10.649-2.033 14.715-6.098 8.131-8.124 8.131-21.306 0-29.43z"/>
+            </svg>
+            Поиск
+        </a>
+    </div>
+
+    <div class="navbar__right-side"/>
+
+
+
+    <div class="navbar-menu">
+        <a class="navbar-menu__link" href="/series">Сериалы</a>
+        <a class="navbar-menu__link" href="/films">Фильмы</a>
+        <a class="navbar-menu__link" href="/search">
+            <svg class="navbar__link_search-icon" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="m225.47 0c-124.32 0-225.47 101.15-225.47 225.47 0 124.33 101.15 225.47 225.47 225.47 124.33 0 225.47-101.14 225.47-225.47 0-124.32-101.14-225.47-225.47-225.47zm0 409.32c-101.37 0-183.85-82.475-183.85-183.85s82.475-183.85 183.85-183.85 183.85 82.475 183.85 183.85-82.475 183.85-183.85 183.85z"/>
+                <path d="m505.9 476.47-119.33-119.33c-8.131-8.131-21.299-8.131-29.43 0-8.131 8.124-8.131 21.306 0 29.43l119.33 119.33c4.065 4.065 9.387 6.098 14.715 6.098 5.321 0 10.649-2.033 14.715-6.098 8.131-8.124 8.131-21.306 0-29.43z"/>
+            </svg>
+            Поиск
+        </a>
+
+        <div class="navbar-menu__unauthorized">
+            <a class="navbar-menu__link navbar-menu__link_circled" href="/login">Войти</a>
+            <a class="navbar-menu__link navbar-menu__link_circled navbar-menu__link_bright" href="/signup">
+                Зарегистрироваться
+            </a>
+        </div>
+    </div>
+</fest:template>

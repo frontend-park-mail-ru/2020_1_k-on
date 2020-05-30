@@ -1,0 +1,209 @@
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
+.navbar {
+  display: flex;
+  background-color: var(--navbar-bg-color);
+  box-shadow: 0 0 2px 2px var(--navbar-bg-color);
+  font-family: OpenSans-Regular, sans-serif;
+  transition: background-color $menu-transition-time, box-shadow $menu-transition-time;
+  @include media('desktop') {
+    min-height: $navbar-height;
+    font-size: 2.2rem;
+  }
+  @include media('mobile') {
+    min-height: $navbar-height * $mobile-factor;
+    font-size: 2.2rem * $mobile-factor;
+  }
+
+  &_menu-active {
+    background-color: var(--submenu-bg-color);
+    box-shadow: none;
+  }
+
+  &__desktop-item {
+    @include media('mobile') {
+      display: none;
+    }
+  }
+
+  &__mobile-item {
+    fill: var(--text-color);
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__left-side {
+    position: relative;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  &__right-side {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__link {
+    margin-left: $margin-between-links;
+    color: var(--text-color);
+    @include media('desktop') {
+      display: flex;
+      align-items: center;
+    }
+
+    &_search-icon {
+      fill: var(--text-color);
+      margin-right: 1rem;
+      @include square(0.8em);
+    }
+
+    &_unauthorized {
+      @include media('mobile') {
+        display: none;
+      }
+    }
+
+    &_username {
+      margin-right: 1rem;
+      @include media('mobile') {
+        display: none;
+      }
+    }
+
+    & > &_avatar {
+      display: flex;
+    }
+
+    &_avatar {
+      @include media('desktop') {
+        @include avatar($size: 3rem);
+      }
+      @include media('mobile') {
+        @include avatar($size: 3.5rem * $mobile-factor);
+      }
+    }
+
+    &_logout {
+      background-color: var(--text-color);
+      mask-image: url(/static/img/logout.svg);
+      mask-size: contain;
+      //background-image: url(/static/img/logout-white.svg);
+      //@include center-background;
+      @include media('desktop') {
+        @include square($size: 3rem);
+      }
+      @include media('mobile') {
+        @include square($size: 3rem * $mobile-factor);
+      }
+    }
+  }
+
+  &__menu-link {
+    cursor: pointer;
+    margin-right: $margin-between-links;
+    @include square($size: 4.5rem);
+  }
+
+  &-menu {
+    position: absolute;
+    top: $navbar-height * $mobile-factor;
+    left: 0;
+    box-sizing: border-box;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+    display: grid;
+    grid-row-gap: 6rem;
+    width: 100%;
+    background-color: var(--submenu-bg-color);
+    font-size: 4rem;
+    @include page-layout;
+    @include submenu;
+
+    &_active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &__link {
+      color: var(--text-color);
+
+      &_circled {
+        padding: 0.5em 1em;
+        border: 0.1rem solid var(--text-color);
+        border-radius: 0.5em;
+        @include media('desktop') {
+          font-size: 1.7rem;
+        }
+        @include media('mobile') {
+          font-size: 3rem;
+        }
+      }
+
+      &_bright {
+        border-color: var(--main-color);
+        background: var(--button-bg-color);
+        color: var(--button-text-color);
+      }
+    }
+
+    &__unauthorized {
+      display: none;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 1rem;
+
+      &_visible {
+        display: flex;
+      }
+    }
+  }
+
+  &__logo {
+    font-family: OpenSans-Bold, sans-serif;
+    text-transform: uppercase;
+    color: var(--text-color);
+    @include media('desktop') {
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      font-size: 3rem * $mobile-factor;
+    }
+
+    &_color {
+      color: var(--main-color);
+    }
+  }
+
+  &__search {
+
+    &-form {
+      height: 2.5em;
+      display: flex;
+      box-sizing: content-box;
+    }
+
+    &-input {
+      width: 350px;
+      border-top-left-radius: $search-form-border-radius;
+      border-bottom-left-radius: $search-form-border-radius;
+      padding-left: 1em;
+    }
+
+    &-button {
+      width: 2.5em;
+      border-top-right-radius: $search-form-border-radius;
+      border-bottom-right-radius: $search-form-border-radius;
+      background-color: var(--search-form-color);
+    }
+
+    &-icon {
+      height: 1.1em;
+    }
+  }
+}

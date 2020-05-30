@@ -18,6 +18,11 @@ export default class FilterComponent extends Component {
             filterList: this.filterList,
             chosenFilters: this.chosenFilters,
             filters: this.filters,
+            filtersHeadlines: {
+                genre: 'Выбор жанра',
+                year: 'Выбор года',
+                order: 'Выбор рейтинга',
+            },
         };
 
         this.element = document.createElement('div');
@@ -25,21 +30,18 @@ export default class FilterComponent extends Component {
     }
 
     afterRender() {
-        Array.from(this.element.getElementsByClassName('filter-button'))
-            .forEach((elem) => {
-                elem.addEventListener(
-                    'click',
-                    this.onFilterButtonClick.bind(this)
-                );
-            });
+        for (const elem of this.element.getElementsByClassName('filter-button')) {
+            elem.addEventListener('click', this.onFilterButtonClick.bind(this)
+            );
+        }
 
-        Array.from(this.element.getElementsByClassName('filter-submenu'))
-            .forEach((elem) => {
-                elem.addEventListener(
-                    'click',
-                    this.onFilterValueClick.bind(this)
-                );
-            });
+        for (const elem of this.element.getElementsByClassName('filter-submenu__list')) {
+            elem.addEventListener('click', this.onFilterValueClick.bind(this));
+        }
+
+        for (const elem of this.element.getElementsByClassName('filter-submenu__close-icon')) {
+            elem.addEventListener('click', this.onCloseIconClick.bind(this));
+        }
     }
 
     onFilterValueClick(evt) {
@@ -48,15 +50,15 @@ export default class FilterComponent extends Component {
         }
 
         const filterLink = evt.target;
-        const submenu = evt.currentTarget;
-        const filterButton = submenu.previousElementSibling;
+        const submenuList = evt.currentTarget;
+        const filterButton = submenuList.parentNode.previousElementSibling;
         this.closeFilter(filterButton);
 
         if (filterLink.classList.contains('filter-submenu__item_active')) {
             return;
         }
 
-        submenu.childNodes.forEach((submenuItem) => {
+        submenuList.childNodes.forEach((submenuItem) => {
             submenuItem.firstElementChild.classList.remove(
                 'filter-submenu__item_active'
             );
@@ -64,7 +66,7 @@ export default class FilterComponent extends Component {
         filterButton.firstElementChild.innerText = filterLink.innerText;
         filterLink.classList.add('filter-submenu__item_active');
 
-        const filterName = submenu.dataset.name;
+        const filterName = submenuList.dataset.name;
         const name = filterLink.innerText;
         const reference = filterLink.dataset.reference;
 
@@ -86,6 +88,9 @@ export default class FilterComponent extends Component {
             }
 
             this.openFilter(filterButton);
+
+            const navbarMenu = document.getElementsByClassName('navbar-menu')[0];
+            navbarMenu.classList.remove('navbar-menu_active');
         } else {
             this.closeFilter(filterButton);
         }
@@ -98,6 +103,8 @@ export default class FilterComponent extends Component {
         filterButton.classList.add('filter-button_active');
         arrow.classList.add('filter-button__arrow_active');
         submenu.classList.add('filter-submenu_active');
+
+        document.body.classList.add('no-scroll-mobile');
     }
 
     closeFilter(filterButton) {
@@ -107,6 +114,8 @@ export default class FilterComponent extends Component {
         filterButton.classList.remove('filter-button_active');
         arrow.classList.remove('filter-button__arrow_active');
         submenu.classList.remove('filter-submenu_active');
+
+        document.body.classList.remove('no-scroll-mobile');
     }
 
     setFilter(filterName, name, reference) {
@@ -128,5 +137,10 @@ export default class FilterComponent extends Component {
 
     getChosenFilters() {
         return this.chosenFilters;
+    }
+
+    onCloseIconClick(evt) {
+        const filterButton = evt.target.parentNode.parentNode.previousElementSibling;
+        this.closeFilter(filterButton);
     }
 }

@@ -1,11 +1,11 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .movie-page {
   overflow: hidden;
-  background-color: $bg-color;
+  background-color: var(--bg-color);
   font-family: OpenSans-Regular, sans-serif;
-  color: $text-color;
+  color: var(--text-color);
 }
 
 .movie-bg {
@@ -24,32 +24,54 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba($bg-color, 0), $bg-color);
+    background: var(--bg-shadow-color);
   }
 }
 
 .movie-header {
   position: absolute;
-  bottom: 15%;
-  padding: 0 $paragraph;
+  @include page-layout;
+  @include media('desktop') {
+    max-width: 60%;
+    bottom: 15%;
+  }
+  @include media('mobile', 'portrait') {
+    max-width: 90%;
+    bottom: 20%;
+  }
+  @include media('mobile', 'landscape') {
+    max-width: 80%;
+    bottom: 15%;
+  }
 
   &__name {
     margin-bottom: 2 * $padding-between-rows;
     font-family: Montserrat-Medium, sans-serif;
-    font-size: 70px;
+    font-size: 7.3rem;
   }
 
   &__original-name {
     margin-bottom: 4 * $padding-between-rows;
     font-family: Montserrat-Light, sans-serif;
-    font-size: 24px;
-    color: $path-color;
+    color: var(--path-color);
     text-transform: uppercase;
+    @include media('desktop') {
+      font-size: 2.5rem;
+    }
+    @include media('mobile') {
+      font-size: 2rem * $mobile-factor;
+    }
   }
 
   &__path {
-    margin-bottom: $padding-between-rows;
-    font-size: 20px;
+    margin-bottom: 1rem;
+    @include media('desktop') {
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+      line-height: 2.5rem * $mobile-factor;
+    }
   }
 }
 
@@ -65,16 +87,16 @@
 
   &__season-link {
     margin-right: 15px;
-    border: 1px solid $text-color;
+    border: 1px solid var(--text-color);
     border-radius: 10px;
     font-size: 20px;
-    color: $text-color;
+    color: var(--text-color);
     @include square($size: 35px);
     @include center-position;
 
     &_active {
       border: 0;
-      color: $bg-color;
+      color: var(--bg-color);
       background-color: $active-season-link-bg-color;
     }
   }
@@ -82,21 +104,39 @@
 
 .movie-content {
   position: relative;
-  margin-bottom: 60px;
-  display: flex;
-  padding-top: 60px;
+  margin-bottom: 8rem;
+  padding-top: 8rem;
   font-family: OpenSans-Regular, sans-serif;
-  font-size: 16px;
-  line-height: 28px;
+  @include media('desktop') {
+    display: flex;
+    font-size: 1.7rem;
+    line-height: 3.2rem;
+  }
+  @include media('mobile') {
+    display: block;
+    font-size: 1.7rem * $mobile-factor;
+    line-height: 3.2rem * $mobile-factor;
+  }
 }
 
 .movie-trailer {
-  width: 50%;
   height: auto;
+  @include media('desktop') {
+    width: 50%;
+  }
+  @include media('mobile') {
+    margin-bottom: 5rem;
+  }
 
   &__headline {
-    height: $description-header-height;
-    font-size: $headline-size;
+    @include media('desktop') {
+      font-size: $headline-size;
+      height: $description-header-height;
+    }
+    @include media('mobile') {
+      font-size: $headline-size * $mobile-factor;
+      height: $description-header-height * $mobile-factor;
+    }
   }
 
   &__video-frame {
@@ -117,37 +157,71 @@
 
 .movie-info {
   display: block;
-  width: 50%;
-  padding-left: $indent-between-description-data;
-  padding-top: $description-header-height;
+  @include media('desktop') {
+    width: 50%;
+    padding-top: $description-header-height;
+    padding-left: $indent-between-description-data;
+  }
+
+  &_no-trailer {
+    @include media('desktop') {
+      width: 100%;
+      padding: 0;
+    }
+  }
 
   &__short-description {
     padding-bottom: $padding-between-description-blocks;
     font-family: OpenSans-SemiBold, sans-serif;
-    font-size: $headline-size;
-    color: $text-bright-color;
+    color: var(--main-color);
+    @include media('desktop') {
+      font-size: $headline-size;
+    }
+    @include media('mobile') {
+      font-size: $headline-size * $mobile-factor;
+    }
   }
 
   &__description {
-    padding-bottom: $padding-between-description-blocks;
-    color: $text-color;
+    color: var(--text-color);
+
+    &_no-trailer {
+      @include media('desktop') {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 4rem;
+      }
+    }
   }
 
   &__data {
+    padding-top: $padding-between-description-blocks;
     display: grid;
-    grid-gap: 14px;
-    grid-template-columns: 1fr 5fr;
+    grid-gap: 1rem;
+    height: fit-content;
+    @include media('desktop') {
+      grid-template-columns: 1fr 5fr;
+    }
+    @include media('mobile') {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    &_no-trailer {
+      @include media('desktop') {
+        padding-top: 0;
+      }
+    }
 
     &_title {
       color: $text-dark-color;
     }
 
     &_ref {
-      color: $text-ref-color;
+      color: var(--text-ref-color);
     }
 
     &_ref:hover {
-      color: $text-bright-color;
+      color: var(--main-color);
     }
 
     &_genre {
@@ -156,70 +230,100 @@
   }
 }
 
-.add-to-list-block {
-  padding-top: 3 * $padding-between-rows;
-}
-
 .reviews {
-  width: 55%;
-  //padding-top: 60px;
   font-family: OpenSans-Regular, sans-serif;
-  font-size: 16px;
-  line-height: 28px;
+  @include media('desktop') {
+    width: 55%;
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+  @include media('mobile') {
+    font-size: 1.7rem * $mobile-factor;
+    line-height: 2.5rem * $mobile-factor;
+  }
 
   &__headline {
-    margin-bottom: $headline-margin;
-    font-size: $headline-size;
+    @include media('desktop') {
+      font-size: $headline-size;
+      margin-bottom: $headline-margin;
+    }
+    @include media('mobile') {
+      font-size: $headline-size * $mobile-factor;
+      margin-bottom: $headline-margin * $mobile-factor;
+    }
   }
 }
 
 .review-layout {
-  padding-left: $review-padding-left;
-  padding-top: $review-padding-y;
-  padding-bottom: $review-padding-y;
   display: flex;
+  @include media('desktop') {
+    padding-top: $review-padding-y;
+    padding-bottom: $review-padding-y;
+  }
+  @include media('mobile') {
+    padding-top: $review-padding-y * $mobile-factor;
+    padding-bottom: $review-padding-y * $mobile-factor;
+  }
+}
+
+.review-block {
+  border-top: 1px solid $text-dark-color;
+
+  &__avatar {
+    flex-shrink: 0;
+    @include media('desktop') {
+      @include avatar($size: 7rem);
+    }
+    @include media('mobile') {
+      @include avatar($size: 7rem * $mobile-factor);
+    }
+  }
 }
 
 .review-info {
   width: 100%;
-}
-
-.review-block {
-  border-top: 0.2px solid $text-dark-color;
-
-  &__avatar {
-    flex-shrink: 0;
-    @include square($size: 70px);
-  }
-}
-
-.review-info {
-  padding-left: 30px;
   display: block;
 
   &__header {
-    padding-bottom: 10px;
     display: flex;
+    @include media('desktop') {
+      padding-bottom: 1.5rem;
+    }
+    @include media('mobile') {
+      padding-bottom: 1.5rem * $mobile-factor;
+    }
   }
 
   &__username {
-    margin-right: 40px;
-    font-size: 22px;
+    @include media('desktop') {
+      margin-right: 4rem;
+      font-size: 2.2rem;
+    }
+    @include media('mobile') {
+      margin-right: 2rem;
+      font-size: 2.2rem * $mobile-factor;
+    }
   }
 
   &__rate {
-    width: 80px;
-    height: 30px;
-    border-radius: 10px;
+    border-radius: 1rem;
     background: $rate-bg-color;
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 14px;
-    color: $bg-color;
+    color: var(--bg-color);
     @include center-position;
+    @include media('desktop') {
+      width: 8rem;
+      height: 3rem;
+      font-size: 1.4rem;
+    }
+    @include media('mobile') {
+      width: 8rem * $mobile-factor;
+      height: 3rem * $mobile-factor;
+      font-size: 1.4rem * $mobile-factor;
+    }
   }
 
   &__text {
-    font-size: 18px;
-    color: $text-color;
+    color: var(--text-color);
   }
 }

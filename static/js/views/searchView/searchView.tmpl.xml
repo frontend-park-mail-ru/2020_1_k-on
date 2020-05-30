@@ -1,0 +1,41 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+    <div class="search-page">
+        <div class="search-header page-layout">
+            <div class="search-header__path user-path">
+                <a class="movie-header__path-href user-path__href" href="/">
+                    Главная
+                </a>
+                <fest:space/>/
+                <fest:space/>
+                Поиск
+            </div>
+
+            <input class="search-header__input" type="text" placeholder="Поиск"/>
+
+            <div class="search-tabs">
+                <fest:for iterate="data" index="i" value="tab">
+
+                    <fest:choose>
+                        <fest:when test="i === 0">
+                            <div class="search-tabs__tab search-tabs__tab_active" data-value="{tab.value}">
+                                <fest:value>tab.name</fest:value>
+                            </div>
+                        </fest:when>
+
+                        <fest:otherwise>
+                            <div class="search-tabs__tab" data-value="{tab.value}">
+                                <fest:value>tab.name</fest:value>
+                            </div>
+                        </fest:otherwise>
+                    </fest:choose>
+                </fest:for>
+            </div>
+
+        <div class="search-header__message"/>
+        </div>
+
+        <div id="search-page__collections"/>
+        <div id="search-page__list" class="page-layout"/>
+        <div id="search-page__paginator"/>
+    </div>
+</fest:template>

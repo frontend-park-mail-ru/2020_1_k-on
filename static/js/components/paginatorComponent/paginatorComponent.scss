@@ -1,0 +1,31 @@
+@import '~css/mixins';
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+
+  &__current-page {
+    padding: 0 1rem;
+    font-family: Montserrat-Regular, sans-serif;
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  &__btn {
+    fill: var(--text-color);
+    opacity: 0.7;
+    width: 3.5rem;
+    height: 3.5rem;
+
+    &_active {
+      cursor: pointer;
+      @include transformScale();
+
+      &:hover {
+        opacity: 1;
+        fill: var(--main-color);
+      }
+    }
+  }
+}

@@ -1,35 +1,46 @@
-@import 'css/variables';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .filters-block {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
   display: flex;
+  @include media('mobile') {
+    flex-direction: column;
+  }
 }
 
 .filter-button {
-  z-index: 2;
+  box-sizing: border-box;
+  z-index: 1;
   cursor: pointer;
-  margin-right: 30px;
-  width: 250px;
-  height: $filter-button-height;
-  padding-left: 1em;
-  padding-right: 1em;
+  margin-right: 4rem;
+  width: 30rem;
+  padding: 0.6em 1.2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid $path-color;
-  border-radius: 15px;
-  font-size: 16px;
+  border: 0.2rem solid var(--path-color);
+  border-radius: 1.3rem;
+  @include media('desktop') {
+    font-size: 1.7rem;
+  }
+  @include media('mobile') {
+    width: 100%;
+    margin-bottom: 1.6rem;
+    margin-right: 0;
+    font-size: 1.7rem * $mobile-factor;
+  }
 
   &:hover {
-    border-color: $main-color;
+    border-color: var(--main-color);
   }
 
   &:hover &__arrow {
   }
 
   &_active {
-    border-color: $main-color;
+    border-color: var(--main-color);
   }
 
   &__filter-value {
@@ -37,9 +48,17 @@
   }
 
   &__arrow {
-    background: url(/static/img/down-arrow.svg) no-repeat center / cover;
+    background-color: var(--text-color);
+    mask-image: url(/static/img/down-arrow.svg);
+    //background-image: url(/static/img/down-arrow.svg);
     transition: transform $menu-transition-time;
-    @include square($size: 20px);
+    @include center-background;
+    @include media('desktop') {
+      @include square($size: 2rem);
+    }
+    @include media('mobile') {
+      @include square($size: 2rem * $mobile-factor);
+    }
   }
 
   &__arrow_active {
@@ -48,30 +67,78 @@
 }
 
 .filter-submenu {
-  opacity: 0;
-  visibility: hidden;
-  transition: visibility $menu-transition-time, opacity $menu-transition-time;
   position: absolute;
   left: 0;
-  top: $filter-button-height + 12px;
-  z-index: 1;
+  top: $filter-button-height + 1.2rem;
+  z-index: 2;
   box-sizing: border-box;
   width: 100%;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: $submenu-bg-color;
-  font-size: 22px;
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-column-gap: 80px;
-  grid-row-gap: 30px;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: var(--submenu-bg-color);
+  font-size: 2.2rem;
+  @include submenu;
+  @include media('mobile') {
+    z-index: 2000;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    font-size: 3rem;
+    overflow: scroll;
+    @include media('portrait') {
+      padding-top: 8rem;
+    }
+    @include media('landscape') {
+      padding-top: 6rem;
+    }
+  }
 
   &_active {
     visibility: visible;
     opacity: 1;
   }
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    @include media('mobile') {
+      margin-bottom: 7rem;
+    }
+  }
+
+  &__headline {
+    font-size: 5.4rem;
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__close-icon {
+    background-color: var(--text-color);
+    mask-image: url(/static/img/close-icon.svg);
+    //background: no-repeat center / cover url(/static/img/close-icon.svg);
+    @include square(5rem);
+    @include media('desktop') {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    @include media('desktop') {
+      grid-row-gap: 3rem;
+    }
+    @include media('mobile') {
+      grid-row-gap: 6rem;
+    }
+    @include media('mobile', 'portrait') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   &__item {
+    color: var(--filter-submenu-item-color);
 
     &:hover {
       cursor: pointer;
@@ -79,7 +146,7 @@
     }
 
     &_active {
-      color: $main-color;
+      color: var(--main-color);
     }
   }
 }

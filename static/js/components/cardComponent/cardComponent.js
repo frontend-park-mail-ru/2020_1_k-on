@@ -1,5 +1,7 @@
 import Component from 'components/component';
 import template from './cardComponent.tmpl.xml';
+import EventBus from 'libs/eventBus';
+import {PLAYLIST_EVENTS} from 'libs/constants';
 
 export default class CardComponent extends Component {
     constructor({
@@ -13,8 +15,10 @@ export default class CardComponent extends Component {
         mainGenre = null,
         yearFirst = null,
         yearLast = null,
+        isRemovable = false,
+        eventBus = new EventBus(),
     } = {}) {
-        super(template);
+        super(template, eventBus);
 
         this.id = id;
 
@@ -28,10 +32,29 @@ export default class CardComponent extends Component {
             mainGenre: mainGenre,
             yearFirst: yearFirst,
             yearLast: yearLast,
+            isRemovable: isRemovable,
         };
 
         this.element = document.createElement('a');
         this.element.classList.add('series-card');
         this.element.href = `/${this.data.type}/${this.id}`;
+    }
+
+    afterRender() {
+        if (!this.data.isRemovable) {
+            return;
+        }
+
+        this.element.getElementsByClassName('series-card__remove')[0].addEventListener(
+            'click',
+            this.onRemove.bind(this),
+        );
+    }
+
+    onRemove(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        this.eventBus.publish(PLAYLIST_EVENTS.deleteCard, this.element, this.id, this.data.type);
     }
 }

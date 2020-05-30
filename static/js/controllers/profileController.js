@@ -1,4 +1,3 @@
-import ProfileSettingsView from 'views/profileSettingsView/profileSettingsView';
 import ProfileView from 'views/profileView/profileView';
 import EventBus from 'libs/eventBus';
 import {
@@ -16,19 +15,12 @@ export default class ProfileController {
             this.router.change('/login');
         });
         this.eventBus.subscribe(
-            PROFILE_EVENTS.logout,
-            () => {
-                this.globalEventBus.publish(GLOBAL_EVENTS.renderForUnauth);
-            },
-        );
-        this.eventBus.subscribe(
             PROFILE_EVENTS.internalError,
             (code) => {
                 this.globalEventBus.publish(GLOBAL_EVENTS.internalError, code);
             }
         );
 
-        this.settingsView = new ProfileSettingsView(this.eventBus);
         this.view = new ProfileView(this.eventBus);
     }
 }

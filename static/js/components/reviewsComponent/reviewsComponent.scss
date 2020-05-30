@@ -1,9 +1,28 @@
-@import 'css/variables';
-@import 'css/mixins';
-
 .no-reviews-message {
   padding: 3 * $padding-between-rows 0 6 * $padding-between-rows;
   border-top: 0.2px solid $text-dark-color;
-  font-size: 20px;
-  color: $path-color;
+  color: var(--path-color);
+  @include media('desktop') {
+    font-size: 2rem;
+  }
+  @include media('mobile') {
+    font-size: 2rem * $mobile-factor;
+  }
+}
+
+.reviews-block {
+  padding-left: $review-padding-left;
+
+  &__review-info {
+    padding-left: 3rem;
+  }
+
+  &__review-text {
+    @include media('desktop') {
+      font-size: 1.8rem;
+    }
+    @include media('mobile') {
+      font-size: 1.8rem * $mobile-factor;
+    }
+  }
 }

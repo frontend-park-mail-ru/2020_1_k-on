@@ -1,8 +1,9 @@
-@import 'css/mixins';
+@import '~css/mixins';
 
 .swiper {
   position: relative;
   overflow: hidden;
+  min-height: 6rem;
 
   &__wrapper {
     overflow-x: scroll;
@@ -11,7 +12,7 @@
     white-space: nowrap;
     width: 100%;
     height: 100%;
-    padding-top: 12px;
+    padding-top: 1.2rem;
     box-sizing: border-box;
 
     &::-webkit-scrollbar {
@@ -24,6 +25,12 @@
   }
 
   &__arrows {
+
+    &_svg {
+      width: 3.5rem;
+      height: 3.5rem;
+      fill: var(--text-color);
+    }
 
     &_left {
       @include swiperArrow(left);

@@ -1,0 +1,32 @@
+@import '~css/mediaQueries';
+
+.subscriptions {
+  @include media('desktop') {
+    margin-top: 3rem;
+  }
+  @include media('mobile') {
+    margin-top: 3rem * $mobile-factor;
+  }
+}
+
+.subscriptions-empty-msg {
+  text-align: center;
+  font-family: OpenSans-Light, sans-serif;
+  @include media('desktop') {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  @include media('mobile') {
+    margin-top: 2rem * $mobile-factor;
+    font-size: 1.8rem * $mobile-factor;
+    line-height: 1.8rem * $mobile-factor + 0.7rem;
+  }
+
+  &__link {
+
+    &:hover {
+      color: var(--main-color);
+    }
+  }
+}

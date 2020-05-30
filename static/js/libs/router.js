@@ -2,15 +2,17 @@ import MovieView from 'views/movieView/movieView';
 import PersonView from 'views/personView/personView';
 import ErrorView from 'views/errorView/errorView';
 import {
+    GLOBAL_EVENTS,
     NOT_FOUND_ERROR_MSG,
     NOT_FOUND_STATUS,
 } from 'libs/constants';
 
 export default class Router {
-    constructor(root) {
+    constructor(root, eventBus) {
         this.root = root;
-        this.routes = new Map();
+        this.eventBus = eventBus;
 
+        this.routes = new Map();
         this.errorView = new ErrorView();
 
         this.currentRoute = null;
@@ -59,13 +61,11 @@ export default class Router {
 
         for (const key of this.routes.keys()) {
             if (this.currentRoute && this.currentRoute.match(key)) {
-                if (path === '/logout' && this.currentRoute === '/') {
-                    return;
-                }
-
                 this.routes.get(key).view.close();
 
                 if (path === '/logout') {
+                    window.sessionStorage.setItem('isUserAuth', false);
+                    this.currentRoute = '/logout';
                     this.change('/');
                     return;
                 }
@@ -84,6 +84,7 @@ export default class Router {
                 }
                 view.render(this.root);
 
+                window.scrollTo(0, 0);
                 window.history.pushState(null, null, path);
                 return;
             }
@@ -102,6 +103,7 @@ export default class Router {
 
             if (linkElement) {
                 evt.preventDefault();
+                this.eventBus.publish(GLOBAL_EVENTS.linkClick);
                 this.change(linkElement.pathname);
             }
         });

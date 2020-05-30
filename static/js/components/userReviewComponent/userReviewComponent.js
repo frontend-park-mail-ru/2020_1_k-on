@@ -1,54 +1,60 @@
+import Component from 'components/component';
 import template from './userReviewComponent.tmpl.xml';
 import Api from 'libs/api';
-import {DEFAULT_AVATAR, MAX_RATING, SUCCESS_STATUS} from 'libs/constants';
+import {
+    MAX_RATING,
+    SUCCESS_STATUS,
+} from 'libs/constants';
 
-export default class UserReviewComponent {
-    constructor(type, id, review) {
-        this.tmpl = template;
+export default class UserReviewComponent extends Component {
+    constructor(
+        type = 'films',
+        id = '1',
+        user = null,
+        review = null
+    ) {
+        super(template);
+
+        this.data = {
+            review: review,
+            user: user,
+        };
+
         this.type = type;
         this.id = id;
         this.rating = 0;
+
+        this.element = document.createElement('div');
+        this.element.classList.add('reviews', 'page-layout');
     }
 
-    render(root) {
-        this.root = root;
-        this.data = {};
+    afterRender() {
+        if (this.data.review) {
+            return;
+        }
 
-        Api.getUserData().then((res) => {
-            if (res.status === SUCCESS_STATUS) {
-                res.json().then((res) => {
-                    this.data.user = res.body;
-                    this.data.user.image = res.body.image === '' ?
-                        DEFAULT_AVATAR : ` http://64.225.100.179:8080/image/${res.body.image}`;
+        for (const starIcon of this.element.getElementsByClassName('review-form__star-icon')) {
+            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
+            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
+            starIcon.addEventListener('click', this.onStarClick.bind(this));
+        }
 
-                    Api.getUserReview(this.type, this.id).then((res) => {
-                        if (res.status === SUCCESS_STATUS) {
-                            res.json().then((res) => {
-                                this.data.review = res.body;
+        const formInput = this.element.getElementsByClassName('review-form__input')[0];
+        formInput.addEventListener('focus', this.onFormFocus.bind(this));
+        formInput.addEventListener('blur', this.onFormBlur.bind(this));
 
-                                this.root.innerHTML += this.tmpl(this.data);
-                            });
-                        } else {
-                            this.renderOnNoReview(root);
-                        }
-                    });
-                });
-            }
-        });
-    }
-
-    setId(id) {
-        this.id = id;
+        const submitButton = this.element.getElementsByClassName('review-form__button')[0];
+        submitButton.addEventListener('click', this.onSubmit.bind(this));
     }
 
     onStarMouseOver(evt) {
-        this.toPreviousStars(evt.target.dataset['value'], (starIcon) => {
+        this.toPreviousStars(evt.currentTarget.dataset['value'], (starIcon) => {
             starIcon.classList.add('review-form__star-icon_active');
         });
     }
 
     onStarMouseOut(evt) {
-        this.toPreviousStars(evt.target.dataset['value'], (starIcon) => {
+        this.toPreviousStars(evt.currentTarget.dataset['value'], (starIcon) => {
             if (parseInt(starIcon.dataset['value']) > this.rating) {
                 starIcon.classList.remove('review-form__star-icon_active');
             }
@@ -56,7 +62,7 @@ export default class UserReviewComponent {
     }
 
     onStarClick(evt) {
-        const starIcon = evt.target;
+        const starIcon = evt.currentTarget;
         this.rating = starIcon.dataset['value'];
 
         this.toPreviousStars(MAX_RATING, (starIcon) => {
@@ -68,8 +74,7 @@ export default class UserReviewComponent {
 
     toPreviousStars(starValue, func) {
         const rateBlock = document.getElementsByClassName('review-form__rate')[0];
-        for (const star of rateBlock.children) {
-            const starIcon = star.firstElementChild;
+        for (const starIcon of rateBlock.children) {
             func(starIcon);
 
             if (starIcon.dataset['value'] === starValue) {
@@ -78,12 +83,20 @@ export default class UserReviewComponent {
         }
     }
 
+    onFormFocus(evt) {
+        screen.orientation.lock('landscape-primary');
+    }
+
+    onFormBlur(evt) {
+        screen.orientation.unlock('landscape-primary');
+    }
+
     onSubmit(evt) {
         evt.preventDefault();
 
         const reviewText = document.getElementsByClassName('review-form__input')[0].value;
-        if (!reviewText || this.rating === 0) {
-            this.showError();
+        if (this.rating === 0) {
+            this.showError('Пожалуйста, поставьте оценку');
             return;
         }
 
@@ -92,36 +105,25 @@ export default class UserReviewComponent {
         Api.createReview(this.type, this.id, this.rating, reviewText)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
-                    res.json().then((res) => {
-                    });
+                    this.data.review = {
+                        rating: this.rating,
+                        body: reviewText,
+                    };
+                    this.element.innerHTML = this.tmpl(this.data);
                 } else {
-                    console.log('something went wrong');
+                    return Promise.reject(res);
                 }
+            })
+            .catch((err) => {
+                console.error(`${err.status}: FAILED TO LOAD COMMENT`);
+                this.showError('Не удалось отправить отзыв');
             });
-
-        this.data.review = {
-            rating: this.rating,
-            body: reviewText,
-        };
-        this.root.innerHTML += this.tmpl(this.data);
     }
 
-    renderOnNoReview(root) {
-        this.root.innerHTML += this.tmpl(this.data);
-
-        for (const starIcon of document.getElementsByClassName('review-form__star-icon')) {
-            starIcon.addEventListener('mouseover', this.onStarMouseOver.bind(this));
-            starIcon.addEventListener('mouseout', this.onStarMouseOut.bind(this));
-            starIcon.addEventListener('click', this.onStarClick.bind(this));
-        }
-
-        const submitButton = document.getElementsByClassName('review-form__button')[0];
-        submitButton.addEventListener('click', this.onSubmit.bind(this));
-    }
-
-    showError() {
+    showError(errMsg = '') {
         const error = document.getElementsByClassName('review-form__error')[0];
         error.classList.add('review-form__error_shown');
+        error.innerText = errMsg;
     }
 
     hideError() {

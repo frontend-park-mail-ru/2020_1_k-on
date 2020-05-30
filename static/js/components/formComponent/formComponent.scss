@@ -1,0 +1,45 @@
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
+.auth-form {
+  display: block;
+  color: var(--text-color);
+
+  &__button {
+    width: 100%;
+    box-sizing: border-box;
+    @include gradientButton;
+  }
+
+  &__eye {
+    position: absolute;
+    right: 1.4rem;
+    top: 50%;
+    cursor: pointer;
+    @include media('desktop') {
+      margin-top: -1.1rem;
+    }
+    @include media('mobile') {
+      margin-top: -1.1rem * $mobile-factor;
+    }
+
+    &_hide {
+      display: none;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__vk-login-button {
+    display: flex;
+    margin-left: 1rem;
+    @include gradientButton;
+  }
+
+  &__vk-login-button_icon {
+    fill: var(--button-text-color);
+    @include square(1em);
+  }
+}

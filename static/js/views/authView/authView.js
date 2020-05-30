@@ -1,14 +1,12 @@
 import View from 'views/view';
 import template from './authView.tmpl.xml';
-import validation from 'libs/validation';
-import passwordToggler from 'libs/passwordToggler';
-import InputComponent from 'components/inputComponent/inputComponent';
-import InputErrorComponent from 'components/inputErrorComponent/inputErrorComponent';
+import FormComponent from 'components/formComponent/formComponent';
 import {
     BAD_REQUEST_STATUS,
-    FORBIDDEN_STATUS, INTERNAL_ERROR_STATUS, NOT_FOUND_STATUS,
-    PROFILE_EVENTS,
+    FORBIDDEN_STATUS,
+    NOT_FOUND_STATUS,
     SUCCESS_STATUS,
+    SERVER_UNAVAILABLE_MSG,
 } from 'libs/constants';
 
 export default class AuthView extends View {
@@ -17,13 +15,12 @@ export default class AuthView extends View {
         data = null,
         onSuccessEvents = [],
         apiMethod = null,
-        inputsID = [],
     } = {}) {
         super(template, eventBus);
+
         this.data = data;
         this.onSuccesEvents = onSuccessEvents;
         this.apiMethod = apiMethod;
-        this.inputsID = inputsID;
     }
 
     render(root) {
@@ -33,43 +30,37 @@ export default class AuthView extends View {
     }
 
     /**
-     * Валидирует и отправляет форму
-     * @param {object} event
+     * Отправляет форму
+     * @param {object} inputsValue
      */
-    onSubmit(event) {
-        event.preventDefault();
-        const validationResult = validation();
-
-        if (!validationResult) {
-            return;
-        }
-
-        const inputsValue = [];
-        this.inputsID.forEach((id) => {
-            const value = document.getElementById(id).value;
-            inputsValue.push(value);
-        });
-
-        this.apiMethod(...inputsValue)
+    onSubmit(inputsValue) {
+        this.apiMethod(inputsValue)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     this.onSuccess();
-                } else if (res.status === INTERNAL_ERROR_STATUS) {
-                    return Promise.reject(res);
                 } else {
-                    this.root.getElementsByClassName('auth-content')[0]
-                        .classList.add('auth-content_error');
-
-                    if (res.status === BAD_REQUEST_STATUS || res.status === NOT_FOUND_STATUS) {
-                        this.onInvalid(this.data.messages.bad_request);
-                    } else if (res.status === FORBIDDEN_STATUS) {
-                        this.onInvalid(this.data.messages.forbidden);
-                    }
+                    return Promise.reject(res.status);
                 }
             })
-            .catch((err) => {
-                this.eventBus.publish(PROFILE_EVENTS.internalError, err.status);
+            .catch((status) => {
+                switch (status) {
+                case BAD_REQUEST_STATUS:
+                case NOT_FOUND_STATUS:
+                    this.onInvalid(this.data.messages.bad_request);
+                    break;
+                case FORBIDDEN_STATUS:
+                    this.onInvalid(this.data.messages.forbidden);
+                    break;
+                default:
+                    this.onInvalid(SERVER_UNAVAILABLE_MSG);
+                }
             });
+    }
+
+    onVkAuth() {
+        window.location = 'https://oauth.vk.com/authorize?access_type=offline' +
+            '&client_id=7487797&redirect_uri=https://kino-on.ru/api/oauth' +
+            '&response_type=code&scope=email&state=state';
     }
 
     /**
@@ -86,43 +77,22 @@ export default class AuthView extends View {
      * @param {string} resErrMsg
      */
     onInvalid(resErrMsg) {
-        const formError = this.root.getElementsByClassName(
-            'auth-page__form-error'
-        )[0];
+        this.root.getElementsByClassName('auth-content')[0]
+            .classList.add('auth-content_error');
 
+        const formError = this.root.getElementsByClassName('auth-page__form-error')[0];
         formError.textContent = resErrMsg;
         formError.style.opacity = '1';
     }
 
-    /**
-     * Перед закрытием view вызывает close родителя и удаляет
-     * обработчики событий
-     */
-    close() {
-        super.close();
-        this.root.removeEventListener('submit', this.onSubmit);
-    }
-
-    /**
-     * Добавление обработчиков событий после рендера страницы
-     */
     afterRender() {
-        this.form = this.root.getElementsByClassName('auth-form')[0];
-        this.form.addEventListener('submit', this.onSubmit.bind(this));
-
-        const inputs = this.form.getElementsByClassName('inputs')[0];
-
-        this.data.inputs.forEach((input) => {
-            const inputComponent = new InputComponent(input);
-            inputs.appendChild(inputComponent.render());
-
-            const inputErrorComponent = new InputErrorComponent(inputComponent.getName());
-            inputs.appendChild(inputErrorComponent.render());
+        const formContainer = this.root.getElementsByClassName('form-container')[0];
+        this.formComponent = new FormComponent({
+            inputs: this.data.inputs,
+            buttonText: this.data.button_text,
+            onSubmitCallback: this.onSubmit.bind(this),
+            onVkAuthCallback: this.onVkAuth.bind(this),
         });
-
-        Array.from(this.root.getElementsByClassName('auth-form__eye'))
-            .forEach((elem) => {
-                elem.addEventListener('click', passwordToggler);
-            });
+        formContainer.appendChild(this.formComponent.render());
     }
 }

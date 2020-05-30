@@ -1,33 +1,47 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="series-card__image" style="background-image: url({data.image})">
-        <span class="series-card__age-limit">
-            <fest:value>data.ageLimit</fest:value>+
-        </span>
-        <div class="series-card__gradient" />
+        <fest:if test="data.type !== 'persons'">
+            <span class="series-card__age-limit">
+                <fest:value>data.ageLimit</fest:value>+
+            </span>
+        </fest:if>
+        <div class="series-card__gradient"/>
 
-        <div class="series-card__content">
-            <div class="series-card__content-row">
-                <fest:if test="data.type === 'series'">
-                    <fest:value>data.yearFirst</fest:value>
-                    <fest:if test="data.yearFirst !== data.yearLast">
-                        <fest:space/>-
-                        <fest:space/>
-                        <fest:value>data.yearLast</fest:value>
+        <fest:if test="data.isRemovable === true">
+            <svg class="series-card__remove" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+                 xmlns="http://www.w3.org/2000/svg"><path d="m284.29 256 221.86-221.86c7.811-7.811
+                 7.811-20.475 0-28.285s-20.475-7.811-28.285 0l-221.86 221.86-221.86-221.86c-7.811-7.811-20.475-7.811-28.285
+                 0s-7.811 20.475 0 28.285l221.86 221.86-221.86 221.86c-7.811 7.811-7.811 20.475 0 28.285 3.905 3.905
+                 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857l221.86-221.86 221.86 221.86c3.905 3.905 9.024
+                 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285l-221.86-221.86z"/>
+            </svg>
+        </fest:if>
+
+        <fest:if test="data.type !== 'persons'">
+            <div class="series-card__content">
+                <div class="series-card__content-row">
+                    <fest:if test="data.type === 'series'">
+                        <fest:value>data.yearFirst</fest:value>
+                        <fest:if test="data.yearFirst !== data.yearLast">
+                            <fest:space/>-
+                            <fest:space/>
+                            <fest:value>data.yearLast</fest:value>
+                        </fest:if>
                     </fest:if>
-                </fest:if>
 
-                <fest:if test="data.type === 'films'">
-                    <fest:value>data.year</fest:value>
-                </fest:if>
-                ,
+                    <fest:if test="data.type === 'films'">
+                        <fest:value>data.year</fest:value>
+                    </fest:if>
+                    ,
+                </div>
+                <div class="series-card__content-row">
+                    <fest:value>data.country</fest:value>,
+                </div>
+                <div class="series-card__content-row">
+                    <fest:value>data.mainGenre</fest:value>
+                </div>
             </div>
-            <div class="series-card__content-row">
-                <fest:value>data.country</fest:value>,
-            </div>
-            <div class="series-card__content-row">
-                <fest:value>data.mainGenre</fest:value>
-            </div>
-        </div>
+        </fest:if>
     </div>
 
     <span class="series-card__name">

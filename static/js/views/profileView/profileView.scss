@@ -1,9 +1,11 @@
-@import 'css/mixins';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .user-info-wrapper {
   display: flex;
-  margin-top: 128px;
   justify-content: center;
+  padding-top: 6rem;
+  @include page-margin-top;
 }
 
 .user-info {
@@ -14,11 +16,14 @@
   @media (max-width: 700px) {
     width: 90%;
   }
-  @media (min-width: 700px) and (max-width: 1200px) {
+  @media (min-width: 700px) and (max-width: 900px) {
+    width: 65%;
+  }
+  @media (min-width: 900px) and (max-width: 1200px) {
     width: 50%;
   }
   @media (min-width: 1200px) {
-    width: 36%;
+    width: 40%;
   }
 }
 
@@ -36,47 +41,173 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to top, $bg-color, rgba($bg-color, 0));
+    background-image: var(--bg-shadow-color);
   }
 
   &__name {
-    font-family: Montserrat-Medium;
+    font-family: Montserrat-Medium, sans-serif;
     font-weight: bold;
-    font-size: 1.7em;
     position: absolute;
-    bottom: 36px;
+    bottom: 3.6rem;
     text-transform: uppercase;
+    @include media('desktop') {
+      font-size: 2.5rem;
+    }
+    @include media('mobile') {
+      font-size: 2.5rem * $mobile-factor;
+    }
+  }
+
+  &__upload {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    z-index: 1;
+    @include transformScale;
+
+    &_svg {
+      fill: var(--main-color);
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__msg {
+    position: absolute;
+    top: 1.6rem;
+    min-height: 3.6rem;
+    width: 100%;
+    padding: 0 4.8rem;
+    box-sizing: border-box;
+    font-family: Montserrat-Medium, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+
+    &_error {
+      color: $error-color;
+    }
+
+    &_success {
+      color: $success-color;
+    }
   }
 }
 
-.user-actions {
+.user-action {
+  box-sizing: border-box;
   display: flex;
-  width: 50%;
-  height: 64px;
-  background-color: rgba(black, 0.2);
-  border-radius: 0 0 24px 24px;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  @include media('desktop') {
+    padding: 0 1.2rem;
+  }
+  @include media('mobile') {
+    padding: 1rem 3rem;
+  }
 
-  &-gear {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-
-    &__svg {
-      fill: $text-bright-color;
-      @include transformScale;
+  &__svg {
+    fill: var(--main-color);
+    @include transformScale;
+    @include media('desktop') {
+      height: 3.6rem;
+    }
+    @include media('mobile') {
+      height: 3.6rem * $mobile-factor;
     }
   }
 
-  &-logout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-
-    &__svg {
-      fill: $text-bright-color;
-      @include transformScale;
+  &__name {
+    font-family: OpenSans-Light, sans-serif;
+    padding-top: 0.8rem;
+    @include media('desktop') {
+      font-size: 1.6rem;
     }
+    @include media('mobile') {
+      display: none;
+    }
+  }
+}
+
+.user-actions-block {
+  display: flex;
+  box-sizing: border-box;
+  padding: 1.2rem 0;
+  background-color: var(--shade-color);
+  min-height: 6.4rem;
+  border-radius: 0 0 2.4rem 2.4rem;
+}
+
+#playlist-container {
+  margin-top: 3.6rem;
+}
+
+.switch {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  position: relative;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  border-radius: 50em;
+  padding: var(--switch-padding);
+
+  &__input,
+  &__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__input {
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+
+    &:checked + .switch__label {
+      background-color: var(--main-color);
+    }
+
+    &:checked + .switch__label + .switch__marker {
+      left: calc(100% - var(--switch-height) + var(--switch-padding));
+    }
+
+    &:focus + .switch__label,
+    &:active + .switch__label {
+      box-shadow: 0 0 0 3px rgba(var(--main-color), 0.2);
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    user-select: none;
+    background-color: var(--main-color);
+    border-radius: inherit;
+    z-index: 1;
+    transition: background $switch-animation-duration;
+  }
+
+  &__marker {
+    position: relative;
+    background-color: var(--bg-color);
+    width: calc(var(--switch-height) - var(--switch-padding) * 2);
+    height: calc(var(--switch-height) - var(--switch-padding) * 2);
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.25);
+    left: var(--switch-padding);
+    transition: left $switch-animation-duration;
+    will-change: left;
   }
 }

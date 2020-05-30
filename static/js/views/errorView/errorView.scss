@@ -1,5 +1,4 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/mixins';
 
 .internal-error {
   position: absolute;
@@ -13,7 +12,8 @@
 
   &__code {
     z-index: 1;
-    font-family: Montserrat-Medium;
+    font-family: Montserrat-Medium, sans-serif;
+    color: $error-text-color;
     font-size: 12em;
     margin-bottom: 24px;
   }
@@ -21,7 +21,8 @@
   &__msg {
     width: 75%;
     z-index: 1;
-    font-family: Montserrat-Medium;
+    color: $error-text-color;
+    font-family: Montserrat-Medium, sans-serif;
     font-size: 3em;
     text-align: center;
     margin-bottom: 24px;

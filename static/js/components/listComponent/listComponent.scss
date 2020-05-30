@@ -1,18 +1,66 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .list-component {
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
 
   & > * {
-    margin-right: $list-right-gap;
     margin-bottom: $list-bottom-gap;
+    @include media('6cards') {
+      margin-left: 6 / 5 * $padding-between-cards;
+    }
+    @include media('5cards') {
+      margin-left: 5 / 4 * $padding-between-cards;
+    }
+    @include media('4cards') {
+      margin-left: 4 / 3 * $padding-between-cards;
+    }
+    @include media('3cards') {
+      margin-left: 3 / 2 * $padding-between-cards;
+    }
+    @include media('2cards') {
+      margin-left: 2 * $padding-between-cards;
+    }
+
+    &:nth-child(6n+1) {
+      @include media('6cards') {
+        margin-left: 0;
+      }
+    }
+
+    &:nth-child(5n+1) {
+      @include media('5cards') {
+        margin-left: 0;
+      }
+    }
+
+    &:nth-child(4n+1) {
+      @include media('4cards') {
+        margin-left: 0;
+      }
+    }
+
+    &:nth-child(3n+1) {
+      @include media('3cards') {
+        margin-left: 0;
+      }
+    }
+
+    &:nth-child(2n+1) {
+      @include media('2cards') {
+        margin-left: 0;
+      }
+    }
   }
 
   &__no-results {
     font-family: OpenSans-Regular, sans-serif;
-    font-size: 20px;
+    @include media('desktop') {
+      font-size: 2rem;
+    }
+    @include media('mobile') {
+      font-size: 2rem * $mobile-factor;
+    }
   }
 }

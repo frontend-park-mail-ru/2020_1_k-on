@@ -1,13 +1,26 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .write-review-block {
-  margin-bottom: 20px;
-  border-top: 0.2px solid $text-dark-color;
+  border-top: 1px solid $text-dark-color;
+  @include media('desktop') {
+    margin-bottom: 2rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 2rem * $mobile-factor;
+  }
 
   &__avatar {
     flex-shrink: 0;
-    @include square($size: 70px);
+    @include media('desktop') {
+      @include avatar($size: 7rem);
+    }
+    @include media('mobile') {
+      @include avatar($size: 7rem * $mobile-factor);
+      @include media('portrait') {
+        display: none;
+      }
+    }
   }
 }
 
@@ -16,25 +29,40 @@
 
   &__rate {
     display: flex;
-  }
-
-  &__star {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-    color: $text-dark-color;
+    justify-content: space-between;
   }
 
   &__star-icon {
-    padding-right: 5px;
-    width: 27px;
-    height: 25px;
-    background: url(/static/img/star-icon.svg) no-repeat center;
-    transition: background-image 0.2s ease-in-out;
+    padding-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.4rem;
+    color: $text-dark-color;
+    @include media('mobile', 'portrait') {
+      width: calc(10% - 1rem);
+      padding-right: 0;
+    }
 
-    &_active {
-      background-image: url(/static/img/star-icon-active.svg);
+    & > svg {
+      transition: fill 0.2s ease-in-out;
+      @include media('desktop') {
+        width: 2.7rem;
+        height: 2.5rem;
+      }
+      @include media('mobile') {
+        @include media('portrait') {
+          width: 100%;
+        }
+        @include media('landscape') {
+          width: 2.7rem * 1.2;
+          height: 2.5rem * 1.2;
+        }
+      }
+    }
+
+    &_active > svg {
+      fill: $star-color-bright;
     }
   }
 
@@ -50,19 +78,27 @@
     width: 100%;
     display: block;
     border: 0;
-    border-bottom: 2px solid #eaeea9;
+    border-bottom: 2px solid var(--text-ref-color);
     background: none;
     font-family: inherit;
-    font-size: 18px;
-    color: $text-color;
+    color: var(--text-color);
     transition: border-bottom 0.15s ease-in-out;
+    @include media('desktop') {
+      font-size: 1.8rem;
+    }
+    @include media('mobile', 'landscape') {
+      font-size: 1.8rem * $mobile-factor;
+    }
+    @include media('mobile', 'portrait') {
+      font-size: 2rem * $mobile-factor;
+    }
 
     &::placeholder {
       color: $text-dark-color;
     }
 
     &:focus {
-      border-bottom: 2px solid $text-bright-color;
+      border-bottom: 2px solid var(--main-color);
     }
   }
 
@@ -71,6 +107,12 @@
     transition: opacity 0.2ms linear;
     margin-bottom: 1 * $padding-between-rows;
     color: $error-color;
+    @include media('desktop') {
+      font-size: 1.2rem;
+    }
+    @include media('mobile') {
+      font-size: 1.2rem * $mobile-factor;
+    }
 
     &_shown {
       opacity: 1;
@@ -79,15 +121,54 @@
 
   &__button {
     padding: 0.5em 1.5em;
-    font-size: 18px;
+    font-size: 1.8rem;
     @include gradientButton;
   }
 }
 
 .review-info__edit-button {
-  margin-top: 20px;
+  margin-top: 2rem;
   min-height: 0;
   padding: 0.5em 0.7em;
-  font-size: 16px;
+  font-size: 1.6rem;
   @include gradientButton;
+}
+
+.user-review {
+  @include media('desktop') {
+    padding-left: $review-padding-left;
+  }
+  @include media('mobile', 'landscape') {
+    padding-left: $review-padding-left;
+  }
+
+  &__username {
+    @include media('mobile', 'portrait') {
+      display: none;
+    }
+  }
+
+  &__review-info {
+    @include media('desktop') {
+      padding-left: 3rem;
+    }
+    @include media('mobile', 'portrait') {
+      padding-left: 0;
+    }
+    @include media('mobile', 'landscape') {
+      padding-left: 3rem;
+    }
+  }
+
+  &__review-text {
+    @include media('desktop') {
+      font-size: 1.8rem;
+    }
+    @include media('mobile', 'landscape') {
+      font-size: 1.8rem * $mobile-factor;
+    }
+    @include media('mobile', 'portrait') {
+      font-size: 2rem * $mobile-factor;
+    }
+  }
 }

@@ -1,0 +1,22 @@
+@import '~css/mixins';
+
+.share-button-block {
+  @include media('desktop') {
+    margin-bottom: 4rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 4rem * $mobile-factor;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    @include gradientButton;
+  }
+
+  &__icon {
+    margin-right: 0.5em;
+    fill: var(--button-text-color);
+    @include square(1em);
+  }
+}

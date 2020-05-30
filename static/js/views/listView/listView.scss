@@ -1,22 +1,32 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/mediaQueries';
+@import '~css/mixins';
 
 .list-page {
-  padding-top: $navbar-height;
+  padding-top: 7rem;
   font-family: OpenSans-Regular, sans-serif;
+  @include page-margin-top;
 }
 
 .list-header {
-  margin-bottom: 60px;
-  margin-top: 80px;
+  margin-bottom: 6rem;
 
   &__path {
-    margin-bottom: 2 * $padding-between-rows;
-    font-size: 16px;
+    margin-bottom: 1.5rem;
+    @include media('desktop') {
+      font-size: 1.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+    }
   }
 
   &__headline {
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 45px;
+    @include media('desktop') {
+      font-size: 5rem;
+    }
+    @include media('mobile') {
+      font-size: 5rem * $mobile-factor;
+    }
   }
 }

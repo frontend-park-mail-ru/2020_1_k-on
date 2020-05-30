@@ -1,0 +1,79 @@
+@import '~css/mediaQueries';
+
+@mixin tab {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  margin-right: 0;
+  box-sizing: border-box;
+  font-family: OpenSans-Regular, sans-serif;
+  font-size: 3rem;
+  color: var(--text-color);
+  border-bottom: 2px solid transparent;
+  @include media('desktop') {
+    padding: 2.4rem 4.8rem;
+  }
+  @include media('mobile') {
+    padding: 2.4rem 4rem * $mobile-factor;
+  }
+  transition: {
+    property: color, border-bottom-color;
+    duration: 0.2s;
+    timing-function: linear;
+  };
+
+  &:hover {
+    color: var(--main-color);
+    border-bottom-color: var(--main-color);
+    transition: {
+      property: color, border-bottom-color;
+      duration: 0.2s;
+      timing-function: linear;
+    };
+  }
+
+  &_active {
+    color: var(--main-color);
+    border-bottom-color: var(--main-color);
+    transition: {
+      property: color, border-bottom-color;
+      duration: 0.2s;
+      timing-function: linear;
+    };
+  }
+}
+
+.tab-add {
+  @include tab;
+}
+
+.tab {
+  @include tab;
+
+  &__delete {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+    fill: var(--text-color);
+    transition: fill 0.2s linear;
+    @include media('desktop') {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    @include media('mobile') {
+      width: 1.6rem * $mobile-factor;
+      height: 1.6rem * $mobile-factor;
+    }
+
+    &:hover {
+      fill: $error-color;
+      transition: fill 0.2s linear
+    }
+
+    &_active {
+      visibility: visible;
+    }
+  }
+}

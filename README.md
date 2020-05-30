@@ -4,11 +4,11 @@
 
 ## Ссылка
 
-http://64.225.100.179:3000/
+https://kino-on.ru/
 
 ## Ссылка
 
-[swagger](https://app.swaggerhub.com/apis/OlegElizarov/k_on2.0/1.0.0)
+[swagger](https://app.swaggerhub.com/apis/BMSTU88/k_on5.0/1.0.0/)
 
 ## Состав
 
@@ -23,7 +23,7 @@ http://64.225.100.179:3000/
 
 ## Описание
 
-Кинопоиск
+Сервис подбора фильмов и сериалов
 
 ## Репозиторий бекенда
  

@@ -1,11 +1,90 @@
+@import '~css/mixins';
+@import '~css/mediaQueries';
+
 .collection {
   position: relative;
   width: 100%;
-  margin-bottom: 64px;
+  @include media('desktop') {
+    margin-bottom: 8rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 6rem * $mobile-factor;
+  }
 
   &__header {
+    display: inline-block;
     font-family: Montserrat-Regular, sans-serif;
-    font-size: 28px;
-    margin-bottom: 14px;
+    @include media('desktop') {
+      padding: 0 2rem 1.3rem $desktop-paragraph;
+      font-size: 3rem;
+    }
+    @include media('mobile') {
+      padding: 0 2rem 1.3rem * $mobile-factor * $mobile-factor $mobile-paragraph;
+      font-size: 3rem * $mobile-factor;
+    }
+  }
+
+  &__subscribe-button {
+    font-family: Montserrat-Regular, sans-serif;
+    color: var(--text-ref-color);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.35s;
+    @include media('desktop') {
+      font-size: 2.2rem;
+    }
+    @include media('mobile') {
+      font-size: 2.2rem * $mobile-factor;
+    }
+
+    &_sub {
+      color: var(--text-ref-color);
+
+      &:hover {
+        color: var(--main-color);
+        transition: color 0.35s;
+      }
+    }
+
+    &_unsub {
+      color: $error-ref-color;
+
+      &:hover {
+        color: $error-color;
+        transition: color 0.35s;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      height: 1em;
+      width: 100%;
+      border-bottom: 1px solid;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.35s, transform 0.35s;
+      transform: scale(0,1);
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &__show-all-button {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--path-color);
+    font-family: OpenSans-Regular, sans-serif;
+    @include media('desktop') {
+      font-size: 1.7rem;
+    }
+    @include media('mobile') {
+      font-size: 1.7rem * $mobile-factor;
+    }
   }
 }

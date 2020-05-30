@@ -1,11 +1,13 @@
 import View from 'views/view';
 import template from './listView.tmpl.xml';
+import Api from 'libs/api';
 import ListComponent from 'components/listComponent/listComponent';
 import FilterComponent from 'components/filterComponent/filterComponent';
 import CardComponent from 'components/cardComponent/cardComponent';
-import Api from 'libs/api';
+import PaginatorComponent from 'components/paginatorComponent/paginatorComponent';
 import {
     LIST_EVENTS,
+    PAGINATOR_EVENTS,
     SUCCESS_STATUS,
 } from 'libs/constants';
 
@@ -16,17 +18,11 @@ export default class ListView extends View {
 
         this.data.category = type === 'series' ? 'Сериалы' : 'Фильмы';
 
-        this.eventBus.subscribe(LIST_EVENTS.updateList, () => {
-            this.getList();
-        });
-        this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, (genreReference) => {
-            if (genreReference === '%') {
-                window.history.pushState(null, null, `/${this.type}`);
-            } else {
-                window.history.pushState(null, null,
-                    `/${this.type}/${genreReference}`);
-            }
-        });
+        this.eventBus.subscribe(LIST_EVENTS.updateList, this.getList.bind(this));
+        this.eventBus.subscribe(PAGINATOR_EVENTS.updatePage, this.getList.bind(this));
+        this.eventBus.subscribe(LIST_EVENTS.genrePushHistory, this.updateHistory.bind(this));
+
+        this.isFirstRender = true;
     }
 
     render(root) {
@@ -34,6 +30,7 @@ export default class ListView extends View {
 
         this.listContainer = document.getElementById('list-container');
         this.listComponent = new ListComponent();
+        this.listContainer.appendChild(this.listComponent.render());
 
         Api.getFilters(this.type)
             .then((res) => {
@@ -59,8 +56,8 @@ export default class ListView extends View {
             });
     }
 
-    getList() {
-        Api.getList(this.type, this.filterComponent.getChosenFilters(), 1)
+    getList(page = 1) {
+        Api.getList(this.type, this.filterComponent.getChosenFilters(), page)
             .then((res) => {
                 if (res.status === SUCCESS_STATUS) {
                     return res.json();
@@ -69,11 +66,21 @@ export default class ListView extends View {
                 }
             })
             .then((res) => {
-                res.status === SUCCESS_STATUS ? this.updateList(res.body): this.updateList(null);
+                if (page === 1 || res.body !== null) {
+                    this.updateList(res.body);
+                    if (this.isFirstRender) {
+                        this.isFirstRender = false;
+                        this.paginatorComponent = new PaginatorComponent(this.eventBus);
+                        this.root.appendChild(this.paginatorComponent.render());
+                    }
+                    this.paginatorComponent.setIsLastPage(false);
+                    this.paginatorComponent.setPage(page);
+                } else {
+                    this.paginatorComponent.setIsLastPage(true);
+                }
             })
             .catch((err) => {
-                console.log(err);
-                this.eventBus.publish(LIST_EVENTS.internalError, err.status);
+                console.error(`${err.url} ${err.status}: FAILED TO UPLOAD`);
             });
     }
 
@@ -88,9 +95,6 @@ export default class ListView extends View {
 
             this.listComponent.setElements(cards);
         }
-
-        this.listContainer.innerHTML = '';
-        this.listContainer.appendChild(this.listComponent.render());
     }
 
     parseFiltersFromBody(body) {
@@ -101,10 +105,10 @@ export default class ListView extends View {
                 filters[filterName] = [];
                 filters[filterName].push(body[filterName][0]);
 
-                const maxyear = parseInt(body[filterName][1].reference);
-                const minyear = parseInt(body[filterName][2].reference);
+                const maxYear = parseInt(body[filterName][1].reference);
+                const minYear = parseInt(body[filterName][2].reference);
 
-                for (let year = maxyear; year >= minyear; year--) {
+                for (let year = maxYear; year >= minYear; year--) {
                     filters[filterName].push({name: year, reference: year});
                 }
             } else {
@@ -121,5 +125,15 @@ export default class ListView extends View {
         if (genre !== this.type) {
             this.filterComponent.setFilterIfExists('genre', genre);
         }
+    }
+
+    updateHistory(genreReference) {
+        const url = genreReference === '%' ? `/${this.type}` : `/${this.type}/${genreReference}`;
+        window.history.pushState(null, null, url);
+    }
+
+    close() {
+        this.isFirstRender = true;
+        super.close();
     }
 }

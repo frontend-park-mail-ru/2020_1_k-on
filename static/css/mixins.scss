@@ -2,32 +2,39 @@
   width: $size;
   height: $size;
 }
+@mixin center-background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 @mixin center-position {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@mixin gradientButton {
-  border-radius: 8px;
-  min-height: 44px;
-  color: $bg-color;
-  padding: 0 16px;
-  transition: all 0.4s ease-in-out;
-  font-family: OpenSans-Regular, sans-serif;
-
+@mixin gradient {
   background: {
-    image: $button-bg-color-hover;
+    image: var(--button-bg-color-hover);
     size: 300% 100%;
-  }
-
-  font: {
-    weight: lighter;
-    size: 1.25em;
   }
 
   &:hover {
     background-position: 100% 0;
     transition: all 0.4s ease-in-out;
+  }
+}
+@mixin gradientButton {
+  border-radius: 1rem;
+  color: var(--button-text-color);
+  padding: 0.4em 1em;
+  transition: all 0.4s ease-in-out;
+  font-family: Openans-Regular, sans-serif;
+  @include gradient;
+  @include media('desktop') {
+    font-size: 2.2rem;
+  }
+  @include media('mobile') {
+    font-size: 2.2rem * $mobile-factor;
   }
 }
 @mixin transformScale($scaleValue: 1.25, $transitionValue: 0.2s) {
@@ -41,13 +48,12 @@
 @mixin sliderArrow($side) {
   position: absolute;
   top: 50%;
-  #{$side}: 16px;
-  width: 32px;
-  height: 32px;
+  #{$side}: 2rem;
   margin-top: -16px;
   cursor: pointer;
   z-index: 1;
   opacity: 0.4;
+  @include square($size: 4rem);
   @include transformScale;
 
   &:hover {
@@ -55,28 +61,61 @@
   }
 }
 @mixin swiperArrow($side) {
-  display: inline-block;
+  display: flex;
   position: absolute;
   top: 0;
+  padding-top: 12px;
   #{$side}: 0px;
-  width: 80px;
+  width: $desktop-paragraph;
   height: 100%;
   cursor: pointer;
   z-index: 1;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  background-position-x: 16px;
+  align-items: center;
+  justify-content: center;
   @include transformScale;
-  @if $side == left {
-    background-image: url('/static/img/left-arrow.svg');
-    background-position-x: 16px;
-  }
-  @if $side == right {
-    background-image: url('/static/img/right-arrow.svg');
-    background-position-x: 32px;
+  @include media('mobile') {
+    display: none;
   }
 }
 @mixin labelActive {
-  top: 1.4em;
-  font-size: 0.7em;
+  top: 1.6rem;
+  @include media('desktop') {
+    font-size: 1.2rem;
+  }
+  @include media('mobile') {
+    font-size: 1.2rem * $mobile-factor;
+  }
+}
+@mixin avatar($size) {
+  border-radius: 50%;
+  @include square($size);
+  @include center-background;
+}
+@mixin page-layout {
+  @include media('mobile') {
+    padding-left: $mobile-paragraph;
+    padding-right: $mobile-paragraph;
+  }
+  @include media('desktop') {
+    padding-left: $desktop-paragraph;
+    padding-right: $desktop-paragraph;
+  }
+}
+@mixin submenu {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility $menu-transition-time, opacity $menu-transition-time;
+}
+@mixin ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@mixin page-margin-top {
+  @include media('desktop') {
+    margin-top: $navbar-height;
+  }
+  @include media('mobile') {
+    margin-top: $navbar-height * $mobile-factor;
+  }
 }

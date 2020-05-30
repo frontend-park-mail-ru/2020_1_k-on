@@ -1,0 +1,136 @@
+@import '~css/mediaQueries';
+
+.user-settings-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.user-settings {
+  box-sizing: border-box;
+  padding: 3.2rem 6.4rem;
+  background-color: var(--shade-color);
+  border-radius: 0 0 2.4rem 2.4rem;
+  @include media('desktop') {
+    margin-bottom: 2rem;
+    width: 35rem;
+  }
+  @include media('mobile') {
+    margin-bottom: 2rem * $mobile-factor;
+    width: 40rem;
+  }
+
+  &__change-password {
+    font-family: Roboto, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    color: var(--main-color);
+    cursor: pointer;
+    @include media('desktop') {
+      font-size: 1.6rem;
+    }
+    @include media('mobile') {
+      font-size: 1.6rem * $mobile-factor;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      border-bottom: 1px solid;
+      margin-top: 0.4rem;
+      opacity: 0;
+      transition: opacity 0.35s, transform 0.35s;
+      transform: scale(0, 1);
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  z-index: 2000;
+  background-color: var(--bg-color);
+  opacity: 0.95;
+  height: 100%;
+  width: 100vw;
+  max-width: 100%;
+}
+
+.modal-form {
+  position: relative;
+  border: solid 1px var(--modal-content-border-color);
+  border-radius: 2.4rem;
+  color: var(--text-color);
+  background-color: var(--modal-content-bg-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transition: border-color 0.5s linear;
+  @include media('desktop') {
+    padding: 4.5rem 3rem 2.5rem;
+  }
+  @include media('mobile') {
+    padding: 4.5rem * $mobile-factor 3rem * $mobile-factor 2.5rem * $mobile-factor;
+  }
+  @media (max-width: 450px) {
+    width: 80%;
+  }
+  @media (min-width: 450px) and (max-width: 800px) {
+    width: 50%;
+  }
+  @media (min-width: 800px) and (max-width: 1200px) {
+    width: 28%;
+  }
+  @media (min-width: 1200px) {
+    width: 20%;
+  }
+
+  &_error {
+    border-color: $error-color;
+  }
+
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    fill: black;
+    transition: fill 0.2s;
+    @include media('desktop') {
+      top: 1.6rem;
+      right: 1.6rem;
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    @include media('mobile') {
+      top: 1.6rem * $mobile-factor;
+      right: 1.6rem * $mobile-factor;
+      width: 1.6rem * $mobile-factor;
+      height: 1.6rem * $mobile-factor;
+    }
+
+    &:hover {
+      fill: var(--main-color);
+    }
+  }
+}
+
+.modal-error {
+  color: $error-color;
+  margin-top: $auth-form-error-margin;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+  @include media('desktop') {
+    font-size: 2rem;
+  }
+  @include media('mobile') {
+    font-size: 2rem * $mobile-factor;
+  }
+}

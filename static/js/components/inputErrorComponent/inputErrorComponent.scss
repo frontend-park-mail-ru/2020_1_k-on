@@ -1,14 +1,19 @@
-@import 'variables';
-
 .auth-form__input-error {
   opacity: 0;
   transition: opacity 0.2s linear;
   color: $error-color;
-  font-size: 0.8em;
   max-width: fit-content;
-  min-height: 40px;
-  margin: 8px 0;
   font-weight: bolder;
+  @include media('desktop') {
+    font-size: 1.2rem;
+    min-height: 4rem;
+    margin: 0.8rem 0;
+  }
+  @include media('mobile') {
+    font-size: 1.2rem * $mobile-factor;
+    min-height: 4rem * $mobile-factor;
+    margin: 0.8rem * $mobile-factor 0;
+  }
 
   &_active {
     transition: opacity 0.2s linear;

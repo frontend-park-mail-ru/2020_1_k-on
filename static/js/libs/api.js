@@ -10,7 +10,10 @@ export default class Api {
      * @param {string} password
      * @return {Promise<Response>}
      */
-    static doLogin(login, password) {
+    static doLogin({
+        login = '',
+        password = '',
+    }) {
         return Network.doPost({
             url: '/login',
             body: JSON.stringify({
@@ -18,7 +21,7 @@ export default class Api {
                 'password': password,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -31,7 +34,11 @@ export default class Api {
      * @param {string} password
      * @return {Promise<Response>}
      */
-    static doSignUp(login, email, password) {
+    static doSignUp({
+        login= '',
+        email = '',
+        password = '',
+    }) {
         return Network.doPost({
             url: '/signup',
             body: JSON.stringify({
@@ -40,7 +47,7 @@ export default class Api {
                 'email': email,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -60,8 +67,15 @@ export default class Api {
      * Выполняет запрос на получения данных страницы index
      * @return {Promise<Response>}
      */
-    static getIndex() {
+    static getSlider() {
         return Network.doGet();
+    }
+
+    static getIndex(isUserAuth = false) {
+        const url = isUserAuth ? '/main' : '/index';
+        return Network.doGet({
+            url: url,
+        });
     }
 
     /**
@@ -80,7 +94,7 @@ export default class Api {
                 'email': email,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -96,7 +110,7 @@ export default class Api {
             url: '/user/image',
             body: formData,
             headers: {
-                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
             },
         });
     }
@@ -105,7 +119,7 @@ export default class Api {
         return Network.doDelete({
             url: '/logout',
             headers: {
-                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
             },
         });
     }
@@ -152,7 +166,7 @@ export default class Api {
                 'body': text,
             }),
             headers: {
-                'X-CSRF-Token': Network.getCookie('_csrf'),
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
                 'Content-Type': 'application/json',
             },
         });
@@ -161,6 +175,97 @@ export default class Api {
     static getPerson(id) {
         return Network.doGet({
             url: `/persons/${id}`,
+        });
+    }
+
+    static getUserPlaylists() {
+        return Network.doGet({
+            url: '/playlist',
+        });
+    }
+
+    static createPlaylist(name = '', isPublic = true) {
+        return Network.doPost({
+            url: '/playlist',
+            body: JSON.stringify({
+                name: name,
+                public: isPublic,
+            }),
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
+    static deletePlaylist(id) {
+        return Network.doDelete({
+            url: `/playlist/${id}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+            },
+        });
+    }
+
+    static getPlaylistContent(id) {
+        return Network.doGet({
+            url: `/playlist/${id}`,
+        });
+    }
+
+    static deleteCardFromPlaylist(pid, cid, type) {
+        return Network.doDelete({
+            url: `/playlist/${pid}/${type}/${cid}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+            },
+        });
+    }
+
+    static getSubscriptions() {
+        return Network.doGet({
+            url: '/subscriptions',
+        });
+    }
+
+    static subscribeToPlaylist(pid) {
+        return Network.doPost({
+            url: `/subscribe/${pid}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
+    static unsubscribeFromPlaylist(pid) {
+        return Network.doDelete({
+            url: `/unsubscribe/${pid}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+            },
+        });
+    }
+
+    static getPlaylistsWithoutFilm(type, id) {
+        return Network.doGet({
+            url: `/${type}/${id}/playlists`,
+        });
+    }
+
+    static addFilmToPlaylist(pid, type, id) {
+        return Network.doPost({
+            url: `/playlist/${pid}/${type}/${id}`,
+            headers: {
+                'X-CSRF-TOKEN': Network.getCookie('X-CSRF-TOKEN'),
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
+    static doSearch(type, text, page) {
+        return Network.doGet({
+            url: `/${type}/search/${text}?page=${page}`,
         });
     }
 }

@@ -10,14 +10,18 @@ export default class Network {
      * @param {string} url
      * @return {Promise<Response>}
      */
-    static doGet({host = SERVER_ADDRESS, url = '/'} = {}) {
+    static doGet({
+        host = SERVER_ADDRESS,
+        url = '/',
+    } = {}) {
         return fetch(host + url, {
             method: 'GET',
             credentials: 'include',
         })
             .catch((err) => {
-                console.log(err);
-                location.reload();
+                if (!navigator.onLine) {
+                    location.reload();
+                }
             });
     }
 
@@ -29,7 +33,8 @@ export default class Network {
      * @param {object} headers
      * @return {Promise<Response>}
      */
-    static doPost({host = SERVER_ADDRESS,
+    static doPost({
+        host = SERVER_ADDRESS,
         url = '/',
         body = '',
         headers = {},
@@ -39,7 +44,12 @@ export default class Network {
             credentials: 'include',
             headers: headers,
             body: body,
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**
@@ -61,7 +71,12 @@ export default class Network {
             credentials: 'include',
             headers: headers,
             body: body,
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**
@@ -80,7 +95,12 @@ export default class Network {
             method: 'DELETE',
             credentials: 'include',
             headers: headers,
-        });
+        })
+            .catch((err) => {
+                if (!navigator.onLine) {
+                    location.reload();
+                }
+            });
     }
 
     /**

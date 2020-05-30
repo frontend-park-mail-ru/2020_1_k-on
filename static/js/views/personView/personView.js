@@ -34,6 +34,7 @@ export default class PersonView extends View {
                 this.afterRender();
             })
             .catch((err) => {
+                console.error(`${err.url} ${err.status}: FAILED TO LOAD PERSON`);
                 this.eventBus.publish(PERSON_EVENTS.internalError, err.status);
             });
     }

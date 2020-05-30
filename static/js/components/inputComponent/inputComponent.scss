@@ -1,20 +1,32 @@
-@import 'css/variables';
-@import 'css/mixins';
+@import '~css/mixins';
+@import '~css/mediaQueries';
 
 .auth-form {
 
   &__input_wrapper {
     position: relative;
+    @include media('desktop') {
+      font-size: 1.6rem;
+    }
+    @include media('mobile') {
+      font-size: 1.6rem * $mobile-factor;
+    }
   }
 
   &__input {
-    background-color: $auth-form-input-bg-color;
+    background-color: var(--auth-form-input-bg-color);
     border-radius: $input-border $input-border 0 0;
     padding: $input-top-padding $input-left-padding 0;
-    min-height: $input-min-height;
     width: 100%;
     box-sizing: border-box;
-    color: inherit;
+    color: var(--text-color);
+    font-size: inherit;
+    @include media('desktop') {
+      min-height: $input-min-height;
+    }
+    @include media('mobile') {
+      min-height: $input-min-height * $mobile-factor;
+    }
   }
 
   &__input-border {
@@ -23,7 +35,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: $main-color;
+    background-color: var(--main-color);
     transition: {
       property: background-color, width;
       duration: 0.2s;
@@ -51,7 +63,8 @@
     transform: translateY(-50%);
     font-family: inherit;
     font-weight: bolder;
-    color: $label-color;
+    font-size: inherit;
+    color: var(--label-color);
     cursor: text;
     transition: {
       property: font-size, top;
@@ -66,5 +79,17 @@
 
   &__input:not(:placeholder-shown) ~ &__label {
     @include labelActive;
+  }
+
+  &__eye {
+    fill: var(--text-color);
+    @include media('desktop') {
+      height: 2.2rem;
+      width: 2.2rem;
+    }
+    @include media('mobile') {
+      height: 2.2rem * $mobile-factor;
+      width: 2.2rem * $mobile-factor;
+    }
   }
 }

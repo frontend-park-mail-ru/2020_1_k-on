@@ -21,7 +21,7 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(root + '/index.html');
+    res.sendFile(dist + '/index.html');
 });
 
 app.listen(process.env.PORT || PORT, () => {
