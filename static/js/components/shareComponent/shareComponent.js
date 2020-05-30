@@ -33,7 +33,7 @@ export default class ShareComponent extends Component {
         const linkString = `https://vk.com/share.php?url=${window.location.href}` +
             `&title=${this.shareData.title}` +
             `&image=${HOST_ADDRESS}/static/img/${this.shareData.image}`;
-        window.open(linkString, '_blank');
+        window.open(escape(linkString), '_blank');
     }
 
     share(evt) {
